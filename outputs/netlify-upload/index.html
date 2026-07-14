@@ -159,11 +159,14 @@
       margin-bottom: 14px;
       display: grid;
       gap: 12px;
+      position: sticky;
+      top: 75px;
+      z-index: 18;
     }
 
     .time-filter-bar {
       display: grid;
-      grid-template-columns: 170px 150px 150px minmax(220px, 1fr);
+      grid-template-columns: 170px 150px 150px minmax(360px, 1fr);
       gap: 10px;
       align-items: end;
     }
@@ -182,6 +185,17 @@
       color: #344054;
       font-size: 13px;
       text-align: right;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .time-status-text {
+      flex: 1 1 320px;
+      min-width: 0;
+    }
+
+    .refresh-inline {
+      flex: 0 0 auto;
     }
 
     .summary {
@@ -369,6 +383,9 @@
       padding: 14px;
       display: grid;
       gap: 12px;
+      position: sticky;
+      top: 158px;
+      z-index: 17;
     }
 
     .toolbar-head {
@@ -459,13 +476,14 @@
     .view-control {
       display: grid;
       gap: 4px;
-      min-width: 260px;
+      min-width: 240px;
     }
 
     .view-help {
       color: var(--muted);
       font-size: 12px;
       text-align: left;
+      display: none;
     }
 
     .layout {
@@ -1208,7 +1226,7 @@
           <div class="mark">星</div>
           <div>
             <h1>星辰 MaaS 竞品模型与功能对比</h1>
-            <div class="subtitle">以星辰 MaaS 为基准，观察竞品模型供给、功能更新、宣传动作与近期方向；页面打开时会自动同步最新数据</div>
+            <div class="subtitle">以星辰 MaaS 为基准，观察竞品模型供给、功能更新、宣传动作与近期方向；页面打开时会同步已发布数据</div>
           </div>
         </div>
         <div class="actions">
@@ -1236,7 +1254,10 @@
             结束
             <input id="dateTo" type="date">
           </label>
-          <div class="time-status" id="timeStatus"></div>
+          <div class="time-status">
+            <span class="time-status-text" id="timeStatus"></span>
+            <button class="btn primary refresh-inline" id="refreshDataBtn" type="button">同步已发布数据</button>
+          </div>
         </div>
       </section>
 
@@ -1287,10 +1308,9 @@
             </label>
             <div class="view-control">
               <div class="segmented" id="viewTabs">
-                <button type="button" data-view="compare" class="active">对比看板</button>
-                <button type="button" data-view="timeline">动态列表</button>
+                <button type="button" data-view="compare" class="active">竞品分析看板</button>
+                <button type="button" data-view="timeline">详细动态</button>
               </div>
-              <div class="view-help">切换下方主视图</div>
             </div>
           </div>
         </div>
@@ -1410,7 +1430,7 @@
             <div class="chapter-label">Update Timeline</div>
             <section class="section">
               <div class="section-header">
-                <h2>动态列表</h2>
+                <h2>详细动态</h2>
                 <span class="pill low">逐条更新</span>
               </div>
               <div class="section-body">
@@ -2045,11 +2065,15 @@
       ["train", "训练部署"]
     ];
 
+    const TODAY_DATE = getChinaTodayDate();
+    const INITIAL_LATEST_DATE = maxDate(TODAY_DATE, SNAPSHOT_DATE);
     const DATE_PRESETS = {
-      last30: { from: maxDate(offsetDate(SNAPSHOT_DATE, -30), DATA_COLLECTION_START), to: SNAPSHOT_DATE }
+      last30: { from: maxDate(offsetDate(INITIAL_LATEST_DATE, -30), DATA_COLLECTION_START), to: INITIAL_LATEST_DATE }
     };
 
-    let latestDataDate = SNAPSHOT_DATE;
+    let latestDataDate = INITIAL_LATEST_DATE;
+    let latestDataUpdatedAt = `${SNAPSHOT_DATE} 00:00:00`;
+    let refreshButtonTimer = null;
 
     const platformShortFeatures = {
       volc: "能力覆盖很宽：视频、图片、3D、智能体、批量任务、模型调优和用量管理都在补。",
@@ -2095,6 +2119,25 @@
       return `${formatMonth(state.dateFrom)} 至 ${formatMonth(state.dateTo)}`;
     }
 
+    function getChinaTodayDate() {
+      const parts = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Asia/Shanghai",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      }).formatToParts(new Date());
+      const values = Object.fromEntries(parts.filter((part) => part.type !== "literal").map((part) => [part.type, part.value]));
+      return `${values.year}-${values.month}-${values.day}`;
+    }
+
+    function formatRefreshTimestamp(value) {
+      const text = String(value || "").trim();
+      if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(text)) return text;
+      if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(text)) return `${text}:00`;
+      if (/^\d{4}-\d{2}-\d{2}$/.test(text)) return `${text} 00:00:00`;
+      return `${latestDataDate} 00:00:00`;
+    }
+
     function normalizeDateRange() {
       state.dateFrom = maxDate(state.dateFrom || DATA_COLLECTION_START, DATA_COLLECTION_START);
       state.dateTo = minDate(state.dateTo || latestDataDate, latestDataDate);
@@ -2117,8 +2160,9 @@
 
     function refreshPresetRanges(toDate) {
       if (!/^\d{4}-\d{2}-\d{2}$/.test(toDate || "")) return;
-      if (toDate < latestDataDate) return;
-      latestDataDate = toDate;
+      const selectableDate = maxDate(toDate, getChinaTodayDate());
+      if (selectableDate < latestDataDate) return;
+      latestDataDate = selectableDate;
       DATE_PRESETS.last30.from = maxDate(offsetDate(latestDataDate, -30), DATA_COLLECTION_START);
       DATE_PRESETS.last30.to = latestDataDate;
       if (state.datePreset !== "custom") applyDatePreset(state.datePreset);
@@ -2191,6 +2235,7 @@
 
       const payloadDate = getPayloadDate(payload);
       if (payloadDate) refreshPresetRanges(payloadDate);
+      latestDataUpdatedAt = formatRefreshTimestamp(payload.updatedAt || payloadDate || latestDataUpdatedAt);
       state.dataStatus = `数据文件 ${payload.updatedAt || latestDataDate}`;
       return { added, updated };
     }
@@ -2202,9 +2247,16 @@
       button.disabled = disabled;
     }
 
+    function resetRefreshButtonSoon() {
+      window.clearTimeout(refreshButtonTimer);
+      refreshButtonTimer = window.setTimeout(() => {
+        setRefreshButtonState("同步已发布数据");
+      }, 1500);
+    }
+
     function refreshLatestData(options = {}) {
       const silent = Boolean(options.silent);
-      if (!silent) setRefreshButtonState("刷新中", true);
+      if (!silent) setRefreshButtonState("同步中", true);
       delete window.__XINGCHEN_COMPETITOR_DATA__;
 
       return new Promise((resolve) => {
@@ -2216,7 +2268,8 @@
           const result = mergeLatestData(payload);
           renderAll();
           if (!silent) {
-            setRefreshButtonState("自动同步");
+            setRefreshButtonState("已同步");
+            resetRefreshButtonSoon();
             state.dataStatus = `${state.dataStatus}｜新增 ${result.added} / 更新 ${result.updated}`;
             renderDateControls();
           }
@@ -2226,7 +2279,8 @@
         script.onerror = () => {
           if (!silent) {
             state.dataStatus = `未找到最新数据文件，仍使用内置快照 ${SNAPSHOT_DATE}`;
-            setRefreshButtonState("自动同步");
+            setRefreshButtonState("同步失败");
+            resetRefreshButtonSoon();
             renderDateControls();
           }
           script.remove();
@@ -2365,10 +2419,7 @@
       dateToInput.max = latestDataDate;
       dateFromInput.value = state.dateFrom;
       dateToInput.value = state.dateTo;
-      const filteredEvents = getFilteredEvents();
-      const filteredNews = getFilteredNews();
-      const activeCompetitors = getActiveCompetitors();
-      document.getElementById("timeStatus").textContent = `${formatDateRange()}｜可选日期 ${DATA_COLLECTION_START} 至 ${latestDataDate}｜${activeCompetitors.length} 个平台｜${filteredEvents.length} 条动态｜${filteredNews.length} 条新闻｜${state.dataStatus}`;
+      document.getElementById("timeStatus").textContent = `最早数据：${DATA_COLLECTION_START}｜最新数据：${latestDataDate}｜数据刷新：${formatRefreshTimestamp(latestDataUpdatedAt)}｜每日北京时间 01:00 自动采集并刷新昨日数据`;
     }
 
     function renderExecutiveSummary() {
@@ -2455,14 +2506,10 @@
       const filteredEvents = getFilteredEvents();
       const filteredNews = getFilteredNews();
       const activeCompetitors = getActiveCompetitors();
-      const sourceCount = new Set(filteredEvents.concat(filteredNews).map((item) => item.source)).size;
-      const highEvents = filteredEvents.filter((item) => item.priority === "high").length;
-      const highNews = filteredNews.filter((item) => item.priority === "high").length;
       const items = [
         { value: activeCompetitors.length, label: "当前范围竞品" },
         { value: filteredEvents.length, label: "当前范围动态" },
-        { value: filteredNews.length, label: "新闻/公告信号" },
-        { value: highEvents + highNews, label: "重点关注信号" }
+        { value: filteredNews.length, label: "新闻/公告信号" }
       ];
 
       document.getElementById("summary").innerHTML = items.map((item) => `
@@ -2876,6 +2923,9 @@
 
       document.getElementById("exportBtn").addEventListener("click", exportCsv);
       document.getElementById("copyBriefingBtn").addEventListener("click", copyBriefing);
+      document.getElementById("refreshDataBtn").addEventListener("click", () => {
+        refreshLatestData();
+      });
       document.getElementById("closeDialogBtn").addEventListener("click", closeDialog);
       document.getElementById("clearManualBtn").addEventListener("click", () => {
         if (!confirm("确认清空本浏览器里的人工补充动态？")) return;

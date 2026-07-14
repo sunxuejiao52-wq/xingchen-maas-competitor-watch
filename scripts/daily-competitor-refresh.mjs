@@ -153,7 +153,7 @@ function formatShanghaiDate(date) {
 
 function formatShanghaiDateTime(date) {
   const parts = getShanghaiParts(date);
-  return `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute}`;
+  return `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute}:${parts.second}`;
 }
 
 function getShanghaiParts(date) {
@@ -164,6 +164,7 @@ function getShanghaiParts(date) {
     day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
+    second: "2-digit",
     hour12: false
   }).formatToParts(date);
   return Object.fromEntries(parts.filter((part) => part.type !== "literal").map((part) => [part.type, part.value]));

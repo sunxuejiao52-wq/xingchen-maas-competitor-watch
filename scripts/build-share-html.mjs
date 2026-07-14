@@ -24,7 +24,8 @@ const refreshFunction = `function refreshLatestData(options = {}) {
         state.dataStatus = \`单文件数据 \${payload.updatedAt || latestDataDate}\`;
         renderAll();
         if (!silent) {
-          setRefreshButtonState("自动同步");
+          setRefreshButtonState("已同步");
+          resetRefreshButtonSoon();
           state.dataStatus = \`\${state.dataStatus}｜已同步内置数据\`;
           renderDateControls();
         }
@@ -47,7 +48,7 @@ let output = html
     "<title>星辰 MaaS 竞品模型与功能对比｜单文件分享版</title>"
   )
   .replace(
-    "以星辰 MaaS 为基准，观察竞品模型供给、功能更新、宣传动作与近期方向；页面打开时会自动同步最新数据",
+    "以星辰 MaaS 为基准，观察竞品模型供给、功能更新、宣传动作与近期方向；页面打开时会同步已发布数据",
     "单文件分享版｜以星辰 MaaS 为基准，观察竞品模型供给、功能更新、宣传动作与近期方向"
   );
 
