@@ -1256,7 +1256,7 @@
           </label>
           <div class="time-status">
             <span class="time-status-text" id="timeStatus"></span>
-            <button class="btn primary refresh-inline" id="refreshDataBtn" type="button">同步已发布数据</button>
+            <button class="btn primary refresh-inline" id="refreshDataBtn" type="button">数据刷新</button>
           </div>
         </div>
       </section>
@@ -1854,6 +1854,9 @@
   ],
   strategies: []
 };
+    const DATA_REFRESH_ENDPOINT = "/.netlify/functions/trigger-refresh";
+    const DATA_REFRESH_POLL_INTERVAL_MS = 15000;
+    const DATA_REFRESH_POLL_ATTEMPTS = 16;
 
     const sources = {
       xfyunOverview: {
@@ -2421,6 +2424,8 @@
     let latestDataDate = INITIAL_LATEST_DATE;
     let latestDataUpdatedAt = `${SNAPSHOT_DATE} 00:00:00`;
     let refreshButtonTimer = null;
+    let refreshTaskStatus = "";
+    let refreshPollTimer = null;
 
     const platformShortFeatures = {
       volc: "能力覆盖很宽：视频、图片、3D、智能体、批量任务、模型调优和用量管理都在补。",
@@ -2597,13 +2602,13 @@
     function resetRefreshButtonSoon() {
       window.clearTimeout(refreshButtonTimer);
       refreshButtonTimer = window.setTimeout(() => {
-        setRefreshButtonState("同步已发布数据");
+        setRefreshButtonState("数据刷新");
       }, 1500);
     }
 
     function refreshLatestData(options = {}) {
       const silent = Boolean(options.silent);
-      if (!silent) setRefreshButtonState("同步中", true);
+      if (!silent) setRefreshButtonState("刷新中", true);
 
       return new Promise((resolve) => {
         const payload = JSON.parse(JSON.stringify(EMBEDDED_DATA));
@@ -2611,9 +2616,9 @@
         state.dataStatus = `单文件数据 ${payload.updatedAt || latestDataDate}`;
         renderAll();
         if (!silent) {
-          setRefreshButtonState("已同步");
+          setRefreshButtonState("已刷新");
           resetRefreshButtonSoon();
-          state.dataStatus = `${state.dataStatus}｜已同步内置数据`;
+          state.dataStatus = `${state.dataStatus}｜已刷新内置数据`;
           renderDateControls();
         }
         resolve(result);
@@ -2749,7 +2754,8 @@
       dateToInput.max = latestDataDate;
       dateFromInput.value = state.dateFrom;
       dateToInput.value = state.dateTo;
-      document.getElementById("timeStatus").textContent = `最早数据：${DATA_COLLECTION_START}｜最新数据：${latestDataDate}｜数据刷新：${formatRefreshTimestamp(latestDataUpdatedAt)}｜每日北京时间 01:00 自动采集并刷新昨日数据`;
+      const taskText = refreshTaskStatus ? `｜${refreshTaskStatus}` : "";
+      document.getElementById("timeStatus").textContent = `最早数据：${DATA_COLLECTION_START}｜最新数据：${latestDataDate}｜数据刷新：${formatRefreshTimestamp(latestDataUpdatedAt)}｜每日北京时间 01:00 自动采集并刷新昨日数据${taskText}`;
     }
 
     function renderExecutiveSummary() {
@@ -3254,7 +3260,7 @@
       document.getElementById("exportBtn").addEventListener("click", exportCsv);
       document.getElementById("copyBriefingBtn").addEventListener("click", copyBriefing);
       document.getElementById("refreshDataBtn").addEventListener("click", () => {
-        refreshLatestData();
+        triggerDataRefresh();
       });
       document.getElementById("closeDialogBtn").addEventListener("click", closeDialog);
       document.getElementById("clearManualBtn").addEventListener("click", () => {

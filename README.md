@@ -9,6 +9,17 @@
 - GitHub Actions 每天北京时间 01:00 自动运行数据刷新脚本。
 - Netlify 连接本仓库后，读取 `netlify.toml`，发布 `outputs/netlify-upload`。
 - 页面打开时会自动读取最新的 `xingchen-maas-competitor-data.js`，时间筛选会跟随最新数据日期更新。
+- 页面上的“数据刷新”按钮会调用 Netlify Function 触发 GitHub Actions，从配置来源采集当天数据。
+
+## Netlify 环境变量
+
+若要让“数据刷新”按钮真正触发采集，需要在 Netlify 站点里配置：
+
+```text
+GITHUB_ACTIONS_TOKEN=<GitHub Personal Access Token>
+```
+
+Token 建议使用 classic token，并勾选 `repo` 和 `workflow` 权限。不要把 token 写进网页或仓库文件里。
 
 ## 本地命令
 
@@ -25,3 +36,4 @@ npm run prepare:netlify
 - `config/competitor-monitor-sources.json`：竞品监测来源和关键词
 - `.github/workflows/daily-competitor-refresh.yml`：GitHub Actions 定时任务
 - `netlify.toml`：Netlify 发布配置
+- `netlify/functions/trigger-refresh.js`：页面手动触发数据刷新时调用的后台入口
