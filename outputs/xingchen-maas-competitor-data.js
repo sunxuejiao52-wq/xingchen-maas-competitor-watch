@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-07-14 18:17:40",
+  "updatedAt": "2026-07-15 04:43:01",
   "snapshotDate": "2026-07-14",
-  "note": "自动刷新已运行：2026-07-14 18:17:40（北京时间），本次总结 2026-07-14 的竞品动态。明确命中 0 条，待人工复核 20 条。",
+  "note": "自动刷新已运行：2026-07-15 04:43:01（北京时间），本次总结 2026-07-14 的竞品动态。明确命中 0 条，待人工复核 19 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -506,10 +506,10 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   "monitorRuns": [
     {
       "targetDate": "2026-07-14",
-      "runDateTime": "2026-07-14 18:17:40",
+      "runDateTime": "2026-07-15 04:43:01",
       "sourcesChecked": 20,
       "exactMatches": 0,
-      "candidates": 20,
+      "candidates": 19,
       "errors": 0
     }
   ]
