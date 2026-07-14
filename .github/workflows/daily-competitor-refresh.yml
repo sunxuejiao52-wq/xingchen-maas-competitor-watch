@@ -2,6 +2,7 @@ name: Daily Competitor Refresh
 
 on:
   schedule:
+    # 17:00 UTC = 北京时间次日 01:00，用来总结北京时间“昨天”的动态。
     - cron: "0 17 * * *"
   workflow_dispatch:
     inputs:
