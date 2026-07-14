@@ -1,0 +1,3 @@
+[build]
+  command = "npm run prepare:netlify"
+  publish = "outputs/netlify-upload"

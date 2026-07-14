@@ -1,0 +1,3226 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>星辰 MaaS 竞品模型与功能对比｜单文件分享版</title>
+  <style>
+    :root {
+      --bg: #f4f8ff;
+      --panel: #ffffff;
+      --ink: #101828;
+      --muted: #64748b;
+      --line: #dbe7fb;
+      --line-strong: #a9c7fb;
+      --teal: #00a7e8;
+      --blue: #2468ff;
+      --amber: #d88914;
+      --red: #d84a4a;
+      --green: #17a673;
+      --violet: #6d5dfc;
+      --blue-soft: #eef5ff;
+      --cyan-soft: #e9fbff;
+      --panel-tint: #f8fbff;
+      --shadow: 0 18px 50px rgba(31, 91, 214, 0.12);
+      --radius: 8px;
+      --max: 1480px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #f7faff 0%, var(--bg) 48%, #eef5ff 100%);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .app {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+
+    .topbar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .brandline {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(36, 104, 255, 0.42);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #195bff 0%, #14b8ff 100%);
+      color: #fff;
+      font-weight: 760;
+      box-shadow: 0 10px 24px rgba(36, 104, 255, 0.22);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+      white-space: normal;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      min-height: 38px;
+      border: 1px solid var(--line-strong);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 7px;
+      padding: 0 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      border-color: #78a8ff;
+      background: var(--blue-soft);
+    }
+
+    .btn.primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(36, 104, 255, 0.18);
+    }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 22px 24px 40px;
+    }
+
+    .control-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 34px rgba(36, 104, 255, 0.07);
+      padding: 14px;
+      margin-bottom: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .time-filter-bar {
+      display: grid;
+      grid-template-columns: 170px 150px 150px minmax(220px, 1fr);
+      gap: 10px;
+      align-items: end;
+    }
+
+    .time-filter-bar label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 640;
+    }
+
+    .time-status {
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      color: #344054;
+      font-size: 13px;
+      text-align: right;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .research-brief {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 390px;
+      min-height: 268px;
+    }
+
+    .brief-copy {
+      padding: 26px 28px;
+      display: grid;
+      align-content: space-between;
+      gap: 18px;
+      border-right: 1px solid var(--line);
+      background: linear-gradient(135deg, #f8fbff 0%, #edf5ff 100%);
+    }
+
+    .brief-eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 760;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .brief-copy h2 {
+      margin: 0;
+      font-size: clamp(24px, 2.2vw, 34px);
+      line-height: 1.18;
+      letter-spacing: 0;
+      max-width: 920px;
+    }
+
+    .brief-copy p {
+      margin: 10px 0 0;
+      color: #344054;
+      max-width: 980px;
+      font-size: 15px;
+    }
+
+    .brief-metrics {
+      padding: 18px;
+      align-content: stretch;
+      background: #fff;
+    }
+
+    .insight-board {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(36, 104, 255, 0.06);
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+
+    .insight-board-header {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .insight-board-header h2 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .insight-board-header span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 640;
+    }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .insight {
+      padding: 14px 16px;
+      min-height: 148px;
+      border-right: 1px solid var(--line);
+      display: grid;
+      align-content: start;
+      gap: 8px;
+    }
+
+    .insight:last-child {
+      border-right: 0;
+    }
+
+    .insight h3 {
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+
+    .insight p {
+      margin: 0;
+      color: #344054;
+      font-size: 13px;
+    }
+
+    .platform-strip {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .platform-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel-tint);
+    }
+
+    .platform-feature {
+      min-height: 88px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 10px;
+      background: #fff;
+    }
+
+    .platform-feature strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+
+    .platform-feature span {
+      color: #344054;
+      font-size: 12px;
+    }
+
+    .kpi {
+      background: linear-gradient(180deg, #f8fbff 0%, #f1f7ff 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      min-height: 100px;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .kpi .value {
+      font-size: 28px;
+      font-weight: 760;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .kpi .label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .toolbar {
+      margin-bottom: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(36, 104, 255, 0.05);
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .toolbar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+
+    .toolbar-head h2 {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    .toolbar-head span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .toolbar-row {
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+      align-items: end;
+    }
+
+    .filter-field {
+      display: grid;
+      gap: 4px;
+    }
+
+    .filter-field span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 640;
+    }
+
+    .select-filter {
+      width: auto;
+      min-width: 148px;
+      min-height: 38px;
+    }
+
+    .searchbox {
+      min-height: 46px;
+      border: 1px solid var(--line-strong);
+      background: #fff;
+      border-radius: 8px;
+      padding: 0 14px;
+      width: 100%;
+      color: var(--ink);
+    }
+
+    .segmented {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: flex-end;
+    }
+
+    .segmented button {
+      min-height: 34px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      border-radius: 7px;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+
+    .segmented button.active {
+      color: #fff;
+      border-color: var(--blue);
+      background: var(--blue);
+    }
+
+    .view-control {
+      display: grid;
+      gap: 4px;
+      min-width: 260px;
+    }
+
+    .view-help {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .rail {
+      display: grid;
+      gap: 18px;
+      position: sticky;
+      top: 92px;
+    }
+
+    .section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(36, 104, 255, 0.05);
+      overflow: hidden;
+    }
+
+    .section-header {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+
+    .section-body {
+      padding: 14px 16px;
+    }
+
+    .priority-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .priority-row {
+      display: grid;
+      grid-template-columns: 84px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .bar {
+      height: 8px;
+      background: #e8f0ff;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+      border-radius: 999px;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .legend span,
+    .pill,
+    .source-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border-radius: 999px;
+      padding: 0 8px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .pill.high,
+    .source-badge.official {
+      color: var(--blue);
+      border-color: rgba(36, 104, 255, 0.24);
+      background: rgba(36, 104, 255, 0.08);
+    }
+
+    .pill.medium {
+      color: var(--amber);
+      border-color: rgba(216, 137, 20, 0.25);
+      background: rgba(216, 137, 20, 0.09);
+    }
+
+    .pill.low,
+    .source-badge.external {
+      color: var(--blue);
+      border-color: rgba(36, 104, 255, 0.18);
+      background: rgba(36, 104, 255, 0.06);
+    }
+
+    .source-badge.media {
+      color: var(--violet);
+      border-color: rgba(109, 93, 252, 0.22);
+      background: rgba(109, 93, 252, 0.08);
+    }
+
+    .source-badge.wechat {
+      color: var(--green);
+      border-color: rgba(23, 166, 115, 0.22);
+      background: rgba(23, 166, 115, 0.08);
+    }
+
+    .pill.pending,
+    .source-badge.pending {
+      color: var(--red);
+      border-color: rgba(216, 74, 74, 0.22);
+      background: rgba(216, 74, 74, 0.08);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      min-height: 266px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(36, 104, 255, 0.05);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 12px;
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .vendor {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .vendor-initial {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: var(--blue-soft);
+      border: 1px solid var(--line);
+      font-weight: 760;
+      color: var(--ink);
+      flex: 0 0 auto;
+    }
+
+    .vendor h3 {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .vendor small {
+      color: var(--muted);
+      display: block;
+      margin-top: 3px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #344054;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .meta-grid div {
+      background: var(--panel-tint);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 8px;
+      min-height: 54px;
+    }
+
+    .meta-grid b {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 560;
+      margin-bottom: 3px;
+    }
+
+    .card-foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      font-size: 13px;
+    }
+
+    .source-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .event {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(36, 104, 255, 0.05);
+      padding: 14px 16px;
+      display: grid;
+      grid-template-columns: 104px minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .event-date {
+      font-weight: 760;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .event-date span {
+      display: block;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .event-main h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .event-main p {
+      margin: 0 0 10px;
+      color: #344054;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      color: #344054;
+      border: 1px solid var(--line);
+      background: var(--panel-tint);
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px;
+    }
+
+    .tag.model { color: var(--blue); border-color: rgba(36, 104, 255, 0.25); }
+    .tag.agent { color: var(--teal); border-color: rgba(0, 167, 232, 0.25); }
+    .tag.multimodal { color: var(--violet); border-color: rgba(109, 93, 252, 0.25); }
+    .tag.business { color: var(--amber); border-color: rgba(216, 137, 20, 0.25); }
+    .tag.governance { color: var(--red); border-color: rgba(216, 74, 74, 0.25); }
+    .tag.tools { color: var(--green); border-color: rgba(23, 166, 115, 0.25); }
+
+    .matrix-wrap {
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+    }
+
+    .baseline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .baseline-item {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 12px;
+      min-height: 132px;
+      display: grid;
+      gap: 8px;
+      align-content: start;
+    }
+
+    .baseline-item h3 {
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+
+    .baseline-item p {
+      margin: 0;
+      color: #3b4349;
+      font-size: 13px;
+    }
+
+    .baseline-item b {
+      color: var(--muted);
+      font-weight: 640;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 900px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+      vertical-align: middle;
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 640;
+      background: #f3f7ff;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .heat {
+      display: inline-grid;
+      place-items: center;
+      min-width: 34px;
+      height: 26px;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 720;
+    }
+
+    .h0 { background: #dce8ff; color: #3b527a; }
+    .h1 { background: #a9ccff; }
+    .h2 { background: #78adff; }
+    .h3 { background: #4288ff; }
+    .h4 { background: #2468ff; }
+    .h5 { background: #123fbd; }
+
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .strategy {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 14px;
+      min-height: 160px;
+    }
+
+    .strategy h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    .strategy p {
+      margin: 0;
+      color: #344054;
+      font-size: 13px;
+    }
+
+    .sources-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    details.section {
+      display: block;
+    }
+
+    details > summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    details > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .inline-section-stack {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .chapter-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 720;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin: 18px 0 8px;
+    }
+
+    .chapter-label::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--line-strong);
+    }
+
+    .source-item {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 12px;
+      min-height: 128px;
+      display: grid;
+      align-content: space-between;
+      gap: 10px;
+    }
+
+    .source-item h3 {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    .source-item p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .news-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .news-item {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .news-item:first-child {
+      grid-column: 1 / -1;
+      border-color: rgba(36, 104, 255, 0.28);
+      background: linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
+    }
+
+    .news-item h3 {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    .news-item p {
+      margin: 0;
+      color: #344054;
+      font-size: 13px;
+    }
+
+    .board-note {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    label {
+      display: grid;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 640;
+    }
+
+    input,
+    select,
+    textarea {
+      border: 1px solid var(--line-strong);
+      border-radius: 7px;
+      min-height: 38px;
+      padding: 8px 10px;
+      color: var(--ink);
+      background: #fff;
+      width: 100%;
+    }
+
+    textarea {
+      min-height: 84px;
+      resize: vertical;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .notice {
+      border-left: 4px solid var(--blue);
+      background: #eef6ff;
+      padding: 10px 12px;
+      color: #1f3b72;
+      border-radius: 0 7px 7px 0;
+      font-size: 13px;
+    }
+
+    dialog {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 0;
+      width: min(680px, calc(100vw - 28px));
+      box-shadow: var(--shadow);
+    }
+
+    dialog::backdrop {
+      background: rgba(20, 26, 28, 0.34);
+      backdrop-filter: blur(5px);
+    }
+
+    .dialog-head,
+    .dialog-foot {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .dialog-foot {
+      border-top: 1px solid var(--line);
+      border-bottom: 0;
+      justify-content: flex-end;
+    }
+
+    .dialog-head h2 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .dialog-body {
+      padding: 16px;
+    }
+
+    .empty {
+      border: 1px dashed var(--line-strong);
+      border-radius: var(--radius);
+      padding: 34px 18px;
+      text-align: center;
+      color: var(--muted);
+      background: #fff;
+    }
+
+    @media (max-width: 1180px) {
+      .research-brief {
+        grid-template-columns: 1fr;
+      }
+
+      .brief-copy {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .rail {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 880px) {
+      .topbar-inner,
+      .toolbar-row,
+      .time-filter-bar,
+      .card-head {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-inner {
+        align-items: stretch;
+      }
+
+      .actions,
+      .segmented {
+        justify-content: flex-start;
+      }
+
+      .summary,
+      .insight-grid,
+      .platform-feature-grid,
+      .cards,
+      .rail,
+      .baseline-grid,
+      .news-list,
+      .strategy-grid,
+      .sources-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .insight-board-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .toolbar-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .insight {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .insight:last-child {
+        border-bottom: 0;
+      }
+
+      .event {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        padding: 16px;
+      }
+
+      .brief-copy,
+      .brief-metrics {
+        padding: 16px;
+      }
+
+      .topbar-inner {
+        padding: 14px 16px;
+      }
+
+      .brandline {
+        align-items: flex-start;
+      }
+
+      .form-grid,
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filters {
+        justify-content: stretch;
+      }
+
+      .view-control,
+      .select-filter,
+      .time-filter-bar select,
+      .time-filter-bar input,
+      .filters .segmented,
+      .filters .segmented button {
+        width: 100%;
+      }
+
+      .time-status {
+        justify-content: flex-start;
+        text-align: left;
+      }
+
+      .priority-row {
+        grid-template-columns: 72px 1fr 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brandline">
+          <div class="mark">星</div>
+          <div>
+            <h1>星辰 MaaS 竞品模型与功能对比</h1>
+            <div class="subtitle">单文件分享版｜以星辰 MaaS 为基准，观察竞品模型供给、功能更新、宣传动作与近期方向</div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn" id="copyBriefingBtn" type="button">复制摘要</button>
+          <button class="btn" id="exportBtn" type="button">导出 CSV</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="control-panel">
+        <div class="time-filter-bar">
+          <label>
+            时间范围
+            <select id="datePreset">
+              <option value="last30">近30天</option>
+              <option value="custom">自定义</option>
+            </select>
+          </label>
+          <label>
+            开始
+            <input id="dateFrom" type="date">
+          </label>
+          <label>
+            结束
+            <input id="dateTo" type="date">
+          </label>
+          <div class="time-status" id="timeStatus"></div>
+        </div>
+      </section>
+
+      <section class="research-brief">
+        <div class="brief-copy">
+          <div>
+            <div class="brief-eyebrow">Competitive Intelligence Brief</div>
+            <h2 id="executiveTitle"></h2>
+            <p id="executiveText"></p>
+          </div>
+          <div class="platform-strip" id="platformStrip"></div>
+        </div>
+        <div class="summary brief-metrics" id="summary"></div>
+      </section>
+
+      <section class="insight-board">
+        <div class="insight-board-header">
+          <div>
+            <span>Strategic Signals</span>
+            <h2>时间范围内的核心判断</h2>
+          </div>
+          <span>全部数据跟随顶部筛选</span>
+        </div>
+        <div class="insight-grid" id="insightGrid"></div>
+        <div class="platform-feature-grid" id="platformFeatureGrid"></div>
+      </section>
+
+      <section class="toolbar">
+        <div class="toolbar-head">
+          <h2>筛选和查看方式</h2>
+          <span>这里会控制下方所有板块：关注点、对比、新闻、矩阵和来源。</span>
+        </div>
+        <div class="toolbar-row">
+          <input class="searchbox" id="searchInput" type="search" placeholder="搜索竞品、功能、宣传、模型、来源">
+          <div class="filters">
+            <label class="filter-field">
+              <span>功能方向</span>
+              <select class="select-filter" id="categorySelect" aria-label="功能方向筛选"></select>
+            </label>
+            <label class="filter-field">
+              <span>关注程度</span>
+              <select class="select-filter" id="prioritySelect" aria-label="关注程度筛选">
+                <option value="all">全部关注程度</option>
+                <option value="high">重点关注</option>
+                <option value="medium">持续观察</option>
+                <option value="low">低频观察</option>
+              </select>
+            </label>
+            <div class="view-control">
+              <div class="segmented" id="viewTabs">
+                <button type="button" data-view="compare" class="active">对比看板</button>
+                <button type="button" data-view="timeline">动态列表</button>
+              </div>
+              <div class="view-help">切换下方主视图</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="layout">
+        <aside class="rail">
+          <section class="section">
+            <div class="section-header">
+              <h2>当前范围关注点</h2>
+              <span class="pill high">按功能看</span>
+            </div>
+            <div class="section-body">
+              <div class="priority-list" id="priorityList"></div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>战略信号</h2>
+              <span class="pill medium">初判</span>
+            </div>
+            <div class="section-body">
+              <div class="notice" id="strategySignal"></div>
+              <div class="legend" style="margin-top: 12px;">
+                <span>模型更新</span>
+                <span>智能体/工具</span>
+                <span>图像视频语音</span>
+                <span>开发者套餐</span>
+                <span>账号权限安全</span>
+                <span>价格优惠</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>监测口径</h2>
+              <span class="pill low">可迭代</span>
+            </div>
+            <div class="section-body">
+              <p style="margin:0;color:#3b4349;font-size:13px;">优先看官方公告和更新日志；只能从控制台或其他平台间接看到的内容，会单独标注可信度。</p>
+            </div>
+          </section>
+        </aside>
+
+        <section>
+          <div class="view active" id="compareView">
+            <div class="chapter-label">01 Baseline</div>
+            <section class="section">
+              <div class="section-header">
+                <h2>星辰 MaaS 基准能力</h2>
+                <a href="https://maas.xfyun.cn/overview" target="_blank" rel="noreferrer">打开官网</a>
+              </div>
+              <div class="section-body">
+                <div class="notice">星辰官网用于建立对比基准；具体模型清单、套餐和控制台功能建议由产品侧定期确认后继续补进本页。</div>
+                <div class="baseline-grid" id="baselineGrid"></div>
+              </div>
+            </section>
+            <div class="chapter-label">02 Competitor Gap</div>
+            <section class="section" style="margin-top: 14px;">
+              <div class="section-header">
+                <h2>竞品相对星辰的功能对比</h2>
+                <span class="pill high">默认主视图</span>
+              </div>
+              <div class="section-body">
+                <div class="matrix-wrap" id="compareTable"></div>
+              </div>
+            </section>
+
+            <div class="inline-section-stack">
+              <div class="chapter-label">03 Market Signals</div>
+              <section class="section">
+                <div class="section-header">
+                  <h2>新闻追踪</h2>
+                  <span class="pill medium">公告 / 行业消息</span>
+                </div>
+                <div class="section-body">
+                  <div class="board-note">这里单独放官方公告、媒体报道、公众号监测和市场信号，和上面的具体功能动态分开看；同样会跟随顶部时间、功能方向、关注程度和搜索条件变化。</div>
+                  <div class="news-list" id="newsList" style="margin-top: 10px;"></div>
+                </div>
+              </section>
+
+              <div class="chapter-label">04 Priority Map</div>
+              <section class="section">
+                <div class="section-header">
+                  <h2>功能热度矩阵</h2>
+                  <span class="pill medium">0-5 热度</span>
+                </div>
+                <div class="section-body">
+                  <div class="matrix-wrap" id="matrix"></div>
+                </div>
+              </section>
+
+              <section class="section">
+                <div class="section-header">
+                  <h2>给星辰 MaaS 的动作建议</h2>
+                </div>
+                <div class="section-body">
+                  <div class="strategy-grid" id="strategyGrid"></div>
+                </div>
+              </section>
+
+              <details class="section">
+                <summary class="section-header">
+                  <h2>来源库</h2>
+                  <span class="pill low">展开查看</span>
+                </summary>
+                <div class="section-body">
+                  <div class="sources-grid" id="sourcesGrid"></div>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="view" id="timelineView">
+            <div class="chapter-label">Update Timeline</div>
+            <section class="section">
+              <div class="section-header">
+                <h2>动态列表</h2>
+                <span class="pill low">逐条更新</span>
+              </div>
+              <div class="section-body">
+                <div class="board-note">这里按时间倒序展示每一条功能更新、套餐变化、模型上下线和平台动作；同样受顶部时间、搜索和筛选条件影响。</div>
+                <div class="timeline" id="timeline" style="margin-top: 12px;"></div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="eventDialog">
+    <form method="dialog" id="eventForm">
+      <div class="dialog-head">
+        <h2>新增人工动态</h2>
+        <button class="btn" type="button" id="closeDialogBtn">关闭</button>
+      </div>
+      <div class="dialog-body">
+        <div class="form-grid">
+          <label>
+            竞品
+            <select id="manualCompetitor" required></select>
+          </label>
+          <label>
+            日期
+            <input id="manualDate" type="date" value="2026-07-06" required>
+          </label>
+          <label class="full">
+            标题
+            <input id="manualTitle" type="text" maxlength="80" required placeholder="例如：模型广场新增某模型">
+          </label>
+          <label>
+            类型
+            <select id="manualCategory" required>
+              <option value="model">模型更新</option>
+              <option value="agent">智能体/工具调用</option>
+              <option value="multimodal">图像视频语音</option>
+              <option value="business">价格/优惠</option>
+              <option value="governance">账号权限/安全</option>
+              <option value="tools">搜索/知识库</option>
+              <option value="platform">平台底座</option>
+            </select>
+          </label>
+          <label>
+            关注程度
+            <select id="manualPriority" required>
+              <option value="medium">持续观察</option>
+              <option value="high">重点关注</option>
+              <option value="low">低频观察</option>
+              <option value="pending">待复核</option>
+            </select>
+          </label>
+          <label class="full">
+            摘要
+            <textarea id="manualSummary" required placeholder="写清楚更新了什么、对应宣传或折扣、你判断它指向什么目标。"></textarea>
+          </label>
+          <label class="full">
+            来源链接
+            <input id="manualUrl" type="url" placeholder="https://">
+          </label>
+        </div>
+      </div>
+      <div class="dialog-foot">
+        <button class="btn" type="button" id="clearManualBtn">清空人工补充</button>
+        <button class="btn primary" type="submit">保存</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script>
+    const SNAPSHOT_DATE = "2026-07-06";
+    const DATA_COLLECTION_START = "2026-04-01";
+    const STORAGE_KEY = "xingchen-maas-competitor-watch-v1";
+    const EXTERNAL_DATA_FILE = "";
+    const EMBEDDED_DATA = {
+  updatedAt: "2026-07-13 17:35",
+  snapshotDate: "2026-07-13",
+  note: "本文件是竞品看板的外部增量数据入口。更新 events、news、sources、competitors 或 strategies 后，页面打开时会自动合并最新数据。",
+  sources: {
+    baiduModel: {
+      note: "官方模型更新页，更新时间 2026-07-09；7 月记录 Kimi-K2.5、MiniMax-M2.5 退役，6 月记录 GLM-5.2 上新。"
+    },
+    baiduCodingPlan: {
+      note: "2026-06-25 起停止旧 Coding Plan 续费，7 月初逐步迁移到 Token Plan 个人版。"
+    },
+    aliyunModels: {
+      note: "公开模型目录展示千问及三方模型，覆盖文本、图像、视频、3D、音频与语音等能力。"
+    },
+    siliconRelease: {
+      note: "更新公告覆盖模型下线、版本切换、价格调整、实名要求、调用限额与服务迁移；最新可见记录到 2026-06-05。"
+    },
+    tencentTione: {
+      note: "腾讯云 TI-ONE 文档强调从数据接入、模型训练、模型管理到模型服务的全流程，并提供 DeepSeek、混元等实践教程。"
+    },
+    huaweiModelArts: {
+      note: "华为云 ModelArts 成长地图更新时间为 2025-09-24，入口关联 ModelArts、MaaS 模型即服务和 AgentArts 智能体平台。"
+    },
+    ftChinaModelCost: {
+      title: "Financial Times：中国模型被企业用于降低 AI 成本",
+      vendor: "Financial Times",
+      url: "https://www.ft.com/content/9c8ff45b-7c20-4c2e-93c9-c52339ffdcee",
+      type: "media",
+      note: "媒体报道企业采用 DeepSeek、Z.ai、Moonshot 等中国模型，主要看重成本、开放权重和可自托管能力。"
+    },
+    ftVolcanoCloud: {
+      title: "Financial Times：ByteDance 用 AI 云挑战阿里等云厂商",
+      vendor: "Financial Times",
+      url: "https://www.ft.com/content/3732a646-da35-4437-bfde-7f9efc2725ff",
+      type: "media",
+      note: "报道火山引擎借 AI 平台、模型和算力基础设施切入云市场，重点对标阿里、腾讯、华为。"
+    },
+    techradarByteDanceChip: {
+      title: "TechRadar：ByteDance 推进 AI 加速芯片",
+      vendor: "TechRadar",
+      url: "https://www.techradar.com/pro/chinese-firm-that-created-tiktok-now-wants-to-build-an-ai-accelerator-to-rival-nvidia-within-months",
+      type: "media",
+      note: "报道 ByteDance 因豆包和 Seedance 等 AI 负载增长，推进自研 AI 加速芯片与基础设施自主化。"
+    },
+    barronsChinaAiStocks: {
+      title: "Barron's：中国 AI 股票热度转向阿里、百度等",
+      vendor: "Barron's",
+      url: "https://www.barrons.com/articles/alibaba-stock-price-ai-rally-china-fa4e07ee",
+      type: "media",
+      note: "报道投资者关注中国大模型公司的价格优势和 AI 增长预期，涉及阿里、百度等公司。"
+    },
+    barronsZhipuDeepSeek: {
+      title: "Barron's：智谱、DeepSeek 成为中国 AI 投资焦点",
+      vendor: "Barron's",
+      url: "https://www.barrons.com/articles/china-zhipu-ai-deepseek-spending-ed7a2f19",
+      type: "media",
+      note: "报道智谱 GLM、DeepSeek 的成本优势、融资和模型表现，体现中国模型生态热度。"
+    },
+    ftBaiduMultimodal: {
+      title: "Financial Times：百度强调多模态模型和千帆生态",
+      vendor: "Financial Times",
+      url: "https://www.ft.com/content/c462fbd1-1672-4d8f-bd91-c3aa185d2418",
+      type: "media",
+      note: "报道百度在开发者大会推出 ERNIE 4.5 Turbo、X1 Turbo 等多模态模型，并将 DeepSeek 接入千帆企业平台。"
+    },
+    wechatVolcArkSearch: {
+      title: "公众号检索：火山方舟 / 火山引擎",
+      vendor: "微信公众平台检索",
+      url: "https://weixin.sogou.com/weixin?type=2&query=%E7%81%AB%E5%B1%B1%E6%96%B9%E8%88%9F%20%E7%81%AB%E5%B1%B1%E5%BC%95%E6%93%8E",
+      type: "wechat",
+      note: "用于追踪火山方舟相关公众号文章、客户案例和产品传播口径；具体文章建议后续人工确认。"
+    },
+    wechatQianfanSearch: {
+      title: "公众号检索：百度千帆 / 文心千帆",
+      vendor: "微信公众平台检索",
+      url: "https://weixin.sogou.com/weixin?type=2&query=%E7%99%BE%E5%BA%A6%E5%8D%83%E5%B8%86%20%E6%96%87%E5%BF%83%E5%8D%83%E5%B8%86",
+      type: "wechat",
+      note: "用于追踪千帆相关公众号文章、活动传播、案例和套餐解读；具体文章建议后续人工确认。"
+    },
+    wechatBailianSearch: {
+      title: "公众号检索：阿里百炼 / 通义千问",
+      vendor: "微信公众平台检索",
+      url: "https://weixin.sogou.com/weixin?type=2&query=%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%20%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE",
+      type: "wechat",
+      note: "用于追踪阿里百炼、通义千问相关公众号文章、模型宣传和生态案例；具体文章建议后续人工确认。"
+    },
+    wechatSiliconSearch: {
+      title: "公众号检索：硅基流动 / SiliconFlow",
+      vendor: "微信公众平台检索",
+      url: "https://weixin.sogou.com/weixin?type=2&query=%E7%A1%85%E5%9F%BA%E6%B5%81%E5%8A%A8%20SiliconFlow",
+      type: "wechat",
+      note: "用于追踪硅基流动价格、模型接入、DeepSeek 调用生态等公众号讨论；具体文章建议后续人工确认。"
+    }
+  },
+  competitors: [
+    {
+      id: "baidu",
+      lastSeen: "2026-07-09",
+      thesis: "动作最密集：新模型、模型退役、智能体、工具广场、AI 搜索和开发者套餐一起推进。",
+      watchNext: "Token Plan 迁移、模型退役节奏、深度研究助手收费、百度搜索工具、AI 搜索控制台、视频与 PPT 工具。"
+    }
+  ],
+  events: [
+    {
+      id: "baidu-20260709-model-retire",
+      competitor: "baidu",
+      date: "2026-07-09",
+      title: "Kimi-K2.5、MiniMax-M2.5 在千帆进入退役记录",
+      summary: "百度千帆模型更新记录显示，2026 年 7 月 9 日 Kimi-K2.5 和 MiniMax-M2.5 退役，并指向模型版本升级及退役机制。",
+      categories: ["model", "governance"],
+      priority: "high",
+      source: "baiduModel",
+      signal: "平台开始更主动管理模型生命周期，星辰也需要清楚提示模型上下线、替代模型和迁移影响。"
+    }
+  ],
+  news: [
+    {
+      id: "news-baidu-20260709-model-retire",
+      competitor: "baidu",
+      date: "2026-07-09",
+      kind: "产品公告",
+      title: "百度千帆 7 月模型更新以“退役旧模型”为主",
+      summary: "千帆模型更新记录的 2026 年 7 月条目显示，Kimi-K2.5 与 MiniMax-M2.5 进入退役状态。",
+      takeaway: "简单说，百度不只是上新模型，也在整理旧模型；这会影响企业客户的迁移和稳定性预期。",
+      categories: ["model", "governance"],
+      priority: "high",
+      source: "baiduModel"
+    },
+    {
+      id: "news-baidu-20260626-token-plan",
+      competitor: "baidu",
+      date: "2026-06-26",
+      kind: "套餐变化",
+      title: "百度千帆把 Coding Plan 往 Token Plan 迁移",
+      summary: "百度公告称旧 Coding Plan 自 2026 年 6 月 25 日起停止续费，后续通过 Token Plan 提供更灵活的模型选择和使用方式。",
+      takeaway: "简单说，百度希望用户用一套额度消费更多模型，而不是只买单一编程套餐。",
+      categories: ["coding", "business"],
+      priority: "high",
+      source: "baiduCodingPlan"
+    },
+    {
+      id: "news-aliyun-20260706-model-market",
+      competitor: "aliyun",
+      date: "2026-07-06",
+      kind: "产品资料",
+      title: "阿里百炼模型目录继续强化“模型超市”心智",
+      summary: "百炼模型目录展示千问及第三方模型，覆盖文本、图像、视频、3D、音频与语音等多类能力。",
+      takeaway: "简单说，阿里在把模型选型做成一个大货架，用户可以按场景挑模型。",
+      categories: ["model", "multimodal"],
+      priority: "high",
+      source: "aliyunModels"
+    },
+    {
+      id: "news-aliyun-20260320-coding-plan",
+      competitor: "aliyun",
+      date: "2026-03-20",
+      kind: "套餐变化",
+      title: "阿里百炼 Coding Plan Lite 停止新购",
+      summary: "阿里百炼 Coding Plan 文档显示，Lite 套餐自 2026 年 3 月 20 日起停止新购，后续引导到 Pro 套餐和专属 API Key/Base URL。",
+      takeaway: "简单说，阿里也在调整编程套餐，把开发者使用入口做得更可控。",
+      categories: ["coding", "business", "governance"],
+      priority: "medium",
+      source: "aliyunCodingPlan"
+    },
+    {
+      id: "news-silicon-20260605-model-switch",
+      competitor: "silicon",
+      date: "2026-06-05",
+      kind: "产品公告",
+      title: "硅基流动公告旧模型下线并自动指向新版本",
+      summary: "SiliconFlow 公告显示，Kimi-K2.5、GLM-5 等模型会下线，部分请求将分别指向 Kimi-K2.6、GLM-5.1。",
+      takeaway: "简单说，硅基流动在帮用户自动换模型，但用户仍要关注价格、效果和兼容性。",
+      categories: ["model", "governance"],
+      priority: "high",
+      source: "siliconRelease"
+    },
+    {
+      id: "news-silicon-20260507-realname",
+      competitor: "silicon",
+      date: "2026-05-07",
+      kind: "账号规则",
+      title: "硅基流动要求未实名账户完成认证",
+      summary: "SiliconFlow 公告称，自 2026 年 5 月 15 日起，未完成实名认证的账户将无法使用平台功能。",
+      takeaway: "简单说，低门槛推理平台规模变大后，也开始补合规和账号安全。",
+      categories: ["governance"],
+      priority: "medium",
+      source: "siliconRelease"
+    },
+    {
+      id: "news-tencent-20260706-tione-platform",
+      competitor: "tencent",
+      date: "2026-07-06",
+      kind: "产品资料",
+      title: "腾讯云 TI-ONE 仍主打训练、评测、部署全流程",
+      summary: "腾讯云 TI-ONE 文档强调从数据接入、模型训练、模型管理到模型服务的全流程支持，并提供 DeepSeek、混元和推理加速教程。",
+      takeaway: "简单说，腾讯更像工程工作台，不是单纯模型货架。",
+      categories: ["platform", "model"],
+      priority: "medium",
+      source: "tencentTione"
+    },
+    {
+      id: "news-huawei-20250924-modelarts-maas",
+      competitor: "huawei",
+      date: "2025-09-24",
+      kind: "产品资料",
+      title: "华为 ModelArts 入口关联 MaaS 和 AgentArts",
+      summary: "华为云 ModelArts 成长地图页面显示，热门产品入口包含 ModelArts、MaaS 模型即服务和 AgentArts 智能体平台。",
+      takeaway: "简单说，华为的重点更偏企业训练部署、算力底座和智能体平台组合。",
+      categories: ["platform", "agent"],
+      priority: "medium",
+      source: "huaweiModelArts"
+    },
+    {
+      id: "news-zhipu-20260617-ecosystem",
+      competitor: "zhipu",
+      date: "2026-06-17",
+      kind: "生态信号",
+      title: "GLM-5.2 在千帆、百炼等平台形成可见信号",
+      summary: "本轮仍需补智谱 BigModel 官方更新日志，但 GLM-5.2 已在百度千帆和阿里百炼等平台出现。",
+      takeaway: "简单说，智谱的新模型即使官方口径待补，也已经通过其他 MaaS 平台影响开发者选择。",
+      categories: ["model", "agent"],
+      priority: "medium",
+      source: "zhipuExternal"
+    },
+    {
+      id: "news-media-20260713-china-model-cost",
+      competitor: "zhipu",
+      date: "2026-07-13",
+      kind: "媒体报道",
+      title: "FT：海外企业开始用中国模型降低 AI 成本",
+      summary: "Financial Times 报道称，部分海外企业采用 DeepSeek、Z.ai、Moonshot 等中国模型，看重低成本、代码能力、开放权重和可自托管。",
+      takeaway: "简单说，MaaS 平台的竞争不只是模型强不强，还包括价格、开放度、部署灵活性和企业可控性。",
+      categories: ["model", "business", "platform"],
+      priority: "high",
+      source: "ftChinaModelCost"
+    },
+    {
+      id: "news-media-20260710-barrons-china-ai",
+      competitor: "aliyun",
+      date: "2026-07-10",
+      kind: "媒体报道",
+      title: "Barron's：市场重新关注中国 AI 公司和云厂商",
+      summary: "Barron's 报道提到，投资者关注阿里、百度等中国 AI 相关公司，核心逻辑是大模型成本优势和 AI 云增长预期。",
+      takeaway: "简单说，资本市场也在把阿里、百度这些 MaaS/云厂商当作中国 AI 基础设施代表来观察。",
+      categories: ["business", "platform"],
+      priority: "medium",
+      source: "barronsChinaAiStocks"
+    },
+    {
+      id: "news-media-20260710-zhipu-deepseek",
+      competitor: "zhipu",
+      date: "2026-07-10",
+      kind: "媒体报道",
+      title: "Barron's：智谱和 DeepSeek 成为中国模型竞争焦点",
+      summary: "报道提到智谱 GLM、DeepSeek 的成本优势、融资和模型表现，反映中国模型厂商正在被国际投资者和企业客户关注。",
+      takeaway: "简单说，智谱这类模型公司会继续通过模型能力和价格影响各 MaaS 平台的模型货架。",
+      categories: ["model", "business"],
+      priority: "medium",
+      source: "barronsZhipuDeepSeek"
+    },
+    {
+      id: "news-media-20260708-bytedance-chip",
+      competitor: "volc",
+      date: "2026-07-08",
+      kind: "媒体报道",
+      title: "TechRadar：ByteDance 推进 AI 加速芯片，支撑豆包和 Seedance 负载",
+      summary: "TechRadar 报道称，ByteDance 因豆包聊天机器人和 Seedance 视频模型等 AI 负载增长，推进 AI 加速芯片和基础设施自主化。",
+      takeaway: "简单说，火山方舟背后的竞争力可能不只在模型和控制台，也在算力成本、芯片和基础设施储备。",
+      categories: ["platform", "multimodal"],
+      priority: "high",
+      source: "techradarByteDanceChip"
+    },
+    {
+      id: "news-media-20260213-volcano-ai-cloud",
+      competitor: "volc",
+      date: "2026-02-13",
+      kind: "媒体报道",
+      title: "FT：ByteDance 通过火山引擎加码 AI 云",
+      summary: "Financial Times 报道称，ByteDance 正通过火山引擎和 AI 平台挑战阿里、腾讯、华为等云厂商，并受益于模型、算力和消费级生态。",
+      takeaway: "简单说，火山方舟要按“AI 云平台”来看，不只是豆包模型 API。",
+      categories: ["platform", "business", "agent"],
+      priority: "high",
+      source: "ftVolcanoCloud"
+    },
+    {
+      id: "news-media-202504-baidu-multimodal",
+      competitor: "baidu",
+      date: "2025-04-25",
+      kind: "媒体报道",
+      title: "FT：百度用多模态和千帆生态回应 DeepSeek 竞争",
+      summary: "Financial Times 报道称，百度推出 ERNIE 4.5 Turbo、X1 Turbo 等多模态模型，并把 DeepSeek 接入千帆企业平台。",
+      takeaway: "简单说，百度千帆的方向是“自有模型 + 外部热门模型 + 多模态 + 企业平台”一起做。",
+      categories: ["model", "multimodal", "platform"],
+      priority: "medium",
+      source: "ftBaiduMultimodal"
+    },
+    {
+      id: "news-wechat-monitor-20260713",
+      competitor: "volc",
+      date: "2026-07-13",
+      kind: "公众号监测",
+      title: "新增公众号检索入口：火山方舟、百度千帆、阿里百炼、硅基流动",
+      summary: "已加入微信公众平台检索入口，用来跟踪公众号里的活动宣传、客户案例、行业解读和价格讨论。",
+      takeaway: "简单说，公众号更适合看传播口径和市场热度；功能事实仍以官方公告和产品文档为准。",
+      categories: ["platform", "business"],
+      priority: "medium",
+      source: "wechatVolcArkSearch"
+    },
+    {
+      id: "news-wechat-baidu-20260713",
+      competitor: "baidu",
+      date: "2026-07-13",
+      kind: "公众号监测",
+      title: "公众号追踪：百度千帆 / 文心千帆",
+      summary: "新增千帆相关公众号检索入口，后续重点看活动宣传、开发者套餐解读、AI 搜索和智能体案例传播。",
+      takeaway: "简单说，百度的公众号内容适合观察“怎么包装产品”和“主推哪些场景”。",
+      categories: ["agent", "tools", "business"],
+      priority: "medium",
+      source: "wechatQianfanSearch"
+    },
+    {
+      id: "news-wechat-aliyun-20260713",
+      competitor: "aliyun",
+      date: "2026-07-13",
+      kind: "公众号监测",
+      title: "公众号追踪：阿里百炼 / 通义千问",
+      summary: "新增阿里百炼和通义千问相关公众号检索入口，后续重点看模型上新、开发者工具、客户案例和云产品联动。",
+      takeaway: "简单说，阿里的公众号内容适合观察模型生态和云上应用开发怎么组合传播。",
+      categories: ["model", "agent", "platform"],
+      priority: "medium",
+      source: "wechatBailianSearch"
+    },
+    {
+      id: "news-wechat-silicon-20260713",
+      competitor: "silicon",
+      date: "2026-07-13",
+      kind: "公众号监测",
+      title: "公众号追踪：硅基流动 / SiliconFlow",
+      summary: "新增硅基流动相关公众号检索入口，后续重点看模型价格、DeepSeek/Qwen/GLM 接入、调用额度和开发者口碑。",
+      takeaway: "简单说，硅基流动的公众号与社区讨论更适合观察低价模型调用是否形成开发者心智。",
+      categories: ["model", "business"],
+      priority: "medium",
+      source: "wechatSiliconSearch"
+    }
+  ],
+  strategies: []
+};
+
+    const sources = {
+      xfyunOverview: {
+        title: "讯飞星辰 MaaS 官网",
+        vendor: "星辰 MaaS",
+        url: "https://maas.xfyun.cn/overview",
+        type: "official",
+        note: "用户提供的星辰 MaaS 官网入口。本页把星辰作为对比基准，重点看竞品在模型、应用搭建、智能体工具、图像视频语音、企业部署、账号安全和价格优惠上的动作。"
+      },
+      volcArkApi: {
+        title: "火山方舟接口文档",
+        vendor: "火山方舟",
+        url: "https://www.volcengine.com/docs/82379/1494384?lang=zh",
+        type: "official",
+        note: "公开接口目录已经覆盖对话、文件、视频/图片/3D、批量任务、模型调优、效果评测、用量统计、智能体和开发者套餐等。页面最近更新时间显示为 2026.07.02。"
+      },
+      baiduModel: {
+        title: "百度千帆模型更新记录",
+        vendor: "百度千帆",
+        url: "https://cloud.baidu.com/doc/qianfan/s/Kmh4stnjp",
+        type: "official",
+        note: "官方模型更新页，更新时间 2026-06-17，记录 GLM-5.2 等模型上新。"
+      },
+      baiduPlatform: {
+        title: "百度千帆更新动态",
+        vendor: "百度千帆",
+        url: "https://cloud.baidu.com/doc/qianfan/s/Mmh8l4qwj",
+        type: "official",
+        note: "官方平台动态页，覆盖模型服务、智能体、工具广场、深度研究助手、AI 搜索等。"
+      },
+      baiduCodingPlan: {
+        title: "百度千帆开发者套餐升级公告",
+        vendor: "百度千帆",
+        url: "https://cloud.baidu.com/doc/qianfan/s/Emqsyd7yj",
+        type: "official",
+        note: "2026-06-25 起停止旧的编程套餐续费，后续逐步迁移到按额度使用的新套餐。"
+      },
+      aliyunIntro: {
+        title: "阿里云百炼产品简介",
+        vendor: "阿里百炼",
+        url: "https://help.aliyun.com/zh/model-studio/what-is-model-studio",
+        type: "official",
+        note: "一站式大模型开发与应用平台，覆盖模型调用、智能体、工作流、知识库、插件工具、分享发布。"
+      },
+      aliyunModels: {
+        title: "阿里云百炼模型大全",
+        vendor: "阿里百炼",
+        url: "https://help.aliyun.com/zh/model-studio/models",
+        type: "official",
+        note: "公开模型目录展示 qwen3.7、deepseek-v4、kimi-k2.7-code、glm-5.2、图像/视频/3D/语音/向量/重排序等。"
+      },
+      aliyunMcp: {
+        title: "阿里云百炼工具接入文档",
+        vendor: "阿里百炼",
+        url: "https://help.aliyun.com/zh/model-studio/mcp-introduction",
+        type: "official",
+        note: "支持官方工具和自定义工具接入，示例包括地图、网页抓取、联网搜索等。"
+      },
+      aliyunCodingPlan: {
+        title: "阿里云百炼开发者套餐",
+        vendor: "阿里百炼",
+        url: "https://help.aliyun.com/zh/model-studio/coding-plan",
+        type: "official",
+        note: "固定月费的 AI 编程套餐，整合千问、GLM、Kimi、MiniMax 等模型。"
+      },
+      huaweiModelArts: {
+        title: "华为云 ModelArts 成长地图",
+        vendor: "华为 MaaS",
+        url: "https://support.huaweicloud.com/modelarts/index.html",
+        type: "official",
+        note: "ModelArts 是训练和部署模型的平台入口，页面有模型即服务与智能体平台入口；本轮未抓到逐条更新日志。"
+      },
+      tencentTione: {
+        title: "腾讯云 TI-ONE 文档",
+        vendor: "腾讯云 TI",
+        url: "https://cloud.tencent.com/document/product/851",
+        type: "official",
+        note: "一站式大模型训练和部署平台，覆盖数据接入、模型训练、模型管理、模型服务；有混元、DeepSeek 等教程入口。"
+      },
+      siliconIntro: {
+        title: "SiliconFlow 产品简介",
+        vendor: "硅基流动",
+        url: "https://docs.siliconflow.cn/cn/userguide/introduction",
+        type: "official",
+        note: "模型调用平台，公开列出 Qwen、DeepSeek、Kimi、GLM、BGE、SenseVoice、Qwen-Image 等模型，并强调价格低、可自带算力和国产 GPU。"
+      },
+      siliconRelease: {
+        title: "SiliconFlow 更新公告",
+        vendor: "硅基流动",
+        url: "https://docs.siliconflow.cn/cn/release-notes/overview",
+        type: "official",
+        note: "更新公告覆盖模型下线、版本切换、价格、实名、调用限额与服务地址迁移。"
+      },
+      zhipuExternal: {
+        title: "智谱 GLM 外部可见信号",
+        vendor: "智谱 AI",
+        url: "https://bigmodel.cn/console/modelcenter/square",
+        type: "external",
+        note: "BigModel 控制台入口需登录；本轮用百度千帆、阿里百炼、硅基流动对 GLM-5.1/5.2 的上架与迁移作为生态信号。"
+      },
+      manualSource: {
+        title: "人工补充来源",
+        vendor: "人工记录",
+        url: "https://maas.xfyun.cn/overview",
+        type: "external",
+        note: "用于记录没有单独链接的人工观察；建议后续补充具体公告、控制台截图或产品文档链接。"
+      }
+    };
+
+    const ownProduct = {
+      name: "星辰 MaaS",
+      url: "https://maas.xfyun.cn/overview",
+      axes: [
+        {
+          title: "模型供给",
+          baseline: "以星辰 MaaS 官网与控制台为准，先按模型调用/模型广场维度做基准。",
+          compareNeed: "看竞品最近上了哪些新模型、是否接入更多外部模型，以及旧模型如何下线或升级。"
+        },
+        {
+          title: "开发者接入",
+          baseline: "关注接口文档、密钥管理、示例代码、调用监控和是否容易从其他平台迁移。",
+          compareNeed: "火山、阿里、百度都在把对话、文件、批量任务等能力做成标准接口。"
+        },
+        {
+          title: "应用搭建",
+          baseline: "关注知识库、搜索增强、应用模板、流程编排和发布渠道。",
+          compareNeed: "百度把搜索、文库、网盘、热榜等能力放进应用开发；阿里重点做流程编排和工具接入。"
+        },
+        {
+          title: "智能体与工具",
+          baseline: "关注是否能接官方工具、企业自己的工具，能否让智能体自动拆任务并安全执行。",
+          compareNeed: "工具接入正在成为竞品卖点，星辰需要把工具接入和企业权限讲清楚。"
+        },
+        {
+          title: "图像视频语音",
+          baseline: "关注文本、语音、图片、视频、OCR、视觉理解、语音合成等能力。",
+          compareNeed: "火山强推视频、图片和 3D；阿里覆盖图像、视频、3D、语音；百度强化视频理解和图生视频。"
+        },
+        {
+          title: "企业管理",
+          baseline: "关注模型微调、效果评测、部署、用量、审计、权限、内容安全与企业隔离。",
+          compareNeed: "腾讯、华为更偏训练和部署；火山、百度在密钥、审计、评测与套餐管控上补管理能力。"
+        },
+        {
+          title: "价格与促销",
+          baseline: "关注新人额度、套餐、免费调用、开发者优惠和迁移活动。",
+          compareNeed: "百度和阿里在开发者套餐上动作密集，硅基流动靠低价和调用额度吸引开发者。"
+        }
+      ]
+    };
+
+    const competitors = [
+      {
+        id: "volc",
+        name: "火山方舟",
+        owner: "火山引擎",
+        initial: "火",
+        priority: "high",
+        sourceStatus: "official",
+        lastSeen: "2026-07-02",
+        confidence: "高",
+        thesis: "火山方舟不只是提供模型调用，也在补视频、图片、3D、智能体、批量任务、调优和用量管理。",
+        promotion: "本轮未抓到明确促销；更像在补齐平台能力。",
+        watchNext: "重点看视频生成、智能体套餐、开发者套餐、模型调优和效果评测。",
+        modelCompare: "豆包体系和视频生成模型正在平台化，已经覆盖视频、图片、3D、向量和长对话缓存。",
+        featureCompare: "对话、文件、批量任务、智能体、模型调优、效果评测、审计、用量统计和套餐管理一起出现。",
+        xingchenAction: "星辰要重点比较：视频/图片任务体验、效果反馈、智能体套餐和模型管理能力，不只看基础模型调用。",
+        sources: ["volcArkApi"],
+        scores: { model: 4, agent: 4, multimodal: 5, coding: 4, governance: 3, cost: 3, train: 3 }
+      },
+      {
+        id: "baidu",
+        name: "百度千帆",
+        owner: "百度智能云",
+        initial: "千",
+        priority: "high",
+        sourceStatus: "official",
+        lastSeen: "2026-06-26",
+        confidence: "高",
+        thesis: "动作最密集：新模型、智能体、工具广场、AI 搜索和开发者套餐一起推进。",
+        promotion: "Dumate 每日免费调用、OpenClaw 新用户代金券、编程套餐半价续费、深度研究助手免费次数等宣传和补贴较多。",
+        watchNext: "套餐迁移、深度研究助手收费、百度搜索工具、AI 搜索控制台、视频与 PPT 工具。",
+        modelCompare: "自有文心生态叠加 GLM、Kimi、MiniMax、Qwen 等三方模型；近期强调 GLM-5.1/5.2、视频理解和深度思考。",
+        featureCompare: "智能体开发、深度研究助手、桌面助手、应用插件、百度搜索工具、AI 搜索、热榜、问题改写和开发者套餐。",
+        xingchenAction: "星辰需要重点比较：搜索/知识库工具、智能体发布闭环、研究助手收费、开发者套餐补贴。",
+        sources: ["baiduModel", "baiduPlatform", "baiduCodingPlan"],
+        scores: { model: 4, agent: 5, multimodal: 4, coding: 4, governance: 4, cost: 5, train: 3 }
+      },
+      {
+        id: "aliyun",
+        name: "阿里百炼",
+        owner: "阿里云",
+        initial: "百",
+        priority: "high",
+        sourceStatus: "official",
+        lastSeen: "2026-07-06",
+        confidence: "中高",
+        thesis: "阿里百炼像一个模型和应用开发超市：千问自家模型、外部模型、智能体、工作流、知识库和多媒体模型都放在一起。",
+        promotion: "新人免费额度、固定月费编程套餐、跨模型编码套餐，降低开发者试用成本。",
+        watchNext: "千问、DeepSeek、Kimi、GLM 等新模型，工具市场，以及图像、视频、3D、语音模型。",
+        modelCompare: "千问旗舰模型加大量三方模型，覆盖文本、图像、视频、3D、语音、向量、重排序和领域模型。",
+        featureCompare: "支持从其他平台迁移，提供多地域服务地址、智能体、工作流、知识库、插件工具、应用发布、模型监控和开发者套餐。",
+        xingchenAction: "星辰要重点看：模型是否足够全、迁移是否容易、工具接入是否方便、不同模型价格是否清楚。",
+        sources: ["aliyunIntro", "aliyunModels", "aliyunMcp", "aliyunCodingPlan"],
+        scores: { model: 5, agent: 4, multimodal: 5, coding: 4, governance: 4, cost: 4, train: 3 }
+      },
+      {
+        id: "huawei",
+        name: "华为 MaaS",
+        owner: "华为云",
+        initial: "华",
+        priority: "medium",
+        sourceStatus: "official",
+        lastSeen: "2025-09-24",
+        confidence: "中",
+        thesis: "更偏企业客户：训练模型、部署模型、行业模型、昇腾算力和智能体平台一起打包。",
+        promotion: "本轮公开页未抓到具体促销。",
+        watchNext: "ModelArts、模型即服务、AgentArts 智能体平台、盘古模型与昇腾训练/部署资源。",
+        modelCompare: "以盘古、昇腾和行业模型生态为主要心智，模型清单公开更新不如百度/阿里密集。",
+        featureCompare: "训练和部署平台、模型即服务、智能体平台、企业云资源和私有化/行业落地能力。",
+        xingchenAction: "星辰需要比较：企业专属部署、行业模型、训练到上线的完整流程和国产算力适配。",
+        sources: ["huaweiModelArts"],
+        scores: { model: 3, agent: 3, multimodal: 2, coding: 2, governance: 5, cost: 3, train: 5 }
+      },
+      {
+        id: "tencent",
+        name: "腾讯云 TI",
+        owner: "腾讯云",
+        initial: "腾",
+        priority: "medium",
+        sourceStatus: "official",
+        lastSeen: "2026-07-06",
+        confidence: "中",
+        thesis: "腾讯云 TI 更像工程平台：帮助企业接数据、训练模型、管理模型、上线服务。",
+        promotion: "本轮未抓到明确促销；文档更强调实践教程和上手路径。",
+        watchNext: "Hunyuan-Large x TI-ONE、DeepSeek-R1 蒸馏、Angel-vLLM 推理加速、批量预测与资源组管理。",
+        modelCompare: "围绕混元、内置开源 LLM、DeepSeek 系列与推理加速方案，而不是公开高频模型广场公告。",
+        featureCompare: "数据接入、训练任务、开发机、模型管理、效果评测、在线服务、批量预测和资源组管理。",
+        xingchenAction: "星辰要比较训练、评测、部署这些工程环节的体验；腾讯不是纯模型超市，更像工程师工作台。",
+        sources: ["tencentTione"],
+        scores: { model: 3, agent: 2, multimodal: 2, coding: 1, governance: 4, cost: 3, train: 5 }
+      },
+      {
+        id: "silicon",
+        name: "硅基流动",
+        owner: "SiliconFlow",
+        initial: "硅",
+        priority: "high",
+        sourceStatus: "official",
+        lastSeen: "2026-06-05",
+        confidence: "高",
+        thesis: "核心是低成本模型调用。它经常更新模型版本、价格、实名要求和调用额度。",
+        promotion: "文档突出免费模型、DeepSeek、国产算力和成本优势。",
+        watchNext: "Kimi/GLM/DeepSeek/Qwen 的新旧版本切换、价格调整、调用额度和国内外服务地址。",
+        modelCompare: "聚合 Qwen、DeepSeek、Kimi、GLM、BGE、SenseVoice、Qwen-Image 等模型，重点是版本切换和成本。",
+        featureCompare: "低价调用、模型版本切换、模型下线通知、价格调整、调用额度、实名认证、自带算力和 GPU 云函数。",
+        xingchenAction: "星辰需要关注模型价格表、低成本模型、调用额度、旧版本提醒和私有部署诉求。",
+        sources: ["siliconIntro", "siliconRelease"],
+        scores: { model: 5, agent: 2, multimodal: 3, coding: 1, governance: 3, cost: 5, train: 2 }
+      },
+      {
+        id: "zhipu",
+        name: "智谱 AI",
+        owner: "智谱华章",
+        initial: "智",
+        priority: "medium",
+        sourceStatus: "external",
+        lastSeen: "2026-06-17",
+        confidence: "中低",
+        thesis: "官方更新日志还需要补充，但 GLM-5.1/5.2 已在多个平台出现，说明智谱近期重点在长任务、代码和智能体能力。",
+        promotion: "待官方确认。",
+        watchNext: "BigModel 模型广场、GLM-5.2、智能体/工具调用、价格和长文本能力。",
+        modelCompare: "GLM-5.1/5.2 通过千帆、百炼、硅基流动等外部平台形成可见信号，长任务和工程规范是关键词。",
+        featureCompare: "BigModel 控制台需登录复核；公开能看到的重点是模型广场、模型调用、智能体工具和计费策略。",
+        xingchenAction: "星辰需要补齐智谱官方口径：模型列表、长文本能力、工具调用、智能体能力和价格。",
+        sources: ["zhipuExternal", "baiduModel", "siliconRelease", "aliyunModels"],
+        scores: { model: 4, agent: 3, multimodal: 2, coding: 2, governance: 3, cost: 3, train: 1 }
+      }
+    ];
+
+    const events = [
+      {
+        id: "volc-20260702-api",
+        competitor: "volc",
+        date: "2026-07-02",
+        title: "接口能力扩展到视频图片、智能体、批量任务和套餐管理",
+        summary: "火山方舟公开接口目录已覆盖对话、文件、视频生成、图片生成、3D、向量化、长对话缓存、智能体、批量推理、模型调优、效果评测、用量统计、安全审计以及智能体/开发者套餐管理。",
+        categories: ["platform", "agent", "multimodal", "coding"],
+        priority: "high",
+        source: "volcArkApi",
+        signal: "它不只是提供模型调用，而是在做一整套开发和管理平台。"
+      },
+      {
+        id: "baidu-20260626-token-plan",
+        competitor: "baidu",
+        date: "2026-06-26",
+        title: "旧编程套餐停止续费，并迁移到新额度套餐",
+        summary: "千帆公告称自 2026-06-25 起旧编程套餐停止续费，7 月初通过新的额度套餐提供更多模型选择和更灵活的使用方式。",
+        categories: ["business", "coding"],
+        priority: "high",
+        source: "baiduCodingPlan",
+        signal: "百度在把单一编程套餐升级为更通用的额度账户，方便用户跨模型消费。"
+      },
+      {
+        id: "baidu-20260617-glm52",
+        competitor: "baidu",
+        date: "2026-06-17",
+        title: "模型广场上新 GLM-5.2",
+        summary: "千帆模型更新记录显示 GLM-5.2 上新，说明为面向长任务时代的旗舰模型，强调更长上下文、长程任务稳定性与工程规范遵循。",
+        categories: ["model", "agent"],
+        priority: "medium",
+        source: "baiduModel",
+        signal: "第三方强模型仍是 MaaS 平台抢开发者心智的重要筹码。"
+      },
+      {
+        id: "baidu-20260413-glm51",
+        competitor: "baidu",
+        date: "2026-04-13",
+        title: "GLM-5.1 上线，同时加强密钥管理",
+        summary: "千帆支持主账号或授权子用户查看当前账号下全部调用密钥，并上线深度思考模型 GLM-5.1。",
+        categories: ["model", "governance"],
+        priority: "medium",
+        source: "baiduPlatform",
+        signal: "模型上新同时补企业权限与治理，面向团队级使用。"
+      },
+      {
+        id: "baidu-20260320-dumate",
+        competitor: "baidu",
+        date: "2026-03-20",
+        title: "Dumate 上线，主推桌面 AI 助手",
+        summary: "千帆记录 Dumate 支持 MacOS 和 Windows，限时每日免费 1000 次调用，包含打断、中断恢复、多任务并行、安全沙箱和高风险二次确认。",
+        categories: ["agent", "business"],
+        priority: "high",
+        source: "baiduPlatform",
+        signal: "从 MaaS 控制台延伸到端侧生产力入口，用免费额度拉开发者和办公用户。"
+      },
+      {
+        id: "baidu-20260313-mcp-search",
+        competitor: "baidu",
+        date: "2026-03-13",
+        title: "视频理解、搜索工具和问题改写能力上线",
+        summary: "千帆新增 Qwen3.5 系列并支持视频理解；对话接口支持思考过程参数；工具广场上线百度热搜、百度搜索工具、智能问题改写等。",
+        categories: ["model", "multimodal", "agent", "tools"],
+        priority: "high",
+        source: "baiduPlatform",
+        signal: "百度把搜索能力和视频理解放进智能体流程，形成自己的搜索优势。"
+      },
+      {
+        id: "baidu-20260213-openclaw",
+        competitor: "baidu",
+        date: "2026-02-13",
+        title: "智能体可一键发布为插件，并用代金券拉新",
+        summary: "千帆支持自主规划智能体发布为秒哒插件，OpenClaw 快速体验页可一键配置千帆模型及官方技能，新用户首次部署成功赠送代金券。",
+        categories: ["agent", "business"],
+        priority: "high",
+        source: "baiduPlatform",
+        signal: "百度正在把智能体从“能做出来”推进到“能发布、能分发、能转化”。"
+      },
+      {
+        id: "baidu-20260205-deepresearch",
+        competitor: "baidu",
+        date: "2026-02-05",
+        title: "深度研究助手开始收费",
+        summary: "千帆 DeepResearch 深度研究助手正式收费，定价 2.5 元/次，每个账户提供 50 次免费调用额度。",
+        categories: ["agent", "business"],
+        priority: "high",
+        source: "baiduPlatform",
+        signal: "研究型智能体已经开始形成明确收费产品，值得观察企业是否愿意买单。"
+      },
+      {
+        id: "baidu-20260130-video-search",
+        competitor: "baidu",
+        date: "2026-01-30",
+        title: "MuseSteamer 图生视频与百度 AI 搜索独立控制台",
+        summary: "千帆正式推出 MuseSteamer-2.1-Turbo-I2V 与 Lite-I2V；百度 AI 搜索独立控制台上线，提供在线演示、Curl 生成、监控和资源管理。",
+        categories: ["multimodal", "tools", "platform"],
+        priority: "medium",
+        source: "baiduPlatform",
+        signal: "图像视频内容生产与企业搜索能力同步增强。"
+      },
+      {
+        id: "aliyun-20260706-models",
+        competitor: "aliyun",
+        date: "2026-07-06",
+        title: "模型列表覆盖文本、图像、视频、3D、语音等多类能力",
+        summary: "百炼模型大全显示文本模型包括 qwen3.7-max/plus、deepseek-v4-pro、kimi-k2.7-code、glm-5.2、MiniMax-M2.7 等；图像视频包括 wan2.7、qwen-image-2.0、happyhorse；还有 Tripo 3D、CosyVoice、embedding-v4、qwen3-rerank。",
+        categories: ["model", "multimodal"],
+        priority: "high",
+        source: "aliyunModels",
+        signal: "百炼正在做“模型超市”，星辰需要对标模型数量、类型和查找体验。"
+      },
+      {
+        id: "aliyun-20260706-mcp",
+        competitor: "aliyun",
+        date: "2026-07-06",
+        title: "百炼应用支持官方工具和自定义工具",
+        summary: "百炼文档说明智能体和工作流支持接入官方工具与自定义工具，示例包含地图、网页抓取、联网搜索，并有独立计费与限流说明。",
+        categories: ["agent", "tools", "business"],
+        priority: "high",
+        source: "aliyunMcp",
+        signal: "工具接入正在成为大模型应用平台的标准能力，而不是可有可无的附加项。"
+      },
+      {
+        id: "aliyun-20260320-coding",
+        competitor: "aliyun",
+        date: "2026-03-20",
+        title: "固定月费开发者套餐整合多家模型",
+        summary: "百炼开发者套餐整合千问、GLM、Kimi、MiniMax，并兼容主流 AI 编程工具；Lite 套餐自 2026-03-20 停止新购，后续套餐持续调整。",
+        categories: ["coding", "business"],
+        priority: "medium",
+        source: "aliyunCodingPlan",
+        signal: "编程场景使用频率高，是大模型平台争夺开发者的关键入口。"
+      },
+      {
+        id: "silicon-20260605-kimi-glm",
+        competitor: "silicon",
+        date: "2026-06-05",
+        title: "部分旧模型下线，并自动切换到新版本",
+        summary: "SiliconFlow 公告称 2026-06-11 下线 Kimi-K2.5、GLM-5、GLM-4.7 等；Kimi-K2.5 请求将指向 Kimi-K2.6，GLM-5 请求将指向 GLM-5.1。",
+        categories: ["model", "governance"],
+        priority: "high",
+        source: "siliconRelease",
+        signal: "硅基流动在主动管理模型版本，用户不用只关心选哪个模型，也要关心能不能稳定持续用。"
+      },
+      {
+        id: "silicon-20260507-realname",
+        competitor: "silicon",
+        date: "2026-05-07",
+        title: "未实名账户将无法使用平台功能",
+        summary: "SiliconFlow 公告称自 2026-05-15 起，未完成实名认证账户将无法使用平台功能，需要完成认证后解除限制。",
+        categories: ["governance"],
+        priority: "medium",
+        source: "siliconRelease",
+        signal: "低门槛模型调用平台在规模化后开始补合规和账户管理。"
+      },
+      {
+        id: "silicon-20260309-price",
+        competitor: "silicon",
+        date: "2026-03-09",
+        title: "Qwen3.5-397B-A17B 价格调整",
+        summary: "SiliconFlow 公告称为确保模型定价体系合理一致，对 Qwen/Qwen3.5-397B-A17B 价格进行调整。",
+        categories: ["business", "model"],
+        priority: "medium",
+        source: "siliconRelease",
+        signal: "模型调用价格变化频繁，星辰 MaaS 需要跟踪每个模型的价格和利润空间。"
+      },
+      {
+        id: "silicon-202501-ascend",
+        competitor: "silicon",
+        date: "2025-01-31",
+        title: "DeepSeek-V3/R1 基于华为云昇腾云服务上线",
+        summary: "SiliconFlow 产品简介称 2025 年 1 月平台上线基于华为云昇腾云服务的 DeepSeek-V3、DeepSeek-R1 推理服务，并结合自研推理加速引擎。",
+        categories: ["model", "business"],
+        priority: "medium",
+        source: "siliconIntro",
+        signal: "成本与国产算力适配是硅基流动长期差异化。"
+      },
+      {
+        id: "tencent-20260706-tione",
+        competitor: "tencent",
+        date: "2026-07-06",
+        title: "TI-ONE 强调训练、管理和部署一站式平台",
+        summary: "腾讯云 TI-ONE 文档强调为 AI 工程师提供从数据接入、模型训练、模型管理到模型服务的全流程支持，教程包含 Hunyuan-Large、DeepSeek-R1 蒸馏和 Angel-vLLM 推理加速。",
+        categories: ["platform", "model"],
+        priority: "medium",
+        source: "tencentTione",
+        signal: "腾讯云更强调工程落地，而不是只做模型列表。"
+      },
+      {
+        id: "huawei-20250924-modelarts",
+        competitor: "huawei",
+        date: "2025-09-24",
+        title: "ModelArts 连接模型服务和智能体平台",
+        summary: "华为云 ModelArts 成长地图页面显示模型训练和部署平台入口，并在热门产品中出现模型即服务与 AgentArts 智能体平台。",
+        categories: ["platform", "agent"],
+        priority: "medium",
+        source: "huaweiModelArts",
+        signal: "华为路线更偏企业级训练部署、算力和智能体平台组合。"
+      },
+      {
+        id: "zhipu-20260617-ecosystem",
+        competitor: "zhipu",
+        date: "2026-06-17",
+        title: "GLM-5.2 在千帆上新，GLM-5.1/5.2 出现在多个平台",
+        summary: "本轮未抓到 BigModel 官方更新日志，但百度千帆记录 GLM-5.2 上新，阿里百炼模型大全展示 GLM-5.2，SiliconFlow 公告将 GLM-5 请求指向 GLM-5.1。",
+        categories: ["model", "agent"],
+        priority: "medium",
+        source: "zhipuExternal",
+        signal: "智谱近期模型重点可通过外部 MaaS 平台反向观察，需补官方口径。"
+      },
+    ];
+
+    const newsItems = [];
+
+    const strategies = [
+      {
+        title: "把模型变化讲清楚",
+        text: "竞品都在上新模型，但用户更关心：哪个模型好用、旧模型什么时候下线、价格怎么变。星辰 MaaS 可以优先做模型变更提醒、迁移建议和价格对比。"
+      },
+      {
+        title: "工具接入要更好理解",
+        text: "百度、阿里、火山都在把智能体和工具广场放到前台。星辰 MaaS 不宜只放接口文档，应把官方工具、企业自有工具、权限和计费串成一个清楚流程。"
+      },
+      {
+        title: "开发者套餐是高频入口",
+        text: "百度、阿里、火山都在推编程和额度套餐。星辰 MaaS 可以设计团队额度、编程工具接入和用量看板，让开发者更容易持续使用。"
+      },
+      {
+        title: "图像视频能力要做成任务",
+        text: "视频、图像、3D、语音模型已经成为标配。真正影响体验的是任务排队、素材安全、效果反馈、内容审核和行业模板。"
+      },
+      {
+        title: "搜索和知识库是百度强项",
+        text: "百度把 AI 搜索、热榜、问题改写、文档解析放进工具广场。星辰 MaaS 可以围绕企业知识、可信来源和引用依据建立差异。"
+      },
+      {
+        title: "补齐竞品信息缺口",
+        text: "智谱 BigModel 仍需要登录态或更稳定公开源。建议每周固定截图控制台首页、模型广场、公告中心和价格页，并把新增记录写入本看板。"
+      }
+    ];
+
+    const categoryLabels = {
+      all: "全部功能",
+      model: "模型更新",
+      agent: "智能体/工具调用",
+      multimodal: "图像视频语音",
+      coding: "开发者套餐",
+      business: "价格/优惠",
+      governance: "账号权限/安全",
+      tools: "搜索/知识库",
+      platform: "平台底座"
+    };
+
+    const priorityLabels = {
+      high: "重点关注",
+      medium: "持续观察",
+      low: "低频观察",
+      pending: "待复核"
+    };
+
+    const sourceTypeLabels = {
+      official: "官方",
+      media: "媒体",
+      wechat: "公众号",
+      external: "生态推断",
+      pending: "人工补充"
+    };
+
+    const themes = [
+      ["model", "模型更新"],
+      ["agent", "智能体/工具"],
+      ["multimodal", "图像视频语音"],
+      ["coding", "开发者套餐"],
+      ["governance", "账号权限安全"],
+      ["cost", "价格优惠"],
+      ["train", "训练部署"]
+    ];
+
+    const DATE_PRESETS = {
+      last30: { from: maxDate(offsetDate(SNAPSHOT_DATE, -30), DATA_COLLECTION_START), to: SNAPSHOT_DATE }
+    };
+
+    let latestDataDate = SNAPSHOT_DATE;
+
+    const platformShortFeatures = {
+      volc: "能力覆盖很宽：视频、图片、3D、智能体、批量任务、模型调优和用量管理都在补。",
+      baidu: "最会把能力包装成可用产品：智能体、AI 搜索、工具广场、深度研究助手和优惠权益都很活跃。",
+      aliyun: "像模型和应用开发超市：自家模型、外部模型、工具接入、工作流和图像视频语音都比较全。",
+      silicon: "高性价比推理、模型版本迁移、下线通知、价格与限流治理是主要特点。",
+      tencent: "偏工程平台，重点是数据接入、训练、模型管理、效果评测、部署和资源管理。",
+      huawei: "偏企业落地，重点是训练部署、昇腾算力、行业模型、智能体平台和私有化。",
+      zhipu: "官方日志待复核，但 GLM-5.x 在多平台上架，长文本、代码和智能体能力是主要信号。"
+    };
+
+    let state = {
+      category: "all",
+      priority: "all",
+      datePreset: "last30",
+      dateFrom: DATE_PRESETS.last30.from,
+      dateTo: DATE_PRESETS.last30.to,
+      view: "compare",
+      query: "",
+      dataStatus: `内置快照 ${SNAPSHOT_DATE}`,
+      manualEvents: []
+    };
+
+    function offsetDate(dateString, days) {
+      const date = new Date(`${dateString}T00:00:00Z`);
+      date.setUTCDate(date.getUTCDate() + days);
+      return date.toISOString().slice(0, 10);
+    }
+
+    function minDate(a, b) {
+      return a <= b ? a : b;
+    }
+
+    function maxDate(a, b) {
+      return a >= b ? a : b;
+    }
+
+    function formatMonth(dateString) {
+      return dateString ? dateString.slice(0, 7) : "";
+    }
+
+    function formatDateRange() {
+      return `${formatMonth(state.dateFrom)} 至 ${formatMonth(state.dateTo)}`;
+    }
+
+    function normalizeDateRange() {
+      state.dateFrom = maxDate(state.dateFrom || DATA_COLLECTION_START, DATA_COLLECTION_START);
+      state.dateTo = minDate(state.dateTo || latestDataDate, latestDataDate);
+      if (state.dateFrom && state.dateTo && state.dateFrom > state.dateTo) {
+        const nextFrom = state.dateTo;
+        state.dateTo = state.dateFrom;
+        state.dateFrom = nextFrom;
+      }
+      state.dateFrom = maxDate(state.dateFrom, DATA_COLLECTION_START);
+      state.dateTo = minDate(state.dateTo, latestDataDate);
+    }
+
+    function applyDatePreset(preset) {
+      const range = DATE_PRESETS[preset];
+      if (!range) return;
+      state.datePreset = preset;
+      state.dateFrom = range.from;
+      state.dateTo = range.to;
+    }
+
+    function refreshPresetRanges(toDate) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(toDate || "")) return;
+      if (toDate < latestDataDate) return;
+      latestDataDate = toDate;
+      DATE_PRESETS.last30.from = maxDate(offsetDate(latestDataDate, -30), DATA_COLLECTION_START);
+      DATE_PRESETS.last30.to = latestDataDate;
+      if (state.datePreset !== "custom") applyDatePreset(state.datePreset);
+      normalizeDateRange();
+      const manualDate = document.getElementById("manualDate");
+      if (manualDate) manualDate.value = latestDataDate;
+    }
+
+    function getPayloadDate(payload) {
+      const fromSnapshot = payload?.snapshotDate;
+      const fromUpdatedAt = typeof payload?.updatedAt === "string" ? payload.updatedAt.slice(0, 10) : "";
+      const nextDate = fromSnapshot || fromUpdatedAt;
+      return /^\d{4}-\d{2}-\d{2}$/.test(nextDate) ? nextDate : "";
+    }
+
+    function loadManualEvents() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        state.manualEvents = Array.isArray(saved) ? saved : [];
+      } catch (error) {
+        state.manualEvents = [];
+      }
+    }
+
+    function saveManualEvents() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.manualEvents));
+    }
+
+    function mergeById(target, incoming) {
+      if (!Array.isArray(incoming)) return { added: 0, updated: 0 };
+      let added = 0;
+      let updated = 0;
+      incoming.forEach((item) => {
+        if (!item || !item.id) return;
+        const index = target.findIndex((existing) => existing.id === item.id);
+        if (index >= 0) {
+          target[index] = { ...target[index], ...item };
+          updated += 1;
+        } else {
+          target.push(item);
+          added += 1;
+        }
+      });
+      return { added, updated };
+    }
+
+    function mergeLatestData(payload) {
+      if (!payload || typeof payload !== "object") return { added: 0, updated: 0 };
+      let added = 0;
+      let updated = 0;
+
+      if (payload.sources && typeof payload.sources === "object") {
+        Object.entries(payload.sources).forEach(([id, source]) => {
+          if (sources[id]) updated += 1;
+          else added += 1;
+          sources[id] = { ...(sources[id] || {}), ...source };
+        });
+      }
+
+      const competitorMerge = mergeById(competitors, payload.competitors);
+      const eventMerge = mergeById(events, payload.events);
+      const newsMerge = mergeById(newsItems, payload.news);
+      added += competitorMerge.added + eventMerge.added + newsMerge.added;
+      updated += competitorMerge.updated + eventMerge.updated + newsMerge.updated;
+
+      if (Array.isArray(payload.strategies) && payload.strategies.length) {
+        strategies.splice(0, strategies.length, ...payload.strategies);
+        updated += payload.strategies.length;
+      }
+
+      const payloadDate = getPayloadDate(payload);
+      if (payloadDate) refreshPresetRanges(payloadDate);
+      state.dataStatus = `数据文件 ${payload.updatedAt || latestDataDate}`;
+      return { added, updated };
+    }
+
+    function setRefreshButtonState(text, disabled = false) {
+      const button = document.getElementById("refreshDataBtn");
+      if (!button) return;
+      button.textContent = text;
+      button.disabled = disabled;
+    }
+
+    function refreshLatestData(options = {}) {
+      const silent = Boolean(options.silent);
+      if (!silent) setRefreshButtonState("同步中", true);
+
+      return new Promise((resolve) => {
+        const payload = JSON.parse(JSON.stringify(EMBEDDED_DATA));
+        const result = mergeLatestData(payload);
+        state.dataStatus = `单文件数据 ${payload.updatedAt || latestDataDate}`;
+        renderAll();
+        if (!silent) {
+          setRefreshButtonState("自动同步");
+          state.dataStatus = `${state.dataStatus}｜已同步内置数据`;
+          renderDateControls();
+        }
+        resolve(result);
+      });
+    }
+
+    function getAllEvents() {
+      return events.concat(state.manualEvents).sort((a, b) => b.date.localeCompare(a.date));
+    }
+
+    function isInDateRange(item) {
+      return (!state.dateFrom || item.date >= state.dateFrom) && (!state.dateTo || item.date <= state.dateTo);
+    }
+
+    function getDateFilteredEvents() {
+      return getAllEvents().filter(isInDateRange);
+    }
+
+    function getFilteredEvents() {
+      return getAllEvents().filter(eventPassesFilters);
+    }
+
+    function getAllNews() {
+      return newsItems.slice().sort((a, b) => b.date.localeCompare(a.date));
+    }
+
+    function getDateFilteredNews() {
+      return getAllNews().filter(isInDateRange);
+    }
+
+    function getFilteredNews() {
+      return getAllNews().filter(newsPassesFilters);
+    }
+
+    function getCompetitor(id) {
+      return competitors.find((item) => item.id === id);
+    }
+
+    function getSource(id) {
+      return sources[id] || {
+        title: "人工补充来源",
+        vendor: "",
+        url: "",
+        type: "pending",
+        note: "人工补充，尚未归档到来源库。"
+      };
+    }
+
+    function matchesQuery(item) {
+      if (!state.query) return true;
+      const source = getSource(item.source);
+      const competitor = getCompetitor(item.competitor);
+      const text = [
+        item.title,
+        item.summary,
+        item.signal,
+        item.takeaway,
+        item.kind,
+        (item.categories || []).join(" "),
+        competitor?.name,
+        competitor?.owner,
+        source.title,
+        source.note
+      ].join(" ").toLowerCase();
+      return text.includes(state.query.toLowerCase());
+    }
+
+    function eventPassesFilters(item) {
+      const dateOk = isInDateRange(item);
+      const categoryOk = state.category === "all" || item.categories.includes(state.category);
+      const priorityOk = state.priority === "all" || item.priority === state.priority;
+      return dateOk && categoryOk && priorityOk && matchesQuery(item);
+    }
+
+    function newsPassesFilters(item) {
+      const dateOk = isInDateRange(item);
+      const categoryOk = state.category === "all" || (item.categories || []).includes(state.category);
+      const priorityOk = state.priority === "all" || item.priority === state.priority;
+      return dateOk && categoryOk && priorityOk && matchesQuery(item);
+    }
+
+    function competitorPassesFilters(item) {
+      const competitorEvents = getDateFilteredEvents().filter((event) => event.competitor === item.id);
+      const competitorNews = getDateFilteredNews().filter((news) => news.competitor === item.id);
+      const competitorSignals = competitorEvents.concat(competitorNews);
+      if (!competitorSignals.length) return false;
+      const categoryOk = state.category === "all" || competitorSignals.some((signal) => (signal.categories || []).includes(state.category));
+      const priorityOk = state.priority === "all" || item.priority === state.priority || competitorSignals.some((signal) => signal.priority === state.priority);
+      const text = [
+        item.name,
+        item.owner,
+        item.thesis,
+        item.promotion,
+        item.watchNext,
+        competitorEvents.map((event) => `${event.title} ${event.summary} ${event.signal}`).join(" "),
+        competitorNews.map((news) => `${news.title} ${news.summary} ${news.takeaway} ${news.kind}`).join(" "),
+        item.sources.map((id) => getSource(id).note).join(" ")
+      ].join(" ").toLowerCase();
+      const queryOk = !state.query || text.includes(state.query.toLowerCase());
+      return categoryOk && priorityOk && queryOk;
+    }
+
+    function getActiveCompetitors() {
+      return competitors.filter(competitorPassesFilters);
+    }
+
+    function countBy(items, picker) {
+      return items.reduce((acc, item) => {
+        const values = picker(item);
+        values.forEach((value) => {
+          acc[value] = (acc[value] || 0) + 1;
+        });
+        return acc;
+      }, {});
+    }
+
+    function topCategoryLabels(items, limit = 3) {
+      const counts = countBy(items, (item) => item.categories);
+      return Object.entries(counts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, limit)
+        .map(([key]) => categoryLabels[key] || key);
+    }
+
+    function renderDateControls() {
+      normalizeDateRange();
+      document.getElementById("datePreset").value = state.datePreset;
+      const dateFromInput = document.getElementById("dateFrom");
+      const dateToInput = document.getElementById("dateTo");
+      dateFromInput.min = DATA_COLLECTION_START;
+      dateFromInput.max = latestDataDate;
+      dateToInput.min = DATA_COLLECTION_START;
+      dateToInput.max = latestDataDate;
+      dateFromInput.value = state.dateFrom;
+      dateToInput.value = state.dateTo;
+      const filteredEvents = getFilteredEvents();
+      const filteredNews = getFilteredNews();
+      const activeCompetitors = getActiveCompetitors();
+      document.getElementById("timeStatus").textContent = `${formatDateRange()}｜可选日期 ${DATA_COLLECTION_START} 至 ${latestDataDate}｜${activeCompetitors.length} 个平台｜${filteredEvents.length} 条动态｜${filteredNews.length} 条新闻｜${state.dataStatus}`;
+    }
+
+    function renderExecutiveSummary() {
+      const filteredEvents = getFilteredEvents();
+      const filteredNews = getFilteredNews();
+      const filteredSignals = filteredEvents.concat(filteredNews);
+      const activeCompetitors = getActiveCompetitors();
+      const topCategories = topCategoryLabels(filteredSignals);
+      const names = activeCompetitors.map((item) => item.name).join("、");
+
+      if (!filteredSignals.length) {
+        document.getElementById("executiveTitle").textContent = `总述：${formatDateRange()} 暂无符合筛选的竞品动态`;
+        document.getElementById("executiveText").textContent = "当前时间、功能方向、关注程度和搜索条件组合下没有可追踪记录。可以放宽时间范围或清空搜索词后继续观察。";
+        document.getElementById("insightGrid").innerHTML = `<article class="insight"><h3>当前范围</h3><p>没有匹配动态，所有下方竞品数据也会同步为空。</p></article>`;
+        document.getElementById("platformFeatureGrid").innerHTML = `<div class="empty">当前筛选范围没有平台特点可汇总。</div>`;
+        document.getElementById("platformStrip").innerHTML = `<span class="pill low">无匹配平台</span>`;
+        document.getElementById("strategySignal").textContent = "当前筛选范围暂无足够信号形成判断。";
+        return;
+      }
+
+      document.getElementById("executiveTitle").textContent = `总述：${formatDateRange()}，${activeCompetitors.length} 个平台出现 ${filteredEvents.length} 条功能动态、${filteredNews.length} 条新闻信号`;
+      document.getElementById("executiveText").textContent = `当前范围内，主要变化集中在${topCategories.join("、")}。${names}进入本轮对比；星辰 MaaS 可优先关注这些平台在模型、工具、应用搭建、价格优惠和企业管理上的动作。`;
+
+      const countCategory = (category) => filteredSignals.filter((item) => (item.categories || []).includes(category)).length;
+      const namesByCategory = (category) => {
+        const ids = new Set(filteredSignals.filter((item) => (item.categories || []).includes(category)).map((item) => item.competitor));
+        return competitors.filter((item) => ids.has(item.id)).map((item) => item.name).join("、") || "暂无明显平台";
+      };
+      const insightItems = [
+        {
+          title: "模型变化",
+          text: countCategory("model")
+            ? `模型相关动态 ${countCategory("model")} 条，主要来自${namesByCategory("model")}。重点看上了哪些新模型、旧模型怎么升级或下线。`
+            : "当前范围模型上新信号较弱，可把注意力转向工具、价格优惠或企业管理动作。"
+        },
+        {
+          title: "功能变化",
+          text: countCategory("agent") + countCategory("tools") + countCategory("platform")
+            ? `智能体、工具、搜索/知识库、平台底座合计 ${countCategory("agent") + countCategory("tools") + countCategory("platform")} 条，主要来自${[namesByCategory("agent"), namesByCategory("tools"), namesByCategory("platform")].filter((value) => value !== "暂无明显平台").join("、") || "暂无明显平台"}。`
+            : "当前范围功能更新较少，暂未看到明显应用构建或工具生态动作。"
+        },
+        {
+          title: "商业侧",
+          text: countCategory("business") + countCategory("coding")
+            ? `价格优惠和开发者套餐相关动态 ${countCategory("business") + countCategory("coding")} 条，适合重点观察免费额度、套餐迁移和开发者入口。`
+            : "当前范围暂无明显促销或套餐动作。"
+        },
+        {
+          title: "星辰启发",
+          text: `星辰 MaaS 在当前范围应优先对标${topCategories.join("、")}，并检查官网与控制台是否把对应能力讲清楚、露出来、可试用。`
+        }
+      ];
+      document.getElementById("insightGrid").innerHTML = insightItems.map((item) => `
+        <article class="insight">
+          <h3>${item.title}</h3>
+          <p>${item.text}</p>
+        </article>
+      `).join("");
+
+      document.getElementById("platformFeatureGrid").innerHTML = activeCompetitors.map((item) => {
+        const eventCount = filteredEvents.filter((event) => event.competitor === item.id).length;
+        return `
+          <div class="platform-feature">
+            <strong>${item.name}｜${eventCount} 条</strong>
+            <span>${platformShortFeatures[item.id] || item.thesis}</span>
+          </div>
+        `;
+      }).join("");
+
+      const priorityGroups = [
+        ["high", "重点跟踪"],
+        ["medium", "持续观察"],
+        ["low", "低频观察"]
+      ].map(([priority, label]) => {
+        const list = activeCompetitors.filter((item) => item.priority === priority).map((item) => item.name).join(" / ");
+        return list ? `<span class="pill ${priority}">${label}：${list}</span>` : "";
+      }).join("");
+      document.getElementById("platformStrip").innerHTML = priorityGroups || `<span class="pill low">无匹配平台</span>`;
+
+      document.getElementById("strategySignal").textContent = `当前范围最强信号集中在${topCategories.join("、")}；建议优先看这些能力是不是已经变成可购买、可试用、可管理的产品。`;
+    }
+
+    function renderSummary() {
+      const filteredEvents = getFilteredEvents();
+      const filteredNews = getFilteredNews();
+      const activeCompetitors = getActiveCompetitors();
+      const sourceCount = new Set(filteredEvents.concat(filteredNews).map((item) => item.source)).size;
+      const highEvents = filteredEvents.filter((item) => item.priority === "high").length;
+      const highNews = filteredNews.filter((item) => item.priority === "high").length;
+      const items = [
+        { value: activeCompetitors.length, label: "当前范围竞品" },
+        { value: filteredEvents.length, label: "当前范围动态" },
+        { value: filteredNews.length, label: "新闻/公告信号" },
+        { value: highEvents + highNews, label: "重点关注信号" }
+      ];
+
+      document.getElementById("summary").innerHTML = items.map((item) => `
+        <div class="kpi">
+          <div class="value">${item.value}</div>
+          <div class="label">${item.label}</div>
+        </div>
+      `).join("");
+    }
+
+    function renderCategoryTabs() {
+      const keys = Object.keys(categoryLabels);
+      const select = document.getElementById("categorySelect");
+      select.innerHTML = keys.map((key) => `
+        <option value="${key}">${categoryLabels[key]}</option>
+      `).join("");
+      select.value = state.category;
+      document.getElementById("prioritySelect").value = state.priority;
+    }
+
+    function renderPriorityList() {
+      const maxScore = 100;
+      const filteredEvents = getFilteredEvents();
+      const values = getActiveCompetitors().map((item) => {
+        const eventCount = filteredEvents.filter((event) => event.competitor === item.id).length;
+        const score = item.priority === "high" ? 92 : item.priority === "medium" ? 68 : item.priority === "pending" ? 46 : 38;
+        return { ...item, score, eventCount };
+      }).sort((a, b) => b.score - a.score);
+
+      document.getElementById("priorityList").innerHTML = values.length ? values.map((item) => `
+        <div class="priority-row">
+          <strong>${item.name}</strong>
+          <div class="bar"><span style="width:${Math.min(item.score, maxScore)}%"></span></div>
+          <span class="pill ${item.priority}">${item.eventCount}条</span>
+        </div>
+      `).join("") : `<div class="empty">当前范围暂无关注点数据。</div>`;
+    }
+
+    function renderTimeline() {
+      const filtered = getFilteredEvents();
+      const html = filtered.map((item) => {
+        const competitor = getCompetitor(item.competitor);
+        const source = getSource(item.source);
+        const categories = item.categories.map((category) => `<span class="tag ${category}">${categoryLabels[category] || category}</span>`).join("");
+        const sourceLink = source.url ? `<a href="${source.url}" target="_blank" rel="noreferrer">${source.title}</a>` : source.title;
+        return `
+          <article class="event">
+            <div class="event-date">${item.date.slice(5)}<span>${competitor?.name || item.competitor}</span></div>
+            <div class="event-main">
+              <h3>${item.title}</h3>
+              <p>${item.summary}</p>
+              <p><strong>这说明什么：</strong>${item.signal}</p>
+              <div class="tags">
+                <span class="pill ${item.priority}">${priorityLabels[item.priority]}</span>
+                ${categories}
+                <span class="source-badge ${source.type}">${sourceTypeLabels[source.type]}</span>
+                <span class="tag">${sourceLink}</span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      document.getElementById("timeline").innerHTML = html || `<div class="empty">当前筛选下没有动态。</div>`;
+    }
+
+    function renderCompare() {
+      document.getElementById("baselineGrid").innerHTML = ownProduct.axes.map((item) => `
+        <article class="baseline-item">
+          <h3>${item.title}</h3>
+          <p><b>星辰基准：</b>${item.baseline}</p>
+          <p><b>对标重点：</b>${item.compareNeed}</p>
+        </article>
+      `).join("");
+
+      const rows = getActiveCompetitors().map((item) => {
+        const competitorEvents = getFilteredEvents().filter((event) => event.competitor === item.id);
+        const eventCount = competitorEvents.length;
+        const sourceIds = [...new Set(competitorEvents.map((event) => event.source))];
+        const sourceLinks = sourceIds.map((id) => {
+          const source = getSource(id);
+          return source.url ? `<a href="${source.url}" target="_blank" rel="noreferrer">${source.title}</a>` : source.title;
+        }).join("、");
+        return `
+          <tr>
+            <td><strong>${item.name}</strong><br><span style="color:var(--muted);">${item.owner}｜${priorityLabels[item.priority]}｜${eventCount} 条动态</span></td>
+            <td>${item.modelCompare}</td>
+            <td>${item.featureCompare}</td>
+            <td>${item.xingchenAction}</td>
+            <td>${sourceLinks}</td>
+          </tr>
+        `;
+      }).join("");
+
+      document.getElementById("compareTable").innerHTML = rows ? `
+        <table>
+          <thead>
+            <tr>
+              <th>竞品</th>
+              <th>模型有什么变化</th>
+              <th>功能有什么变化</th>
+              <th>星辰可以怎么做</th>
+              <th>主要来源</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      ` : `<div class="empty">当前时间范围没有可对比的竞品数据。</div>`;
+    }
+
+    function renderNews() {
+      const filtered = getFilteredNews();
+      document.getElementById("newsList").innerHTML = filtered.length ? filtered.map((item) => {
+        const competitor = getCompetitor(item.competitor);
+        const source = getSource(item.source);
+        const categories = (item.categories || []).map((category) => `<span class="tag ${category}">${categoryLabels[category] || category}</span>`).join("");
+        const sourceLink = source.url ? `<a href="${source.url}" target="_blank" rel="noreferrer">${source.title}</a>` : source.title;
+        return `
+          <article class="news-item">
+            <div class="card-foot" style="border-top:0;padding-top:0;">
+              <span>${item.date}｜${competitor?.name || item.competitor}｜${item.kind || "消息"}</span>
+              <span class="pill ${item.priority}">${priorityLabels[item.priority] || item.priority}</span>
+            </div>
+            <div>
+              <h3>${item.title}</h3>
+              <p>${item.summary}</p>
+            </div>
+            <p><strong>简单理解：</strong>${item.takeaway || "这是一条需要继续复核的公开信号。"}</p>
+            <div class="tags">
+              ${categories}
+              <span class="source-badge ${source.type}">${sourceTypeLabels[source.type]}</span>
+              <span class="tag">${sourceLink}</span>
+            </div>
+          </article>
+        `;
+      }).join("") : `<div class="empty">当前筛选范围没有新闻或公告信号。</div>`;
+    }
+
+    function renderMatrix() {
+      const header = themes.map(([, label]) => `<th>${label}</th>`).join("");
+      const themeCategories = {
+        model: ["model"],
+        agent: ["agent", "tools"],
+        multimodal: ["multimodal"],
+        coding: ["coding"],
+        governance: ["governance"],
+        cost: ["business", "coding"],
+        train: ["platform"]
+      };
+      const rows = getActiveCompetitors().map((item) => {
+        const competitorEvents = getFilteredEvents().filter((event) => event.competitor === item.id);
+        const competitorNews = getFilteredNews().filter((news) => news.competitor === item.id);
+        const competitorSignals = competitorEvents.concat(competitorNews);
+        const cells = themes.map(([key]) => {
+          const relatedCategories = themeCategories[key] || [key];
+          const relatedSignals = competitorSignals.filter((signal) => (signal.categories || []).some((category) => relatedCategories.includes(category)));
+          const score = Math.min(5, relatedSignals.length * 2 + (relatedSignals.some((signal) => signal.priority === "high") ? 1 : 0));
+          return `<td><span class="heat h${score}">${score}</span></td>`;
+        }).join("");
+        return `
+          <tr>
+            <td><strong>${item.name}</strong><br><span style="color:var(--muted);">${priorityLabels[item.priority]}｜可信度 ${item.confidence}</span></td>
+            ${cells}
+          </tr>
+        `;
+      }).join("");
+
+      document.getElementById("matrix").innerHTML = rows ? `
+        <table>
+          <thead><tr><th>竞品</th>${header}</tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      ` : `<div class="empty">当前时间范围没有矩阵数据。</div>`;
+
+      const activeCategories = new Set(getFilteredEvents().concat(getFilteredNews()).flatMap((item) => item.categories || []));
+      const strategyItems = strategies.filter((_, index) => {
+        if (index === 0) return activeCategories.has("model");
+        if (index === 1) return activeCategories.has("agent") || activeCategories.has("tools");
+        if (index === 2) return activeCategories.has("coding") || activeCategories.has("business");
+        if (index === 3) return activeCategories.has("multimodal");
+        if (index === 4) return activeCategories.has("tools") || activeCategories.has("agent");
+        return getActiveCompetitors().some((item) => item.id === "zhipu");
+      });
+      document.getElementById("strategyGrid").innerHTML = rows ? (strategyItems.length ? strategyItems : strategies.slice(0, 2)).map((item) => `
+        <article class="strategy">
+          <h3>${item.title}</h3>
+          <p>${item.text}</p>
+        </article>
+      `).join("") : `<div class="empty">当前时间范围暂无动作建议。</div>`;
+    }
+
+    function renderSources() {
+      const activeSourceIds = new Set(getFilteredEvents().map((event) => event.source));
+      getFilteredNews().forEach((news) => activeSourceIds.add(news.source));
+      if (activeSourceIds.size) activeSourceIds.add("xfyunOverview");
+      const sourceItems = Object.entries(sources).filter(([id, source]) => {
+        if (!activeSourceIds.has(id)) return false;
+        if (!state.query) return true;
+        return [source.title, source.vendor, source.note, source.url].join(" ").toLowerCase().includes(state.query.toLowerCase());
+      }).map(([, source]) => source);
+
+      document.getElementById("sourcesGrid").innerHTML = sourceItems.length ? sourceItems.map((source) => `
+        <article class="source-item">
+          <div>
+            <h3>${source.title}</h3>
+            <p>${source.note}</p>
+          </div>
+          <div class="card-foot" style="padding-top: 8px;">
+            <span class="source-badge ${source.type}">${sourceTypeLabels[source.type]}</span>
+            <a href="${source.url}" target="_blank" rel="noreferrer">打开来源</a>
+          </div>
+        </article>
+      `).join("") : `<div class="empty">当前时间范围没有匹配来源。</div>`;
+    }
+
+    function renderView() {
+      document.querySelectorAll(".view").forEach((view) => view.classList.remove("active"));
+      document.getElementById(`${state.view}View`).classList.add("active");
+      document.querySelectorAll("#viewTabs button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.view === state.view);
+      });
+    }
+
+    function renderAll() {
+      renderDateControls();
+      renderExecutiveSummary();
+      renderSummary();
+      renderCategoryTabs();
+      renderPriorityList();
+      renderTimeline();
+      renderCompare();
+      renderNews();
+      renderMatrix();
+      renderSources();
+      renderView();
+    }
+
+    function exportCsv() {
+      const headers = ["type", "date", "competitor", "priority", "categories", "title", "summary", "signal", "source", "url"];
+      const eventRows = getFilteredEvents().map((item) => {
+        const competitor = getCompetitor(item.competitor);
+        const source = getSource(item.source);
+        return [
+          "功能动态",
+          item.date,
+          competitor?.name || item.competitor,
+          priorityLabels[item.priority] || item.priority,
+          item.categories.map((category) => categoryLabels[category] || category).join("/"),
+          item.title,
+          item.summary,
+          item.signal,
+          source.title,
+          source.url
+        ];
+      });
+      const newsRows = getFilteredNews().map((item) => {
+        const competitor = getCompetitor(item.competitor);
+        const source = getSource(item.source);
+        return [
+          "新闻追踪",
+          item.date,
+          competitor?.name || item.competitor,
+          priorityLabels[item.priority] || item.priority,
+          (item.categories || []).map((category) => categoryLabels[category] || category).join("/"),
+          item.title,
+          item.summary,
+          item.takeaway || item.kind,
+          source.title,
+          source.url
+        ];
+      });
+      const rows = eventRows.concat(newsRows).sort((a, b) => b[1].localeCompare(a[1]));
+      const escape = (value) => `"${String(value || "").replaceAll('"', '""')}"`;
+      const csv = [headers, ...rows].map((row) => row.map(escape).join(",")).join("\n");
+      const blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `xingchen-maas-competitor-watch-${latestDataDate}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    async function copyBriefing() {
+      const filteredEvents = getFilteredEvents();
+      const filteredNews = getFilteredNews();
+      const highEvents = filteredEvents.filter((event) => event.priority === "high").slice(0, 8);
+      const highNews = filteredNews.filter((news) => news.priority === "high").slice(0, 5);
+      const lines = [
+        `星辰 MaaS 竞品动态摘要 ${formatDateRange()}`,
+        "",
+        `总述：当前筛选范围内共有 ${filteredEvents.length} 条功能动态、${filteredNews.length} 条新闻信号，主要信号集中在${topCategoryLabels(filteredEvents.concat(filteredNews)).join("、") || "暂无"}。`,
+        "",
+        "重点关注动态：",
+        ...(highEvents.length ? highEvents.map((event) => {
+          const competitor = getCompetitor(event.competitor);
+          return `- ${event.date}｜${competitor?.name || event.competitor}｜${event.title}：${event.signal}`;
+        }) : ["- 当前范围暂无重点关注动态"]),
+        "",
+        "重点新闻信号：",
+        ...(highNews.length ? highNews.map((news) => {
+          const competitor = getCompetitor(news.competitor);
+          return `- ${news.date}｜${competitor?.name || news.competitor}｜${news.title}：${news.takeaway || news.kind}`;
+        }) : ["- 当前范围暂无重点新闻信号"]),
+        "",
+        "共同方向：模型更新 + 智能体工具 + 开发者套餐 + 图像视频语音 + 企业管理。",
+        "建议：优先补齐模型变更提醒、工具接入闭环、开发者套餐和需要登录才能看到的竞品信息。"
+      ];
+      try {
+        await navigator.clipboard.writeText(lines.join("\n"));
+        document.getElementById("copyBriefingBtn").textContent = "已复制";
+        setTimeout(() => {
+          document.getElementById("copyBriefingBtn").textContent = "复制摘要";
+        }, 1600);
+      } catch (error) {
+        alert(lines.join("\n"));
+      }
+    }
+
+    function openDialog() {
+      document.getElementById("eventDialog").showModal();
+    }
+
+    function closeDialog() {
+      document.getElementById("eventDialog").close();
+    }
+
+    function setupManualForm() {
+      document.getElementById("manualCompetitor").innerHTML = competitors.map((item) => `<option value="${item.id}">${item.name}</option>`).join("");
+      document.getElementById("manualDate").value = latestDataDate;
+      document.getElementById("eventForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const url = document.getElementById("manualUrl").value.trim();
+        const sourceId = url ? `manual-${Date.now()}` : "manualSource";
+        if (url) {
+          sources[sourceId] = {
+            title: "人工补充来源",
+            vendor: getCompetitor(document.getElementById("manualCompetitor").value)?.name || "",
+            url,
+            type: "external",
+            note: "人工补充来源，建议后续归档。"
+          };
+        }
+        const manualEvent = {
+          id: `manual-${Date.now()}`,
+          competitor: document.getElementById("manualCompetitor").value,
+          date: document.getElementById("manualDate").value,
+          title: document.getElementById("manualTitle").value.trim(),
+          summary: document.getElementById("manualSummary").value.trim(),
+          categories: [document.getElementById("manualCategory").value],
+          priority: document.getElementById("manualPriority").value,
+          source: sourceId,
+          signal: "人工补充，等待复核。"
+        };
+        state.manualEvents.push(manualEvent);
+        saveManualEvents();
+        document.getElementById("eventForm").reset();
+        document.getElementById("manualDate").value = latestDataDate;
+        closeDialog();
+        renderAll();
+      });
+    }
+
+    function setupEvents() {
+      document.getElementById("datePreset").addEventListener("change", (event) => {
+        if (event.target.value === "custom") {
+          state.datePreset = "custom";
+        } else {
+          applyDatePreset(event.target.value);
+        }
+        renderAll();
+      });
+
+      document.getElementById("dateFrom").addEventListener("change", (event) => {
+        state.datePreset = "custom";
+        state.dateFrom = event.target.value || DATA_COLLECTION_START;
+        normalizeDateRange();
+        renderAll();
+      });
+
+      document.getElementById("dateTo").addEventListener("change", (event) => {
+        state.datePreset = "custom";
+        state.dateTo = event.target.value || latestDataDate;
+        normalizeDateRange();
+        renderAll();
+      });
+
+      document.getElementById("searchInput").addEventListener("input", (event) => {
+        state.query = event.target.value.trim();
+        renderAll();
+      });
+
+      document.getElementById("categorySelect").addEventListener("change", (event) => {
+        state.category = event.target.value;
+        renderAll();
+      });
+
+      document.getElementById("prioritySelect").addEventListener("change", (event) => {
+        state.priority = event.target.value;
+        renderAll();
+      });
+
+      document.getElementById("viewTabs").addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-view]");
+        if (!button) return;
+        state.view = button.dataset.view;
+        renderView();
+      });
+
+      document.getElementById("exportBtn").addEventListener("click", exportCsv);
+      document.getElementById("copyBriefingBtn").addEventListener("click", copyBriefing);
+      document.getElementById("closeDialogBtn").addEventListener("click", closeDialog);
+      document.getElementById("clearManualBtn").addEventListener("click", () => {
+        if (!confirm("确认清空本浏览器里的人工补充动态？")) return;
+        state.manualEvents = [];
+        saveManualEvents();
+        renderAll();
+      });
+    }
+
+    loadManualEvents();
+    setupManualForm();
+    setupEvents();
+    renderAll();
+    refreshLatestData({ silent: true });
+  </script>
+</body>
+</html>

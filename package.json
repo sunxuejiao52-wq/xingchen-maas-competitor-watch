@@ -1,0 +1,19 @@
+{
+  "name": "xingchen-maas-competitor-watch",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "refresh:daily": "node scripts/daily-competitor-refresh.mjs",
+    "refresh:daily:dry": "node scripts/daily-competitor-refresh.mjs --no-fetch --dry-run",
+    "build:share": "node scripts/build-share-html.mjs",
+    "prepare:netlify": "node scripts/prepare-netlify-upload.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.0"
+  },
+  "devDependencies": {}
+}
