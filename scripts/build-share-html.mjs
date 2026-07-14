@@ -31,6 +31,12 @@ const refreshFunction = `function refreshLatestData(options = {}) {
         }
         resolve(result);
       });
+    }
+
+    async function triggerDataRefresh() {
+      refreshTaskStatus = "单文件分享版不能触发后台采集；已刷新当前内置数据";
+      await refreshLatestData();
+      renderDateControls();
     }`;
 
 let output = html

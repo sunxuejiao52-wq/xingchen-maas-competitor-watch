@@ -1856,7 +1856,7 @@
 };
     const DATA_REFRESH_ENDPOINT = "/.netlify/functions/trigger-refresh";
     const DATA_REFRESH_POLL_INTERVAL_MS = 15000;
-    const DATA_REFRESH_POLL_ATTEMPTS = 16;
+    const DATA_REFRESH_POLL_ATTEMPTS = 40;
 
     const sources = {
       xfyunOverview: {
@@ -2623,6 +2623,12 @@
         }
         resolve(result);
       });
+    }
+
+    async function triggerDataRefresh() {
+      refreshTaskStatus = "单文件分享版不能触发后台采集；已刷新当前内置数据";
+      await refreshLatestData();
+      renderDateControls();
     }
 
     function getAllEvents() {
