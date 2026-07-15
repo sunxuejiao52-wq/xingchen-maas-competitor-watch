@@ -22,6 +22,7 @@
       "vendor": "百度千帆",
       "url": "https://cloud.baidu.com/doc/qianfan/s/Kmh4stnjp",
       "type": "official",
+      "recordType": "official_update_record",
       "priority": "high",
       "categories": ["model", "governance"],
       "keywords": ["千帆", "文心", "模型", "上新", "下线", "退役", "升级", "DeepSeek", "GLM", "Kimi", "MiniMax"]
@@ -34,6 +35,7 @@
       "vendor": "百度千帆",
       "url": "https://cloud.baidu.com/doc/qianfan/s/Mmh8l4qwj",
       "type": "official",
+      "recordType": "official_update_record",
       "priority": "high",
       "categories": ["agent", "tools", "business"],
       "keywords": ["智能体", "工具广场", "AI 搜索", "深度研究", "搜索", "知识库", "优惠", "套餐", "免费"]
@@ -46,6 +48,7 @@
       "vendor": "百度千帆",
       "url": "https://cloud.baidu.com/doc/qianfan/s/Emqsyd7yj",
       "type": "official",
+      "recordType": "official_update_record",
       "priority": "high",
       "categories": ["coding", "business"],
       "keywords": ["Coding Plan", "Token Plan", "套餐", "续费", "开发者", "额度", "API Key"]
@@ -94,6 +97,7 @@
       "vendor": "硅基流动",
       "url": "https://docs.siliconflow.cn/cn/release-notes/overview",
       "type": "official",
+      "recordType": "official_update_record",
       "priority": "high",
       "categories": ["model", "business", "governance"],
       "keywords": ["SiliconFlow", "硅基流动", "公告", "模型", "下线", "价格", "实名", "限流", "迁移", "DeepSeek", "Qwen", "GLM"]

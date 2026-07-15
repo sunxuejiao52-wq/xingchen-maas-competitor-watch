@@ -760,6 +760,32 @@
       gap: 8px;
     }
 
+    .compare-signal {
+      margin: 0 0 8px;
+      color: #344054;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .compare-signal:last-child {
+      margin-bottom: 0;
+    }
+
+    .compare-signal strong {
+      display: block;
+      color: var(--ink);
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    .compare-source-meta {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+    }
+
     .view {
       display: none;
     }
@@ -1558,7 +1584,7 @@
             <div class="view-control">
               <div class="segmented" id="viewTabs">
                 <button type="button" data-view="compare" class="active">竞品分析看板</button>
-                <button type="button" data-view="timeline">详细动态</button>
+                <button type="button" data-view="timeline">更新记录</button>
               </div>
             </div>
           </div>
@@ -1623,9 +1649,10 @@
             <section class="section" style="margin-top: 14px;">
               <div class="section-header">
                 <h2>竞品相对星辰的功能对比</h2>
-                <span class="pill high">默认主视图</span>
+                <span class="pill high">当前范围汇总</span>
               </div>
               <div class="section-body">
+                <div class="board-note">这里以官方更新记录和产品基线资料做能力判断，再叠加当前范围内的媒体/公众号信号；官方接口和介绍文档只作为产品基线依据，不进入新闻追踪。</div>
                 <div class="matrix-wrap" id="compareTable"></div>
               </div>
             </section>
@@ -1638,7 +1665,7 @@
                   <span class="pill medium">公告 / 行业消息</span>
                 </div>
                 <div class="section-body">
-                  <div class="board-note">这里单独放官方公告、媒体报道、公众号监测和市场信号，和上面的具体功能动态分开看；同样会跟随顶部时间、功能方向、关注程度和搜索条件变化。</div>
+                  <div class="board-note">这里只展示媒体报道、新闻检索和公众号宣传，用来判断竞品宣传口径和市场关注点；官方接口文档、产品介绍文档和更新记录不会放在这里。</div>
                   <div class="news-list" id="newsList" style="margin-top: 10px;"></div>
                 </div>
               </section>
@@ -1679,11 +1706,12 @@
             <div class="chapter-label">Update Timeline</div>
             <section class="section">
               <div class="section-header">
-                <h2>详细动态</h2>
-                <span class="pill low">逐条更新</span>
+                <h2>更新记录</h2>
+                <span class="pill low">官方更新记录</span>
               </div>
               <div class="section-body">
-                <div class="board-note">这里按时间倒序合并展示功能更新、套餐变化、模型上下线、平台动作和新闻公告信号；同样受顶部时间、搜索和筛选条件影响。</div>
+                <div class="board-note">这里只展示监控平台自己的官方更新日志/公告，并且原文必须命中对应日期；媒体、公众号、普通文档和搜索结果请在“新闻追踪”里看。</div>
+                <div class="board-note" id="timelineMeta" style="margin-top: 8px;"></div>
                 <div class="timeline" id="timeline" style="margin-top: 12px;"></div>
               </div>
             </section>
@@ -1696,7 +1724,7 @@
   <dialog id="eventDialog">
     <form method="dialog" id="eventForm">
       <div class="dialog-head">
-        <h2>新增人工动态</h2>
+        <h2>新增人工记录</h2>
         <button class="btn" type="button" id="closeDialogBtn">关闭</button>
       </div>
       <div class="dialog-body">
@@ -1897,7 +1925,7 @@
           compareNeed: "火山强推视频、图片和 3D；阿里覆盖图像、视频、3D、语音；百度强化视频理解和图生视频。"
         },
         {
-          title: "企业管理",
+          title: "训练托管",
           baseline: "关注模型微调、效果评测、部署、用量、审计、权限、内容安全与企业隔离。",
           compareNeed: "腾讯、华为更偏训练和部署；火山、百度在密钥、审计、评测与套餐管控上补管理能力。"
         },
@@ -2313,7 +2341,7 @@
       ["coding", "开发者套餐"],
       ["governance", "账号权限安全"],
       ["cost", "价格优惠"],
-      ["train", "训练部署"]
+      ["train", "训练托管"]
     ];
 
     const TODAY_DATE = getChinaTodayDate();
@@ -2621,18 +2649,26 @@
       return newsItems.slice().sort((a, b) => b.date.localeCompare(a.date));
     }
 
+    function isCommunicationNews(item) {
+      const source = getSource(item.source);
+      return source.type === "media" || source.type === "wechat";
+    }
+
     function getDateFilteredNews() {
-      return getAllNews().filter(isInDateRange);
+      return getAllNews().filter(isCommunicationNews).filter(isInDateRange);
+    }
+
+    function isOfficialUpdateRecordNews(item) {
+      const source = getSource(item.source);
+      return source.recordType === "official_update_record" || item.kind === "官方更新页线索";
     }
 
     function getFilteredNews() {
-      return getAllNews().filter(newsPassesFilters);
+      return getAllNews().filter(isCommunicationNews).filter((item) => !isOfficialUpdateRecordNews(item)).filter(newsPassesFilters);
     }
 
     function getFilteredTimelineItems() {
-      const eventItems = getFilteredEvents().map((item) => ({ ...item, timelineType: "event" }));
-      const newsSignalItems = getFilteredNews().map((item) => ({ ...item, timelineType: "news" }));
-      return eventItems.concat(newsSignalItems).sort((a, b) => {
+      return getFilteredEvents().map((item) => ({ ...item, timelineType: "event" })).sort((a, b) => {
         const dateOrder = String(b.date).localeCompare(String(a.date));
         if (dateOrder) return dateOrder;
         const priorityOrder = { high: 3, medium: 2, low: 1, pending: 0 };
@@ -2754,17 +2790,17 @@
       const names = activeCompetitors.map((item) => item.name).join("、");
 
       if (!filteredSignals.length) {
-        document.getElementById("executiveTitle").textContent = `总述：${formatDateRange()} 暂无符合筛选的竞品动态`;
+        document.getElementById("executiveTitle").textContent = `总述：${formatDateRange()} 暂无符合筛选的官方更新记录或新闻线索`;
         document.getElementById("executiveText").textContent = "当前时间、功能方向、关注程度和搜索条件组合下没有可追踪记录。可以放宽时间范围或清空搜索词后继续观察。";
-        document.getElementById("insightGrid").innerHTML = `<article class="insight"><h3>当前范围</h3><p>没有匹配动态，所有下方竞品数据也会同步为空。</p></article>`;
+        document.getElementById("insightGrid").innerHTML = `<article class="insight"><h3>当前范围</h3><p>没有匹配的官方更新记录或新闻线索，所有下方竞品数据也会同步为空。</p></article>`;
         document.getElementById("platformFeatureGrid").innerHTML = `<div class="empty">当前筛选范围没有平台特点可汇总。</div>`;
         document.getElementById("platformStrip").innerHTML = `<span class="pill low">无匹配平台</span>`;
         document.getElementById("strategySignal").textContent = "当前筛选范围暂无足够信号形成判断。";
         return;
       }
 
-      document.getElementById("executiveTitle").textContent = `总述：${formatDateRange()}，${activeCompetitors.length} 个平台出现 ${filteredEvents.length} 条功能动态、${filteredNews.length} 条新闻信号`;
-      document.getElementById("executiveText").textContent = `当前范围内，主要变化集中在${topCategories.join("、")}。${names}进入本轮对比；星辰 MaaS 可优先关注这些平台在模型、工具、应用搭建、价格优惠和企业管理上的动作。`;
+      document.getElementById("executiveTitle").textContent = `总述：${formatDateRange()}，${activeCompetitors.length} 个平台出现 ${filteredEvents.length} 条官方更新记录、${filteredNews.length} 条新闻/公众号线索`;
+      document.getElementById("executiveText").textContent = `当前范围内，主要变化集中在${topCategories.join("、")}。${names}进入本轮对比；星辰 MaaS 可优先关注这些平台在模型、工具、应用搭建、价格优惠和训练托管上的动作。`;
 
       const countCategory = (category) => filteredSignals.filter((item) => (item.categories || []).includes(category)).length;
       const namesByCategory = (category) => {
@@ -2775,8 +2811,8 @@
         {
           title: "模型变化",
           text: countCategory("model")
-            ? `模型相关动态 ${countCategory("model")} 条，主要来自${namesByCategory("model")}。重点看上了哪些新模型、旧模型怎么升级或下线。`
-            : "当前范围模型上新信号较弱，可把注意力转向工具、价格优惠或企业管理动作。"
+            ? `模型相关记录/线索 ${countCategory("model")} 条，主要来自${namesByCategory("model")}。重点看上了哪些新模型、旧模型怎么升级或下线。`
+            : "当前范围模型上新信号较弱，可把注意力转向工具、价格优惠或训练托管动作。"
         },
         {
           title: "功能变化",
@@ -2787,7 +2823,7 @@
         {
           title: "商业侧",
           text: countCategory("business") + countCategory("coding")
-            ? `价格优惠和开发者套餐相关动态 ${countCategory("business") + countCategory("coding")} 条，适合重点观察免费额度、套餐迁移和开发者入口。`
+            ? `价格优惠和开发者套餐相关记录/线索 ${countCategory("business") + countCategory("coding")} 条，适合重点观察免费额度、套餐迁移和开发者入口。`
             : "当前范围暂无明显促销或套餐动作。"
         },
         {
@@ -2831,8 +2867,8 @@
       const activeCompetitors = getActiveCompetitors();
       const items = [
         { value: activeCompetitors.length, label: "当前范围竞品" },
-        { value: filteredEvents.length, label: "当前范围动态" },
-        { value: filteredNews.length, label: "新闻/公告信号" }
+        { value: filteredEvents.length, label: "官方更新记录" },
+        { value: filteredNews.length, label: "新闻/公众号线索" }
       ];
 
       document.getElementById("summary").innerHTML = items.map((item) => `
@@ -2873,16 +2909,21 @@
 
     function renderTimeline() {
       const filtered = getFilteredTimelineItems();
+      const latestDayRecords = getFilteredEvents().filter((item) => item.date === latestDataDate).length;
+      const latestDaySignals = getFilteredNews().filter((item) => item.date === latestDataDate).length;
+      const latestRecordDate = filtered.length ? filtered[0].date : "";
+      document.getElementById("timelineMeta").textContent = latestDayRecords
+        ? `本次最新数据日 ${latestDataDate} 发现 ${latestDayRecords} 条平台官方更新记录；新闻/公众号线索 ${latestDaySignals} 条在“新闻追踪”查看。`
+        : `本次最新数据日 ${latestDataDate} 暂未发现平台自己的官方更新记录；已抓到 ${latestDaySignals} 条新闻/公众号线索，请在“新闻追踪”查看。${latestRecordDate ? `当前筛选范围最近一条官方更新记录是 ${latestRecordDate}。` : "当前筛选范围没有官方更新记录。"}`;
       const html = filtered.map((item) => {
         const competitor = getCompetitor(item.competitor);
         const source = getSource(item.source);
         const categories = (item.categories || []).map((category) => `<span class="tag ${category}">${categoryLabels[category] || category}</span>`).join("");
         const sourceLink = source.url ? `<a href="${source.url}" target="_blank" rel="noreferrer">${source.title}</a>` : source.title;
-        const isNews = item.timelineType === "news";
         const judgment = item.signal || item.takeaway || "这是一条需要继续观察的公开信号。";
-        const evidence = isNews && item.evidence ? `<p class="evidence"><strong>证据片段：</strong>${item.evidence}</p>` : "";
+        const evidence = item.evidence ? `<p class="evidence"><strong>证据片段：</strong>${item.evidence}</p>` : "";
         return `
-          <article class="event ${isNews ? "news-signal" : ""}">
+          <article class="event">
             <div class="event-date">${item.date.slice(5)}<span>${competitor?.name || item.competitor}</span></div>
             <div class="event-main">
               <h3>${item.title}</h3>
@@ -2892,7 +2933,6 @@
               <div class="tags">
                 <span class="pill ${item.priority}">${priorityLabels[item.priority]}</span>
                 ${categories}
-                ${isNews ? `<span class="tag">${item.kind || "新闻/公告"}</span>` : ""}
                 <span class="source-badge ${source.type}">${sourceTypeLabels[source.type]}</span>
                 <span class="tag">${sourceLink}</span>
               </div>
@@ -2901,7 +2941,100 @@
         `;
       }).join("");
 
-      document.getElementById("timeline").innerHTML = html || `<div class="empty">当前筛选下没有动态或新闻信号。</div>`;
+      document.getElementById("timeline").innerHTML = html || `<div class="empty">当前筛选下没有平台官方更新记录。</div>`;
+    }
+
+    function getCompetitorSignals(competitorId) {
+      return getFilteredEvents()
+        .map((item) => ({ ...item, signalType: "官方更新记录" }))
+        .concat(getFilteredNews().map((item) => ({ ...item, signalType: item.kind || "新闻/公众号线索" })))
+        .filter((item) => item.competitor === competitorId)
+        .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    }
+
+    function uniqueTexts(values, limit = 2) {
+      const seen = new Set();
+      return values
+        .map((value) => String(value || "").replace(/\s+/g, " ").trim())
+        .filter(Boolean)
+        .filter((value) => {
+          const key = value.slice(0, 48);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        })
+        .map((value) => value.length > 96 ? `${value.slice(0, 94)}...` : value)
+        .slice(0, limit);
+    }
+
+    function formatSignalMix(items) {
+      const officialCount = items.filter((item) => item.signalType === "官方更新记录").length;
+      const clueCount = Math.max(0, items.length - officialCount);
+      const parts = [];
+      if (officialCount) parts.push(`${officialCount} 条官方更新记录`);
+      if (clueCount) parts.push(`${clueCount} 条新闻/公众号线索`);
+      return parts.length ? `（${parts.join("，")}）` : "";
+    }
+
+    function sourceMixText(items) {
+      const counts = countBy(items, (item) => {
+        const source = getSource(item.source);
+        if (item.signalType === "官方更新记录") return ["官方更新记录"];
+        if (source.type === "wechat") return ["公众号"];
+        if (source.type === "media") return ["媒体新闻"];
+        return [sourceTypeLabels[source.type] || "其他来源"];
+      });
+      return Object.entries(counts)
+        .sort((a, b) => b[1] - a[1])
+        .map(([label, count]) => `${label}${count}条`)
+        .join("、");
+    }
+
+    const actionByCategory = {
+      model: "把模型广场里的上新、退役、替代模型、价格和适用场景放在同一处，减少客户选型成本",
+      multimodal: "把图像、视频、语音能力从模型清单升级成可试用的任务入口，并补充效果样例",
+      agent: "补清智能体从工具接入、权限控制、运行日志到发布的闭环",
+      tools: "把搜索、知识库、网页抓取、MCP/工具市场做成可配置、可审计的企业能力",
+      platform: "强化训练、评测、部署、用量、审计和资源管理的一体化工作台",
+      coding: "明确 API Key、Base URL、示例代码、迁移指南和开发者套餐权益",
+      business: "把免费额度、套餐边界、续费/迁移规则和价格对比讲清楚",
+      governance: "突出密钥、权限、审计、内容安全和企业隔离能力"
+    };
+
+    function topActionSuggestions(items, limit = 2) {
+      const categories = topCategoryLabels(items, 4)
+        .map((label) => Object.entries(categoryLabels).find(([, value]) => value === label)?.[0])
+        .filter(Boolean);
+      const suggestions = categories.map((category) => actionByCategory[category]).filter(Boolean);
+      return uniqueTexts(suggestions, limit);
+    }
+
+    function renderSignalSummary(items, categories, fallback, label) {
+      const related = items.filter((item) => (item.categories || []).some((category) => categories.includes(category)));
+      const selected = related.length ? related : items;
+      if (!selected.length) return `
+        <p class="compare-signal"><strong>产品判断</strong>${fallback}</p>
+        <p class="compare-signal"><strong>当前范围信号</strong>当前筛选范围没有新的媒体/公众号或平台官方更新记录，先按产品基线持续观察。</p>
+      `;
+      const categoryText = topCategoryLabels(selected, 3).join("、") || label;
+      const highlights = uniqueTexts(selected.map((item) => item.takeaway || item.signal || item.summary || item.title), 2);
+      const sourceText = sourceMixText(selected);
+      return `
+        <p class="compare-signal"><strong>产品判断</strong>${fallback}</p>
+        <p class="compare-signal"><strong>当前范围信号</strong>${sourceText ? `${sourceText}显示，` : ""}${label}关注点集中在${categoryText}；${highlights.join("；")}。</p>
+      `;
+    }
+
+    function renderActionSummary(competitor, items) {
+      const selected = items.filter((item) => item.takeaway || item.signal);
+      const actionSeeds = selected.length ? topActionSuggestions(selected, 2) : [];
+      const signalText = selected.length
+        ? `当前应优先跟进${topCategoryLabels(selected, 3).join("、")}：${actionSeeds.join("；")}。`
+        : "当前范围没有新的媒体/公众号或官方更新记录，建议按基线能力做定期复核。";
+      return `
+        <p class="compare-signal"><strong>星辰动作</strong>${competitor.xingchenAction}</p>
+        <p class="compare-signal"><strong>本轮跟进</strong>${signalText}</p>
+      `;
     }
 
     function renderCompare() {
@@ -2915,19 +3048,24 @@
 
       const rows = getActiveCompetitors().map((item) => {
         const competitorEvents = getFilteredEvents().filter((event) => event.competitor === item.id);
-        const eventCount = competitorEvents.length;
-        const sourceIds = [...new Set(competitorEvents.map((event) => event.source))];
+        const competitorNews = getFilteredNews().filter((news) => news.competitor === item.id);
+        const competitorSignals = getCompetitorSignals(item.id);
+        const signalSourceIds = [...new Set(competitorSignals.map((signal) => signal.source))];
+        const sourceIds = [...new Set(signalSourceIds.concat(item.sources || []))].slice(0, 6);
         const sourceLinks = sourceIds.map((id) => {
           const source = getSource(id);
           return source.url ? `<a href="${source.url}" target="_blank" rel="noreferrer">${source.title}</a>` : source.title;
         }).join("、");
+        const sourceSummary = sourceLinks
+          ? `<span class="compare-source-meta">当前新闻/公众号/更新记录 ${signalSourceIds.length} 个来源｜产品基线 ${item.sources?.length || 0} 个来源</span>${sourceLinks}`
+          : "暂无匹配来源";
         return `
           <tr>
-            <td><strong>${item.name}</strong><br><span style="color:var(--muted);">${item.owner}｜${priorityLabels[item.priority]}｜${eventCount} 条动态</span></td>
-            <td>${item.modelCompare}</td>
-            <td>${item.featureCompare}</td>
-            <td>${item.xingchenAction}</td>
-            <td>${sourceLinks}</td>
+            <td><strong>${item.name}</strong><br><span style="color:var(--muted);">${item.owner}｜${priorityLabels[item.priority]}｜${competitorEvents.length} 条官方更新｜${competitorNews.length} 条新闻/公众号</span></td>
+            <td>${renderSignalSummary(competitorSignals, ["model", "multimodal"], item.modelCompare, "模型供给")}</td>
+            <td>${renderSignalSummary(competitorSignals, ["agent", "tools", "platform", "coding", "business", "governance"], item.featureCompare, "平台功能")}</td>
+            <td>${renderActionSummary(item, competitorSignals)}</td>
+            <td>${sourceSummary}</td>
           </tr>
         `;
       }).join("");
@@ -2937,10 +3075,10 @@
           <thead>
             <tr>
               <th>竞品</th>
-              <th>模型有什么变化</th>
-              <th>功能有什么变化</th>
-              <th>星辰可以怎么做</th>
-              <th>主要来源</th>
+              <th>模型供给判断</th>
+              <th>平台功能判断</th>
+              <th>星辰应对建议</th>
+              <th>判断依据</th>
             </tr>
           </thead>
           <tbody>${rows}</tbody>
@@ -3083,7 +3221,7 @@
         const competitor = getCompetitor(item.competitor);
         const source = getSource(item.source);
         return [
-          "功能动态",
+          "官方更新记录",
           item.date,
           competitor?.name || item.competitor,
           priorityLabels[item.priority] || item.priority,
@@ -3131,23 +3269,23 @@
       const highEvents = filteredEvents.filter((event) => event.priority === "high").slice(0, 8);
       const highNews = filteredNews.filter((news) => news.priority === "high").slice(0, 5);
       const lines = [
-        `星辰 MaaS 竞品动态摘要 ${formatDateRange()}`,
+        `星辰 MaaS 竞品监测摘要 ${formatDateRange()}`,
         "",
-        `总述：当前筛选范围内共有 ${filteredEvents.length} 条功能动态、${filteredNews.length} 条新闻信号，主要信号集中在${topCategoryLabels(filteredEvents.concat(filteredNews)).join("、") || "暂无"}。`,
+        `总述：当前筛选范围内共有 ${filteredEvents.length} 条官方更新记录、${filteredNews.length} 条新闻/公众号线索，主要信号集中在${topCategoryLabels(filteredEvents.concat(filteredNews)).join("、") || "暂无"}。`,
         "",
-        "重点关注动态：",
+        "重点官方更新记录：",
         ...(highEvents.length ? highEvents.map((event) => {
           const competitor = getCompetitor(event.competitor);
           return `- ${event.date}｜${competitor?.name || event.competitor}｜${event.title}：${event.signal}`;
-        }) : ["- 当前范围暂无重点关注动态"]),
+        }) : ["- 当前范围暂无重点官方更新记录"]),
         "",
-        "重点新闻信号：",
+        "重点新闻/公众号线索：",
         ...(highNews.length ? highNews.map((news) => {
           const competitor = getCompetitor(news.competitor);
           return `- ${news.date}｜${competitor?.name || news.competitor}｜${news.title}：${news.takeaway || news.kind}`;
-        }) : ["- 当前范围暂无重点新闻信号"]),
+        }) : ["- 当前范围暂无重点新闻/公众号线索"]),
         "",
-        "共同方向：模型更新 + 智能体工具 + 开发者套餐 + 图像视频语音 + 企业管理。",
+        "共同方向：模型更新 + 智能体工具 + 开发者套餐 + 图像视频语音 + 训练托管。",
         "建议：优先补齐模型变更提醒、工具接入闭环、开发者套餐和需要登录才能看到的竞品信息。"
       ];
       try {
@@ -3258,7 +3396,7 @@
       });
       document.getElementById("closeDialogBtn").addEventListener("click", closeDialog);
       document.getElementById("clearManualBtn").addEventListener("click", () => {
-        if (!confirm("确认清空本浏览器里的人工补充动态？")) return;
+        if (!confirm("确认清空本浏览器里的人工补充记录？")) return;
         state.manualEvents = [];
         saveManualEvents();
         renderAll();

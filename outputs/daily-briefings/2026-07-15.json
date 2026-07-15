@@ -1,23 +1,33 @@
 {
   "targetDate": "2026-07-15",
   "runDate": "2026-07-15",
-  "runDateTime": "2026-07-15 16:19:52",
+  "runDateTime": "2026-07-15 17:00:02",
   "timezone": "Asia/Shanghai",
   "dryRun": false,
   "noFetch": false,
   "sourcesChecked": 20,
-  "exactMatches": [
-    {
-      "sourceId": "media-maas-news-aliyun",
-      "dataSourceId": "mediaAliyunBailianSearch",
-      "competitor": "aliyun",
-      "title": "新闻检索：阿里百炼：模型供给更新信号",
-      "url": "https://www.baidu.com/s?tn=news&rtt=4&bsst=1&cl=2&word=%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%20%E9%80%9A%E4%B9%89%20%E5%A4%A7%E6%A8%A1%E5%9E%8B",
-      "keyword": "阿里百炼",
-      "snippet": "...mmary\":\"智东西9月6日报道，昨夜，阿里上线Qwen3系列最强 模型 Qwen3-Max的Preview版本，这也是阿里迄今为止最大的模型，参数量超1万亿。该模型目前已登陆 阿里百炼 平台，且在 通义 千问应用及Qwen C...\",\"dispTime\":\"2025年9月6日\",\"sourceIcon\":\"https://pic.rmb.bdstatic.com/90a3cc56048cc77b55e93b3d1ba00c0b.jpeg\",\"rtses\":\"百家号\",\"sourceName\":\"新浪财经\",\"mask..."
-    }
-  ],
+  "exactMatches": [],
   "candidates": [
+    {
+      "sourceId": "volc-ark-docs",
+      "dataSourceId": "volcArkApi",
+      "competitor": "volc",
+      "name": "火山方舟接口文档",
+      "url": "https://www.volcengine.com/docs/82379/1494384?lang=zh",
+      "type": "official",
+      "recordType": "",
+      "categories": [
+        "model",
+        "agent",
+        "multimodal",
+        "platform"
+      ],
+      "sourcePriority": "high",
+      "keyword": "火山方舟",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "文档中心 简体 文档 控制台 登录 注册 火山方舟 文档指南 订阅 [Agent/Coding Plan] API参考 资源 火山方舟 火山方舟 API参考 请输入 准备工作 获取 API Key 并配置 安装及升级 SDK Base URL及鉴权 对话(Chat) API 对话(Chat) API Responses API 创建模型响应 查询模型响应 获取响应上下文 删除模型响应 流..."
+    },
     {
       "sourceId": "baidu-qianfan-model",
       "dataSourceId": "baiduModel",
@@ -25,6 +35,7 @@
       "name": "百度千帆模型更新记录",
       "url": "https://cloud.baidu.com/doc/qianfan/s/Kmh4stnjp",
       "type": "official",
+      "recordType": "official_update_record",
       "categories": [
         "model",
         "governance"
@@ -42,6 +53,7 @@
       "name": "百度千帆更新动态",
       "url": "https://cloud.baidu.com/doc/qianfan/s/Mmh8l4qwj",
       "type": "official",
+      "recordType": "official_update_record",
       "categories": [
         "agent",
         "tools",
@@ -60,6 +72,7 @@
       "name": "百度千帆开发者套餐公告",
       "url": "https://cloud.baidu.com/doc/qianfan/s/Emqsyd7yj",
       "type": "official",
+      "recordType": "official_update_record",
       "categories": [
         "coding",
         "business"
@@ -77,6 +90,7 @@
       "name": "阿里云百炼模型大全",
       "url": "https://help.aliyun.com/zh/model-studio/models",
       "type": "official",
+      "recordType": "",
       "categories": [
         "model",
         "multimodal"
@@ -94,6 +108,7 @@
       "name": "阿里云百炼工具接入文档",
       "url": "https://help.aliyun.com/zh/model-studio/mcp-introduction",
       "type": "official",
+      "recordType": "",
       "categories": [
         "agent",
         "tools"
@@ -111,6 +126,7 @@
       "name": "阿里云百炼开发者套餐",
       "url": "https://help.aliyun.com/zh/model-studio/coding-plan",
       "type": "official",
+      "recordType": "",
       "categories": [
         "coding",
         "business"
@@ -128,6 +144,7 @@
       "name": "SiliconFlow 更新公告",
       "url": "https://docs.siliconflow.cn/cn/release-notes/overview",
       "type": "official",
+      "recordType": "official_update_record",
       "categories": [
         "model",
         "business",
@@ -146,6 +163,7 @@
       "name": "腾讯云 TI-ONE 文档",
       "url": "https://cloud.tencent.com/document/product/851",
       "type": "official",
+      "recordType": "",
       "categories": [
         "platform",
         "model"
@@ -163,6 +181,7 @@
       "name": "华为云 ModelArts 文档",
       "url": "https://support.huaweicloud.com/modelarts/index.html",
       "type": "official",
+      "recordType": "",
       "categories": [
         "platform",
         "agent"
@@ -180,6 +199,7 @@
       "name": "智谱 BigModel 模型广场",
       "url": "https://bigmodel.cn/console/modelcenter/square",
       "type": "official",
+      "recordType": "",
       "categories": [
         "model",
         "agent"
@@ -197,6 +217,7 @@
       "name": "公众号检索：火山方舟 / 火山引擎",
       "url": "https://weixin.sogou.com/weixin?type=2&query=%E7%81%AB%E5%B1%B1%E6%96%B9%E8%88%9F%20%E7%81%AB%E5%B1%B1%E5%BC%95%E6%93%8E",
       "type": "wechat",
+      "recordType": "",
       "categories": [
         "model",
         "agent",
@@ -215,6 +236,7 @@
       "name": "公众号检索：百度千帆 / 文心千帆",
       "url": "https://weixin.sogou.com/weixin?type=2&query=%E7%99%BE%E5%BA%A6%E5%8D%83%E5%B8%86%20%E6%96%87%E5%BF%83%E5%8D%83%E5%B8%86",
       "type": "wechat",
+      "recordType": "",
       "categories": [
         "model",
         "agent",
@@ -233,6 +255,7 @@
       "name": "公众号检索：阿里百炼 / 通义千问",
       "url": "https://weixin.sogou.com/weixin?type=2&query=%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%20%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE",
       "type": "wechat",
+      "recordType": "",
       "categories": [
         "model",
         "agent",
@@ -251,6 +274,7 @@
       "name": "公众号检索：硅基流动 / SiliconFlow",
       "url": "https://weixin.sogou.com/weixin?type=2&query=%E7%A1%85%E5%9F%BA%E6%B5%81%E5%8A%A8%20SiliconFlow",
       "type": "wechat",
+      "recordType": "",
       "categories": [
         "model",
         "business"
@@ -268,6 +292,7 @@
       "name": "公众号检索：智谱 AI / GLM",
       "url": "https://weixin.sogou.com/weixin?type=2&query=%E6%99%BA%E8%B0%B1AI%20GLM%20BigModel",
       "type": "wechat",
+      "recordType": "",
       "categories": [
         "model",
         "agent"
@@ -285,6 +310,7 @@
       "name": "新闻检索：百度千帆",
       "url": "https://www.baidu.com/s?tn=news&rtt=4&bsst=1&cl=2&word=%E7%99%BE%E5%BA%A6%E5%8D%83%E5%B8%86%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%20%E6%9B%B4%E6%96%B0",
       "type": "media",
+      "recordType": "",
       "categories": [
         "model",
         "business"
@@ -293,7 +319,26 @@
       "keyword": "百度千帆",
       "relevanceScore": 3,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "...哈兰德白色高定造型闪耀全场 27 贾浅浅学术不端行为属实 28 连涨4个月 一线城市楼市全面复苏了吗 29 19岁亚马尔把姆巴佩踢下神坛 新 30 夏天吹空调别死磕制冷 辅助模式 百度千帆 Coding Plan 停止续费:已购用户可正常使用至服务到期\",\"titleUrl\":\"https://stock.10jqka.com.cn/20260625/c677723143.shtml\",\"dataClick\":\"{\\n 'f0':'77A717EA',\\n 'f1':'9F73F1E4',\\n 'f2':'4CA6DE6A..."
+      "snippet": "...曝哈兰德“已读不回” 27 哈兰德白色高定造型闪耀全场 28 吉林敦化紧急公告：非必要不外出 29 内蒙古2名工人不慎掉入冷凝水箱溺亡 30 崩阿姨比崩老头更加隐蔽 新 辅助模式 百度千帆 Coding Plan 停止续费:已购用户可正常使用至服务到期\",\"titleUrl\":\"https://stock.10jqka.com.cn/20260625/c677723143.shtml\",\"dataClick\":\"{\\n 'f0':'77A717EA',\\n 'f1':'9F73F1E4',\\n 'f2':'4CA6DE6A..."
+    },
+    {
+      "sourceId": "media-maas-news-aliyun",
+      "dataSourceId": "mediaAliyunBailianSearch",
+      "competitor": "aliyun",
+      "name": "新闻检索：阿里百炼",
+      "url": "https://www.baidu.com/s?tn=news&rtt=4&bsst=1&cl=2&word=%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%20%E9%80%9A%E4%B9%89%20%E5%A4%A7%E6%A8%A1%E5%9E%8B",
+      "type": "media",
+      "recordType": "",
+      "categories": [
+        "model",
+        "multimodal",
+        "business"
+      ],
+      "sourcePriority": "medium",
+      "keyword": "阿里百炼",
+      "relevanceScore": 9,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "...它并不强调对话式交互，而是通过低代码流程编排，把Bot嵌入企业日常流程中，比如在钉钉中设立一个“员工报销Bot”或“订单审核Bot”。相比之下，通义百... 新浪财经 去网页搜： 阿里百炼 通义 大模型 相关搜索 阿里ai大模型通义千问 阿里通义大模型最新消息 阿里通义大模型概念股票 通义大模型怎么样 通义大模型的核心能力 阿里通义大模型发布新功能 通义千问哪个模型最好 阿里云大模型工具 阿里通义千问团队的其他... 阿里云通义开源多模态模型 1 2 3 4 5 6 下一页 > 帮助 举报 企业推广"
     },
     {
       "sourceId": "media-maas-news-volc",
@@ -302,6 +347,7 @@
       "name": "新闻检索：火山方舟",
       "url": "https://www.baidu.com/s?tn=news&rtt=4&bsst=1&cl=2&word=%E7%81%AB%E5%B1%B1%E6%96%B9%E8%88%9F%20%E8%B1%86%E5%8C%85%20%E5%A4%A7%E6%A8%A1%E5%9E%8B",
       "type": "media",
+      "recordType": "",
       "categories": [
         "model",
         "multimodal",
@@ -309,9 +355,9 @@
       ],
       "sourcePriority": "medium",
       "keyword": "火山方舟",
-      "relevanceScore": 10,
+      "relevanceScore": 13,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "...f4f2ef6549756333\",\"hasImg\":true,\"summary\":\"近日,Gartner®发布2025年度全球《AI应用开发平台魔力象限》:凭借 豆包大模型 和 火山方舟 大...\",\"dispTime\":\"2025年11月21日\",\"sourceIcon\":\"\",\"rtses\":\"北晚新视觉\",\"sourceName\":\"北晚在线\",\"accessibilityData\":{\"titleAriaLabel\":\"标题：Gartner首份全球大模型报告:火山引擎中国厂商第一,领跑全球挑战者\",\"absAri..."
+      "snippet": "...RCE原动力大会，集中发布 豆包大模型 2.1，以及视频、图像、音频等多款新模型，并升级面向Agent的云服务体系。据火山引擎披露，截至今年6月，豆包... 大众日报 去网页搜： 火山方舟 豆包 大模型 相关搜索 火山方舟大模型 火山方舟api 方舟仙境火山在哪 方舟手游火山矿洞 方舟手游火山在哪里 火山方舟算力资源 方舟生存进化火山 火山方舟技术方案 方舟火山矿洞带什么龙 失落方舟模型素材 1 2 3 4 5 6 7 8 下一页 > 帮助 举报 企业推广"
     },
     {
       "sourceId": "media-maas-news-zhipu",
@@ -320,6 +366,7 @@
       "name": "新闻检索：智谱 AI",
       "url": "https://www.baidu.com/s?tn=news&rtt=4&bsst=1&cl=2&word=%E6%99%BA%E8%B0%B1AI%20GLM%20BigModel%20%E5%A4%A7%E6%A8%A1%E5%9E%8B",
       "type": "media",
+      "recordType": "",
       "categories": [
         "model",
         "agent",
@@ -327,11 +374,11 @@
       ],
       "sourcePriority": "medium",
       "keyword": "智谱",
-      "relevanceScore": 7,
+      "relevanceScore": 5,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "...哈兰德白色高定造型闪耀全场 27 贾浅浅学术不端行为属实 28 连涨4个月 一线城市楼市全面复苏了吗 29 19岁亚马尔把姆巴佩踢下神坛 新 30 夏天吹空调别死磕制冷 辅助模式 智谱GLM -5.2发布驱动 国产 AI模型 算力共振加速\",\"titleUrl\":\"https://sj.cfi.cn/newspage.aspx?id=20260712000351&client=phone\",\"dataClick\":\"{\\n 'f0':'77A717EA',\\n 'f1':'9F73F1E4',\\n 'f2':'4CA6..."
+      "snippet": "...曝哈兰德“已读不回” 27 哈兰德白色高定造型闪耀全场 28 吉林敦化紧急公告：非必要不外出 29 内蒙古2名工人不慎掉入冷凝水箱溺亡 30 崩阿姨比崩老头更加隐蔽 新 辅助模式 智谱GLM -5.2迎重大突破!探索人工智能“弯道超车”新...\",\"titleUrl\":\"https://baijiahao.baidu.com/s?id=1870284922937159295&wfr=spider&for=pc\",\"dataClick\":\"{\\n 'f0':'77A717EA',\\n 'f1':'9F73F1E4',\\n..."
     }
   ],
   "errors": [],
-  "publishedCandidates": 18
+  "publishedCandidates": 16
 }

@@ -1,49 +1,55 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-07-15 16:19:52",
+  "updatedAt": "2026-07-15 17:00:02",
   "snapshotDate": "2026-07-15",
-  "note": "自动刷新已运行：2026-07-15 16:19:52（北京时间），本次总结 2026-07-15 的竞品动态。日期明确动态 1 条，自动展示平台/高相关新闻线索 18 条。",
+  "note": "自动刷新已运行：2026-07-15 17:00:02（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-07-15 的竞品动态。官方更新记录 0 条，新闻/宣传/资料线索 16 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
       "title": "百度千帆模型更新记录",
       "vendor": "百度千帆",
       "url": "https://cloud.baidu.com/doc/qianfan/s/Kmh4stnjp",
-      "type": "official"
+      "type": "official",
+      "recordType": "official_update_record"
     },
     "baiduCodingPlan": {
       "note": "百度千帆开发者套餐公告 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
       "title": "百度千帆开发者套餐公告",
       "vendor": "百度千帆",
       "url": "https://cloud.baidu.com/doc/qianfan/s/Emqsyd7yj",
-      "type": "official"
+      "type": "official",
+      "recordType": "official_update_record"
     },
     "aliyunModels": {
       "note": "阿里云百炼模型大全 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
       "title": "阿里云百炼模型大全",
       "vendor": "阿里百炼",
       "url": "https://help.aliyun.com/zh/model-studio/models",
-      "type": "official"
+      "type": "official",
+      "recordType": ""
     },
     "siliconRelease": {
       "note": "SiliconFlow 更新公告 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
       "title": "SiliconFlow 更新公告",
       "vendor": "硅基流动",
       "url": "https://docs.siliconflow.cn/cn/release-notes/overview",
-      "type": "official"
+      "type": "official",
+      "recordType": "official_update_record"
     },
     "tencentTione": {
       "note": "腾讯云 TI-ONE 文档 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
       "title": "腾讯云 TI-ONE 文档",
       "vendor": "腾讯云 TI",
       "url": "https://cloud.tencent.com/document/product/851",
-      "type": "official"
+      "type": "official",
+      "recordType": ""
     },
     "huaweiModelArts": {
       "note": "华为云 ModelArts 文档 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
       "title": "华为云 ModelArts 文档",
       "vendor": "华为 MaaS",
       "url": "https://support.huaweicloud.com/modelarts/index.html",
-      "type": "official"
+      "type": "official",
+      "recordType": ""
     },
     "ftChinaModelCost": {
       "title": "Financial Times：中国模型被企业用于降低 AI 成本",
@@ -92,98 +98,112 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "vendor": "微信公众平台检索",
       "url": "https://weixin.sogou.com/weixin?type=2&query=%E7%81%AB%E5%B1%B1%E6%96%B9%E8%88%9F%20%E7%81%AB%E5%B1%B1%E5%BC%95%E6%93%8E",
       "type": "wechat",
-      "note": "公众号检索：火山方舟 / 火山引擎 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。"
+      "note": "公众号检索：火山方舟 / 火山引擎 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "recordType": ""
     },
     "wechatQianfanSearch": {
       "title": "公众号检索：百度千帆 / 文心千帆",
       "vendor": "微信公众平台检索",
       "url": "https://weixin.sogou.com/weixin?type=2&query=%E7%99%BE%E5%BA%A6%E5%8D%83%E5%B8%86%20%E6%96%87%E5%BF%83%E5%8D%83%E5%B8%86",
       "type": "wechat",
-      "note": "公众号检索：百度千帆 / 文心千帆 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。"
+      "note": "公众号检索：百度千帆 / 文心千帆 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "recordType": ""
     },
     "wechatBailianSearch": {
       "title": "公众号检索：阿里百炼 / 通义千问",
       "vendor": "微信公众平台检索",
       "url": "https://weixin.sogou.com/weixin?type=2&query=%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%20%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE",
       "type": "wechat",
-      "note": "公众号检索：阿里百炼 / 通义千问 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。"
+      "note": "公众号检索：阿里百炼 / 通义千问 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "recordType": ""
     },
     "wechatSiliconSearch": {
       "title": "公众号检索：硅基流动 / SiliconFlow",
       "vendor": "微信公众平台检索",
       "url": "https://weixin.sogou.com/weixin?type=2&query=%E7%A1%85%E5%9F%BA%E6%B5%81%E5%8A%A8%20SiliconFlow",
       "type": "wechat",
-      "note": "公众号检索：硅基流动 / SiliconFlow 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。"
+      "note": "公众号检索：硅基流动 / SiliconFlow 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "recordType": ""
     },
     "volcArkApi": {
       "title": "火山方舟接口文档",
       "vendor": "火山方舟",
       "url": "https://www.volcengine.com/docs/82379/1494384?lang=zh",
       "type": "official",
-      "note": "火山方舟接口文档 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。"
+      "note": "火山方舟接口文档 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "recordType": ""
     },
     "baiduPlatform": {
       "title": "百度千帆更新动态",
       "vendor": "百度千帆",
       "url": "https://cloud.baidu.com/doc/qianfan/s/Mmh8l4qwj",
       "type": "official",
-      "note": "百度千帆更新动态 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。"
+      "note": "百度千帆更新动态 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "recordType": "official_update_record"
     },
     "aliyunMcp": {
       "title": "阿里云百炼工具接入文档",
       "vendor": "阿里百炼",
       "url": "https://help.aliyun.com/zh/model-studio/mcp-introduction",
       "type": "official",
-      "note": "阿里云百炼工具接入文档 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。"
+      "note": "阿里云百炼工具接入文档 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "recordType": ""
     },
     "aliyunCodingPlan": {
       "title": "阿里云百炼开发者套餐",
       "vendor": "阿里百炼",
       "url": "https://help.aliyun.com/zh/model-studio/coding-plan",
       "type": "official",
-      "note": "阿里云百炼开发者套餐 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。"
+      "note": "阿里云百炼开发者套餐 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "recordType": ""
     },
     "zhipuExternal": {
       "title": "智谱 BigModel 模型广场",
       "vendor": "智谱 AI",
       "url": "https://bigmodel.cn/console/modelcenter/square",
       "type": "official",
-      "note": "智谱 BigModel 模型广场 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。"
+      "note": "智谱 BigModel 模型广场 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "recordType": ""
     },
     "wechatZhipuSearch": {
       "title": "公众号检索：智谱 AI / GLM",
       "vendor": "微信公众平台检索",
       "url": "https://weixin.sogou.com/weixin?type=2&query=%E6%99%BA%E8%B0%B1AI%20GLM%20BigModel",
       "type": "wechat",
-      "note": "公众号检索：智谱 AI / GLM 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。"
+      "note": "公众号检索：智谱 AI / GLM 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "recordType": ""
     },
     "mediaBaiduQianfanSearch": {
       "title": "新闻检索：百度千帆",
       "vendor": "新闻检索",
       "url": "https://www.baidu.com/s?tn=news&rtt=4&bsst=1&cl=2&word=%E7%99%BE%E5%BA%A6%E5%8D%83%E5%B8%86%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%20%E6%9B%B4%E6%96%B0",
       "type": "media",
-      "note": "新闻检索：百度千帆 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。"
+      "note": "新闻检索：百度千帆 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "recordType": ""
     },
     "mediaAliyunBailianSearch": {
       "title": "新闻检索：阿里百炼",
       "vendor": "新闻检索",
       "url": "https://www.baidu.com/s?tn=news&rtt=4&bsst=1&cl=2&word=%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%20%E9%80%9A%E4%B9%89%20%E5%A4%A7%E6%A8%A1%E5%9E%8B",
       "type": "media",
-      "note": "新闻检索：阿里百炼 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。"
+      "note": "新闻检索：阿里百炼 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "recordType": ""
     },
     "mediaVolcArkSearch": {
       "title": "新闻检索：火山方舟",
       "vendor": "新闻检索",
       "url": "https://www.baidu.com/s?tn=news&rtt=4&bsst=1&cl=2&word=%E7%81%AB%E5%B1%B1%E6%96%B9%E8%88%9F%20%E8%B1%86%E5%8C%85%20%E5%A4%A7%E6%A8%A1%E5%9E%8B",
       "type": "media",
-      "note": "新闻检索：火山方舟 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。"
+      "note": "新闻检索：火山方舟 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "recordType": ""
     },
     "mediaZhipuSearch": {
       "title": "新闻检索：智谱 AI",
       "vendor": "新闻检索",
       "url": "https://www.baidu.com/s?tn=news&rtt=4&bsst=1&cl=2&word=%E6%99%BA%E8%B0%B1AI%20GLM%20BigModel%20%E5%A4%A7%E6%A8%A1%E5%9E%8B",
       "type": "media",
-      "note": "新闻检索：智谱 AI 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。"
+      "note": "新闻检索：智谱 AI 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "recordType": ""
     }
   },
   "competitors": [
@@ -217,77 +237,23 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "news": [
     {
-      "id": "auto-media-maas-news-aliyun-2026-07-15-4c0f209d",
-      "competitor": "aliyun",
+      "id": "candidate-volc-ark-docs-2026-07-15",
+      "competitor": "volc",
       "date": "2026-07-15",
-      "kind": "新闻监测",
-      "title": "新闻检索：阿里百炼：模型供给更新信号",
-      "summary": "新闻信息显示，这条动态主要关联 模型供给、图像视频语音。关键词为“阿里百炼”，系统已按竞品、功能方向和来源相关性归入当天监测。",
-      "takeaway": "这类新闻用于判断竞品近期宣传、融资、生态合作或市场关注点；星辰 MaaS 可重点看它是否会影响模型供给、价格或企业客户心智。",
-      "evidence": "命中“阿里百炼”：…mmary\":\"智东西9月6日报道，昨夜，阿里上线Qwen3系列最强 模型 Qwen3-Max的Preview版本，这也是阿里迄今为止最大的模型，参数量超1万亿。该模型目前已登陆 阿里百炼 平台，且在 通义 千问应用及Qwen C…\",\"dispTime\":\"2025年9月6日\",\"sourceIcon\":\"https://pic.rmb.bdstatic…",
+      "kind": "官方资料线索",
+      "title": "火山方舟：接口和多模态任务能力更新信号",
+      "summary": "更新重点集中在平台 API 和任务能力：对话/Responses、模型响应管理、文件处理、视频/图像/3D、批量任务、模型调优、效果评测、用量和安全审计等。",
+      "takeaway": "火山方舟在把模型调用做成完整 MaaS 平台能力，不只是提供一个模型接口；星辰 MaaS 可重点对比多模态任务、批量/调优/评测和用量管理体验。",
+      "evidence": "命中“火山方舟”：文档中心 简体 文档 控制台 登录 注册 火山方舟 文档指南 订阅 [Agent/Coding Plan] API参考 资源 火山方舟 火山方舟 API参考 请输入 准备工作 获取 API Key 并配置 安装及升级 SDK Base URL及鉴权 对话(Chat) API 对话(Chat) API Responses API 创建模型响应 查询模型响应 获…",
       "categories": [
         "model",
-        "multimodal",
-        "business"
-      ],
-      "priority": "medium",
-      "source": "mediaAliyunBailianSearch"
-    },
-    {
-      "id": "candidate-baidu-qianfan-model-2026-07-15",
-      "competitor": "baidu",
-      "date": "2026-07-15",
-      "kind": "平台更新监测",
-      "title": "百度千帆：模型上新、升级和退役节奏信号",
-      "summary": "更新重点集中在模型生命周期管理：模型上新、版本升级、旧模型下线/退役，以及 GLM、Kimi、MiniMax、DeepSeek、Qwen 等第三方模型可用性。",
-      "takeaway": "百度千帆在强化“模型可选 + 版本治理”的平台心智；星辰 MaaS 可关注模型上下线提醒、替代模型建议和兼容迁移说明。",
-      "evidence": "命中“千帆”：模型更新记录 - 百度千帆·大模型服务及Agent开发平台 百度智能云 最新活动 产品 解决方案 企业服务 云市场 合作与生态 开发者 服务与支持 了解智能云 备案 文档 管理控制台 文档中心 搜索本产品文档关键词 立即试用 模型更新记录 百度千帆·大模型服务及Agent开发平台 平台介绍 平台简介 更新动态 产品公告 模型服务 模型更新记录 平台更新记录 …",
-      "categories": [
-        "model",
-        "governance"
-      ],
-      "priority": "high",
-      "source": "baiduModel",
-      "keyword": "千帆",
-      "relevanceScore": 12,
-      "autoCandidate": true
-    },
-    {
-      "id": "candidate-baidu-qianfan-platform-2026-07-15",
-      "competitor": "baidu",
-      "date": "2026-07-15",
-      "kind": "平台更新监测",
-      "title": "百度千帆：智能体、工作流和搜索工具更新信号",
-      "summary": "更新重点集中在应用搭建能力：工作流 Agent、多智能体协同、工具广场、知识库、RAG、AI 搜索、问题改写和行业模板。",
-      "takeaway": "百度正在把搜索、知识库和智能体流程组合成可用产品；星辰 MaaS 可重点对标企业知识接入、引用依据和工具编排能力。",
-      "evidence": "命中“智能体”：…工作流Agent：“金牌销售”车险续保Agent 工作流Agent：如何使用全局跳转节点搭建飞行客服小助手 工作流Agent：机票订单处理助手 工作流大模型节点高级配置使用案例 多智能体协同Agent最佳实践 用“多智能体协同Agent”一分钟搭建专属研究Agent，帮企业做深度研究 自定义工具最佳实践 工作流组件： API的增删查 工作流组件：如何用知识…",
-      "categories": [
         "agent",
-        "tools",
-        "business"
+        "multimodal",
+        "platform"
       ],
       "priority": "high",
-      "source": "baiduPlatform",
-      "keyword": "智能体",
-      "relevanceScore": 12,
-      "autoCandidate": true
-    },
-    {
-      "id": "candidate-baidu-qianfan-coding-2026-07-15",
-      "competitor": "baidu",
-      "date": "2026-07-15",
-      "kind": "平台更新监测",
-      "title": "百度千帆：开发者套餐和 API 使用权益信号",
-      "summary": "更新重点集中在 Coding Plan、Token Plan、API Key、额度、续费、套餐迁移和开发者入口。",
-      "takeaway": "百度在用套餐和额度降低开发者试用门槛；星辰 MaaS 可关注免费额度、套餐迁移提示和 API 接入路径是否足够清晰。",
-      "evidence": "命中“Coding Plan”：Coding Plan 产品升级公告 - 百度千帆·大模型服务及Agent开发平台 百度智能云 最新活动 产品 解决方案 企业服务 云市场 合作与生态 开发者 服务与支持 了解智能云 备案 文档 管理控制台 文档中心 搜索本产品文档关键词 立即试用 Coding Plan 产品升级公告 百度千帆·大模型服务及Agent开发平台 平台介绍 平台简介 更新动态 …",
-      "categories": [
-        "coding",
-        "business"
-      ],
-      "priority": "high",
-      "source": "baiduCodingPlan",
-      "keyword": "Coding Plan",
+      "source": "volcArkApi",
+      "keyword": "火山方舟",
       "relevanceScore": 12,
       "autoCandidate": true
     },
@@ -295,7 +261,7 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "id": "candidate-aliyun-bailian-models-2026-07-15",
       "competitor": "aliyun",
       "date": "2026-07-15",
-      "kind": "平台更新监测",
+      "kind": "官方资料线索",
       "title": "阿里百炼：模型市场和多模态模型供给信号",
       "summary": "更新重点集中在模型目录：Qwen/通义、DeepSeek、Kimi、GLM、MiniMax 等文本模型，以及图像、视频、3D、语音、向量和重排序模型。",
       "takeaway": "阿里百炼在做“模型超市”和多模态能力聚合；星辰 MaaS 可重点对比模型分类、筛选、试用、价格和调用文档的一体化体验。",
@@ -314,7 +280,7 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "id": "candidate-aliyun-bailian-mcp-2026-07-15",
       "competitor": "aliyun",
       "date": "2026-07-15",
-      "kind": "平台更新监测",
+      "kind": "官方资料线索",
       "title": "阿里百炼：MCP 工具接入和智能体生态信号",
       "summary": "更新重点集中在 MCP、工具调用、插件接入、联网搜索、网页抓取、地图和工作流能力。",
       "takeaway": "阿里百炼在把模型能力延伸到工具生态；星辰 MaaS 可关注工具市场、权限管理、调用限流和可观测性。",
@@ -333,7 +299,7 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "id": "candidate-aliyun-bailian-coding-2026-07-15",
       "competitor": "aliyun",
       "date": "2026-07-15",
-      "kind": "平台更新监测",
+      "kind": "官方资料线索",
       "title": "阿里百炼：Coding Plan 和开发者接入信号",
       "summary": "更新重点集中在 Coding Plan、API Key、Base URL、开发者套餐、计费和续费规则。",
       "takeaway": "阿里百炼在强化开发者入口和迁移便利性；星辰 MaaS 可对比 API 接入、套餐说明和开发者文档转化效率。",
@@ -349,30 +315,10 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "autoCandidate": true
     },
     {
-      "id": "candidate-siliconflow-release-2026-07-15",
-      "competitor": "silicon",
-      "date": "2026-07-15",
-      "kind": "平台更新监测",
-      "title": "硅基流动：模型上下线、价格和平台治理信号",
-      "summary": "更新重点集中在模型发布/下线、价格调整、限流、实名、迁移通知、DeepSeek/Qwen/GLM 等模型供给。",
-      "takeaway": "硅基流动的优势是高性价比和模型聚合；星辰 MaaS 可关注价格透明度、模型迁移提醒和稳定性承诺。",
-      "evidence": "命中“SiliconFlow”：更新公告 - SiliconFlow Documentation Index Fetch the complete documentation index at: /llms.txt Use this file to discover all available pages before exploring further. Skip to main con…",
-      "categories": [
-        "model",
-        "business",
-        "governance"
-      ],
-      "priority": "high",
-      "source": "siliconRelease",
-      "keyword": "SiliconFlow",
-      "relevanceScore": 12,
-      "autoCandidate": true
-    },
-    {
       "id": "candidate-tencent-tione-docs-2026-07-15",
       "competitor": "tencent",
       "date": "2026-07-15",
-      "kind": "平台更新监测",
+      "kind": "官方资料线索",
       "title": "腾讯云 TI：训推平台和工程化能力信号",
       "summary": "更新重点集中在数据接入、训练、推理、部署、模型管理、效果评测和资源管理。",
       "takeaway": "腾讯云 TI 更偏工程平台和企业生产流程；星辰 MaaS 可重点对比部署、评测、资源管理和企业工作台能力。",
@@ -391,7 +337,7 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "id": "candidate-huawei-modelarts-docs-2026-07-15",
       "competitor": "huawei",
       "date": "2026-07-15",
-      "kind": "平台更新监测",
+      "kind": "官方资料线索",
       "title": "华为 ModelArts：企业训练部署和行业模型信号",
       "summary": "更新重点集中在 ModelArts/AgentArts、昇腾算力、训练部署、行业模型、企业落地和私有化能力。",
       "takeaway": "华为 MaaS 更强调企业级落地、算力和行业方案；星辰 MaaS 可关注私有化、行业模板和国产算力适配能力。",
@@ -410,7 +356,7 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "id": "candidate-zhipu-bigmodel-console-2026-07-15",
       "competitor": "zhipu",
       "date": "2026-07-15",
-      "kind": "平台更新监测",
+      "kind": "官方资料线索",
       "title": "智谱 BigModel：GLM 模型广场和智能体能力信号",
       "summary": "更新重点集中在 GLM 模型、长文本、代码、智能体和模型广场可用性。",
       "takeaway": "智谱的核心心智仍是 GLM 系列模型和长任务能力；星辰 MaaS 可关注 GLM 外部平台上架、代码能力和 Agent 场景。",
@@ -527,11 +473,11 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "id": "candidate-media-maas-news-volc-2026-07-15",
       "competitor": "volc",
       "date": "2026-07-15",
-      "kind": "高相关新闻线索",
+      "kind": "媒体/新闻线索",
       "title": "新闻检索：火山方舟：模型供给更新信号",
-      "summary": "新闻信息显示，这条动态主要关联 模型供给、图像视频语音、生态/客户案例。关键词为“火山方舟”，系统已按竞品、功能方向和来源相关性归入当天监测。",
+      "summary": "新闻信息显示，这条动态主要关联 模型供给、智能体/工作流、工具/MCP、图像视频语音。关键词为“火山方舟”，系统已按竞品、功能方向和来源相关性归入当天监测。",
       "takeaway": "这类新闻用于判断竞品近期宣传、融资、生态合作或市场关注点；星辰 MaaS 可重点看它是否会影响模型供给、价格或企业客户心智。",
-      "evidence": "命中“火山方舟”：…f4f2ef6549756333\",\"hasImg\":true,\"summary\":\"近日,Gartner®发布2025年度全球《AI应用开发平台魔力象限》:凭借 豆包大模型 和 火山方舟 大…\",\"dispTime\":\"2025年11月21日\",\"sourceIcon\":\"\",\"rtses\":\"北晚新视觉\",\"sourceName\":\"北晚在线\",\"ac…",
+      "evidence": "命中“火山方舟”：…RCE原动力大会，集中发布 豆包大模型 2.1，以及视频、图像、音频等多款新模型，并升级面向Agent的云服务体系。据火山引擎披露，截至今年6月，豆包… 大众日报 去网页搜： 火山方舟 豆包 大模型 相关搜索 火山方舟大模型 火山方舟api 方舟仙境火山在哪 方舟手游火山矿洞 方舟手游火山在哪里 火山方舟算力资源 方舟生存进化火山 火山方舟技术方案 方舟火…",
       "categories": [
         "model",
         "multimodal",
@@ -540,18 +486,38 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "priority": "medium",
       "source": "mediaVolcArkSearch",
       "keyword": "火山方舟",
-      "relevanceScore": 10,
+      "relevanceScore": 13,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-media-maas-news-aliyun-2026-07-15",
+      "competitor": "aliyun",
+      "date": "2026-07-15",
+      "kind": "媒体/新闻线索",
+      "title": "新闻检索：阿里百炼：模型供给更新信号",
+      "summary": "新闻信息显示，这条动态主要关联 模型供给、工具/MCP、图像视频语音、搜索/知识库。关键词为“阿里百炼”，系统已按竞品、功能方向和来源相关性归入当天监测。",
+      "takeaway": "这类新闻用于判断竞品近期宣传、融资、生态合作或市场关注点；星辰 MaaS 可重点看它是否会影响模型供给、价格或企业客户心智。",
+      "evidence": "命中“阿里百炼”：…它并不强调对话式交互，而是通过低代码流程编排，把Bot嵌入企业日常流程中，比如在钉钉中设立一个“员工报销Bot”或“订单审核Bot”。相比之下，通义百… 新浪财经 去网页搜： 阿里百炼 通义 大模型 相关搜索 阿里ai大模型通义千问 阿里通义大模型最新消息 阿里通义大模型概念股票 通义大模型怎么样 通义大模型的核心能力 阿里通义大模型发布新功能 通义千问哪…",
+      "categories": [
+        "model",
+        "multimodal",
+        "business"
+      ],
+      "priority": "low",
+      "source": "mediaAliyunBailianSearch",
+      "keyword": "阿里百炼",
+      "relevanceScore": 9,
       "autoCandidate": true
     },
     {
       "id": "candidate-media-maas-news-zhipu-2026-07-15",
       "competitor": "zhipu",
       "date": "2026-07-15",
-      "kind": "高相关新闻线索",
+      "kind": "媒体/新闻线索",
       "title": "新闻检索：智谱 AI：模型供给更新信号",
-      "summary": "新闻信息显示，这条动态主要关联 模型供给、智能体/工作流、生态/客户案例。关键词为“智谱”，系统已按竞品、功能方向和来源相关性归入当天监测。",
+      "summary": "新闻信息显示，这条动态主要关联 模型供给、智能体/工作流。关键词为“智谱”，系统已按竞品、功能方向和来源相关性归入当天监测。",
       "takeaway": "这类新闻用于判断竞品近期宣传、融资、生态合作或市场关注点；星辰 MaaS 可重点看它是否会影响模型供给、价格或企业客户心智。",
-      "evidence": "命中“智谱”：…哈兰德白色高定造型闪耀全场 27 贾浅浅学术不端行为属实 28 连涨4个月 一线城市楼市全面复苏了吗 29 19岁亚马尔把姆巴佩踢下神坛 新 30 夏天吹空调别死磕制冷 辅助模式 智谱GLM -5.2发布驱动 国产 AI模型 算力共振加速\",\"titleUrl\":\"https://sj.cfi.cn/newspage.aspx?id=20260712000…",
+      "evidence": "命中“智谱”：…曝哈兰德“已读不回” 27 哈兰德白色高定造型闪耀全场 28 吉林敦化紧急公告：非必要不外出 29 内蒙古2名工人不慎掉入冷凝水箱溺亡 30 崩阿姨比崩老头更加隐蔽 新 辅助模式 智谱GLM -5.2迎重大突破!探索人工智能“弯道超车”新…\",\"titleUrl\":\"https://baijiahao.baidu.com/s?id=187028492293…",
       "categories": [
         "model",
         "agent",
@@ -560,18 +526,18 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "priority": "low",
       "source": "mediaZhipuSearch",
       "keyword": "智谱",
-      "relevanceScore": 7,
+      "relevanceScore": 5,
       "autoCandidate": true
     },
     {
       "id": "candidate-media-maas-news-baidu-2026-07-15",
       "competitor": "baidu",
       "date": "2026-07-15",
-      "kind": "高相关新闻线索",
+      "kind": "媒体/新闻线索",
       "title": "新闻检索：百度千帆：模型供给更新信号",
       "summary": "新闻信息显示，这条动态主要关联 模型供给、开发者套餐、价格/优惠。关键词为“百度千帆”，系统已按竞品、功能方向和来源相关性归入当天监测。",
       "takeaway": "这类新闻用于判断竞品近期宣传、融资、生态合作或市场关注点；星辰 MaaS 可重点看它是否会影响模型供给、价格或企业客户心智。",
-      "evidence": "命中“百度千帆”：…哈兰德白色高定造型闪耀全场 27 贾浅浅学术不端行为属实 28 连涨4个月 一线城市楼市全面复苏了吗 29 19岁亚马尔把姆巴佩踢下神坛 新 30 夏天吹空调别死磕制冷 辅助模式 百度千帆 Coding Plan 停止续费:已购用户可正常使用至服务到期\",\"titleUrl\":\"https://stock.10jqka.com.cn/20260625/c6…",
+      "evidence": "命中“百度千帆”：…曝哈兰德“已读不回” 27 哈兰德白色高定造型闪耀全场 28 吉林敦化紧急公告：非必要不外出 29 内蒙古2名工人不慎掉入冷凝水箱溺亡 30 崩阿姨比崩老头更加隐蔽 新 辅助模式 百度千帆 Coding Plan 停止续费:已购用户可正常使用至服务到期\",\"titleUrl\":\"https://stock.10jqka.com.cn/20260625/c6…",
       "categories": [
         "model",
         "business"
@@ -1188,11 +1154,11 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   "monitorRuns": [
     {
       "targetDate": "2026-07-15",
-      "runDateTime": "2026-07-15 16:19:52",
+      "runDateTime": "2026-07-15 17:00:02",
       "sourcesChecked": 20,
-      "exactMatches": 1,
-      "publishedCandidates": 18,
-      "candidates": 18,
+      "exactMatches": 0,
+      "publishedCandidates": 16,
+      "candidates": 20,
       "errors": 0
     },
     {
