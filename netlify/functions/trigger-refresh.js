@@ -21,7 +21,7 @@ export async function handler(event) {
   }
 
   const body = parseJson(event.body);
-  const targetDate = body.target_date || getChinaTodayDate();
+  const targetDate = body.target_date || getChinaYesterdayDate();
   if (!/^\d{4}-\d{2}-\d{2}$/.test(targetDate)) {
     return json(400, { ok: false, message: "target_date 必须是 YYYY-MM-DD 格式。" });
   }
@@ -81,6 +81,13 @@ function getChinaTodayDate() {
   }).formatToParts(new Date());
   const values = Object.fromEntries(parts.filter((part) => part.type !== "literal").map((part) => [part.type, part.value]));
   return `${values.year}-${values.month}-${values.day}`;
+}
+
+function getChinaYesterdayDate() {
+  const today = getChinaTodayDate();
+  const date = new Date(`${today}T00:00:00Z`);
+  date.setUTCDate(date.getUTCDate() - 1);
+  return date.toISOString().slice(0, 10);
 }
 
 function json(statusCode, payload) {

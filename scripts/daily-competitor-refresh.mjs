@@ -13,6 +13,8 @@ const DAILY_REPORT_DIR = "outputs/daily-briefings";
 const DATA_GLOBAL = "window.__XINGCHEN_COMPETITOR_DATA__";
 const TIMEZONE = "Asia/Shanghai";
 const MAX_CANDIDATES = 30;
+const MAX_MEDIA_CANDIDATES = 5;
+const MEDIA_RELEVANCE_THRESHOLD = 7;
 const REQUEST_TIMEOUT_MS = 15000;
 
 const args = parseArgs(process.argv.slice(2));
@@ -29,6 +31,7 @@ main().catch((error) => {
 
 async function main() {
   const payload = readPayload(PRIMARY_DATA_PATH);
+  removeAutoCandidateNewsForDate(payload, targetDate);
   const config = JSON.parse(readFileSync(SOURCE_CONFIG_PATH, "utf8"));
   const sources = normalizeSources(config.sources || []);
   const report = {
@@ -66,30 +69,37 @@ async function main() {
         snippet: sourceResult.snippet
       });
       addOrUpdateNews(payload, newsItem);
+      removeNewsById(payload, buildCandidateNewsId(source.id, targetDate));
       addOrUpdateSource(payload, source);
       markCompetitorSeen(payload, source.competitor, targetDate);
       continue;
     }
 
     if (sourceResult.keyword && report.candidates.length < MAX_CANDIDATES) {
-      report.candidates.push({
+      const candidate = {
         sourceId: source.id,
         dataSourceId: getDataSourceId(source),
         competitor: source.competitor,
         name: source.name,
         url: source.url,
         type: source.type,
+        categories: source.categories,
+        sourcePriority: source.priority,
         keyword: sourceResult.keyword,
-        reason: "命中了关键词，但没有发现昨日日期，建议人工点开确认是否为新动态。",
+        relevanceScore: scoreCandidate(source, sourceResult),
+        reason: "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
         snippet: sourceResult.snippet
-      });
+      };
+      report.candidates.push(candidate);
       addOrUpdateSource(payload, source);
     }
   }
 
+  const publishedCandidates = publishCandidateNews(payload, report);
+  report.publishedCandidates = publishedCandidates.length;
   payload.updatedAt = runDateTime;
   payload.snapshotDate = targetDate;
-  payload.note = `自动刷新已运行：${runDateTime}（北京时间），本次总结 ${targetDate} 的竞品动态。明确命中 ${report.exactMatches.length} 条，待人工复核 ${report.candidates.length} 条。`;
+  payload.note = `自动刷新已运行：${runDateTime}（北京时间），本次总结 ${targetDate} 的竞品动态。日期明确动态 ${report.exactMatches.length} 条，自动展示平台/高相关新闻线索 ${publishedCandidates.length} 条。`;
   payload.monitorRuns = [
     buildRunSummary(report),
     ...asArray(payload.monitorRuns).filter((item) => item?.targetDate !== targetDate)
@@ -98,7 +108,7 @@ async function main() {
 
   if (dryRun) {
     console.log(`[dry-run] checked ${sources.length} sources for ${targetDate}`);
-    console.log(`[dry-run] exact matches: ${report.exactMatches.length}, candidates: ${report.candidates.length}, errors: ${report.errors.length}`);
+    console.log(`[dry-run] exact matches: ${report.exactMatches.length}, published candidates: ${publishedCandidates.length}, collected candidates: ${report.candidates.length}, errors: ${report.errors.length}`);
     return;
   }
 
@@ -106,7 +116,8 @@ async function main() {
   writeDailyReports(report);
   console.log(`Daily refresh complete for ${targetDate}`);
   console.log(`Exact matches: ${report.exactMatches.length}`);
-  console.log(`Review candidates: ${report.candidates.length}`);
+  console.log(`Published candidates: ${publishedCandidates.length}`);
+  console.log(`Collected candidates: ${report.candidates.length}`);
   console.log(`Errors: ${report.errors.length}`);
 }
 
@@ -362,6 +373,86 @@ function buildNewsItem(source, sourceResult, dateString) {
   };
 }
 
+function publishCandidateNews(payload, report) {
+  const candidates = asArray(report.candidates);
+  const platformCandidates = candidates.filter((item) => item.type !== "media");
+  const mediaCandidates = candidates
+    .filter((item) => item.type === "media")
+    .filter((item) => item.relevanceScore >= MEDIA_RELEVANCE_THRESHOLD)
+    .sort((a, b) => b.relevanceScore - a.relevanceScore)
+    .slice(0, MAX_MEDIA_CANDIDATES);
+  const selected = platformCandidates.concat(mediaCandidates);
+  selected.forEach((candidate) => addOrUpdateNews(payload, buildCandidateNewsItem(candidate, report.targetDate)));
+  return selected;
+}
+
+function buildCandidateNewsItem(candidate, dateString) {
+  const isOfficial = candidate.type === "official";
+  const isWechat = candidate.type === "wechat";
+  const kind = isOfficial ? "平台更新监测" : isWechat ? "公众号监测" : "高相关新闻线索";
+  const titleSuffix = isOfficial ? "公开更新内容" : isWechat ? "公众号内容信号" : "高相关新闻信号";
+  const priority = isOfficial
+    ? candidate.sourcePriority || "medium"
+    : isWechat
+      ? "medium"
+      : candidate.relevanceScore >= 10 ? "medium" : "low";
+  return {
+    id: buildCandidateNewsId(candidate.sourceId, dateString),
+    competitor: candidate.competitor,
+    date: dateString,
+    kind,
+    title: `${candidate.name} ${titleSuffix}`,
+    summary: simplifySnippet(candidate.snippet, candidate.keyword),
+    takeaway: isOfficial
+      ? "简单说，这是该平台公开文档或公告页中的相关更新内容，系统已纳入当天平台动态观察。"
+      : isWechat
+        ? "简单说，这是公众号检索中与竞品高度相关的内容信号，适合用来观察宣传重点和市场动作。"
+        : "简单说，这是从新闻检索结果里筛出的高相关信号，低相关搜索结果已自动过滤。",
+    categories: candidate.categories || ["model"],
+    priority,
+    source: candidate.dataSourceId,
+    keyword: candidate.keyword,
+    relevanceScore: candidate.relevanceScore,
+    autoCandidate: true
+  };
+}
+
+function buildCandidateNewsId(sourceId, dateString) {
+  return `candidate-${sourceId}-${dateString}`;
+}
+
+function scoreCandidate(source, sourceResult) {
+  if (source.type === "official") return 12;
+  if (source.type === "wechat") return 10;
+
+  const text = [
+    source.name,
+    source.vendor,
+    sourceResult.keyword,
+    sourceResult.snippet
+  ].join(" ").toLowerCase();
+  const competitorTerms = {
+    volc: ["火山方舟", "火山引擎", "豆包", "bytedance"],
+    baidu: ["百度千帆", "文心", "百度智能云", "baidu"],
+    aliyun: ["阿里百炼", "通义", "qwen", "aliyun", "alibaba"],
+    silicon: ["硅基流动", "siliconflow"],
+    tencent: ["腾讯云", "ti-one", "混元", "hunyuan", "tencent"],
+    huawei: ["华为云", "modelarts", "昇腾", "huawei"],
+    zhipu: ["智谱", "glm", "bigmodel", "z.ai"]
+  };
+  const actionTerms = ["发布", "上线", "更新", "升级", "合作", "生态", "融资", "降价", "优惠", "套餐", "模型", "大模型", "智能体", "工具", "视频", "图像"];
+  let score = source.priority === "high" ? 2 : source.priority === "medium" ? 1 : 0;
+  for (const term of competitorTerms[source.competitor] || []) {
+    if (text.includes(term.toLowerCase())) score += 2;
+  }
+  for (const term of actionTerms) {
+    if (text.includes(term.toLowerCase())) score += 1;
+  }
+  if (text.includes("百度搜索") || text.includes("百度一下")) score -= 3;
+  if (String(sourceResult.snippet || "").length < 80) score -= 1;
+  return Math.max(0, score);
+}
+
 function simplifySnippet(snippet, keyword) {
   if (!snippet) return "自动监测发现该来源在目标日期附近有更新线索。";
   const compact = snippet.replace(/\s+/g, " ").replace(/\.\.\./g, "…").trim();
@@ -374,6 +465,21 @@ function addOrUpdateNews(payload, newsItem) {
   const index = payload.news.findIndex((item) => item.id === newsItem.id);
   if (index >= 0) payload.news[index] = { ...payload.news[index], ...newsItem };
   else payload.news.push(newsItem);
+}
+
+function removeNewsById(payload, id) {
+  payload.news = asArray(payload.news).filter((item) => item?.id !== id);
+}
+
+function removeAutoCandidateNewsForDate(payload, dateString) {
+  payload.news = asArray(payload.news).filter((item) => {
+    if (item?.date !== dateString) return true;
+    if (item?.autoCandidate) return false;
+    if (item?.reviewStatus === "pending") return false;
+    if (String(item?.id || "").startsWith("review-")) return false;
+    if (String(item?.id || "").startsWith("candidate-")) return false;
+    return true;
+  });
 }
 
 function addOrUpdateSource(payload, source) {
@@ -407,6 +513,7 @@ function buildRunSummary(report) {
     runDateTime: report.runDateTime,
     sourcesChecked: report.sourcesChecked,
     exactMatches: report.exactMatches.length,
+    publishedCandidates: report.publishedCandidates || 0,
     candidates: report.candidates.length,
     errors: report.errors.length
   };
@@ -432,11 +539,12 @@ function buildMarkdownReport(report) {
     "",
     `- 运行时间：${report.runDateTime}（北京时间）`,
     `- 检查来源：${report.sourcesChecked} 个`,
-    `- 自动入库：${report.exactMatches.length} 条`,
-    `- 待人工复核：${report.candidates.length} 条`,
+    `- 日期明确动态：${report.exactMatches.length} 条`,
+    `- 自动展示线索：${report.publishedCandidates || 0} 条`,
+    `- 采集线索：${report.candidates.length} 条`,
     `- 抓取异常：${report.errors.length} 条`,
     "",
-    "## 自动入库动态",
+    "## 日期明确动态",
     ""
   ];
 
@@ -447,19 +555,22 @@ function buildMarkdownReport(report) {
       lines.push(`  片段：${item.snippet || "无"}`);
     });
   } else {
-    lines.push("- 没有发现同时命中“昨日日期 + 关键词”的动态。");
+    lines.push("- 没有发现同时命中“目标日期 + 关键词”的动态。");
   }
 
-  lines.push("", "## 待人工复核线索", "");
+  lines.push("", "## 采集线索", "");
   if (report.candidates.length) {
     report.candidates.forEach((item) => {
-      lines.push(`- ${item.competitor}｜${item.name}｜关键词：${item.keyword}`);
+      const displayStatus = item.type === "media" && item.relevanceScore < MEDIA_RELEVANCE_THRESHOLD
+        ? "低相关新闻已过滤"
+        : "进入网页展示";
+      lines.push(`- ${item.competitor}｜${item.name}｜关键词：${item.keyword}｜相关性 ${item.relevanceScore}｜${displayStatus}`);
       lines.push(`  来源：${item.url}`);
       lines.push(`  原因：${item.reason}`);
       if (item.snippet) lines.push(`  片段：${item.snippet}`);
     });
   } else {
-    lines.push("- 没有待复核线索。");
+    lines.push("- 没有采集线索。");
   }
 
   lines.push("", "## 抓取异常", "");
@@ -473,8 +584,8 @@ function buildMarkdownReport(report) {
   }
 
   lines.push("", "## 使用说明", "");
-  lines.push("- 自动入库动态会进入网页的数据文件，刷新网页后即可看到。");
-  lines.push("- 待人工复核线索不会直接入库，建议点开来源确认后再补成正式动态。");
+  lines.push("- 日期明确动态和平台更新监测会进入网页的数据文件，刷新网页后即可看到。");
+  lines.push("- 官方和公众号来源全量展示；新闻检索来源只保留高相关结果，低相关搜索结果页会自动过滤。");
   lines.push("- 公众号和部分控制台页面可能有反爬或登录限制，抓不到时会在“抓取异常”里记录。");
 
   return `${lines.join("\n")}\n`;

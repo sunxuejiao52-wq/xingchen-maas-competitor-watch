@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-07-15 09:26:49",
-  "snapshotDate": "2026-07-15",
-  "note": "自动刷新已运行：2026-07-15 09:26:49（北京时间），本次总结 2026-07-15 的竞品动态。明确命中 0 条，待人工复核 19 条。",
+  "updatedAt": "2026-07-15 14:29:54",
+  "snapshotDate": "2026-07-14",
+  "note": "自动刷新已运行：2026-07-15 14:29:54（北京时间），本次总结 2026-07-14 的竞品动态。日期明确动态 0 条，自动展示平台/高相关新闻线索 16 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -211,6 +211,301 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     }
   ],
   "news": [
+    {
+      "id": "candidate-volc-ark-docs-2026-07-14",
+      "competitor": "volc",
+      "date": "2026-07-14",
+      "kind": "平台更新监测",
+      "title": "火山方舟接口文档 公开更新内容",
+      "summary": "页面里出现了“火山方舟”相关内容。 原文片段：文档中心 简体 文档 控制台 登录 注册 火山方舟 文档指南 订阅 [Agent/Coding Plan] API参考 资源 火山方舟 火山方舟 API参考 请输入 准备工作 获取 API Key 并配置 安装及升级 SDK Base URL及鉴权 对话(Chat) API 对话(Chat) API Responses API 创建模型响应 查询模型响应 获…",
+      "takeaway": "简单说，这是该平台公开文档或公告页中的相关更新内容，系统已纳入当天平台动态观察。",
+      "categories": [
+        "model",
+        "agent",
+        "multimodal",
+        "platform"
+      ],
+      "priority": "high",
+      "source": "volcArkApi",
+      "keyword": "火山方舟",
+      "relevanceScore": 12,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-baidu-qianfan-model-2026-07-14",
+      "competitor": "baidu",
+      "date": "2026-07-14",
+      "kind": "平台更新监测",
+      "title": "百度千帆模型更新记录 公开更新内容",
+      "summary": "页面里出现了“千帆”相关内容。 原文片段：模型更新记录 - 百度千帆·大模型服务及Agent开发平台 百度智能云 最新活动 产品 解决方案 企业服务 云市场 合作与生态 开发者 服务与支持 了解智能云 备案 文档 管理控制台 文档中心 搜索本产品文档关键词 立即试用 模型更新记录 百度千帆·大模型服务及Agent开发平台 平台介绍 平台简介 更新动态 产品公告 模型服务 模型更新记录 平台更新记录 …",
+      "takeaway": "简单说，这是该平台公开文档或公告页中的相关更新内容，系统已纳入当天平台动态观察。",
+      "categories": [
+        "model",
+        "governance"
+      ],
+      "priority": "high",
+      "source": "baiduModel",
+      "keyword": "千帆",
+      "relevanceScore": 12,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-baidu-qianfan-platform-2026-07-14",
+      "competitor": "baidu",
+      "date": "2026-07-14",
+      "kind": "平台更新监测",
+      "title": "百度千帆更新动态 公开更新内容",
+      "summary": "页面里出现了“智能体”相关内容。 原文片段：…工作流Agent：“金牌销售”车险续保Agent 工作流Agent：如何使用全局跳转节点搭建飞行客服小助手 工作流Agent：机票订单处理助手 工作流大模型节点高级配置使用案例 多智能体协同Agent最佳实践 用“多智能体协同Agent”一分钟搭建专属研究Agent，帮企业做深度研究 自定义工具最佳实践 工作流组件： API的增删查 工作流组件：如何用知识…",
+      "takeaway": "简单说，这是该平台公开文档或公告页中的相关更新内容，系统已纳入当天平台动态观察。",
+      "categories": [
+        "agent",
+        "tools",
+        "business"
+      ],
+      "priority": "high",
+      "source": "baiduPlatform",
+      "keyword": "智能体",
+      "relevanceScore": 12,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-baidu-qianfan-coding-2026-07-14",
+      "competitor": "baidu",
+      "date": "2026-07-14",
+      "kind": "平台更新监测",
+      "title": "百度千帆开发者套餐公告 公开更新内容",
+      "summary": "页面里出现了“Coding Plan”相关内容。 原文片段：Coding Plan 产品升级公告 - 百度千帆·大模型服务及Agent开发平台 百度智能云 最新活动 产品 解决方案 企业服务 云市场 合作与生态 开发者 服务与支持 了解智能云 备案 文档 管理控制台 文档中心 搜索本产品文档关键词 立即试用 Coding Plan 产品升级公告 百度千帆·大模型服务及Agent开发平台 平台介绍 平台简介 更新动态 …",
+      "takeaway": "简单说，这是该平台公开文档或公告页中的相关更新内容，系统已纳入当天平台动态观察。",
+      "categories": [
+        "coding",
+        "business"
+      ],
+      "priority": "high",
+      "source": "baiduCodingPlan",
+      "keyword": "Coding Plan",
+      "relevanceScore": 12,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-aliyun-bailian-models-2026-07-14",
+      "competitor": "aliyun",
+      "date": "2026-07-14",
+      "kind": "平台更新监测",
+      "title": "阿里云百炼模型大全 公开更新内容",
+      "summary": "页面里出现了“百炼”相关内容。 原文片段：模型大全功能规格与计费-大模型服务平台百炼-阿里云-大模型服务平台百炼(Model Studio)-阿里云帮助中心 大模型 产品 解决方案 权益 定价 云市场 伙伴 服务 了解阿里云 查看 \"\" 全部搜索结果 AI 助理 文档 备案 控制台 官方文档 用户指南（模型） 用户指南（应用） API参考（模型） API参考（应用） 首页 选择模型 更新时间： 复制…",
+      "takeaway": "简单说，这是该平台公开文档或公告页中的相关更新内容，系统已纳入当天平台动态观察。",
+      "categories": [
+        "model",
+        "multimodal"
+      ],
+      "priority": "high",
+      "source": "aliyunModels",
+      "keyword": "百炼",
+      "relevanceScore": 12,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-aliyun-bailian-mcp-2026-07-14",
+      "competitor": "aliyun",
+      "date": "2026-07-14",
+      "kind": "平台更新监测",
+      "title": "阿里云百炼工具接入文档 公开更新内容",
+      "summary": "页面里出现了“MCP”相关内容。 原文片段：模型上下文协议（MCP）-大模型服务平台百炼(Model Studio)-阿里云帮助中心 大模型 产品 解决方案 权益 定价 云市场 伙伴 服务 了解阿里云 查看 \"\" 全部搜索结果 AI 助理 文档 备案 控制台 官方文档 用户指南（模型） 用户指南（应用） API参考（模型） API参考（应用） 首页 模型上下文协议（MCP） 更新时间： 复制 MD 格…",
+      "takeaway": "简单说，这是该平台公开文档或公告页中的相关更新内容，系统已纳入当天平台动态观察。",
+      "categories": [
+        "agent",
+        "tools"
+      ],
+      "priority": "high",
+      "source": "aliyunMcp",
+      "keyword": "MCP",
+      "relevanceScore": 12,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-aliyun-bailian-coding-2026-07-14",
+      "competitor": "aliyun",
+      "date": "2026-07-14",
+      "kind": "平台更新监测",
+      "title": "阿里云百炼开发者套餐 公开更新内容",
+      "summary": "页面里出现了“Coding Plan”相关内容。 原文片段：Coding Plan-大模型服务平台百炼(Model Studio)-阿里云帮助中心 大模型 产品 解决方案 权益 定价 云市场 伙伴 服务 了解阿里云 查看 \"\" 全部搜索结果 AI 助理 文档 备案 控制台 官方文档 用户指南（模型） 用户指南（应用） API参考（模型） API参考（应用） 首页 Coding Plan概述 更新时间： 复制 MD 格…",
+      "takeaway": "简单说，这是该平台公开文档或公告页中的相关更新内容，系统已纳入当天平台动态观察。",
+      "categories": [
+        "coding",
+        "business"
+      ],
+      "priority": "medium",
+      "source": "aliyunCodingPlan",
+      "keyword": "Coding Plan",
+      "relevanceScore": 12,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-siliconflow-release-2026-07-14",
+      "competitor": "silicon",
+      "date": "2026-07-14",
+      "kind": "平台更新监测",
+      "title": "SiliconFlow 更新公告 公开更新内容",
+      "summary": "页面里出现了“SiliconFlow”相关内容。 原文片段：更新公告 - SiliconFlow Documentation Index Fetch the complete documentation index at: /llms.txt Use this file to discover all available pages before exploring further. Skip to main con…",
+      "takeaway": "简单说，这是该平台公开文档或公告页中的相关更新内容，系统已纳入当天平台动态观察。",
+      "categories": [
+        "model",
+        "business",
+        "governance"
+      ],
+      "priority": "high",
+      "source": "siliconRelease",
+      "keyword": "SiliconFlow",
+      "relevanceScore": 12,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-tencent-tione-docs-2026-07-14",
+      "competitor": "tencent",
+      "date": "2026-07-14",
+      "kind": "平台更新监测",
+      "title": "腾讯云 TI-ONE 文档 公开更新内容",
+      "summary": "页面里出现了“TI-ONE”相关内容。 原文片段：腾讯云大模型训推平台TI-ONE简介_腾讯云大模型训推平台TI-ONE购买指南_腾讯云大模型训推平台TI-ONE操作指南-腾讯云 腾讯云 最新活动 大模型 产品 解决方案 定价 企业中心 云市场 开发者 客户支持 合作与生态 了解腾讯云 搜索 腾讯云大模型训推平台TI-ONE 文档中心 入门中心 API 中心 SDK 中心 文档活动 我的反馈 文档反馈官招募…",
+      "takeaway": "简单说，这是该平台公开文档或公告页中的相关更新内容，系统已纳入当天平台动态观察。",
+      "categories": [
+        "platform",
+        "model"
+      ],
+      "priority": "medium",
+      "source": "tencentTione",
+      "keyword": "TI-ONE",
+      "relevanceScore": 12,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-huawei-modelarts-docs-2026-07-14",
+      "competitor": "huawei",
+      "date": "2026-07-14",
+      "kind": "平台更新监测",
+      "title": "华为云 ModelArts 文档 公开更新内容",
+      "summary": "页面里出现了“ModelArts”相关内容。 原文片段：成长地图_魔坊（ModelArts）模型训推平台-华为云 检测到您已登录华为云国际站账号，为了您更好的体验，建议您访问国际站服务网站 https://www.huaweicloud.com/intl/zh-cn 不再显示此消息 中国站 中国站 简体中文 International English Bahasa Indonesia Español Portug…",
+      "takeaway": "简单说，这是该平台公开文档或公告页中的相关更新内容，系统已纳入当天平台动态观察。",
+      "categories": [
+        "platform",
+        "agent"
+      ],
+      "priority": "medium",
+      "source": "huaweiModelArts",
+      "keyword": "ModelArts",
+      "relevanceScore": 12,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-zhipu-bigmodel-console-2026-07-14",
+      "competitor": "zhipu",
+      "date": "2026-07-14",
+      "kind": "平台更新监测",
+      "title": "智谱 BigModel 模型广场 公开更新内容",
+      "summary": "页面里出现了“智谱”相关内容。 原文片段：智谱AI开放平台",
+      "takeaway": "简单说，这是该平台公开文档或公告页中的相关更新内容，系统已纳入当天平台动态观察。",
+      "categories": [
+        "model",
+        "agent"
+      ],
+      "priority": "medium",
+      "source": "zhipuExternal",
+      "keyword": "智谱",
+      "relevanceScore": 12,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-wechat-volc-ark-2026-07-14",
+      "competitor": "volc",
+      "date": "2026-07-14",
+      "kind": "公众号监测",
+      "title": "公众号检索：火山方舟 / 火山引擎 公众号内容信号",
+      "summary": "页面里出现了“火山方舟”相关内容。 原文片段：火山方舟 火山引擎的相关微信公众号文章 – 搜狗微信搜索 无障碍 登录 资讯 网页 微信 知乎 图片 视频 医疗 汉语 翻译 问问 百科 更多>> 以下内容来自微信公众平台 豆包大模型家族发布、 火山方舟 升级, 火山引擎 如何打造全栈AI技术服务? 火山引擎 重磅发布了豆包大模型家族和 火山方舟 2.0 等一系列创新产品,并且宣布豆包主力模型在…",
+      "takeaway": "简单说，这是公众号检索中与竞品高度相关的内容信号，适合用来观察宣传重点和市场动作。",
+      "categories": [
+        "model",
+        "agent",
+        "business"
+      ],
+      "priority": "medium",
+      "source": "wechatVolcArkSearch",
+      "keyword": "火山方舟",
+      "relevanceScore": 10,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-wechat-baidu-qianfan-2026-07-14",
+      "competitor": "baidu",
+      "date": "2026-07-14",
+      "kind": "公众号监测",
+      "title": "公众号检索：百度千帆 / 文心千帆 公众号内容信号",
+      "summary": "页面里出现了“百度千帆”相关内容。 原文片段：百度千帆 文心千帆的相关微信公众号文章 – 搜狗微信搜索 无障碍 登录 资讯 网页 微信 知乎 图片 视频 医疗 汉语 翻译 问问 百科 更多>> 以下内容来自微信公众平台 百度 文心千帆 大模型平台的试用体验 百度 文心千帆 大模型里也能通过类 Stable-Diffusion 模型,完成简… 百度千帆 大模型已经提供了基于大型数据集预训练…",
+      "takeaway": "简单说，这是公众号检索中与竞品高度相关的内容信号，适合用来观察宣传重点和市场动作。",
+      "categories": [
+        "model",
+        "agent",
+        "business"
+      ],
+      "priority": "medium",
+      "source": "wechatQianfanSearch",
+      "keyword": "百度千帆",
+      "relevanceScore": 10,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-wechat-aliyun-bailian-2026-07-14",
+      "competitor": "aliyun",
+      "date": "2026-07-14",
+      "kind": "公众号监测",
+      "title": "公众号检索：阿里百炼 / 通义千问 公众号内容信号",
+      "summary": "页面里出现了“阿里百炼”相关内容。 原文片段：阿里百炼 通义千问的相关微信公众号文章 – 搜狗微信搜索 无障碍 登录 资讯 网页 微信 知乎 图片 视频 医疗 汉语 翻译 问问 百科 更多>> 以下内容来自微信公众平台 阿里 整合 通义 、 千问 、钉钉和淘天旗下的AI团队,全面学习Google MaaS业务线(含 阿里 云 百炼 ,负责模型服务与企业交付)下游: 千问 事业部(C端)、悟空…",
+      "takeaway": "简单说，这是公众号检索中与竞品高度相关的内容信号，适合用来观察宣传重点和市场动作。",
+      "categories": [
+        "model",
+        "agent",
+        "multimodal"
+      ],
+      "priority": "medium",
+      "source": "wechatBailianSearch",
+      "keyword": "阿里百炼",
+      "relevanceScore": 10,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-wechat-siliconflow-2026-07-14",
+      "competitor": "silicon",
+      "date": "2026-07-14",
+      "kind": "公众号监测",
+      "title": "公众号检索：硅基流动 / SiliconFlow 公众号内容信号",
+      "summary": "页面里出现了“硅基流动”相关内容。 原文片段：硅基流动 SiliconFlow的相关微信公众号文章 – 搜狗微信搜索 无障碍 登录 资讯 网页 微信 知乎 图片 视频 医疗 汉语 翻译 问问 百科 更多>> 以下内容来自微信公众平台 硅基流动 省钱指南:7个策略把API成本砍掉90% 硅基流动 ( SiliconFlow )作为国内最大的开源模型聚合平台,聚合了200+模型,覆盖从DeepS…",
+      "takeaway": "简单说，这是公众号检索中与竞品高度相关的内容信号，适合用来观察宣传重点和市场动作。",
+      "categories": [
+        "model",
+        "business"
+      ],
+      "priority": "medium",
+      "source": "wechatSiliconSearch",
+      "keyword": "硅基流动",
+      "relevanceScore": 10,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-wechat-zhipu-ai-2026-07-14",
+      "competitor": "zhipu",
+      "date": "2026-07-14",
+      "kind": "公众号监测",
+      "title": "公众号检索：智谱 AI / GLM 公众号内容信号",
+      "summary": "页面里出现了“智谱”相关内容。 原文片段：智谱AI GLM BigModel的相关微信公众号文章 – 搜狗微信搜索 无障碍 登录 资讯 网页 微信 知乎 图片 视频 医疗 汉语 翻译 问问 百科 更多>> 以下内容来自微信公众平台 智谱AI GLM -4 模型 开放API 正式上线 //open. bigmodel .cn/dev/api# glm -4),目前新用户注册登录还有50…",
+      "takeaway": "简单说，这是公众号检索中与竞品高度相关的内容信号，适合用来观察宣传重点和市场动作。",
+      "categories": [
+        "model",
+        "agent"
+      ],
+      "priority": "medium",
+      "source": "wechatZhipuSearch",
+      "keyword": "智谱",
+      "relevanceScore": 10,
+      "autoCandidate": true
+    },
     {
       "id": "news-media-20260713-china-model-cost",
       "competitor": "zhipu",
@@ -505,16 +800,17 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   "strategies": [],
   "monitorRuns": [
     {
-      "targetDate": "2026-07-15",
-      "runDateTime": "2026-07-15 09:26:49",
+      "targetDate": "2026-07-14",
+      "runDateTime": "2026-07-15 14:29:54",
       "sourcesChecked": 20,
       "exactMatches": 0,
-      "candidates": 19,
+      "publishedCandidates": 16,
+      "candidates": 16,
       "errors": 0
     },
     {
-      "targetDate": "2026-07-14",
-      "runDateTime": "2026-07-15 04:43:01",
+      "targetDate": "2026-07-15",
+      "runDateTime": "2026-07-15 09:26:49",
       "sourcesChecked": 20,
       "exactMatches": 0,
       "candidates": 19,

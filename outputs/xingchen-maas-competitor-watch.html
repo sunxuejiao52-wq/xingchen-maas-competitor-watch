@@ -1721,7 +1721,6 @@
               <option value="medium">持续观察</option>
               <option value="high">重点关注</option>
               <option value="low">低频观察</option>
-              <option value="pending">待复核</option>
             </select>
           </label>
           <label class="full">
@@ -2286,7 +2285,7 @@
       high: "重点关注",
       medium: "持续观察",
       low: "低频观察",
-      pending: "待复核"
+      pending: "自动研判"
     };
 
     const sourceTypeLabels = {
@@ -2326,7 +2325,7 @@
       silicon: "高性价比推理、模型版本迁移、下线通知、价格与限流治理是主要特点。",
       tencent: "偏工程平台，重点是数据接入、训练、模型管理、效果评测、部署和资源管理。",
       huawei: "偏企业落地，重点是训练部署、昇腾算力、行业模型、智能体平台和私有化。",
-      zhipu: "官方日志待复核，但 GLM-5.x 在多平台上架，长文本、代码和智能体能力是主要信号。"
+      zhipu: "官方日志需要继续补源，但 GLM-5.x 在多平台上架，长文本、代码和智能体能力是主要信号。"
     };
 
     let state = {
@@ -2372,6 +2371,10 @@
       }).formatToParts(new Date());
       const values = Object.fromEntries(parts.filter((part) => part.type !== "literal").map((part) => [part.type, part.value]));
       return `${values.year}-${values.month}-${values.day}`;
+    }
+
+    function getChinaYesterdayDate() {
+      return offsetDate(getChinaTodayDate(), -1);
     }
 
     function formatRefreshTimestamp(value) {
@@ -2545,7 +2548,8 @@
 
       window.clearTimeout(refreshPollTimer);
       const previousUpdatedAt = latestDataUpdatedAt;
-      refreshTaskStatus = `正在提交后台采集任务：${getChinaTodayDate()}`;
+      const refreshTargetDate = getChinaYesterdayDate();
+      refreshTaskStatus = `正在提交后台采集任务：${refreshTargetDate}`;
       setRefreshButtonState("刷新中", true);
       renderDateControls();
 
@@ -2553,14 +2557,14 @@
         const response = await fetch(DATA_REFRESH_ENDPOINT, {
           method: "POST",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify({ target_date: getChinaTodayDate() })
+          body: JSON.stringify({ target_date: refreshTargetDate })
         });
         const payload = await response.json().catch(() => ({}));
         if (!response.ok || payload.ok === false) {
           throw new Error(payload.message || `后台接口返回 ${response.status}`);
         }
 
-        refreshTaskStatus = `数据刷新已提交：正在采集 ${payload.targetDate || getChinaTodayDate()}；读到新数据文件后会同步更新时间`;
+        refreshTaskStatus = `数据刷新已提交：正在采集 ${payload.targetDate || refreshTargetDate}；读到新数据文件后会同步更新时间`;
         setRefreshButtonState("刷新已提交", true);
         renderDateControls();
         pollLatestDataAfterRefresh(previousUpdatedAt, 0);
@@ -3166,7 +3170,7 @@
           categories: [document.getElementById("manualCategory").value],
           priority: document.getElementById("manualPriority").value,
           source: sourceId,
-          signal: "人工补充，等待复核。"
+          signal: "人工补充，系统纳入观察。"
         };
         state.manualEvents.push(manualEvent);
         saveManualEvents();
