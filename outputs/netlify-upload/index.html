@@ -809,6 +809,16 @@
       color: #344054;
     }
 
+    .evidence {
+      color: var(--muted) !important;
+      font-size: 12px !important;
+      line-height: 1.55;
+      background: var(--panel-tint);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -2862,8 +2872,8 @@
             <div class="event-date">${item.date.slice(5)}<span>${competitor?.name || item.competitor}</span></div>
             <div class="event-main">
               <h3>${item.title}</h3>
-              <p>${item.summary}</p>
-              <p><strong>这说明什么：</strong>${item.signal}</p>
+              <p><strong>更新重点：</strong>${item.summary}</p>
+              <p><strong>判断：</strong>${item.signal}</p>
               <div class="tags">
                 <span class="pill ${item.priority}">${priorityLabels[item.priority]}</span>
                 ${categories}
@@ -2929,6 +2939,7 @@
         const source = getSource(item.source);
         const categories = (item.categories || []).map((category) => `<span class="tag ${category}">${categoryLabels[category] || category}</span>`).join("");
         const sourceLink = source.url ? `<a href="${source.url}" target="_blank" rel="noreferrer">${source.title}</a>` : source.title;
+        const evidence = item.evidence ? `<p class="evidence"><strong>证据片段：</strong>${item.evidence}</p>` : "";
         return `
           <article class="news-item">
             <div class="card-foot" style="border-top:0;padding-top:0;">
@@ -2937,9 +2948,10 @@
             </div>
             <div>
               <h3>${item.title}</h3>
-              <p>${item.summary}</p>
+              <p><strong>更新重点：</strong>${item.summary}</p>
             </div>
-            <p><strong>简单理解：</strong>${item.takeaway || "这是一条需要继续复核的公开信号。"}</p>
+            <p><strong>判断：</strong>${item.takeaway || "这是一条需要继续观察的公开信号。"}</p>
+            ${evidence}
             <div class="tags">
               ${categories}
               <span class="source-badge ${source.type}">${sourceTypeLabels[source.type]}</span>

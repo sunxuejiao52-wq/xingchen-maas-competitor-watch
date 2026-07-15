@@ -17,6 +17,89 @@ const MAX_MEDIA_CANDIDATES = 5;
 const MEDIA_RELEVANCE_THRESHOLD = 7;
 const REQUEST_TIMEOUT_MS = 15000;
 
+const SOURCE_INTELLIGENCE_HINTS = {
+  "volc-ark-docs": {
+    title: "火山方舟：接口和多模态任务能力更新信号",
+    summary: "更新重点集中在平台 API 和任务能力：对话/Responses、模型响应管理、文件处理、视频/图像/3D、批量任务、模型调优、效果评测、用量和安全审计等。",
+    takeaway: "火山方舟在把模型调用做成完整 MaaS 平台能力，不只是提供一个模型接口；星辰 MaaS 可重点对比多模态任务、批量/调优/评测和用量管理体验。"
+  },
+  "baidu-qianfan-model": {
+    title: "百度千帆：模型上新、升级和退役节奏信号",
+    summary: "更新重点集中在模型生命周期管理：模型上新、版本升级、旧模型下线/退役，以及 GLM、Kimi、MiniMax、DeepSeek、Qwen 等第三方模型可用性。",
+    takeaway: "百度千帆在强化“模型可选 + 版本治理”的平台心智；星辰 MaaS 可关注模型上下线提醒、替代模型建议和兼容迁移说明。"
+  },
+  "baidu-qianfan-platform": {
+    title: "百度千帆：智能体、工作流和搜索工具更新信号",
+    summary: "更新重点集中在应用搭建能力：工作流 Agent、多智能体协同、工具广场、知识库、RAG、AI 搜索、问题改写和行业模板。",
+    takeaway: "百度正在把搜索、知识库和智能体流程组合成可用产品；星辰 MaaS 可重点对标企业知识接入、引用依据和工具编排能力。"
+  },
+  "baidu-qianfan-coding": {
+    title: "百度千帆：开发者套餐和 API 使用权益信号",
+    summary: "更新重点集中在 Coding Plan、Token Plan、API Key、额度、续费、套餐迁移和开发者入口。",
+    takeaway: "百度在用套餐和额度降低开发者试用门槛；星辰 MaaS 可关注免费额度、套餐迁移提示和 API 接入路径是否足够清晰。"
+  },
+  "aliyun-bailian-models": {
+    title: "阿里百炼：模型市场和多模态模型供给信号",
+    summary: "更新重点集中在模型目录：Qwen/通义、DeepSeek、Kimi、GLM、MiniMax 等文本模型，以及图像、视频、3D、语音、向量和重排序模型。",
+    takeaway: "阿里百炼在做“模型超市”和多模态能力聚合；星辰 MaaS 可重点对比模型分类、筛选、试用、价格和调用文档的一体化体验。"
+  },
+  "aliyun-bailian-mcp": {
+    title: "阿里百炼：MCP 工具接入和智能体生态信号",
+    summary: "更新重点集中在 MCP、工具调用、插件接入、联网搜索、网页抓取、地图和工作流能力。",
+    takeaway: "阿里百炼在把模型能力延伸到工具生态；星辰 MaaS 可关注工具市场、权限管理、调用限流和可观测性。"
+  },
+  "aliyun-bailian-coding": {
+    title: "阿里百炼：Coding Plan 和开发者接入信号",
+    summary: "更新重点集中在 Coding Plan、API Key、Base URL、开发者套餐、计费和续费规则。",
+    takeaway: "阿里百炼在强化开发者入口和迁移便利性；星辰 MaaS 可对比 API 接入、套餐说明和开发者文档转化效率。"
+  },
+  "siliconflow-release": {
+    title: "硅基流动：模型上下线、价格和平台治理信号",
+    summary: "更新重点集中在模型发布/下线、价格调整、限流、实名、迁移通知、DeepSeek/Qwen/GLM 等模型供给。",
+    takeaway: "硅基流动的优势是高性价比和模型聚合；星辰 MaaS 可关注价格透明度、模型迁移提醒和稳定性承诺。"
+  },
+  "tencent-tione-docs": {
+    title: "腾讯云 TI：训推平台和工程化能力信号",
+    summary: "更新重点集中在数据接入、训练、推理、部署、模型管理、效果评测和资源管理。",
+    takeaway: "腾讯云 TI 更偏工程平台和企业生产流程；星辰 MaaS 可重点对比部署、评测、资源管理和企业工作台能力。"
+  },
+  "huawei-modelarts-docs": {
+    title: "华为 ModelArts：企业训练部署和行业模型信号",
+    summary: "更新重点集中在 ModelArts/AgentArts、昇腾算力、训练部署、行业模型、企业落地和私有化能力。",
+    takeaway: "华为 MaaS 更强调企业级落地、算力和行业方案；星辰 MaaS 可关注私有化、行业模板和国产算力适配能力。"
+  },
+  "zhipu-bigmodel-console": {
+    title: "智谱 BigModel：GLM 模型广场和智能体能力信号",
+    summary: "更新重点集中在 GLM 模型、长文本、代码、智能体和模型广场可用性。",
+    takeaway: "智谱的核心心智仍是 GLM 系列模型和长任务能力；星辰 MaaS 可关注 GLM 外部平台上架、代码能力和 Agent 场景。"
+  },
+  "wechat-volc-ark": {
+    title: "火山方舟：公众号宣传和产品发布信号",
+    summary: "传播重点可能围绕豆包模型家族、火山方舟升级、客户案例、产品发布和优惠活动。",
+    takeaway: "公众号侧更能反映火山方舟近期主推卖点；星辰 MaaS 可对比其宣传话术、客户案例和活动节奏。"
+  },
+  "wechat-baidu-qianfan": {
+    title: "百度千帆：公众号宣传和应用案例信号",
+    summary: "传播重点可能围绕文心/千帆平台、智能体应用、企业案例、套餐权益和生态合作。",
+    takeaway: "公众号侧能看到百度把平台能力如何包装成场景方案；星辰 MaaS 可对比行业案例和产品化表达。"
+  },
+  "wechat-aliyun-bailian": {
+    title: "阿里百炼：公众号宣传和通义生态信号",
+    summary: "传播重点可能围绕通义千问、阿里百炼、模型/智能体/工作流、开发者活动和生态工具。",
+    takeaway: "阿里在持续强化通义生态和开发者心智；星辰 MaaS 可关注活动入口、模型体验和工具生态传播。"
+  },
+  "wechat-siliconflow": {
+    title: "硅基流动：公众号宣传和成本优势信号",
+    summary: "传播重点可能围绕开源模型聚合、API 成本、DeepSeek/Qwen/GLM 供给、价格和开发者使用技巧。",
+    takeaway: "硅基流动的传播核心是便宜、快和模型选择多；星辰 MaaS 可关注价格对比、调用稳定性和模型聚合体验。"
+  },
+  "wechat-zhipu-ai": {
+    title: "智谱 AI：公众号宣传和 GLM 能力信号",
+    summary: "传播重点可能围绕 GLM 模型、BigModel 平台、代码、长文本、智能体和开放 API。",
+    takeaway: "智谱的宣传会放大 GLM 模型能力和开发者入口；星辰 MaaS 可关注其模型能力包装和生态合作。"
+  }
+};
+
 const args = parseArgs(process.argv.slice(2));
 const dryRun = args.has("dry-run") || process.env.DRY_RUN === "1";
 const noFetch = args.has("no-fetch") || process.env.NO_FETCH === "1";
@@ -354,6 +437,15 @@ function buildSnippet(text, keyword) {
 
 function buildNewsItem(source, sourceResult, dateString) {
   const sourceId = getDataSourceId(source);
+  const insight = buildIntelligenceSummary({
+    sourceId: source.id,
+    name: source.name,
+    type: source.type,
+    competitor: source.competitor,
+    keyword: sourceResult.keyword,
+    snippet: sourceResult.snippet,
+    categories: source.categories
+  });
   const hash = createHash("sha1")
     .update(`${source.id}|${dateString}|${sourceResult.keyword}|${sourceResult.snippet}`)
     .digest("hex")
@@ -364,11 +456,12 @@ function buildNewsItem(source, sourceResult, dateString) {
     competitor: source.competitor,
     date: dateString,
     kind,
-    title: `${source.name} 出现 ${dateString} 相关更新线索`,
-    summary: simplifySnippet(sourceResult.snippet, sourceResult.keyword),
-    takeaway: "简单说，这是自动抓取到的疑似新动态，需要人工点开来源确认是否属于竞品功能、宣传、价格或生态动作。",
+    title: insight.title,
+    summary: insight.summary,
+    takeaway: insight.takeaway,
+    evidence: buildEvidenceSnippet(sourceResult.snippet, sourceResult.keyword),
     categories: source.categories,
-    priority: source.type === "official" ? source.priority : "pending",
+    priority: source.type === "official" ? source.priority : "medium",
     source: sourceId
   };
 }
@@ -387,10 +480,10 @@ function publishCandidateNews(payload, report) {
 }
 
 function buildCandidateNewsItem(candidate, dateString) {
+  const insight = buildIntelligenceSummary(candidate);
   const isOfficial = candidate.type === "official";
   const isWechat = candidate.type === "wechat";
   const kind = isOfficial ? "平台更新监测" : isWechat ? "公众号监测" : "高相关新闻线索";
-  const titleSuffix = isOfficial ? "公开更新内容" : isWechat ? "公众号内容信号" : "高相关新闻信号";
   const priority = isOfficial
     ? candidate.sourcePriority || "medium"
     : isWechat
@@ -401,13 +494,10 @@ function buildCandidateNewsItem(candidate, dateString) {
     competitor: candidate.competitor,
     date: dateString,
     kind,
-    title: `${candidate.name} ${titleSuffix}`,
-    summary: simplifySnippet(candidate.snippet, candidate.keyword),
-    takeaway: isOfficial
-      ? "简单说，这是该平台公开文档或公告页中的相关更新内容，系统已纳入当天平台动态观察。"
-      : isWechat
-        ? "简单说，这是公众号检索中与竞品高度相关的内容信号，适合用来观察宣传重点和市场动作。"
-        : "简单说，这是从新闻检索结果里筛出的高相关信号，低相关搜索结果已自动过滤。",
+    title: insight.title,
+    summary: insight.summary,
+    takeaway: insight.takeaway,
+    evidence: buildEvidenceSnippet(candidate.snippet, candidate.keyword),
     categories: candidate.categories || ["model"],
     priority,
     source: candidate.dataSourceId,
@@ -453,11 +543,53 @@ function scoreCandidate(source, sourceResult) {
   return Math.max(0, score);
 }
 
-function simplifySnippet(snippet, keyword) {
-  if (!snippet) return "自动监测发现该来源在目标日期附近有更新线索。";
+function buildIntelligenceSummary(input) {
+  const hint = SOURCE_INTELLIGENCE_HINTS[input.sourceId];
+  if (hint) return hint;
+
+  const capabilities = detectCapabilityLabels(input);
+  const capabilityText = capabilities.length ? capabilities.join("、") : "模型/平台能力";
+  const typeLabel = input.type === "media" ? "新闻" : input.type === "wechat" ? "公众号" : "平台";
+  return {
+    title: `${input.name}：${capabilities[0] || "竞品"}更新信号`,
+    summary: `${typeLabel}信息显示，这条动态主要关联 ${capabilityText}。关键词为“${input.keyword || "未提取"}”，系统已按竞品、功能方向和来源相关性归入当天监测。`,
+    takeaway: input.type === "media"
+      ? "这类新闻用于判断竞品近期宣传、融资、生态合作或市场关注点；星辰 MaaS 可重点看它是否会影响模型供给、价格或企业客户心智。"
+      : "这类平台信息用于判断竞品正在强化哪些可用能力；星辰 MaaS 可对照是否已经在官网、控制台和文档里把同类能力讲清楚。"
+  };
+}
+
+function detectCapabilityLabels(input) {
+  const text = [
+    input.name,
+    input.keyword,
+    input.snippet,
+    ...(input.categories || [])
+  ].join(" ").toLowerCase();
+  const rules = [
+    ["模型供给", ["model", "模型", "大模型", "glm", "qwen", "通义", "deepseek", "kimi", "minimax", "豆包", "文心"]],
+    ["智能体/工作流", ["agent", "智能体", "工作流", "多智能体", "插件", "工具调用"]],
+    ["工具/MCP", ["mcp", "工具", "插件", "联网搜索", "网页抓取", "地图", "api"]],
+    ["图像视频语音", ["multimodal", "多模态", "图像", "视频", "语音", "3d", "视觉"]],
+    ["开发者套餐", ["coding plan", "token plan", "开发者", "api key", "base url", "额度", "套餐"]],
+    ["价格/优惠", ["价格", "优惠", "计费", "免费", "降价", "续费"]],
+    ["训练部署", ["训练", "部署", "推理", "训推", "模型管理", "评测", "资源管理"]],
+    ["企业治理", ["安全", "审计", "权限", "实名", "限流", "迁移"]],
+    ["搜索/知识库", ["搜索", "知识库", "rag", "热搜", "问题改写"]],
+    ["生态/客户案例", ["合作", "生态", "融资", "客户案例", "发布"]]
+  ];
+  const labels = [];
+  for (const [label, terms] of rules) {
+    if (terms.some((term) => text.includes(term.toLowerCase()))) labels.push(label);
+  }
+  return labels.slice(0, 4);
+}
+
+function buildEvidenceSnippet(snippet, keyword) {
+  if (!snippet) return "";
   const compact = snippet.replace(/\s+/g, " ").replace(/\.\.\./g, "…").trim();
-  const keywordPart = keyword ? `页面里出现了“${keyword}”相关内容。` : "页面里出现了相关内容。";
-  return `${keywordPart} 原文片段：${compact.slice(0, 180)}${compact.length > 180 ? "…" : ""}`;
+  const prefix = keyword ? `命中“${keyword}”：` : "";
+  return `${prefix}${compact.slice(0, 180)}${compact.length > 180 ? "…" : ""}`;
 }
 
 function addOrUpdateNews(payload, newsItem) {
