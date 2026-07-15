@@ -2373,10 +2373,6 @@
       return `${values.year}-${values.month}-${values.day}`;
     }
 
-    function getChinaYesterdayDate() {
-      return offsetDate(getChinaTodayDate(), -1);
-    }
-
     function formatRefreshTimestamp(value) {
       const text = String(value || "").trim();
       if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(text)) return text;
@@ -2548,7 +2544,7 @@
 
       window.clearTimeout(refreshPollTimer);
       const previousUpdatedAt = latestDataUpdatedAt;
-      const refreshTargetDate = getChinaYesterdayDate();
+      const refreshTargetDate = getChinaTodayDate();
       refreshTaskStatus = `正在提交后台采集任务：${refreshTargetDate}`;
       setRefreshButtonState("刷新中", true);
       renderDateControls();
