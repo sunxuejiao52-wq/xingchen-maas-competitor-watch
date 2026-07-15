@@ -14,8 +14,13 @@ const DATA_GLOBAL = "window.__XINGCHEN_COMPETITOR_DATA__";
 const TIMEZONE = "Asia/Shanghai";
 const MAX_CANDIDATES = 30;
 const MAX_MEDIA_CANDIDATES = 5;
-const MEDIA_RELEVANCE_THRESHOLD = 7;
+const MEDIA_RELEVANCE_THRESHOLD = 1;
 const REQUEST_TIMEOUT_MS = 15000;
+const REQUEST_HEADERS = {
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
+  accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+  "accept-language": "zh-CN,zh;q=0.9,en;q=0.6"
+};
 
 const SOURCE_INTELLIGENCE_HINTS = {
   "volc-ark-docs": {
@@ -309,7 +314,7 @@ async function inspectSource(source) {
       title: fetched.title,
       keyword,
       exactMatch,
-      snippet: keyword ? buildSnippet(text, keyword) : ""
+      snippet: keyword ? buildSnippet(text, keyword, { skipBefore: source.type === "media" ? 500 : 0 }) : ""
     };
   } catch (error) {
     return {
@@ -344,11 +349,7 @@ async function fetchSource(source) {
   try {
     const response = await fetch(source.url, {
       signal: controller.signal,
-      headers: {
-        "user-agent": "Mozilla/5.0 competitor-monitor/1.0; +https://github.com/",
-        accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "accept-language": "zh-CN,zh;q=0.9,en;q=0.6"
-      }
+      headers: REQUEST_HEADERS
     });
     if (!response.ok) {
       throw new Error(`HTTP ${response.status} ${response.statusText}`);
@@ -425,8 +426,11 @@ function datePatterns(dateString) {
   ];
 }
 
-function buildSnippet(text, keyword) {
-  const index = text.toLowerCase().indexOf(String(keyword).toLowerCase());
+function buildSnippet(text, keyword, options = {}) {
+  const lowerText = text.toLowerCase();
+  const lowerKeyword = String(keyword).toLowerCase();
+  let index = lowerText.indexOf(lowerKeyword, options.skipBefore || 0);
+  if (index < 0) index = lowerText.indexOf(lowerKeyword);
   if (index < 0) return text.slice(0, 220);
   const start = Math.max(0, index - 90);
   const end = Math.min(text.length, index + String(keyword).length + 170);
