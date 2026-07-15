@@ -181,13 +181,13 @@ async function main() {
   const publishedCandidates = publishCandidateNews(payload, report);
   report.publishedCandidates = publishedCandidates.length;
   payload.updatedAt = runDateTime;
-  payload.snapshotDate = targetDate;
   payload.note = `自动刷新已运行：${runDateTime}（北京时间），本次总结 ${targetDate} 的竞品动态。日期明确动态 ${report.exactMatches.length} 条，自动展示平台/高相关新闻线索 ${publishedCandidates.length} 条。`;
   payload.monitorRuns = [
     buildRunSummary(report),
     ...asArray(payload.monitorRuns).filter((item) => item?.targetDate !== targetDate)
   ].slice(0, 20);
   sortPayload(payload);
+  payload.snapshotDate = getLatestKnownDate(payload, targetDate);
 
   if (dryRun) {
     console.log(`[dry-run] checked ${sources.length} sources for ${targetDate}`);
@@ -655,6 +655,16 @@ function sortPayload(payload) {
   payload.news = asArray(payload.news).sort((a, b) => String(b.date).localeCompare(String(a.date)));
   payload.events = asArray(payload.events).sort((a, b) => String(b.date).localeCompare(String(a.date)));
   payload.competitors = asArray(payload.competitors).sort((a, b) => String(a.id).localeCompare(String(b.id)));
+}
+
+function getLatestKnownDate(payload, fallbackDate) {
+  const dates = [
+    fallbackDate,
+    payload?.snapshotDate,
+    ...asArray(payload?.events).map((item) => item?.date),
+    ...asArray(payload?.news).map((item) => item?.date)
+  ].filter((value) => /^\d{4}-\d{2}-\d{2}$/.test(String(value || "")));
+  return dates.length ? dates.sort().at(-1) : fallbackDate;
 }
 
 function writeDailyReports(report) {

@@ -1683,7 +1683,7 @@
                 <span class="pill low">逐条更新</span>
               </div>
               <div class="section-body">
-                <div class="board-note">这里按时间倒序展示每一条功能更新、套餐变化、模型上下线和平台动作；同样受顶部时间、搜索和筛选条件影响。</div>
+                <div class="board-note">这里按时间倒序合并展示功能更新、套餐变化、模型上下线、平台动作和新闻公告信号；同样受顶部时间、搜索和筛选条件影响。</div>
                 <div class="timeline" id="timeline" style="margin-top: 12px;"></div>
               </div>
             </section>
@@ -1756,9 +1756,9 @@
     const STORAGE_KEY = "xingchen-maas-competitor-watch-v1";
     const EXTERNAL_DATA_FILE = "";
     const EMBEDDED_DATA = {
-  "updatedAt": "2026-07-15 15:33:16",
-  "snapshotDate": "2026-07-14",
-  "note": "自动刷新已运行：2026-07-15 15:33:16（北京时间），本次总结 2026-07-14 的竞品动态。日期明确动态 0 条，自动展示平台/高相关新闻线索 16 条。",
+  "updatedAt": "2026-07-15 15:46:34",
+  "snapshotDate": "2026-07-15",
+  "note": "自动刷新已运行：2026-07-15 15:46:34（北京时间），本次总结 2026-07-15 的竞品动态。日期明确动态 0 条，自动展示平台/高相关新闻线索 16 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -2229,7 +2229,7 @@
       "title": "阿里百炼：公众号宣传和通义生态信号",
       "summary": "传播重点可能围绕通义千问、阿里百炼、模型/智能体/工作流、开发者活动和生态工具。",
       "takeaway": "阿里在持续强化通义生态和开发者心智；星辰 MaaS 可关注活动入口、模型体验和工具生态传播。",
-      "evidence": "命中“阿里百炼”：阿里百炼 通义千问的相关微信公众号文章 – 搜狗微信搜索 无障碍 登录 资讯 网页 微信 知乎 图片 视频 医疗 汉语 翻译 问问 百科 更多>> 以下内容来自微信公众平台 通义 没有成为&ldquo; 阿里 版Seed&rdquo; 按照 阿里 方面的规划,在这一体系中, 通义 实验室负责模型能力, 百炼 负责平台分发,而 千问 和悟空则承担应…",
+      "evidence": "命中“阿里百炼”：阿里百炼 通义千问的相关微信公众号文章 – 搜狗微信搜索 无障碍 登录 资讯 网页 微信 知乎 图片 视频 医疗 汉语 翻译 问问 百科 更多>> 以下内容来自微信公众平台 阿里 整合 通义 、 千问 、钉钉和淘天旗下的AI团队,全面学习Google MaaS业务线(含 阿里 云 百炼 ,负责模型服务与企业交付)下游: 千问 事业部(C端)、悟空…",
       "categories": [
         "model",
         "agent",
@@ -2884,8 +2884,8 @@
   "strategies": [],
   "monitorRuns": [
     {
-      "targetDate": "2026-07-14",
-      "runDateTime": "2026-07-15 15:33:16",
+      "targetDate": "2026-07-15",
+      "runDateTime": "2026-07-15 15:46:34",
       "sourcesChecked": 20,
       "exactMatches": 0,
       "publishedCandidates": 16,
@@ -2893,8 +2893,8 @@
       "errors": 0
     },
     {
-      "targetDate": "2026-07-15",
-      "runDateTime": "2026-07-15 15:31:34",
+      "targetDate": "2026-07-14",
+      "runDateTime": "2026-07-15 15:33:16",
       "sourcesChecked": 20,
       "exactMatches": 0,
       "publishedCandidates": 16,
@@ -3708,6 +3708,17 @@
       return getAllNews().filter(newsPassesFilters);
     }
 
+    function getFilteredTimelineItems() {
+      const eventItems = getFilteredEvents().map((item) => ({ ...item, timelineType: "event" }));
+      const newsSignalItems = getFilteredNews().map((item) => ({ ...item, timelineType: "news" }));
+      return eventItems.concat(newsSignalItems).sort((a, b) => {
+        const dateOrder = String(b.date).localeCompare(String(a.date));
+        if (dateOrder) return dateOrder;
+        const priorityOrder = { high: 3, medium: 2, low: 1, pending: 0 };
+        return (priorityOrder[b.priority] || 0) - (priorityOrder[a.priority] || 0);
+      });
+    }
+
     function getCompetitor(id) {
       return competitors.find((item) => item.id === id);
     }
@@ -3940,22 +3951,27 @@
     }
 
     function renderTimeline() {
-      const filtered = getFilteredEvents();
+      const filtered = getFilteredTimelineItems();
       const html = filtered.map((item) => {
         const competitor = getCompetitor(item.competitor);
         const source = getSource(item.source);
-        const categories = item.categories.map((category) => `<span class="tag ${category}">${categoryLabels[category] || category}</span>`).join("");
+        const categories = (item.categories || []).map((category) => `<span class="tag ${category}">${categoryLabels[category] || category}</span>`).join("");
         const sourceLink = source.url ? `<a href="${source.url}" target="_blank" rel="noreferrer">${source.title}</a>` : source.title;
+        const isNews = item.timelineType === "news";
+        const judgment = item.signal || item.takeaway || "这是一条需要继续观察的公开信号。";
+        const evidence = isNews && item.evidence ? `<p class="evidence"><strong>证据片段：</strong>${item.evidence}</p>` : "";
         return `
-          <article class="event">
+          <article class="event ${isNews ? "news-signal" : ""}">
             <div class="event-date">${item.date.slice(5)}<span>${competitor?.name || item.competitor}</span></div>
             <div class="event-main">
               <h3>${item.title}</h3>
               <p><strong>更新重点：</strong>${item.summary}</p>
-              <p><strong>判断：</strong>${item.signal}</p>
+              <p><strong>判断：</strong>${judgment}</p>
+              ${evidence}
               <div class="tags">
                 <span class="pill ${item.priority}">${priorityLabels[item.priority]}</span>
                 ${categories}
+                ${isNews ? `<span class="tag">${item.kind || "新闻/公告"}</span>` : ""}
                 <span class="source-badge ${source.type}">${sourceTypeLabels[source.type]}</span>
                 <span class="tag">${sourceLink}</span>
               </div>
@@ -3964,7 +3980,7 @@
         `;
       }).join("");
 
-      document.getElementById("timeline").innerHTML = html || `<div class="empty">当前筛选下没有动态。</div>`;
+      document.getElementById("timeline").innerHTML = html || `<div class="empty">当前筛选下没有动态或新闻信号。</div>`;
     }
 
     function renderCompare() {

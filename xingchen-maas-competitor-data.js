@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-07-15 15:33:16",
-  "snapshotDate": "2026-07-14",
-  "note": "自动刷新已运行：2026-07-15 15:33:16（北京时间），本次总结 2026-07-14 的竞品动态。日期明确动态 0 条，自动展示平台/高相关新闻线索 16 条。",
+  "updatedAt": "2026-07-15 15:46:34",
+  "snapshotDate": "2026-07-15",
+  "note": "自动刷新已运行：2026-07-15 15:46:34（北京时间），本次总结 2026-07-15 的竞品动态。日期明确动态 0 条，自动展示平台/高相关新闻线索 16 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -472,7 +472,7 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "title": "阿里百炼：公众号宣传和通义生态信号",
       "summary": "传播重点可能围绕通义千问、阿里百炼、模型/智能体/工作流、开发者活动和生态工具。",
       "takeaway": "阿里在持续强化通义生态和开发者心智；星辰 MaaS 可关注活动入口、模型体验和工具生态传播。",
-      "evidence": "命中“阿里百炼”：阿里百炼 通义千问的相关微信公众号文章 – 搜狗微信搜索 无障碍 登录 资讯 网页 微信 知乎 图片 视频 医疗 汉语 翻译 问问 百科 更多>> 以下内容来自微信公众平台 通义 没有成为&ldquo; 阿里 版Seed&rdquo; 按照 阿里 方面的规划,在这一体系中, 通义 实验室负责模型能力, 百炼 负责平台分发,而 千问 和悟空则承担应…",
+      "evidence": "命中“阿里百炼”：阿里百炼 通义千问的相关微信公众号文章 – 搜狗微信搜索 无障碍 登录 资讯 网页 微信 知乎 图片 视频 医疗 汉语 翻译 问问 百科 更多>> 以下内容来自微信公众平台 阿里 整合 通义 、 千问 、钉钉和淘天旗下的AI团队,全面学习Google MaaS业务线(含 阿里 云 百炼 ,负责模型服务与企业交付)下游: 千问 事业部(C端)、悟空…",
       "categories": [
         "model",
         "agent",
@@ -1127,8 +1127,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   "strategies": [],
   "monitorRuns": [
     {
-      "targetDate": "2026-07-14",
-      "runDateTime": "2026-07-15 15:33:16",
+      "targetDate": "2026-07-15",
+      "runDateTime": "2026-07-15 15:46:34",
       "sourcesChecked": 20,
       "exactMatches": 0,
       "publishedCandidates": 16,
@@ -1136,8 +1136,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "errors": 0
     },
     {
-      "targetDate": "2026-07-15",
-      "runDateTime": "2026-07-15 15:31:34",
+      "targetDate": "2026-07-14",
+      "runDateTime": "2026-07-15 15:33:16",
       "sourcesChecked": 20,
       "exactMatches": 0,
       "publishedCandidates": 16,
