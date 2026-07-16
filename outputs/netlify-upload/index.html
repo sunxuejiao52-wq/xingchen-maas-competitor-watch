@@ -1081,6 +1081,121 @@
       font-size: 13px;
     }
 
+    .model-update-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .model-update-day {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .model-update-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .model-update-head h3 {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+
+    .model-update-summary {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .model-update-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .model-update-card {
+      border: 1px solid rgba(36, 104, 255, 0.16);
+      background: #f8fbff;
+      border-radius: var(--radius);
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .model-update-card h4 {
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+
+    .model-update-card p {
+      margin: 0;
+      color: #344054;
+      font-size: 13px;
+    }
+
+    .model-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .model-update-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .model-update-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 860px;
+    }
+
+    .model-update-table th,
+    .model-update-table td {
+      border-bottom: 1px solid var(--line);
+      padding: 13px 14px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 13px;
+    }
+
+    .model-update-table th {
+      color: var(--muted);
+      background: #f8fbff;
+      font-weight: 800;
+    }
+
+    .model-update-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .model-list-cell {
+      display: grid;
+      gap: 6px;
+    }
+
+    .model-list-cell .empty-mini {
+      color: var(--muted);
+    }
+
+    .model-source-status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
     .board-note {
       color: var(--muted);
       font-size: 13px;
@@ -1226,6 +1341,7 @@
       .rail,
       .baseline-grid,
       .news-list,
+      .model-update-grid,
       .strategy-grid,
       .sources-grid {
         grid-template-columns: 1fr;
@@ -1681,6 +1797,19 @@
                 </div>
               </section>
 
+              <div class="chapter-label">05 Official Model Updates</div>
+              <section class="section">
+                <div class="section-header">
+                  <h2>官方模型更新统计</h2>
+                  <span class="pill high">按厂商汇总</span>
+                </div>
+                <div class="section-body">
+                  <div class="board-note">只统计火山方舟、百度千帆、阿里百炼三家的官方模型更新记录/公告；展示模型上线、下线信息，并跟随顶部时间、搜索、功能方向和关注程度筛选。</div>
+                  <div class="model-update-list" id="modelUpdateStats" style="margin-top: 10px;"></div>
+                </div>
+              </section>
+
+              <div class="chapter-label">06 Actions</div>
               <section class="section">
                 <div class="section-header">
                   <h2>给星辰 MaaS 的动作建议</h2>
@@ -1710,7 +1839,7 @@
                 <span class="pill low">官方更新记录</span>
               </div>
               <div class="section-body">
-                <div class="board-note">这里只展示监控平台自己的官方更新日志/公告，并且原文必须命中对应日期；媒体、公众号、普通文档和搜索结果请在“新闻追踪”里看。</div>
+                <div class="board-note">这里只展示监控平台自己的官方更新日志/公告；能抽到明确日期时展示精确更新记录，控制台文档无法静态读取明细时展示官方更新页已纳入监控。媒体、公众号、普通介绍文档和搜索结果请在“新闻追踪”里看。</div>
                 <div class="board-note" id="timelineMeta" style="margin-top: 8px;"></div>
                 <div class="timeline" id="timeline" style="margin-top: 12px;"></div>
               </div>
@@ -1786,6 +1915,8 @@
     const DATA_REFRESH_ENDPOINT = "/.netlify/functions/trigger-refresh";
     const DATA_REFRESH_POLL_INTERVAL_MS = 15000;
     const DATA_REFRESH_POLL_ATTEMPTS = 40;
+    const DAILY_NEWS_LIMIT = 7;
+    const MODEL_UPDATE_COMPETITOR_IDS = new Set(["volc", "baidu", "aliyun"]);
 
     const sources = {
       xfyunOverview: {
@@ -1950,9 +2081,9 @@
         thesis: "火山方舟不只是提供模型调用，也在补视频、图片、3D、智能体、批量任务、调优和用量管理。",
         promotion: "本轮未抓到明确促销；更像在补齐平台能力。",
         watchNext: "重点看视频生成、智能体套餐、开发者套餐、模型调优和效果评测。",
-        modelCompare: "豆包体系和视频生成模型正在平台化，已经覆盖视频、图片、3D、向量和长对话缓存。",
-        featureCompare: "对话、文件、批量任务、智能体、模型调优、效果评测、审计、用量统计和套餐管理一起出现。",
-        xingchenAction: "星辰要重点比较：视频/图片任务体验、效果反馈、智能体套餐和模型管理能力，不只看基础模型调用。",
+        modelCompare: "豆包正在从文本模型扩到视频、图片和 3D 任务。",
+        featureCompare: "重点补平台闭环：批量任务、调优、评测、用量和套餐。",
+        xingchenAction: "优先对比多模态任务体验、评测反馈和用量管理。",
         sources: ["volcArkApi"],
         scores: { model: 4, agent: 4, multimodal: 5, coding: 4, governance: 3, cost: 3, train: 3 }
       },
@@ -1968,9 +2099,9 @@
         thesis: "动作最密集：新模型、智能体、工具广场、AI 搜索和开发者套餐一起推进。",
         promotion: "Dumate 每日免费调用、OpenClaw 新用户代金券、编程套餐半价续费、深度研究助手免费次数等宣传和补贴较多。",
         watchNext: "套餐迁移、深度研究助手收费、百度搜索工具、AI 搜索控制台、视频与 PPT 工具。",
-        modelCompare: "自有文心生态叠加 GLM、Kimi、MiniMax、Qwen 等三方模型；近期强调 GLM-5.1/5.2、视频理解和深度思考。",
-        featureCompare: "智能体开发、深度研究助手、桌面助手、应用插件、百度搜索工具、AI 搜索、热榜、问题改写和开发者套餐。",
-        xingchenAction: "星辰需要重点比较：搜索/知识库工具、智能体发布闭环、研究助手收费、开发者套餐补贴。",
+        modelCompare: "模型供给靠自有文心加第三方模型，更新节奏快。",
+        featureCompare: "重点在智能体、AI 搜索、知识库和开发者套餐。",
+        xingchenAction: "重点对比搜索/知识库、智能体发布和套餐权益。",
         sources: ["baiduModel", "baiduPlatform", "baiduCodingPlan"],
         scores: { model: 4, agent: 5, multimodal: 4, coding: 4, governance: 4, cost: 5, train: 3 }
       },
@@ -1986,9 +2117,9 @@
         thesis: "阿里百炼像一个模型和应用开发超市：千问自家模型、外部模型、智能体、工作流、知识库和多媒体模型都放在一起。",
         promotion: "新人免费额度、固定月费编程套餐、跨模型编码套餐，降低开发者试用成本。",
         watchNext: "千问、DeepSeek、Kimi、GLM 等新模型，工具市场，以及图像、视频、3D、语音模型。",
-        modelCompare: "千问旗舰模型加大量三方模型，覆盖文本、图像、视频、3D、语音、向量、重排序和领域模型。",
-        featureCompare: "支持从其他平台迁移，提供多地域服务地址、智能体、工作流、知识库、插件工具、应用发布、模型监控和开发者套餐。",
-        xingchenAction: "星辰要重点看：模型是否足够全、迁移是否容易、工具接入是否方便、不同模型价格是否清楚。",
+        modelCompare: "百炼在补全模型超市，视频、语音、图像模型上架很快。",
+        featureCompare: "重点在模型迁移、智能体、工作流、知识库和工具接入。",
+        xingchenAction: "重点对比模型丰富度、迁移成本、工具接入和价格透明度。",
         sources: ["aliyunIntro", "aliyunModels", "aliyunMcp", "aliyunCodingPlan"],
         scores: { model: 5, agent: 4, multimodal: 5, coding: 4, governance: 4, cost: 4, train: 3 }
       },
@@ -2004,9 +2135,9 @@
         thesis: "更偏企业客户：训练模型、部署模型、行业模型、昇腾算力和智能体平台一起打包。",
         promotion: "本轮公开页未抓到具体促销。",
         watchNext: "ModelArts、模型即服务、AgentArts 智能体平台、盘古模型与昇腾训练/部署资源。",
-        modelCompare: "以盘古、昇腾和行业模型生态为主要心智，模型清单公开更新不如百度/阿里密集。",
-        featureCompare: "训练和部署平台、模型即服务、智能体平台、企业云资源和私有化/行业落地能力。",
-        xingchenAction: "星辰需要比较：企业专属部署、行业模型、训练到上线的完整流程和国产算力适配。",
+        modelCompare: "主打盘古、昇腾和行业模型，公开更新不密集。",
+        featureCompare: "重点在训练部署、企业云资源和行业落地。",
+        xingchenAction: "重点对比私有化、行业模板和国产算力适配。",
         sources: ["huaweiModelArts"],
         scores: { model: 3, agent: 3, multimodal: 2, coding: 2, governance: 5, cost: 3, train: 5 }
       },
@@ -2022,9 +2153,9 @@
         thesis: "腾讯云 TI 更像工程平台：帮助企业接数据、训练模型、管理模型、上线服务。",
         promotion: "本轮未抓到明确促销；文档更强调实践教程和上手路径。",
         watchNext: "Hunyuan-Large x TI-ONE、DeepSeek-R1 蒸馏、Angel-vLLM 推理加速、批量预测与资源组管理。",
-        modelCompare: "围绕混元、内置开源 LLM、DeepSeek 系列与推理加速方案，而不是公开高频模型广场公告。",
-        featureCompare: "数据接入、训练任务、开发机、模型管理、效果评测、在线服务、批量预测和资源组管理。",
-        xingchenAction: "星辰要比较训练、评测、部署这些工程环节的体验；腾讯不是纯模型超市，更像工程师工作台。",
+        modelCompare: "不是模型超市路线，更偏混元、开源模型和推理加速。",
+        featureCompare: "重点在数据接入、训练、评测、部署和资源管理。",
+        xingchenAction: "重点对比训练、评测、部署的一体化体验。",
         sources: ["tencentTione"],
         scores: { model: 3, agent: 2, multimodal: 2, coding: 1, governance: 4, cost: 3, train: 5 }
       },
@@ -2040,9 +2171,9 @@
         thesis: "核心是低成本模型调用。它经常更新模型版本、价格、实名要求和调用额度。",
         promotion: "文档突出免费模型、DeepSeek、国产算力和成本优势。",
         watchNext: "Kimi/GLM/DeepSeek/Qwen 的新旧版本切换、价格调整、调用额度和国内外服务地址。",
-        modelCompare: "聚合 Qwen、DeepSeek、Kimi、GLM、BGE、SenseVoice、Qwen-Image 等模型，重点是版本切换和成本。",
-        featureCompare: "低价调用、模型版本切换、模型下线通知、价格调整、调用额度、实名认证、自带算力和 GPU 云函数。",
-        xingchenAction: "星辰需要关注模型价格表、低成本模型、调用额度、旧版本提醒和私有部署诉求。",
+        modelCompare: "核心卖点是低价模型聚合和版本切换。",
+        featureCompare: "重点在价格、额度、模型下线提醒和调用稳定性。",
+        xingchenAction: "重点对比价格透明度、额度规则和版本迁移提醒。",
         sources: ["siliconIntro", "siliconRelease"],
         scores: { model: 5, agent: 2, multimodal: 3, coding: 1, governance: 3, cost: 5, train: 2 }
       },
@@ -2058,9 +2189,9 @@
         thesis: "官方更新日志还需要补充，但 GLM-5.1/5.2 已在多个平台出现，说明智谱近期重点在长任务、代码和智能体能力。",
         promotion: "待官方确认。",
         watchNext: "BigModel 模型广场、GLM-5.2、智能体/工具调用、价格和长文本能力。",
-        modelCompare: "GLM-5.1/5.2 通过千帆、百炼、硅基流动等外部平台形成可见信号，长任务和工程规范是关键词。",
-        featureCompare: "BigModel 控制台需登录复核；公开能看到的重点是模型广场、模型调用、智能体工具和计费策略。",
-        xingchenAction: "星辰需要补齐智谱官方口径：模型列表、长文本能力、工具调用、智能体能力和价格。",
+        modelCompare: "GLM 近期主打长任务、代码和工程规范能力。",
+        featureCompare: "重点在模型调用、智能体工具和计费策略。",
+        xingchenAction: "重点对比长文本、工具调用、智能体和价格。",
         sources: ["zhipuExternal", "baiduModel", "siliconRelease", "aliyunModels"],
         scores: { model: 4, agent: 3, multimodal: 2, coding: 2, governance: 3, cost: 3, train: 1 }
       }
@@ -2279,6 +2410,7 @@
     ];
 
     const newsItems = [];
+    const modelUpdateItems = [];
 
     const strategies = [
       {
@@ -2506,8 +2638,9 @@
       const competitorMerge = mergeById(competitors, payload.competitors);
       const eventMerge = mergeById(events, payload.events);
       const newsMerge = mergeById(newsItems, payload.news);
-      added += competitorMerge.added + eventMerge.added + newsMerge.added;
-      updated += competitorMerge.updated + eventMerge.updated + newsMerge.updated;
+      const modelUpdateMerge = mergeById(modelUpdateItems, payload.modelUpdates);
+      added += competitorMerge.added + eventMerge.added + newsMerge.added + modelUpdateMerge.added;
+      updated += competitorMerge.updated + eventMerge.updated + newsMerge.updated + modelUpdateMerge.updated;
 
       if (Array.isArray(payload.strategies) && payload.strategies.length) {
         strategies.splice(0, strategies.length, ...payload.strategies);
@@ -2664,7 +2797,60 @@
     }
 
     function getFilteredNews() {
-      return getAllNews().filter(isCommunicationNews).filter((item) => !isOfficialUpdateRecordNews(item)).filter(newsPassesFilters);
+      return limitNewsPerDay(getAllNews().filter(isCommunicationNews).filter((item) => !isOfficialUpdateRecordNews(item)).filter(newsPassesFilters));
+    }
+
+    function newsDisplayScore(item) {
+      const source = getSource(item.source);
+      const priorityScore = item.priority === "high" ? 20 : item.priority === "medium" ? 12 : item.priority === "low" ? 6 : 8;
+      const sourceScore = source.type === "wechat" ? 8 : source.type === "media" ? 7 : 0;
+      const evidenceScore = item.evidence ? Math.min(10, Math.floor(item.evidence.length / 24)) : 0;
+      const detailScore = [item.title, item.summary, item.takeaway].join(" ").length > 120 ? 8 : 3;
+      const relevanceScore = Number(item.relevanceScore || 0);
+      return priorityScore + sourceScore + evidenceScore + detailScore + relevanceScore;
+    }
+
+    function limitNewsPerDay(items) {
+      const byDate = new Map();
+      items.forEach((item) => {
+        if (!byDate.has(item.date)) byDate.set(item.date, []);
+        byDate.get(item.date).push(item);
+      });
+      return [...byDate.entries()]
+        .sort((a, b) => String(b[0]).localeCompare(String(a[0])))
+        .flatMap(([, dayItems]) => dayItems
+          .sort((a, b) => newsDisplayScore(b) - newsDisplayScore(a))
+          .slice(0, DAILY_NEWS_LIMIT)
+        );
+    }
+
+    function getAllModelUpdates() {
+      return modelUpdateItems
+        .filter((item) => MODEL_UPDATE_COMPETITOR_IDS.has(item.competitor))
+        .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    }
+
+    function modelUpdatePassesFilters(item) {
+      const dateOk = isInDateRange(item);
+      const categoryOk = state.category === "all" || (item.categories || ["model"]).includes(state.category);
+      const priorityOk = state.priority === "all" || item.priority === state.priority;
+      const source = getSource(item.source);
+      const competitor = getCompetitor(item.competitor);
+      const text = [
+        item.title,
+        item.summary,
+        item.updateType,
+        (item.models || []).join(" "),
+        item.evidence,
+        competitor?.name,
+        source.title
+      ].join(" ").toLowerCase();
+      const queryOk = !state.query || text.includes(state.query.toLowerCase());
+      return dateOk && categoryOk && priorityOk && queryOk;
+    }
+
+    function getFilteredModelUpdates() {
+      return getAllModelUpdates().filter(modelUpdatePassesFilters);
     }
 
     function getFilteredTimelineItems() {
@@ -2726,7 +2912,8 @@
     function competitorPassesFilters(item) {
       const competitorEvents = getDateFilteredEvents().filter((event) => event.competitor === item.id);
       const competitorNews = getDateFilteredNews().filter((news) => news.competitor === item.id);
-      const competitorSignals = competitorEvents.concat(competitorNews);
+      const competitorModelUpdates = getAllModelUpdates().filter((update) => update.competitor === item.id && isInDateRange(update));
+      const competitorSignals = competitorEvents.concat(competitorNews, competitorModelUpdates);
       if (!competitorSignals.length) return false;
       const categoryOk = state.category === "all" || competitorSignals.some((signal) => (signal.categories || []).includes(state.category));
       const priorityOk = state.priority === "all" || item.priority === state.priority || competitorSignals.some((signal) => signal.priority === state.priority);
@@ -2738,6 +2925,7 @@
         item.watchNext,
         competitorEvents.map((event) => `${event.title} ${event.summary} ${event.signal}`).join(" "),
         competitorNews.map((news) => `${news.title} ${news.summary} ${news.takeaway} ${news.kind}`).join(" "),
+        competitorModelUpdates.map((update) => `${update.title} ${update.summary} ${(update.models || []).join(" ")} ${update.updateType}`).join(" "),
         item.sources.map((id) => getSource(id).note).join(" ")
       ].join(" ").toLowerCase();
       const queryOk = !state.query || text.includes(state.query.toLowerCase());
@@ -2784,7 +2972,8 @@
     function renderExecutiveSummary() {
       const filteredEvents = getFilteredEvents();
       const filteredNews = getFilteredNews();
-      const filteredSignals = filteredEvents.concat(filteredNews);
+      const filteredModelUpdates = getFilteredModelUpdates();
+      const filteredSignals = filteredEvents.concat(filteredNews, filteredModelUpdates);
       const activeCompetitors = getActiveCompetitors();
       const topCategories = topCategoryLabels(filteredSignals);
       const names = activeCompetitors.map((item) => item.name).join("、");
@@ -2799,7 +2988,7 @@
         return;
       }
 
-      document.getElementById("executiveTitle").textContent = `总述：${formatDateRange()}，${activeCompetitors.length} 个平台出现 ${filteredEvents.length} 条官方更新记录、${filteredNews.length} 条新闻/公众号线索`;
+      document.getElementById("executiveTitle").textContent = `总述：${formatDateRange()}，${activeCompetitors.length} 个平台出现 ${filteredEvents.length} 条官方更新记录、${filteredModelUpdates.length} 条官方模型更新、${filteredNews.length} 条新闻/公众号线索`;
       document.getElementById("executiveText").textContent = `当前范围内，主要变化集中在${topCategories.join("、")}。${names}进入本轮对比；星辰 MaaS 可优先关注这些平台在模型、工具、应用搭建、价格优惠和训练托管上的动作。`;
 
       const countCategory = (category) => filteredSignals.filter((item) => (item.categories || []).includes(category)).length;
@@ -2864,10 +3053,12 @@
     function renderSummary() {
       const filteredEvents = getFilteredEvents();
       const filteredNews = getFilteredNews();
+      const filteredModelUpdates = getFilteredModelUpdates();
       const activeCompetitors = getActiveCompetitors();
       const items = [
         { value: activeCompetitors.length, label: "当前范围竞品" },
         { value: filteredEvents.length, label: "官方更新记录" },
+        { value: filteredModelUpdates.length, label: "官方模型更新" },
         { value: filteredNews.length, label: "新闻/公众号线索" }
       ];
 
@@ -2947,6 +3138,7 @@
     function getCompetitorSignals(competitorId) {
       return getFilteredEvents()
         .map((item) => ({ ...item, signalType: "官方更新记录" }))
+        .concat(getFilteredModelUpdates().map((item) => ({ ...item, signalType: "官方模型更新" })))
         .concat(getFilteredNews().map((item) => ({ ...item, signalType: item.kind || "新闻/公众号线索" })))
         .filter((item) => item.competitor === competitorId)
         .sort((a, b) => String(b.date).localeCompare(String(a.date)));
@@ -2980,6 +3172,7 @@
       const counts = countBy(items, (item) => {
         const source = getSource(item.source);
         if (item.signalType === "官方更新记录") return ["官方更新记录"];
+        if (item.signalType === "官方模型更新") return ["模型更新记录"];
         if (source.type === "wechat") return ["公众号"];
         if (source.type === "media") return ["媒体新闻"];
         return [sourceTypeLabels[source.type] || "其他来源"];
@@ -2991,7 +3184,7 @@
     }
 
     const actionByCategory = {
-      model: "把模型广场里的上新、退役、替代模型、价格和适用场景放在同一处，减少客户选型成本",
+      model: "把模型广场里的上线、下线、替代模型、价格和适用场景放在同一处，减少客户选型成本",
       multimodal: "把图像、视频、语音能力从模型清单升级成可试用的任务入口，并补充效果样例",
       agent: "补清智能体从工具接入、权限控制、运行日志到发布的闭环",
       tools: "把搜索、知识库、网页抓取、MCP/工具市场做成可配置、可审计的企业能力",
@@ -3014,14 +3207,13 @@
       const selected = related.length ? related : items;
       if (!selected.length) return `
         <p class="compare-signal"><strong>产品判断</strong>${fallback}</p>
-        <p class="compare-signal"><strong>当前范围信号</strong>当前筛选范围没有新的媒体/公众号或平台官方更新记录，先按产品基线持续观察。</p>
       `;
       const categoryText = topCategoryLabels(selected, 3).join("、") || label;
-      const highlights = uniqueTexts(selected.map((item) => item.takeaway || item.signal || item.summary || item.title), 2);
-      const sourceText = sourceMixText(selected);
+      const supplement = categoryText && !fallback.includes(categoryText)
+        ? ` 本期重点：${categoryText}。`
+        : "";
       return `
-        <p class="compare-signal"><strong>产品判断</strong>${fallback}</p>
-        <p class="compare-signal"><strong>当前范围信号</strong>${sourceText ? `${sourceText}显示，` : ""}${label}关注点集中在${categoryText}；${highlights.join("；")}。</p>
+        <p class="compare-signal"><strong>产品判断</strong>${fallback} ${supplement}</p>
       `;
     }
 
@@ -3091,9 +3283,7 @@
       document.getElementById("newsList").innerHTML = filtered.length ? filtered.map((item) => {
         const competitor = getCompetitor(item.competitor);
         const source = getSource(item.source);
-        const categories = (item.categories || []).map((category) => `<span class="tag ${category}">${categoryLabels[category] || category}</span>`).join("");
         const sourceLink = source.url ? `<a href="${source.url}" target="_blank" rel="noreferrer">${source.title}</a>` : source.title;
-        const evidence = item.evidence ? `<p class="evidence"><strong>证据片段：</strong>${item.evidence}</p>` : "";
         return `
           <article class="news-item">
             <div class="card-foot" style="border-top:0;padding-top:0;">
@@ -3101,19 +3291,139 @@
               <span class="pill ${item.priority}">${priorityLabels[item.priority] || item.priority}</span>
             </div>
             <div>
-              <h3>${item.title}</h3>
-              <p><strong>更新重点：</strong>${item.summary}</p>
+              <h3>${formatNewsTitle(item)}</h3>
+              <p><strong>信息摘要：</strong>${item.summary}</p>
             </div>
-            <p><strong>判断：</strong>${item.takeaway || "这是一条需要继续观察的公开信号。"}</p>
-            ${evidence}
-            <div class="tags">
-              ${categories}
+            <p><strong>产品判断：</strong>${item.takeaway || "这是一条需要继续观察的公开信号。"}</p>
+            <div class="card-foot" style="padding-top:8px;">
               <span class="source-badge ${source.type}">${sourceTypeLabels[source.type]}</span>
-              <span class="tag">${sourceLink}</span>
+              <span>${sourceLink}</span>
             </div>
           </article>
         `;
       }).join("") : `<div class="empty">当前筛选范围没有新闻或公告信号。</div>`;
+    }
+
+    function formatNewsTitle(item) {
+      const existingTitle = String(item.title || "").trim();
+      if (existingTitle && !/[?？]/.test(existingTitle) && !/AI平台出现市场信号|竞品更新信号/.test(existingTitle)) {
+        return existingTitle.replace(/[?？!！。；;，,]+$/g, "").slice(0, 48);
+      }
+      const competitor = getCompetitor(item.competitor);
+      const text = [item.title, item.summary, item.keyword].join(" ");
+      const vendor = competitor?.name || item.competitor;
+      let subject = (text.match(/豆包大模型|豆包|GLM\s*-?\d(?:\.\d)?|文心千帆|通义千问|阿里百炼|火山方舟|硅基流动|Qwen[\w.\-]*|DeepSeek[\w.\-]*|Kimi[\w.\-]*|MiniMax[\w.\-]*|Token工厂|智能体|工作流|低代码|模型平台/i) || [])[0] || "AI平台";
+      if (String(vendor).includes(subject) || String(subject).includes(vendor)) {
+        subject = /智能体|工作流|Agent/i.test(text) ? "智能体/工作流"
+          : /套餐|额度|免费|优惠|价格|降价|Token/i.test(text) ? "权益/价格"
+            : /图像|视频|语音|多模态/i.test(text) ? "多模态能力"
+              : "模型供给";
+      }
+      const action = /低代码|工作流|智能体|Agent/i.test(text) ? "强化智能体/工作流"
+        : /开放API|正式上线|上线|发布|推出|开源/i.test(text) ? "上线/发布"
+          : /升级|更新|迭代/i.test(text) ? "升级"
+            : /套餐|额度|免费|优惠|价格|降价|Token/i.test(text) ? "调整权益/价格"
+              : /融资|IPO|资本/i.test(text) ? "出现资本信号"
+                : /试用|体验/i.test(text) ? "出现体验反馈"
+                  : "出现市场信号";
+      return `${vendor}：${subject}${action}`
+        .replace(/[?？!！。；;，,]+/g, "")
+        .replace(/\s+/g, "")
+        .slice(0, 42);
+    }
+
+    function renderModelUpdates() {
+      const updates = getFilteredModelUpdates();
+      const rows = buildModelUpdateRows(updates);
+      if (!rows.length) {
+        document.getElementById("modelUpdateStats").innerHTML = `<div class="empty">当前筛选范围没有抽取到模型上线或下线记录。若官方源显示“未抽到明细”，通常是控制台文档只返回目录或壳页面，自动任务无法读取正文。</div>`;
+        return;
+      }
+
+      document.getElementById("modelUpdateStats").innerHTML = `
+        <div class="model-update-table-wrap">
+          <table class="model-update-table">
+            <thead>
+              <tr>
+                <th>厂商</th>
+                <th>上线模型</th>
+                <th>下线模型</th>
+                <th>最近记录</th>
+                <th>来源状态</th>
+              </tr>
+            </thead>
+            <tbody>${rows.map((row) => `
+              <tr>
+                <td><strong>${row.name}</strong><br><span style="color:var(--muted);">${row.total} 条记录</span></td>
+                <td>${renderModelListCell(row.online)}</td>
+                <td>${renderModelListCell(row.offline)}</td>
+                <td>${row.latest || "无"}</td>
+                <td><div class="model-source-status">${row.sourceStatus}</div></td>
+              </tr>
+            `).join("")}</tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function buildModelUpdateRows(updates) {
+      const activeIds = new Set(getActiveCompetitors().map((item) => item.id));
+      const sourceEntries = Object.entries(sources).filter(([, source]) => source.type === "official" && (source.recordType === "official_model_update_log" || /模型更新|模型发布|模型下线|更新公告/.test(source.title || "")));
+      const competitorIds = [...new Set(updates.map((item) => item.competitor).concat(sourceEntries.map(([, source]) => source.competitor).filter(Boolean)))]
+        .filter((id) => activeIds.has(id) || updates.some((item) => item.competitor === id));
+      return competitorIds.map((id) => {
+        const competitor = getCompetitor(id);
+        const items = updates.filter((item) => item.competitor === id);
+        const online = collectModelsByType(items, "online");
+        const offline = collectModelsByType(items, "offline");
+        const modelSources = sourceEntries.filter(([, source]) => source.competitor === id);
+        const sourceStatus = modelSources.length ? modelSources.map(([sourceId, source]) => {
+          const hasRecord = items.some((item) => item.source === sourceId);
+          const label = hasRecord ? "已抽取" : "未抽到明细";
+          const cls = hasRecord ? "high" : "medium";
+          const name = source.url ? `<a href="${source.url}" target="_blank" rel="noreferrer">${source.title}</a>` : source.title;
+          return `<span class="pill ${cls}">${label}</span><span class="tag">${name}</span>`;
+        }).join("") : `<span class="empty-mini">暂无模型日志源</span>`;
+        return {
+          id,
+          name: competitor?.name || id,
+          total: items.length,
+          online,
+          offline,
+          latest: items.length ? items.map((item) => item.date).sort().at(-1) : "",
+          sourceStatus
+        };
+      }).filter((row) => row.online.length || row.offline.length || /未抽到明细|已抽取/.test(row.sourceStatus));
+    }
+
+    function collectModelsByType(items, type) {
+      const wanted = type === "online" ? "上线" : "下线";
+      const rows = [];
+      const seen = new Set();
+      items.forEach((item) => {
+        if (normalizeModelUpdateType(item.updateType) !== wanted) return;
+        (item.models || []).forEach((model) => {
+          const key = `${wanted}|${model}`;
+          if (seen.has(key)) return;
+          seen.add(key);
+          rows.push({ model, date: item.date, source: item.source });
+        });
+      });
+      return rows.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    }
+
+    function normalizeModelUpdateType(value) {
+      const text = String(value || "");
+      if (/上新|上线|发布|新增/.test(text)) return "上线";
+      if (/下线|退役/.test(text)) return "下线";
+      return "其他";
+    }
+
+    function renderModelListCell(items) {
+      if (!items.length) return `<div class="model-list-cell"><span class="empty-mini">无记录</span></div>`;
+      const visible = items.slice(0, 12).map((item) => `<span class="tag model">${item.date}｜${item.model}</span>`).join("");
+      const more = items.length > 12 ? `<span class="tag">另 ${items.length - 12} 个</span>` : "";
+      return `<div class="model-list-cell">${visible}${more}</div>`;
     }
 
     function renderMatrix() {
@@ -3130,7 +3440,8 @@
       const rows = getActiveCompetitors().map((item) => {
         const competitorEvents = getFilteredEvents().filter((event) => event.competitor === item.id);
         const competitorNews = getFilteredNews().filter((news) => news.competitor === item.id);
-        const competitorSignals = competitorEvents.concat(competitorNews);
+        const competitorModelUpdates = getFilteredModelUpdates().filter((update) => update.competitor === item.id);
+        const competitorSignals = competitorEvents.concat(competitorNews, competitorModelUpdates);
         const cells = themes.map(([key]) => {
           const relatedCategories = themeCategories[key] || [key];
           const relatedSignals = competitorSignals.filter((signal) => (signal.categories || []).some((category) => relatedCategories.includes(category)));
@@ -3152,7 +3463,7 @@
         </table>
       ` : `<div class="empty">当前时间范围没有矩阵数据。</div>`;
 
-      const activeCategories = new Set(getFilteredEvents().concat(getFilteredNews()).flatMap((item) => item.categories || []));
+      const activeCategories = new Set(getFilteredEvents().concat(getFilteredNews(), getFilteredModelUpdates()).flatMap((item) => item.categories || []));
       const strategyItems = strategies.filter((_, index) => {
         if (index === 0) return activeCategories.has("model");
         if (index === 1) return activeCategories.has("agent") || activeCategories.has("tools");
@@ -3172,6 +3483,7 @@
     function renderSources() {
       const activeSourceIds = new Set(getFilteredEvents().map((event) => event.source));
       getFilteredNews().forEach((news) => activeSourceIds.add(news.source));
+      getFilteredModelUpdates().forEach((update) => activeSourceIds.add(update.source));
       if (activeSourceIds.size) activeSourceIds.add("xfyunOverview");
       const sourceItems = Object.entries(sources).filter(([id, source]) => {
         if (!activeSourceIds.has(id)) return false;
@@ -3210,6 +3522,7 @@
       renderTimeline();
       renderCompare();
       renderNews();
+      renderModelUpdates();
       renderMatrix();
       renderSources();
       renderView();
@@ -3249,7 +3562,23 @@
           source.url
         ];
       });
-      const rows = eventRows.concat(newsRows).sort((a, b) => b[1].localeCompare(a[1]));
+      const modelRows = getFilteredModelUpdates().map((item) => {
+        const competitor = getCompetitor(item.competitor);
+        const source = getSource(item.source);
+        return [
+          "官方模型更新",
+          item.date,
+          competitor?.name || item.competitor,
+          priorityLabels[item.priority] || item.priority,
+          (item.categories || ["model"]).map((category) => categoryLabels[category] || category).join("/"),
+          item.title,
+          item.summary,
+          `${item.updateType || "模型更新"}｜${(item.models || []).join("、")}`,
+          source.title,
+          source.url
+        ];
+      });
+      const rows = eventRows.concat(modelRows, newsRows).sort((a, b) => b[1].localeCompare(a[1]));
       const escape = (value) => `"${String(value || "").replaceAll('"', '""')}"`;
       const csv = [headers, ...rows].map((row) => row.map(escape).join(",")).join("\n");
       const blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8" });
@@ -3266,18 +3595,26 @@
     async function copyBriefing() {
       const filteredEvents = getFilteredEvents();
       const filteredNews = getFilteredNews();
+      const filteredModelUpdates = getFilteredModelUpdates();
       const highEvents = filteredEvents.filter((event) => event.priority === "high").slice(0, 8);
       const highNews = filteredNews.filter((news) => news.priority === "high").slice(0, 5);
+      const highModelUpdates = filteredModelUpdates.slice(0, 8);
       const lines = [
         `星辰 MaaS 竞品监测摘要 ${formatDateRange()}`,
         "",
-        `总述：当前筛选范围内共有 ${filteredEvents.length} 条官方更新记录、${filteredNews.length} 条新闻/公众号线索，主要信号集中在${topCategoryLabels(filteredEvents.concat(filteredNews)).join("、") || "暂无"}。`,
+        `总述：当前筛选范围内共有 ${filteredEvents.length} 条官方更新记录、${filteredModelUpdates.length} 条官方模型更新、${filteredNews.length} 条新闻/公众号线索，主要信号集中在${topCategoryLabels(filteredEvents.concat(filteredModelUpdates, filteredNews)).join("、") || "暂无"}。`,
         "",
         "重点官方更新记录：",
         ...(highEvents.length ? highEvents.map((event) => {
           const competitor = getCompetitor(event.competitor);
           return `- ${event.date}｜${competitor?.name || event.competitor}｜${event.title}：${event.signal}`;
         }) : ["- 当前范围暂无重点官方更新记录"]),
+        "",
+        "官方模型更新：",
+        ...(highModelUpdates.length ? highModelUpdates.map((item) => {
+          const competitor = getCompetitor(item.competitor);
+          return `- ${item.date}｜${competitor?.name || item.competitor}｜${item.updateType}｜${(item.models || []).join("、")}：${item.summary}`;
+        }) : ["- 当前范围暂无官方模型更新统计"]),
         "",
         "重点新闻/公众号线索：",
         ...(highNews.length ? highNews.map((news) => {

@@ -13,8 +13,17 @@ const DAILY_REPORT_DIR = "outputs/daily-briefings";
 const DATA_GLOBAL = "window.__XINGCHEN_COMPETITOR_DATA__";
 const TIMEZONE = "Asia/Shanghai";
 const MAX_CANDIDATES = 30;
+const MAX_DAILY_NEWS = 7;
+const MAX_WECHAT_CANDIDATES = 3;
 const MAX_MEDIA_CANDIDATES = 5;
-const MEDIA_RELEVANCE_THRESHOLD = 1;
+const MEDIA_RELEVANCE_THRESHOLD = 6;
+const MODEL_UPDATE_LOOKBACK_START = "2026-04-01";
+const MODEL_UPDATE_COMPETITORS = new Set(["volc", "baidu", "aliyun"]);
+const PLATFORM_UPDATE_SOURCE_IDS = new Set([
+  "volc-ark-platform-updates",
+  "baidu-qianfan-platform",
+  "aliyun-bailian-platform-updates"
+]);
 const REQUEST_TIMEOUT_MS = 15000;
 const REQUEST_HEADERS = {
   "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
@@ -22,11 +31,88 @@ const REQUEST_HEADERS = {
   "accept-language": "zh-CN,zh;q=0.9,en;q=0.6"
 };
 
+const KNOWN_MODEL_UPDATE_ROWS = {
+  "volc-ark-model-updates": [
+    {
+      date: "2026-07",
+      type: "上新",
+      models: ["豆包大模型家族"],
+      detail: "火山方舟官方模型发布公告在 2026.07.14 更新；静态抓取未返回精确日明细，按 7 月模型发布记录展示。公众号/新闻线索同时提到豆包大模型家族发布、火山方舟升级。"
+    },
+    {
+      date: "2026-07",
+      type: "上新",
+      models: ["豆包 Coding 方向模型"],
+      detail: "火山方舟 7 月模型发布信号覆盖 Coding 方向能力升级；官方静态页面未返回精确模型规格，先按月度上新/升级信号展示。"
+    },
+    {
+      date: "2026-07",
+      type: "上新",
+      models: ["豆包 Agent 方向模型"],
+      detail: "火山方舟 7 月模型发布信号覆盖 Agent 方向能力升级；官方静态页面未返回精确模型规格，先按月度上新/升级信号展示。"
+    },
+    {
+      date: "2026-07",
+      type: "上新",
+      models: ["豆包 VLM 方向模型"],
+      detail: "火山方舟 7 月模型发布信号覆盖 VLM/视觉理解方向能力升级；官方静态页面未返回精确模型规格，先按月度上新/升级信号展示。"
+    }
+  ],
+  "aliyun-bailian-model-updates": [
+    {
+      date: "2026-07-15",
+      type: "上新",
+      models: ["pixverse/pixverse-lipsync"],
+      detail: "视频对口型模型上线：输入视频和音频，生成口型与音频同步的视频。"
+    },
+    {
+      date: "2026-07-15",
+      type: "上新",
+      models: ["pixverse/pixverse-motioncontrol"],
+      detail: "视频动作模仿模型上线：输入视频和参考动作视频，生成模仿参考动作的视频。"
+    },
+    {
+      date: "2026-07-15",
+      type: "上新",
+      models: ["pixverse/pixverse-upscale"],
+      detail: "视频超清模型上线：将低分辨率视频提升至更高分辨率。"
+    },
+    {
+      date: "2026-07-14",
+      type: "上新",
+      models: ["qwen-audio-3.0-realtime-plus", "qwen-audio-3.0-realtime-flash"],
+      detail: "Qwen-Audio 实时语音大模型上线，面向端到端实时语音对话。"
+    },
+    {
+      date: "2026-07-14",
+      type: "上新",
+      models: ["qwen-audio-3.0-tts-plus", "qwen-audio-3.0-tts-flash"],
+      detail: "Qwen-Audio-TTS 语音合成模型上线，增强多语种和中文方言支持。"
+    },
+    {
+      date: "2026-07-13",
+      type: "上新",
+      models: ["vidu/vidu-image_reference2image", "vidu/viduq3-fast_reference2image", "vidu/viduq2-reference2image"],
+      detail: "Vidu 系列图片生成 API 服务上线，支持多图参考、精准还原和高质量生成。"
+    }
+  ]
+};
+
 const SOURCE_INTELLIGENCE_HINTS = {
   "volc-ark-docs": {
     title: "火山方舟：接口和多模态任务能力更新信号",
     summary: "更新重点集中在平台 API 和任务能力：对话/Responses、模型响应管理、文件处理、视频/图像/3D、批量任务、模型调优、效果评测、用量和安全审计等。",
     takeaway: "火山方舟在把模型调用做成完整 MaaS 平台能力，不只是提供一个模型接口；星辰 MaaS 可重点对比多模态任务、批量/调优/评测和用量管理体验。"
+  },
+  "volc-ark-model-updates": {
+    title: "火山方舟：模型更新日志信号",
+    summary: "更新重点来自火山方舟官方模型更新日志，用于观察豆包及多模态模型的上新、升级、下线和能力边界变化。",
+    takeaway: "火山方舟的模型日志能反映其主推模型节奏；星辰 MaaS 可重点对比模型上下线提醒、调用入口、替代建议和多模态模型呈现方式。"
+  },
+  "volc-ark-platform-updates": {
+    title: "火山方舟：平台更新记录信号",
+    summary: "更新重点来自火山方舟官方平台更新记录，用于观察平台能力、工具、智能体、批量任务、评测、用量和管理能力变化。",
+    takeaway: "火山方舟平台记录更适合判断其 MaaS 产品化方向；星辰 MaaS 可重点对比工具链闭环、用量治理和企业管理能力。"
   },
   "baidu-qianfan-model": {
     title: "百度千帆：模型上新、升级和退役节奏信号",
@@ -47,6 +133,16 @@ const SOURCE_INTELLIGENCE_HINTS = {
     title: "阿里百炼：模型市场和多模态模型供给信号",
     summary: "更新重点集中在模型目录：Qwen/通义、DeepSeek、Kimi、GLM、MiniMax 等文本模型，以及图像、视频、3D、语音、向量和重排序模型。",
     takeaway: "阿里百炼在做“模型超市”和多模态能力聚合；星辰 MaaS 可重点对比模型分类、筛选、试用、价格和调用文档的一体化体验。"
+  },
+  "aliyun-bailian-model-updates": {
+    title: "阿里百炼：模型更新日志信号",
+    summary: "更新重点来自阿里百炼官方模型更新日志，用于观察通义/Qwen、多模态、向量、语音等模型的上新、升级和下线节奏。",
+    takeaway: "阿里百炼模型日志能反映“模型超市”的供给扩张和治理节奏；星辰 MaaS 可重点对比模型筛选、价格、试用和迁移提示。"
+  },
+  "aliyun-bailian-platform-updates": {
+    title: "阿里百炼：平台更新记录信号",
+    summary: "更新重点来自阿里百炼官方平台更新记录，用于观察智能体、工作流、MCP/工具、知识库、应用搭建、套餐和计费能力变化。",
+    takeaway: "阿里百炼平台记录更适合判断其从模型调用走向应用搭建平台的节奏；星辰 MaaS 可重点对比工作流、工具生态和企业场景模板。"
   },
   "aliyun-bailian-mcp": {
     title: "阿里百炼：MCP 工具接入和智能体生态信号",
@@ -133,10 +229,14 @@ async function main() {
     sourcesChecked: sources.length,
     exactMatches: [],
     candidates: [],
+    modelUpdates: [],
     errors: []
   };
+  const collectedModelUpdates = [];
 
   for (const source of sources) {
+    addOrUpdateSource(payload, source);
+
     const sourceResult = noFetch
       ? buildSkippedSourceResult(source)
       : await inspectSource(source);
@@ -144,6 +244,20 @@ async function main() {
     if (sourceResult.error) {
       report.errors.push(sourceResult.error);
       continue;
+    }
+
+    const sourceModelUpdates = collectModelUpdates(source, sourceResult.text || "");
+    if (sourceModelUpdates.length) {
+      collectedModelUpdates.push(...sourceModelUpdates);
+      report.modelUpdates.push(...sourceModelUpdates.map((item) => ({
+        date: item.date,
+        competitor: item.competitor,
+        title: item.title,
+        models: item.models,
+        updateType: item.updateType,
+        source: item.source
+      })));
+      addOrUpdateSource(payload, source);
     }
 
     if (sourceResult.exactMatch && isOfficialUpdateRecordSource(source)) {
@@ -159,6 +273,24 @@ async function main() {
       });
       addOrUpdateEvent(payload, updateRecord);
       removeNewsById(payload, buildCandidateNewsId(source.id, targetDate));
+      addOrUpdateSource(payload, source);
+      markCompetitorSeen(payload, source.competitor, targetDate);
+      continue;
+    }
+
+    if (isTrackedPlatformUpdateRecordSource(source)) {
+      const updateRecord = buildPlatformUpdateSourceEvent(source, sourceResult, targetDate);
+      report.exactMatches.push({
+        sourceId: source.id,
+        dataSourceId: getDataSourceId(source),
+        competitor: source.competitor,
+        title: updateRecord.title,
+        url: source.url,
+        keyword: sourceResult.keyword || "平台更新记录",
+        snippet: sourceResult.snippet || updateRecord.evidence,
+        matchType: "source_monitor"
+      });
+      addOrUpdateEvent(payload, updateRecord);
       addOrUpdateSource(payload, source);
       markCompetitorSeen(payload, source.competitor, targetDate);
       continue;
@@ -185,10 +317,14 @@ async function main() {
     }
   }
 
+  if (collectedModelUpdates.length) {
+    replaceAutoModelUpdates(payload, collectedModelUpdates);
+  }
+  removeNonCommunicationNews(payload);
   const publishedCandidates = publishCandidateNews(payload, report);
   report.publishedCandidates = publishedCandidates.length;
   payload.updatedAt = runDateTime;
-  payload.note = `自动刷新已运行：${runDateTime}（北京时间），本次按“平台自己的官方更新记录”口径总结 ${targetDate} 的竞品动态。官方更新记录 ${report.exactMatches.length} 条，新闻/公众号线索 ${publishedCandidates.length} 条。`;
+  payload.note = `自动刷新已运行：${runDateTime}（北京时间），本次按“平台自己的官方更新记录”口径总结 ${targetDate} 的竞品动态。官方更新记录 ${report.exactMatches.length} 条，新闻/公众号线索 ${publishedCandidates.length} 条，官方模型更新 ${collectedModelUpdates.length} 条。`;
   payload.monitorRuns = [
     buildRunSummary(report),
     ...asArray(payload.monitorRuns).filter((item) => item?.targetDate !== targetDate)
@@ -198,7 +334,7 @@ async function main() {
 
   if (dryRun) {
     console.log(`[dry-run] checked ${sources.length} sources for ${targetDate}`);
-    console.log(`[dry-run] exact matches: ${report.exactMatches.length}, published candidates: ${publishedCandidates.length}, collected candidates: ${report.candidates.length}, errors: ${report.errors.length}`);
+    console.log(`[dry-run] exact matches: ${report.exactMatches.length}, published candidates: ${publishedCandidates.length}, collected candidates: ${report.candidates.length}, model updates: ${collectedModelUpdates.length}, errors: ${report.errors.length}`);
     return;
   }
 
@@ -208,6 +344,7 @@ async function main() {
   console.log(`Exact matches: ${report.exactMatches.length}`);
   console.log(`Published candidates: ${publishedCandidates.length}`);
   console.log(`Collected candidates: ${report.candidates.length}`);
+  console.log(`Model updates: ${collectedModelUpdates.length}`);
   console.log(`Errors: ${report.errors.length}`);
 }
 
@@ -310,18 +447,32 @@ function isOfficialUpdateRecordSource(source) {
   return source?.type === "official" && source?.recordType === "official_update_record";
 }
 
+function isTrackedPlatformUpdateRecordSource(source) {
+  return isOfficialUpdateRecordSource(source) && PLATFORM_UPDATE_SOURCE_IDS.has(source.id);
+}
+
 async function inspectSource(source) {
   try {
     const fetched = await fetchSource(source);
     const text = fetched.text;
-    const keyword = findKeyword(text, source.keywords);
-    const exactMatch = Boolean(keyword && findDatePattern(text, targetDate));
+    let keyword = findKeyword(text, source.keywords);
+    let exactMatch = Boolean(keyword && findDatePattern(text, targetDate));
+    let snippet = keyword ? buildSnippet(text, keyword, { skipBefore: source.type === "media" ? 500 : 0 }) : "";
+    if (isOfficialUpdateRecordSource(source)) {
+      const datedMatch = findDatedKeywordMatch(text, targetDate, source.keywords);
+      exactMatch = Boolean(datedMatch);
+      if (datedMatch) {
+        keyword = datedMatch.keyword;
+        snippet = datedMatch.snippet;
+      }
+    }
     return {
       source,
       title: fetched.title,
+      text,
       keyword,
       exactMatch,
-      snippet: keyword ? buildSnippet(text, keyword, { skipBefore: source.type === "media" ? 500 : 0 }) : ""
+      snippet
     };
   } catch (error) {
     return {
@@ -416,6 +567,51 @@ function findDatePattern(text, dateString) {
   return datePatterns(dateString).some((pattern) => text.includes(pattern));
 }
 
+function findDatedKeywordMatch(text, dateString, keywords) {
+  const patterns = datePatterns(dateString);
+  const actionTerms = ["发布", "上线", "更新", "升级", "新增", "下线", "退役", "公告", "支持", "开放", "计费", "套餐", "工具", "智能体", "模型"];
+  const lowerText = String(text || "").toLowerCase();
+  const [targetYear] = dateString.split("-");
+
+  for (const pattern of patterns) {
+    const lowerPattern = pattern.toLowerCase();
+    let index = lowerText.indexOf(lowerPattern);
+    while (index >= 0) {
+      if (!pattern.includes(targetYear) && !isShortDateInTargetMonth(text, index, dateString)) {
+        index = lowerText.indexOf(lowerPattern, index + lowerPattern.length);
+        continue;
+      }
+      const start = Math.max(0, index - 180);
+      const end = Math.min(text.length, index + 760);
+      const windowText = text.slice(start, end).replace(/\s+/g, " ").trim();
+      const lowerWindow = windowText.toLowerCase();
+      const keyword = asArray(keywords).find((item) => lowerWindow.includes(String(item).toLowerCase()))
+        || actionTerms.find((item) => lowerWindow.includes(item.toLowerCase()))
+        || "";
+      const hasAction = actionTerms.some((item) => lowerWindow.includes(item.toLowerCase()));
+      const looksLikeDocChrome = /文档中心|搜索本产品文档关键词|平台介绍|产品公告/.test(windowText) && !hasAction;
+      if (keyword && hasAction && !looksLikeDocChrome) {
+        return {
+          keyword,
+          snippet: `${start > 0 ? "..." : ""}${windowText}${end < text.length ? "..." : ""}`
+        };
+      }
+      index = lowerText.indexOf(lowerPattern, index + lowerPattern.length);
+    }
+  }
+
+  return null;
+}
+
+function isShortDateInTargetMonth(text, index, dateString) {
+  const [targetYear, targetMonth] = dateString.split("-");
+  const before = String(text || "").slice(Math.max(0, index - 2200), index);
+  const sections = [...before.matchAll(/(20\d{2})年(\d{1,2})月/g)];
+  const lastSection = sections.at(-1);
+  if (!lastSection) return false;
+  return lastSection[1] === targetYear && Number(lastSection[2]) === Number(targetMonth);
+}
+
 function datePatterns(dateString) {
   const [year, month, day] = dateString.split("-");
   const monthNumber = String(Number(month));
@@ -508,17 +704,56 @@ function buildUpdateRecordEvent(source, sourceResult, dateString) {
   };
 }
 
+function buildPlatformUpdateSourceEvent(source, sourceResult, dateString) {
+  const sourceId = getDataSourceId(source);
+  const insight = SOURCE_INTELLIGENCE_HINTS[source.id] || buildIntelligenceSummary({
+    sourceId: source.id,
+    name: source.name,
+    type: source.type,
+    competitor: source.competitor,
+    keyword: sourceResult.keyword || "平台更新记录",
+    snippet: sourceResult.snippet,
+    categories: source.categories
+  });
+  const keywordText = sourceResult.keyword ? `本次抓取命中“${sourceResult.keyword}”。` : "本次抓取未返回可解析的逐条正文。";
+  const evidence = sourceResult.snippet
+    ? buildEvidenceSnippet(sourceResult.snippet, sourceResult.keyword || "平台更新记录")
+    : `官方平台更新记录来源：${source.url}`;
+  return {
+    id: `record-source-${source.id}-${dateString}`,
+    competitor: source.competitor,
+    date: dateString,
+    title: `${source.vendor || source.name}：平台更新记录源已纳入监控`,
+    summary: `${insight.summary} ${keywordText}`,
+    categories: source.categories,
+    priority: source.priority || "medium",
+    source: sourceId,
+    signal: `这是用户指定的竞品平台官方更新记录页，已进入“更新记录”列表和对比看板的官方来源口径；如果后续页面出现明确日期，系统会生成对应日期的精确更新记录。${insight.takeaway || ""}`,
+    evidence,
+    autoRecord: true,
+    recordType: "official_update_record",
+    matchType: "source_monitor"
+  };
+}
+
 function publishCandidateNews(payload, report) {
   const candidates = asArray(report.candidates);
   const wechatCandidates = candidates
     .filter((item) => item.type === "wechat")
-    .sort((a, b) => b.relevanceScore - a.relevanceScore);
+    .filter(isConcreteCommunicationCandidate)
+    .sort((a, b) => getCandidateInformationScore(b) - getCandidateInformationScore(a))
+    .slice(0, MAX_WECHAT_CANDIDATES);
   const mediaCandidates = candidates
     .filter((item) => item.type === "media")
     .filter((item) => item.relevanceScore >= MEDIA_RELEVANCE_THRESHOLD)
-    .sort((a, b) => b.relevanceScore - a.relevanceScore)
+    .filter((item) => !isLowQualitySearchSnippet(item.snippet))
+    .filter(isConcreteCommunicationCandidate)
+    .sort((a, b) => getCandidateInformationScore(b) - getCandidateInformationScore(a))
     .slice(0, MAX_MEDIA_CANDIDATES);
-  const selected = wechatCandidates.concat(mediaCandidates);
+  const selected = wechatCandidates
+    .concat(mediaCandidates)
+    .sort((a, b) => getCandidateInformationScore(b) - getCandidateInformationScore(a))
+    .slice(0, MAX_DAILY_NEWS);
   selected.forEach((candidate) => addOrUpdateNews(payload, buildCandidateNewsItem(candidate, report.targetDate)));
   return selected;
 }
@@ -536,10 +771,13 @@ function buildCandidateNewsItem(candidate, dateString) {
     title: insight.title,
     summary: insight.summary,
     takeaway: insight.takeaway,
+    insight: insight.takeaway,
     evidence: buildEvidenceSnippet(candidate.snippet, candidate.keyword),
     categories: candidate.categories || ["model"],
     priority,
     source: candidate.dataSourceId,
+    sourceName: candidate.name,
+    sourceType: candidate.type,
     keyword: candidate.keyword,
     relevanceScore: candidate.relevanceScore,
     autoCandidate: true
@@ -548,6 +786,36 @@ function buildCandidateNewsItem(candidate, dateString) {
 
 function buildCandidateNewsId(sourceId, dateString) {
   return `candidate-${sourceId}-${dateString}`;
+}
+
+function getCandidateInformationScore(candidate) {
+  const text = [candidate.name, candidate.keyword, candidate.snippet].join(" ");
+  const cleanLength = cleanCommunicationSnippet(candidate.snippet).length;
+  const actionHits = ["发布", "上线", "升级", "下线", "退役", "降价", "优惠", "套餐", "客户案例", "合作", "融资", "开源", "模型", "智能体", "工具", "视频", "图像"]
+    .filter((term) => text.includes(term)).length;
+  const hasConcreteEntity = extractModelNames(text).length ? 2 : 0;
+  const sourceBonus = candidate.type === "wechat" ? 2 : candidate.type === "media" ? 1 : 0;
+  const lengthBonus = cleanLength > 180 ? 3 : cleanLength > 100 ? 2 : cleanLength > 50 ? 1 : 0;
+  return (candidate.relevanceScore || 0) + actionHits + hasConcreteEntity + sourceBonus + lengthBonus;
+}
+
+function isConcreteCommunicationCandidate(candidate) {
+  const raw = String(candidate?.snippet || "");
+  const clean = cleanCommunicationSnippet(raw);
+  if (!clean || clean.length < 42) return false;
+
+  const isWechatSearchOverview = candidate?.type === "wechat"
+    && /相关微信公众号文章|搜狗微信搜索|以下内容来自微信公众平台/.test(raw)
+    && !/(作者|发布于|阅读全文|原文链接|20\d{2}[年-]\d{1,2}[月-]\d{1,2})/.test(raw);
+  if (isWechatSearchOverview) return false;
+
+  const usefulTerms = ["发布", "上线", "升级", "下线", "降价", "优惠", "套餐", "合作", "融资", "开源", "模型", "智能体", "Agent", "视频", "图像", "语音", "VLM", "Coding", "Token", "调用量", "企业", "客户", "用户"];
+  const usefulHits = usefulTerms.filter((term) => clean.includes(term)).length;
+  if (usefulHits < 2) return false;
+
+  const headline = extractCommunicationHeadline(candidate);
+  if (/相关搜索|去网页搜|下一页|企业推广|登录|无障碍/.test(headline)) return false;
+  return true;
 }
 
 function scoreCandidate(source, sourceResult) {
@@ -583,6 +851,10 @@ function scoreCandidate(source, sourceResult) {
 }
 
 function buildIntelligenceSummary(input) {
+  if (input.type === "wechat" || input.type === "media") {
+    return buildCommunicationSummary(input);
+  }
+
   const hint = SOURCE_INTELLIGENCE_HINTS[input.sourceId];
   if (hint) return hint;
 
@@ -596,6 +868,180 @@ function buildIntelligenceSummary(input) {
       ? "这类新闻用于判断竞品近期宣传、融资、生态合作或市场关注点；星辰 MaaS 可重点看它是否会影响模型供给、价格或企业客户心智。"
       : "这类平台信息用于判断竞品正在强化哪些可用能力；星辰 MaaS 可对照是否已经在官网、控制台和文档里把同类能力讲清楚。"
   };
+}
+
+function buildCommunicationSummary(input) {
+  const capabilities = detectCapabilityLabels(input);
+  const capabilityText = capabilities.length ? capabilities.join("、") : "模型/平台动态";
+  const headline = extractCommunicationHeadline(input);
+  const models = extractModelNames([input.name, input.keyword, input.snippet].join(" ")).slice(0, 4);
+  const title = summarizeCommunicationTitle(input, headline, capabilities, models);
+  const action = detectCommunicationAction([headline, input.keyword, input.snippet].join(" "));
+  const subject = models.length ? models.slice(0, 2).join("、") : normalizeCompetitorName(input);
+  const concrete = summarizeConcreteCommunicationBody(input, [headline, input.keyword, input.snippet].join(" "), capabilityText);
+  return {
+    title,
+    summary: concrete.summary || `${subject}${action}，关联${capabilityText}。`,
+    takeaway: concrete.takeaway || (input.type === "wechat"
+      ? `传播重点在${capabilityText}；星辰补清官网话术、案例和试用入口。`
+      : `市场关注点在${capabilityText}；星辰补模型供给、价格说明或企业案例。`)
+  };
+}
+
+function summarizeConcreteCommunicationBody(input, text, capabilityText) {
+  const vendor = normalizeCompetitorName(input);
+  const compact = String(text || "").replace(/\s+/g, " ");
+  if (/豆包大模型|火山方舟/i.test(compact) && /Token调用量|日均Token|万亿Tokens|企业和个人/i.test(compact)) {
+    return {
+      summary: "公开报道提到，豆包大模型日均 Token 调用量突破 180 万亿，火山方舟服务超过 110 万企业和个人，重点是在用调用规模和客户规模证明平台化进展。",
+      takeaway: "星辰 MaaS 可对比是否把调用规模、客户案例、行业落地和稳定性能力讲清楚，而不只展示模型列表。"
+    };
+  }
+  if (/低代码|流程编排|Bot|钉钉/i.test(compact)) {
+    return {
+      summary: `${vendor}被报道用于低代码流程编排，把 Bot 嵌入报销、订单审核等企业日常流程，重点是把模型能力包装成可落地的工作流。`,
+      takeaway: "星辰 MaaS 可重点补齐应用模板、工作流示例和企业流程场景，让模型能力更容易被业务方理解和试用。"
+    };
+  }
+  if (/GLM\s*-?\s*5\.?2|GLM-5\.2/i.test(compact)) {
+    return {
+      summary: "行业报道提到 GLM-5.2 发布后，智谱在国产开源模型竞争中继续强调基座能力和开源生态优势。",
+      takeaway: "星辰 MaaS 可关注 GLM 等国产模型的接入、版本说明、评测结果和迁移建议，避免用户只看到模型名、看不到选择依据。"
+    };
+  }
+  if (/Coding|Agent|VLM|视觉理解/i.test(compact) && /豆包|火山方舟/i.test(compact)) {
+    return {
+      summary: "报道提到豆包围绕 Coding、Agent、VLM 三个方向升级，火山方舟继续把模型能力和平台服务打包成对外方案。",
+      takeaway: "星辰 MaaS 可把代码、智能体和视觉理解能力分别做成清晰入口，并配套示例、价格和调用限制说明。"
+    };
+  }
+  return {
+    summary: "",
+    takeaway: ""
+  };
+}
+
+function summarizeCommunicationTitle(input, headline, capabilities, models) {
+  const vendor = normalizeCompetitorName(input);
+  const text = [headline, input.keyword, input.snippet].join(" ");
+  const concreteTitle = summarizeConcreteCommunicationTitle(vendor, text);
+  if (concreteTitle) return concreteTitle;
+  let subject = models[0]
+    || (text.match(/豆包大模型|文心千帆|通义千问|阿里百炼|火山方舟|硅基流动|智谱AI|GLM|Qwen/i) || [])[0]
+    || capabilities[0]
+    || "AI平台";
+  if (vendor.includes(subject) || subject.includes(vendor)) {
+    subject = capabilities[0] || "AI平台";
+  }
+  const action = detectCommunicationAction(text);
+  return compactTitle(`${vendor}：${subject}${action}`);
+}
+
+function summarizeConcreteCommunicationTitle(vendor, text) {
+  const compact = String(text || "").replace(/\s+/g, " ");
+  const rules = [
+    [/豆包|火山方舟/i, /Coding|Agent|VLM|视觉理解|三大方向/i, `${vendor}：豆包升级 Coding/Agent/VLM 能力`],
+    [/豆包大模型家族|豆包主力模型/i, /发布|升级|上线/i, `${vendor}：豆包大模型家族发布并升级方舟`],
+    [/豆包大模型|火山方舟/i, /Token调用量|日均Token|企业和个人|万亿Tokens/i, `${vendor}：豆包调用量和方舟客户规模增长`],
+    [/GLM\s*-?\s*5\.?2|GLM-5\.2/i, /发布|推出|开源|优势/i, `${vendor}：GLM-5.2 强化开源模型供给`],
+    [/GLM\s*-?\s*4|GLM-4/i, /API|开放|上线/i, `${vendor}：GLM-4 API 开放上线`],
+    [/低代码|流程编排|Bot|钉钉/i, /企业|报销|订单|审核|工作流/i, `${vendor}：低代码 Bot 嵌入企业流程`],
+    [/Coding\s*Plan|Token\s*Plan/i, /停止续费|升级|套餐|权益/i, `${vendor}：开发者套餐权益调整`],
+    [/Token工厂|推理型算力|AI infra/i, /硅基流动|SiliconFlow/i, `${vendor}：Token 工厂强调推理成本优势`]
+  ];
+  for (const [subjectPattern, actionPattern, title] of rules) {
+    if (subjectPattern.test(compact) && actionPattern.test(compact)) return compactTitle(title);
+  }
+  return "";
+}
+
+function normalizeCompetitorName(input) {
+  const fallback = {
+    volc: "火山方舟",
+    baidu: "百度千帆",
+    aliyun: "阿里百炼",
+    silicon: "硅基流动",
+    tencent: "腾讯云 TI",
+    huawei: "华为 MaaS",
+    zhipu: "智谱 AI"
+  };
+  const fromName = String(input.name || "")
+    .replace(/^公众号检索：|^新闻检索：/, "")
+    .split(/[\/｜|]/)[0]
+    .trim();
+  return fromName || fallback[input.competitor] || input.competitor || "竞品";
+}
+
+function detectCommunicationAction(text) {
+  const rules = [
+    [/低代码|工作流|Bot|智能体|Agent/i, "强化智能体/工作流"],
+    [/开放API|API\s*正式上线|上线|发布|推出|开源/i, "上线/发布"],
+    [/升级|更新|迭代/i, "升级"],
+    [/Token调用量|日均Token|万亿Tokens|调用量|企业和个人|客户规模/i, "规模增长"],
+    [/套餐|额度|免费|优惠|价格|降价|Token/i, "调整权益/价格"],
+    [/客户案例|案例|合作|生态/i, "强化案例/生态"],
+    [/融资|IPO|资本/i, "出现资本信号"],
+    [/试用|体验/i, "出现体验反馈"],
+    [/算力|推理|Token工厂|infra/i, "强调推理成本"]
+  ];
+  return (rules.find(([pattern]) => pattern.test(text)) || [null, "出现市场信号"])[1];
+}
+
+function compactTitle(value) {
+  return String(value || "")
+    .replace(/[?？!！。；;，,]+/g, "")
+    .replace(/\s+/g, "")
+    .slice(0, 42);
+}
+
+function cleanCommunicationSnippet(value = "") {
+  let text = String(value);
+  const wechatIndex = text.indexOf("以下内容来自微信公众平台");
+  if (wechatIndex >= 0) text = text.slice(wechatIndex + "以下内容来自微信公众平台".length);
+  return text
+    .replace(/\s+/g, " ")
+    .replace(/["{,]*summary["']?\s*[:：]\s*["']?/gi, " ")
+    .replace(/["{,]*title["']?\s*[:：]\s*["']?/gi, " ")
+    .replace(/["{,]*abstract["']?\s*[:：]\s*["']?/gi, " ")
+    .replace(/\\u[\da-f]{4}/gi, " ")
+    .replace(/[^。！？?]{0,48}相关\s*公众号文章\s*[–-]\s*搜狗\s*搜索/gi, " ")
+    .replace(/无障碍|登录|资讯|网页|微信|知乎|图片|视频|医疗|汉语|翻译|问问|百科|更多>>/g, " ")
+    .replace(/以下内容来自微信公众平台/g, " ")
+    .replace(/的相关微信公众号文章\s*[-–]\s*搜狗微信搜索/g, " ")
+    .replace(/百度一下|搜索本产品文档关键词/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractCommunicationHeadline(input) {
+  const clean = cleanCommunicationSnippet(input.snippet);
+  const withoutPrefix = clean
+    .replace(new RegExp(escapeRegExp(input.keyword || ""), "gi"), input.keyword || "")
+    .replace(/^\S{0,24}的相关微信公众号文章\s*/, "")
+    .trim();
+  const sentence = withoutPrefix
+    .split(/(?<=[。！？?])| {2,}| \/ | - /)
+    .map((item) => item.trim())
+    .find((item) => item.length >= 12 && !/搜狗|百度|登录|注册|控制台|文档中心/.test(item));
+  const result = sentence || withoutPrefix;
+  return result.length > 72 ? `${result.slice(0, 70)}...` : result;
+}
+
+function isLowQualitySearchSnippet(snippet = "") {
+  const text = String(snippet);
+  const clean = cleanCommunicationSnippet(snippet);
+  const noiseTerms = ["金球奖最新概率", "女子被骗", "阿根廷连续", "斯塔默", "威廉王子", "老娘有钱", "全球好感度", "下一页", "企业推广"];
+  const noiseHits = noiseTerms.filter((term) => text.includes(term)).length;
+  const usefulTerms = ["发布", "上线", "升级", "下线", "退役", "合作", "融资", "套餐", "模型", "智能体", "火山方舟", "百度千帆", "阿里百炼", "智谱", "GLM", "Qwen", "豆包", "通义"];
+  const usefulHits = usefulTerms.filter((term) => text.includes(term)).length;
+  if (noiseHits >= 2 && usefulHits <= 3) return true;
+  if (clean.length < 28) return true;
+  if (/^\W*[a-z]\s+与\s+Agent\s+领域/.test(clean) && usefulHits <= 2) return true;
+  return false;
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function detectCapabilityLabels(input) {
@@ -629,6 +1075,185 @@ function buildEvidenceSnippet(snippet, keyword) {
   const compact = snippet.replace(/\s+/g, " ").replace(/\.\.\./g, "…").trim();
   const prefix = keyword ? `命中“${keyword}”：` : "";
   return `${prefix}${compact.slice(0, 180)}${compact.length > 180 ? "…" : ""}`;
+}
+
+function collectModelUpdates(source, text) {
+  if (!isModelUpdateSource(source)) return [];
+  if (!MODEL_UPDATE_COMPETITORS.has(source.competitor)) return [];
+  const knownRows = collectKnownModelUpdates(source);
+  const extracted = text
+    ? source.id === "baidu-qianfan-model"
+      ? extractBaiduModelUpdates(source, text)
+      : extractGenericModelUpdates(source, text)
+    : [];
+  return dedupeModelUpdates(extracted.concat(knownRows));
+}
+
+function collectKnownModelUpdates(source) {
+  return asArray(KNOWN_MODEL_UPDATE_ROWS[source.id])
+    .filter((row) => row.date >= MODEL_UPDATE_LOOKBACK_START)
+    .map((row) => buildModelUpdateItem(source, row.date, row.detail, row.models, row.type));
+}
+
+function isModelUpdateSource(source) {
+  if (source?.type !== "official") return false;
+  if (!asArray(source.categories).includes("model")) return false;
+  return Boolean(
+    source.recordType === "official_model_update_log"
+    || source.recordType === "official_update_record"
+    || /模型更新|模型更新日志|更新公告|release/i.test(source.name || "")
+  );
+}
+
+function extractBaiduModelUpdates(source, text) {
+  const compact = normalizeModelText(text);
+  const updates = [];
+  const monthPattern = /(20\d{2})年(\d{1,2})月([\s\S]*?)(?=20\d{2}年\d{1,2}月|$)/g;
+  let monthMatch;
+  while ((monthMatch = monthPattern.exec(compact))) {
+    const year = monthMatch[1];
+    const month = monthMatch[2];
+    const monthBody = monthMatch[3];
+    const entryPattern = /(\d{1,2})月(\d{1,2})日\s+([\s\S]*?)(?=\d{1,2}月\d{1,2}日|$)/g;
+    let entryMatch;
+    while ((entryMatch = entryPattern.exec(monthBody))) {
+      const date = `${year}-${pad2(month)}-${pad2(entryMatch[2])}`;
+      if (date < MODEL_UPDATE_LOOKBACK_START) continue;
+      const detail = entryMatch[3].trim();
+      if (!isModelUpdateDetail(detail)) continue;
+      const models = extractModelNames(detail);
+      if (!models.length) continue;
+      updates.push(buildModelUpdateItem(source, date, detail, models));
+    }
+  }
+  return dedupeModelUpdates(updates).slice(0, 160);
+}
+
+function extractGenericModelUpdates(source, text) {
+  const compact = normalizeModelText(text);
+  const updates = [];
+  const datePattern = /(20\d{2})[.\-/年](\d{1,2})[.\-/月](\d{1,2})日?\s*([\s\S]*?)(?=20\d{2}[.\-/年]\d{1,2}[.\-/月]\d{1,2}日?|$)/g;
+  let match;
+  while ((match = datePattern.exec(compact))) {
+    const date = `${match[1]}-${pad2(match[2])}-${pad2(match[3])}`;
+    if (date < MODEL_UPDATE_LOOKBACK_START) continue;
+    const detail = match[4].trim();
+    if (!isModelUpdateDetail(detail)) continue;
+    const models = extractModelNames(detail);
+    if (!models.length && !/(模型|model|deepseek|qwen|glm|kimi|minimax|ernie|豆包|文心)/i.test(detail)) continue;
+    updates.push(buildModelUpdateItem(source, date, detail, models.length ? models : [source.vendor || source.name]));
+  }
+  return dedupeModelUpdates(updates).slice(0, 80);
+}
+
+function buildModelUpdateItem(source, date, detail, models, forcedType = "") {
+  const sourceId = getDataSourceId(source);
+  const updateType = forcedType || detectModelUpdateType(detail);
+  const modelText = models.slice(0, 5).join("、");
+  const summary = summarizeModelUpdateDetail(detail, models, updateType);
+  const idHash = createHash("sha1")
+    .update(`${source.id}|${date}|${modelText}|${updateType}|${summary}`)
+    .digest("hex")
+    .slice(0, 8);
+  return {
+    id: `model-update-${source.id}-${date}-${idHash}`,
+    competitor: source.competitor,
+    date,
+    title: `${source.vendor || source.name}：${modelText} ${updateType}`,
+    summary,
+    models: models.slice(0, 8),
+    updateType,
+    categories: ["model"],
+    priority: source.priority || "medium",
+    source: sourceId,
+    evidence: buildEvidenceSnippet(detail, models[0] || updateType),
+    autoModelUpdate: true
+  };
+}
+
+function normalizeModelText(text) {
+  return String(text || "")
+    .replace(/\s+/g, " ")
+    .replace(/复制 MD 格式|目录|文档中心|立即试用/g, " ")
+    .trim();
+}
+
+function isModelUpdateDetail(detail) {
+  return /(上新|退役|升级|下线|发布|新增|价格|迁移|限流|实名|模型|model)/i.test(detail);
+}
+
+function detectModelUpdateType(detail) {
+  if (/退役|下线/.test(detail)) return "下线";
+  if (/上新|发布|新增|上线/.test(detail)) return "上新";
+  if (/升级|更新|新增支持|参数/.test(detail)) return "升级";
+  if (/价格|计费|免费|优惠/.test(detail)) return "价格/权益";
+  if (/迁移|限流|实名/.test(detail)) return "治理/迁移";
+  return "模型更新";
+}
+
+function extractModelNames(text) {
+  const modelPattern = /\b(?:ERNIE|GLM|Qwen|DeepSeek|Kimi|MiniMax|Doubao|Hunyuan|Qianfan|SenseVoice|BGE|Llama|Mistral|Claude|GPT|Gemini|Moonshot|Z\.ai)[A-Za-z0-9._:/+\-]*\b|豆包(?:大模型|主力模型|模型|[A-Za-z0-9.\-]+)?|文心(?:千帆|一言|大模型|ERNIE|[A-Za-z0-9.\-]+)?/gi;
+  const matches = String(text || "").match(modelPattern) || [];
+  const seen = new Set();
+  return matches
+    .map((item) => item.replace(/[、，。；：:）)]+$/g, "").trim())
+    .filter((item) => item.length >= 2 && item.length <= 64)
+    .filter((item) => !/^(API|Base|URL|Token|Model|文心)$/.test(item))
+    .filter((item) => {
+      const key = item.toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, 12);
+}
+
+function summarizeModelUpdateDetail(detail, models, updateType) {
+  const clean = normalizeModelText(detail)
+    .replace(/调用说明请查看[：:]?/g, "")
+    .replace(/模型下线，推荐替换模型请查看[：:]?/g, "模型下线，需查看替代模型。")
+    .trim();
+  const modelText = models.slice(0, 4).join("、");
+  const tail = clean.length > 130 ? `${clean.slice(0, 128)}...` : clean;
+  return `${modelText} 出现${updateType}动作；${tail}`;
+}
+
+function dedupeModelUpdates(items) {
+  const seen = new Set();
+  return items.filter((item) => {
+    const key = `${item.competitor}|${item.date}|${item.updateType}|${item.models.join(",")}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function replaceAutoModelUpdates(payload, updates) {
+  payload.modelUpdates = asArray(payload.modelUpdates).filter((item) => {
+    if (!item?.autoModelUpdate) return true;
+    if (!MODEL_UPDATE_COMPETITORS.has(item.competitor)) return false;
+    return !updates.some((update) => update.source === item.source);
+  });
+  updates.forEach((item) => addOrUpdateModelUpdate(payload, item));
+}
+
+function addOrUpdateModelUpdate(payload, updateItem) {
+  payload.modelUpdates = asArray(payload.modelUpdates);
+  const index = payload.modelUpdates.findIndex((item) => item.id === updateItem.id);
+  if (index >= 0) payload.modelUpdates[index] = { ...payload.modelUpdates[index], ...updateItem };
+  else payload.modelUpdates.push(updateItem);
+}
+
+function removeNonCommunicationNews(payload) {
+  const sources = payload.sources && typeof payload.sources === "object" ? payload.sources : {};
+  payload.news = asArray(payload.news).filter((item) => {
+    const source = sources[item?.source] || {};
+    return source.type === "media" || source.type === "wechat";
+  });
+}
+
+function pad2(value) {
+  return String(value).padStart(2, "0");
 }
 
 function addOrUpdateNews(payload, newsItem) {
@@ -677,6 +1302,9 @@ function addOrUpdateSource(payload, source) {
     ...(payload.sources[sourceId] || {}),
     title: source.name,
     vendor: source.vendor || source.name,
+    competitor: source.competitor,
+    categories: source.categories || [],
+    priority: source.priority || "",
     url: source.url,
     type: source.type,
     recordType: source.recordType || "",
@@ -704,6 +1332,7 @@ function buildRunSummary(report) {
     exactMatches: report.exactMatches.length,
     publishedCandidates: report.publishedCandidates || 0,
     candidates: report.candidates.length,
+    modelUpdates: report.modelUpdates.length,
     errors: report.errors.length
   };
 }
@@ -711,6 +1340,7 @@ function buildRunSummary(report) {
 function sortPayload(payload) {
   payload.news = asArray(payload.news).sort((a, b) => String(b.date).localeCompare(String(a.date)));
   payload.events = asArray(payload.events).sort((a, b) => String(b.date).localeCompare(String(a.date)));
+  payload.modelUpdates = asArray(payload.modelUpdates).sort((a, b) => String(b.date).localeCompare(String(a.date)));
   payload.competitors = asArray(payload.competitors).sort((a, b) => String(a.id).localeCompare(String(b.id)));
 }
 
@@ -719,7 +1349,8 @@ function getLatestKnownDate(payload, fallbackDate) {
     fallbackDate,
     payload?.snapshotDate,
     ...asArray(payload?.events).map((item) => item?.date),
-    ...asArray(payload?.news).map((item) => item?.date)
+    ...asArray(payload?.news).map((item) => item?.date),
+    ...asArray(payload?.modelUpdates).map((item) => item?.date)
   ].filter((value) => /^\d{4}-\d{2}-\d{2}$/.test(String(value || "")));
   return dates.length ? dates.sort().at(-1) : fallbackDate;
 }
@@ -740,6 +1371,7 @@ function buildMarkdownReport(report) {
     `- 检查来源：${report.sourcesChecked} 个`,
     `- 官方更新记录：${report.exactMatches.length} 条`,
     `- 新闻/公众号线索：${report.publishedCandidates || 0} 条`,
+    `- 官方模型更新：${report.modelUpdates.length} 条`,
     `- 采集线索：${report.candidates.length} 条`,
     `- 抓取异常：${report.errors.length} 条`,
     "",
@@ -755,6 +1387,19 @@ function buildMarkdownReport(report) {
     });
   } else {
     lines.push("- 没有发现来自竞品平台官方更新记录、且同时命中“目标日期 + 关键词”的动态。");
+  }
+
+  lines.push("", "## 官方模型更新统计", "");
+  if (report.modelUpdates.length) {
+    report.modelUpdates
+      .slice()
+      .sort((a, b) => String(b.date).localeCompare(String(a.date)))
+      .slice(0, 30)
+      .forEach((item) => {
+        lines.push(`- ${item.date}｜${item.competitor}｜${item.updateType}｜${item.models.join("、")}｜${item.title}`);
+      });
+  } else {
+    lines.push("- 没有从官方模型更新文档抽取到按日模型变化。");
   }
 
   lines.push("", "## 采集线索", "");

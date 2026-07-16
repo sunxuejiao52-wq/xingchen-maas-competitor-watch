@@ -15,6 +15,32 @@
       "keywords": ["火山方舟", "豆包", "模型", "智能体", "视频", "图像", "批量任务", "调优", "套餐", "用量"]
     },
     {
+      "id": "volc-ark-model-updates",
+      "sourceId": "volcArkModelUpdates",
+      "competitor": "volc",
+      "name": "火山方舟模型更新日志",
+      "vendor": "火山方舟",
+      "url": "https://console.volcengine.com/ark/region:cn-beijing/docs/82379/1159178?lang=zh",
+      "type": "official",
+      "recordType": "official_model_update_log",
+      "priority": "high",
+      "categories": ["model", "multimodal"],
+      "keywords": ["火山方舟", "豆包", "模型", "上线", "发布", "升级", "下线", "退役", "图像", "视频", "语音"]
+    },
+    {
+      "id": "volc-ark-platform-updates",
+      "sourceId": "volcArkPlatformUpdates",
+      "competitor": "volc",
+      "name": "火山方舟平台更新记录",
+      "vendor": "火山方舟",
+      "url": "https://console.volcengine.com/ark/region:cn-beijing/docs/82379/1159177?lang=zh",
+      "type": "official",
+      "recordType": "official_update_record",
+      "priority": "high",
+      "categories": ["agent", "tools", "platform", "business"],
+      "keywords": ["火山方舟", "更新记录", "智能体", "工具", "批量任务", "模型调优", "用量", "评测", "安全", "套餐"]
+    },
+    {
       "id": "baidu-qianfan-model",
       "sourceId": "baiduModel",
       "competitor": "baidu",
@@ -33,7 +59,7 @@
       "competitor": "baidu",
       "name": "百度千帆更新动态",
       "vendor": "百度千帆",
-      "url": "https://cloud.baidu.com/doc/qianfan/s/Mmh8l4qwj",
+      "url": "https://cloud.baidu.com/doc/qianfan/s/Gmh4stncc",
       "type": "official",
       "recordType": "official_update_record",
       "priority": "high",
@@ -64,6 +90,32 @@
       "priority": "high",
       "categories": ["model", "multimodal"],
       "keywords": ["百炼", "通义", "模型", "Qwen", "DeepSeek", "GLM", "Kimi", "图像", "视频", "语音", "向量"]
+    },
+    {
+      "id": "aliyun-bailian-model-updates",
+      "sourceId": "aliyunModelUpdates",
+      "competitor": "aliyun",
+      "name": "阿里百炼模型更新日志",
+      "vendor": "阿里百炼",
+      "url": "https://bailian.console.aliyun.com/cn-beijing?spm=5176.29619931.J__Z58Z6CX7MY__Ll8p1ZOR.1.5709521cDeDXG9&tab=doc#/doc/?type=model&url=2987781",
+      "type": "official",
+      "recordType": "official_model_update_log",
+      "priority": "high",
+      "categories": ["model", "multimodal"],
+      "keywords": ["阿里百炼", "通义", "Qwen", "模型", "上线", "发布", "升级", "下线", "退役", "图像", "视频", "语音", "向量"]
+    },
+    {
+      "id": "aliyun-bailian-platform-updates",
+      "sourceId": "aliyunPlatformUpdates",
+      "competitor": "aliyun",
+      "name": "阿里百炼平台更新记录",
+      "vendor": "阿里百炼",
+      "url": "https://bailian.console.aliyun.com/cn-beijing?spm=5176.29619931.J__Z58Z6CX7MY__Ll8p1ZOR.1.5709521cDeDXG9&tab=doc#/doc/?type=model&url=2987782",
+      "type": "official",
+      "recordType": "official_update_record",
+      "priority": "high",
+      "categories": ["agent", "tools", "platform", "business"],
+      "keywords": ["阿里百炼", "平台更新", "智能体", "工作流", "MCP", "工具", "知识库", "应用", "套餐", "计费"]
     },
     {
       "id": "aliyun-bailian-mcp",
