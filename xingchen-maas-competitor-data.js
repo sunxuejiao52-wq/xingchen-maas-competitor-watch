@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-07-17 09:22:03",
+  "updatedAt": "2026-07-17 09:53:59",
   "snapshotDate": "2026-07-17",
-  "note": "自动刷新已运行：2026-07-17 09:22:03（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-07-17 的竞品动态。官方更新记录 3 条，新闻/公众号线索 3 条，官方模型更新 16 条。",
+  "note": "自动刷新已运行：2026-07-17 09:53:59（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-07-17 的竞品动态。官方更新记录 3 条，新闻/公众号线索 2 条，官方模型更新 16 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -475,65 +475,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "matchType": "source_monitor"
     },
     {
-      "id": "record-source-volc-ark-platform-updates-2026-07-16",
-      "competitor": "volc",
-      "date": "2026-07-16",
-      "title": "火山方舟：平台更新记录源已纳入监控",
-      "summary": "更新重点来自火山方舟官方平台更新记录，用于观察平台能力、工具、智能体、批量任务、评测、用量和管理能力变化。 本次抓取命中“火山方舟”。",
-      "categories": [
-        "agent",
-        "tools",
-        "platform",
-        "business"
-      ],
-      "priority": "high",
-      "source": "volcArkPlatformUpdates",
-      "signal": "这是用户指定的竞品平台官方更新记录页，已进入“更新记录”列表和对比看板的官方来源口径；如果后续页面出现明确日期，系统会生成对应日期的精确更新记录。火山方舟平台记录更适合判断其 MaaS 产品化方向；星辰 MaaS 可重点对比工具链闭环、用量治理和企业管理能力。",
-      "evidence": "命中“火山方舟”：火山方舟 --> --> -->",
-      "autoRecord": true,
-      "recordType": "official_update_record",
-      "matchType": "source_monitor"
-    },
-    {
-      "id": "record-source-baidu-qianfan-platform-2026-07-16",
-      "competitor": "baidu",
-      "date": "2026-07-16",
-      "title": "百度千帆：平台更新记录源已纳入监控",
-      "summary": "更新重点集中在应用搭建能力：工作流 Agent、多智能体协同、工具广场、知识库、RAG、AI 搜索、问题改写和行业模板。 本次抓取命中“智能体”。",
-      "categories": [
-        "agent",
-        "tools",
-        "business"
-      ],
-      "priority": "high",
-      "source": "baiduPlatform",
-      "signal": "这是用户指定的竞品平台官方更新记录页，已进入“更新记录”列表和对比看板的官方来源口径；如果后续页面出现明确日期，系统会生成对应日期的精确更新记录。百度正在把搜索、知识库和智能体流程组合成可用产品；星辰 MaaS 可重点对标企业知识接入、引用依据和工具编排能力。",
-      "evidence": "命中“智能体”：…工作流Agent：“金牌销售”车险续保Agent 工作流Agent：如何使用全局跳转节点搭建飞行客服小助手 工作流Agent：机票订单处理助手 工作流大模型节点高级配置使用案例 多智能体协同Agent最佳实践 用“多智能体协同Agent”一分钟搭建专属研究Agent，帮企业做深度研究 自定义工具最佳实践 工作流组件： API的增删查 工作流组件：如何用知识…",
-      "autoRecord": true,
-      "recordType": "official_update_record",
-      "matchType": "source_monitor"
-    },
-    {
-      "id": "record-source-aliyun-bailian-platform-updates-2026-07-16",
-      "competitor": "aliyun",
-      "date": "2026-07-16",
-      "title": "阿里百炼：平台更新记录源已纳入监控",
-      "summary": "更新重点来自阿里百炼官方平台更新记录，用于观察智能体、工作流、MCP/工具、知识库、应用搭建、套餐和计费能力变化。 本次抓取未返回可解析的逐条正文。",
-      "categories": [
-        "agent",
-        "tools",
-        "platform",
-        "business"
-      ],
-      "priority": "high",
-      "source": "aliyunPlatformUpdates",
-      "signal": "这是用户指定的竞品平台官方更新记录页，已进入“更新记录”列表和对比看板的官方来源口径；如果后续页面出现明确日期，系统会生成对应日期的精确更新记录。阿里百炼平台记录更适合判断其从模型调用走向应用搭建平台的节奏；星辰 MaaS 可重点对比工作流、工具生态和企业场景模板。",
-      "evidence": "官方平台更新记录来源：https://bailian.console.aliyun.com/cn-beijing?spm=5176.29619931.J__Z58Z6CX7MY__Ll8p1ZOR.1.5709521cDeDXG9&tab=doc#/doc/?type=model&url=2987782",
-      "autoRecord": true,
-      "recordType": "official_update_record",
-      "matchType": "source_monitor"
-    },
-    {
       "id": "baidu-20260709-model-retire",
       "competitor": "baidu",
       "date": "2026-07-09",
@@ -550,106 +491,20 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "news": [
     {
-      "id": "candidate-media-maas-news-baidu-2026-07-17",
-      "competitor": "baidu",
-      "date": "2026-07-17",
-      "kind": "媒体/新闻线索",
-      "title": "百度千帆：文心5.0升级",
-      "summary": "文心5.0、文心APP升级，关联模型供给、图像视频语音。",
-      "takeaway": "市场关注点在模型供给、图像视频语音；星辰补模型供给、价格说明或企业案例。",
-      "insight": "市场关注点在模型供给、图像视频语音；星辰补模型供给、价格说明或企业案例。",
-      "evidence": "命中“百度千帆”：…采用原生全模态统一建模技术，具备全模态理解与生成能力，支持文本、图像、音频、视频等多种信息的输入与输出。目前，文心5.0已在文心APP及官网面向C端开放，企业端则… 新浪财经 百度千帆 品牌升级 更开放整合百度系全域AI能力\",\"titleUrl\":\"https://field.10jqka.com.cn/20251016/c671784811.shtml…",
-      "categories": [
-        "model",
-        "business"
-      ],
-      "priority": "low",
-      "source": "mediaBaiduQianfanSearch",
-      "sourceName": "新闻检索：百度千帆",
-      "sourceType": "media",
-      "keyword": "百度千帆",
-      "relevanceScore": 8,
-      "autoCandidate": true
-    },
-    {
-      "id": "candidate-media-maas-news-aliyun-2026-07-17",
-      "competitor": "aliyun",
-      "date": "2026-07-17",
-      "kind": "媒体/新闻线索",
-      "title": "阿里百炼：低代码Bot嵌入企业流程",
-      "summary": "阿里百炼被报道用于低代码流程编排，把 Bot 嵌入报销、订单审核等企业日常流程，重点是把模型能力包装成可落地的工作流。",
-      "takeaway": "星辰 MaaS 可重点补齐应用模板、工作流示例和企业流程场景，让模型能力更容易被业务方理解和试用。",
-      "insight": "星辰 MaaS 可重点补齐应用模板、工作流示例和企业流程场景，让模型能力更容易被业务方理解和试用。",
-      "evidence": "命中“阿里百炼”：…它并不强调对话式交互，而是通过低代码流程编排，把Bot嵌入企业日常流程中，比如在钉钉中设立一个“员工报销Bot”或“订单审核Bot”。相比之下，通义百… 新浪财经 去网页搜： 阿里百炼 通义 大模型 相关搜索 阿里ai大模型通义千问 阿里通义大模型最新消息 阿里通义大模型概念股票 通义大模型怎么样 通义大模型的核心能力 阿里通义大模型发布新功能 通义千问哪…",
-      "categories": [
-        "model",
-        "multimodal",
-        "business"
-      ],
-      "priority": "low",
-      "source": "mediaAliyunBailianSearch",
-      "sourceName": "新闻检索：阿里百炼",
-      "sourceType": "media",
-      "keyword": "阿里百炼",
-      "relevanceScore": 9,
-      "autoCandidate": true
-    },
-    {
-      "id": "candidate-media-maas-news-volc-2026-07-17",
-      "competitor": "volc",
-      "date": "2026-07-17",
-      "kind": "媒体/新闻线索",
-      "title": "火山方舟：豆包升级Coding/Agent/VLM能力",
-      "summary": "报道提到豆包围绕 Coding、Agent、VLM 三个方向升级，火山方舟继续把模型能力和平台服务打包成对外方案。",
-      "takeaway": "星辰 MaaS 可把代码、智能体和视觉理解能力分别做成清晰入口，并配套示例、价格和调用限制说明。",
-      "insight": "星辰 MaaS 可把代码、智能体和视觉理解能力分别做成清晰入口，并配套示例、价格和调用限制说明。",
-      "evidence": "命中“火山方舟”：…g 与 Agent 领域则是 Claude Opus 4.6。而今天，“围绕 Coding、Agent、VLM 三大方向实现大幅升级”后，豆包大模… 新浪财经 豆包大模型 与 火山方舟 平台构成其对外的主要解决方案抓手。在智能营销、智能客服等高频交互场景中,这…\",\"dispTime\":\"8天前\",\"sourceIcon\":\"\",\"rtses\":\"同花顺\"…",
-      "categories": [
-        "model",
-        "multimodal",
-        "business"
-      ],
-      "priority": "low",
-      "source": "mediaVolcArkSearch",
-      "sourceName": "新闻检索：火山方舟",
-      "sourceType": "media",
-      "keyword": "火山方舟",
-      "relevanceScore": 8,
-      "autoCandidate": true
-    },
-    {
-      "id": "candidate-media-maas-news-aliyun-2026-07-16",
-      "competitor": "aliyun",
-      "date": "2026-07-16",
-      "kind": "媒体/新闻线索",
-      "title": "阿里百炼：低代码Bot嵌入企业流程",
-      "summary": "阿里百炼被报道用于低代码流程编排，把 Bot 嵌入报销、订单审核等企业日常流程，重点是把模型能力包装成可落地的工作流。",
-      "takeaway": "星辰 MaaS 可重点补齐应用模板、工作流示例和企业流程场景，让模型能力更容易被业务方理解和试用。",
-      "insight": "星辰 MaaS 可重点补齐应用模板、工作流示例和企业流程场景，让模型能力更容易被业务方理解和试用。",
-      "evidence": "命中“阿里百炼”：…它并不强调对话式交互，而是通过低代码流程编排，把Bot嵌入企业日常流程中，比如在钉钉中设立一个“员工报销Bot”或“订单审核Bot”。相比之下，通义百… 新浪财经 去网页搜： 阿里百炼 通义 大模型 相关搜索 阿里ai大模型通义千问 阿里通义大模型最新消息 阿里通义大模型概念股票 通义大模型怎么样 通义大模型的核心能力 阿里通义大模型发布新功能 通义千问哪…",
-      "categories": [
-        "model",
-        "multimodal",
-        "business"
-      ],
-      "priority": "low",
-      "source": "mediaAliyunBailianSearch",
-      "sourceName": "新闻检索：阿里百炼",
-      "sourceType": "media",
-      "keyword": "阿里百炼",
-      "relevanceScore": 9,
-      "autoCandidate": true
-    },
-    {
       "id": "candidate-media-maas-news-volc-2026-07-16",
       "competitor": "volc",
       "date": "2026-07-16",
+      "publishedDate": "2026-07-16",
+      "publishedDateLabel": "2026-07-16",
+      "dateSource": "published_date",
+      "collectedDate": "2026-07-17",
+      "collectedAt": "2026-07-17 09:53:59",
       "kind": "媒体/新闻线索",
-      "title": "火山方舟：豆包升级Coding/Agent/VLM能力",
-      "summary": "报道提到豆包围绕 Coding、Agent、VLM 三个方向升级，火山方舟继续把模型能力和平台服务打包成对外方案。",
-      "takeaway": "星辰 MaaS 可把代码、智能体和视觉理解能力分别做成清晰入口，并配套示例、价格和调用限制说明。",
-      "insight": "星辰 MaaS 可把代码、智能体和视觉理解能力分别做成清晰入口，并配套示例、价格和调用限制说明。",
-      "evidence": "命中“火山方舟”：…g 与 Agent 领域则是 Claude Opus 4.6。而今天，“围绕 Coding、Agent、VLM 三大方向实现大幅升级”后，豆包大模… 新浪财经 豆包大模型 与 火山方舟 平台构成其对外的主要解决方案抓手。在智能营销、智能客服等高频交互场景中,这…\",\"dispTime\":\"8天前\",\"sourceIcon\":\"\",\"rtses\":\"同花顺\"…",
+      "title": "火山方舟：豆包大模型强调推理成本",
+      "summary": "豆包大模型强调推理成本，关联模型供给、图像视频语音、搜索/知识库。",
+      "takeaway": "市场关注点在模型供给、图像视频语音、搜索/知识库；星辰补模型供给、价格说明或企业案例。",
+      "insight": "市场关注点在模型供给、图像视频语音、搜索/知识库；星辰补模型供给、价格说明或企业案例。",
+      "evidence": "命中“火山方舟”：…落地的AI应用--产经动态--中国经济新闻网 昨天17:02 5、火山引擎——字节系大模型平台与数据智能云** 火山引擎是字节跳动旗下的企业级云与AI服务平台,产品包括豆包大模型、火山方舟、向量数据库、知识库、GPU算力与智能推荐等。它把字节体系的算法、数据与内容技术能力开放给企业客户,在大模型接入、内容生成、推荐系统… 中国经济时报 模型 指南\",\"ti…",
       "categories": [
         "model",
         "multimodal",
@@ -660,6 +515,34 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "sourceName": "新闻检索：火山方舟",
       "sourceType": "media",
       "keyword": "火山方舟",
+      "relevanceScore": 9,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-media-maas-news-zhipu-2026-07-15",
+      "competitor": "zhipu",
+      "date": "2026-07-15",
+      "publishedDate": "2026-07-15",
+      "publishedDateLabel": "2026-07-15",
+      "dateSource": "relative_publish_date",
+      "collectedDate": "2026-07-17",
+      "collectedAt": "2026-07-17 09:53:59",
+      "kind": "媒体/新闻线索",
+      "title": "智谱AI：GLM-5.2强化开源模型供给",
+      "summary": "行业报道提到 GLM-5.2 发布后，智谱在国产开源模型竞争中继续强调基座能力和开源生态优势。",
+      "takeaway": "星辰 MaaS 可关注 GLM 等国产模型的接入、版本说明、评测结果和迁移建议，避免用户只看到模型名、看不到选择依据。",
+      "insight": "星辰 MaaS 可关注 GLM 等国产模型的接入、版本说明、评测结果和迁移建议，避免用户只看到模型名、看不到选择依据。",
+      "evidence": "命中“智谱”：…,\"summary\":\"招银国际复盘2026年二季度 大模型 行业发展时观察到，基模智能能力的竞争仍在加剧，Claude Fable 5的推出推动了大模型行业整体智能能力上限提升，智谱GLM 5.2的发布助力中国大模型厂商维持了在开源模型领域的优势地位。从模型综合能力看，国际厂商和中国厂商分别以Anthr…\",\"dispTime\":\"前天18:27\",\"s…",
+      "categories": [
+        "model",
+        "agent",
+        "business"
+      ],
+      "priority": "low",
+      "source": "mediaZhipuSearch",
+      "sourceName": "新闻检索：智谱 AI",
+      "sourceType": "media",
+      "keyword": "智谱",
       "relevanceScore": 8,
       "autoCandidate": true
     },
@@ -921,23 +804,23 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   "monitorRuns": [
     {
       "targetDate": "2026-07-17",
-      "runDateTime": "2026-07-17 09:22:03",
+      "runDateTime": "2026-07-17 09:53:59",
       "sourcesChecked": 24,
       "exactMatches": 3,
-      "publishedCandidates": 3,
-      "candidates": 20,
+      "publishedCandidates": 2,
+      "candidates": 21,
       "modelUpdates": 16,
       "errors": 0
     },
     {
       "targetDate": "2026-07-16",
-      "runDateTime": "2026-07-17 04:14:31",
+      "runDateTime": "2026-07-17 09:01:04",
       "sourcesChecked": 24,
-      "exactMatches": 3,
-      "publishedCandidates": 2,
-      "candidates": 20,
-      "modelUpdates": 16,
-      "errors": 0
+      "exactMatches": 0,
+      "publishedCandidates": 0,
+      "candidates": 0,
+      "modelUpdates": 0,
+      "errors": 24
     },
     {
       "targetDate": "2026-07-15",

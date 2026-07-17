@@ -741,6 +741,7 @@ function publishCandidateNews(payload, report) {
   const wechatCandidates = candidates
     .filter((item) => item.type === "wechat")
     .filter(isConcreteCommunicationCandidate)
+    .filter((item) => hasCandidatePublishDate(item, report.targetDate))
     .sort((a, b) => getCandidateInformationScore(b) - getCandidateInformationScore(a))
     .slice(0, MAX_WECHAT_CANDIDATES);
   const mediaCandidates = candidates
@@ -748,25 +749,33 @@ function publishCandidateNews(payload, report) {
     .filter((item) => item.relevanceScore >= MEDIA_RELEVANCE_THRESHOLD)
     .filter((item) => !isLowQualitySearchSnippet(item.snippet))
     .filter(isConcreteCommunicationCandidate)
+    .filter((item) => hasCandidatePublishDate(item, report.targetDate))
     .sort((a, b) => getCandidateInformationScore(b) - getCandidateInformationScore(a))
     .slice(0, MAX_MEDIA_CANDIDATES);
   const selected = wechatCandidates
     .concat(mediaCandidates)
     .sort((a, b) => getCandidateInformationScore(b) - getCandidateInformationScore(a))
     .slice(0, MAX_DAILY_NEWS);
-  selected.forEach((candidate) => addOrUpdateNews(payload, buildCandidateNewsItem(candidate, report.targetDate)));
+  selected.forEach((candidate) => addOrUpdateNews(payload, buildCandidateNewsItem(candidate, report.targetDate, report.runDateTime)));
   return selected;
 }
 
-function buildCandidateNewsItem(candidate, dateString) {
+function buildCandidateNewsItem(candidate, dateString, runDateTime = "") {
   const insight = buildIntelligenceSummary(candidate);
   const isWechat = candidate.type === "wechat";
   const kind = isWechat ? "公众号监测" : "媒体/新闻线索";
   const priority = isWechat ? "medium" : candidate.relevanceScore >= 10 ? "medium" : "low";
+  const publishInfo = extractCandidatePublishDate(candidate, dateString);
+  const itemDate = publishInfo.date || dateString;
   return {
-    id: buildCandidateNewsId(candidate.sourceId, dateString),
+    id: buildCandidateNewsId(candidate.sourceId, itemDate),
     competitor: candidate.competitor,
-    date: dateString,
+    date: itemDate,
+    publishedDate: publishInfo.date || "",
+    publishedDateLabel: publishInfo.label || "",
+    dateSource: publishInfo.source || "collection_date",
+    collectedDate: dateString,
+    collectedAt: runDateTime,
     kind,
     title: insight.title,
     summary: insight.summary,
@@ -786,6 +795,55 @@ function buildCandidateNewsItem(candidate, dateString) {
 
 function buildCandidateNewsId(sourceId, dateString) {
   return `candidate-${sourceId}-${dateString}`;
+}
+
+function hasCandidatePublishDate(candidate, fallbackDate) {
+  return Boolean(extractCandidatePublishDate(candidate, fallbackDate).date);
+}
+
+function extractCandidatePublishDate(candidate, fallbackDate) {
+  const text = [
+    candidate?.snippet,
+    candidate?.keyword,
+    candidate?.name
+  ].filter(Boolean).join(" ");
+  const fullDate = findFullDateInText(text);
+  if (fullDate) return { date: fullDate, label: fullDate, source: "published_date" };
+
+  const shortDate = findMonthDayInText(text, fallbackDate);
+  if (shortDate) return { date: shortDate, label: shortDate, source: "published_date" };
+
+  const relativeDate = findRelativeDateInText(text, fallbackDate);
+  if (relativeDate) return { date: relativeDate, label: relativeDate, source: "relative_publish_date" };
+
+  return { date: "", label: "发布时间未识别", source: "collection_date" };
+}
+
+function findFullDateInText(text) {
+  const match = String(text || "").match(/(20\d{2})[年.\-/](\d{1,2})[月.\-/](\d{1,2})日?/);
+  if (!match) return "";
+  return `${match[1]}-${pad2(match[2])}-${pad2(match[3])}`;
+}
+
+function findMonthDayInText(text, fallbackDate) {
+  const match = String(text || "").match(/(?<!\d)(\d{1,2})月(\d{1,2})日/);
+  if (!match) return "";
+  const [year] = fallbackDate.split("-");
+  let date = `${year}-${pad2(match[1])}-${pad2(match[2])}`;
+  if (date > offsetDate(fallbackDate, 7)) {
+    date = `${Number(year) - 1}-${pad2(match[1])}-${pad2(match[2])}`;
+  }
+  return date;
+}
+
+function findRelativeDateInText(text, fallbackDate) {
+  const raw = String(text || "");
+  if (/刚刚|分钟前|小时前|今天/.test(raw)) return fallbackDate;
+  if (/昨天/.test(raw)) return offsetDate(fallbackDate, -1);
+  if (/前天/.test(raw)) return offsetDate(fallbackDate, -2);
+  const dayMatch = raw.match(/(\d{1,2})\s*天前/);
+  if (dayMatch) return offsetDate(fallbackDate, -Number(dayMatch[1]));
+  return "";
 }
 
 function getCandidateInformationScore(candidate) {
@@ -1276,7 +1334,7 @@ function removeNewsById(payload, id) {
 
 function removeAutoCandidateNewsForDate(payload, dateString) {
   payload.news = asArray(payload.news).filter((item) => {
-    if (item?.date !== dateString) return true;
+    if (item?.date !== dateString && item?.collectedDate !== dateString) return true;
     if (item?.autoCandidate) return false;
     if (item?.reviewStatus === "pending") return false;
     if (String(item?.id || "").startsWith("auto-")) return false;
