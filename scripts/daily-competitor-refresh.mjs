@@ -173,31 +173,6 @@ const SOURCE_INTELLIGENCE_HINTS = {
     title: "智谱 BigModel：GLM 模型广场和智能体能力信号",
     summary: "更新重点集中在 GLM 模型、长文本、代码、智能体和模型广场可用性。",
     takeaway: "智谱的核心心智仍是 GLM 系列模型和长任务能力；星辰 MaaS 可关注 GLM 外部平台上架、代码能力和 Agent 场景。"
-  },
-  "wechat-volc-ark": {
-    title: "火山方舟：公众号宣传和产品发布信号",
-    summary: "传播重点可能围绕豆包模型家族、火山方舟升级、客户案例、产品发布和优惠活动。",
-    takeaway: "公众号侧更能反映火山方舟近期主推卖点；星辰 MaaS 可对比其宣传话术、客户案例和活动节奏。"
-  },
-  "wechat-baidu-qianfan": {
-    title: "百度千帆：公众号宣传和应用案例信号",
-    summary: "传播重点可能围绕文心/千帆平台、智能体应用、企业案例、套餐权益和生态合作。",
-    takeaway: "公众号侧能看到百度把平台能力如何包装成场景方案；星辰 MaaS 可对比行业案例和产品化表达。"
-  },
-  "wechat-aliyun-bailian": {
-    title: "阿里百炼：公众号宣传和通义生态信号",
-    summary: "传播重点可能围绕通义千问、阿里百炼、模型/智能体/工作流、开发者活动和生态工具。",
-    takeaway: "阿里在持续强化通义生态和开发者心智；星辰 MaaS 可关注活动入口、模型体验和工具生态传播。"
-  },
-  "wechat-siliconflow": {
-    title: "硅基流动：公众号宣传和成本优势信号",
-    summary: "传播重点可能围绕开源模型聚合、API 成本、DeepSeek/Qwen/GLM 供给、价格和开发者使用技巧。",
-    takeaway: "硅基流动的传播核心是便宜、快和模型选择多；星辰 MaaS 可关注价格对比、调用稳定性和模型聚合体验。"
-  },
-  "wechat-zhipu-ai": {
-    title: "智谱 AI：公众号宣传和 GLM 能力信号",
-    summary: "传播重点可能围绕 GLM 模型、BigModel 平台、代码、长文本、智能体和开放 API。",
-    takeaway: "智谱的宣传会放大 GLM 模型能力和开发者入口；星辰 MaaS 可关注其模型能力包装和生态合作。"
   }
 };
 
@@ -321,6 +296,7 @@ async function main() {
     replaceAutoModelUpdates(payload, collectedModelUpdates);
   }
   removeNonCommunicationNews(payload);
+  removeLowInformationNews(payload);
   const publishedCandidates = publishCandidateNews(payload, report);
   report.publishedCandidates = publishedCandidates.length;
   payload.updatedAt = runDateTime;
@@ -937,18 +913,77 @@ function buildCommunicationSummary(input) {
   const action = detectCommunicationAction([headline, input.keyword, input.snippet].join(" "));
   const subject = models.length ? models.slice(0, 2).join("、") : normalizeCompetitorName(input);
   const concrete = summarizeConcreteCommunicationBody(input, [headline, input.keyword, input.snippet].join(" "), capabilityText);
+  const fallbackSummary = buildFallbackCommunicationSummary(input, headline, capabilityText);
+  const fallbackTakeaway = buildFallbackCommunicationTakeaway(input, capabilityText);
   return {
     title,
-    summary: concrete.summary || `${subject}${action}，关联${capabilityText}。`,
+    summary: concrete.summary || fallbackSummary || `${subject}${action}。`,
     takeaway: concrete.takeaway || (input.type === "wechat"
-      ? `传播重点在${capabilityText}；星辰补清官网话术、案例和试用入口。`
-      : `市场关注点在${capabilityText}；星辰补模型供给、价格说明或企业案例。`)
+      ? fallbackTakeaway || `简单说，这条公众号信息指向${capabilityText}；星辰 MaaS 需要把对应能力的试用入口、案例和适用场景讲清楚。`
+      : fallbackTakeaway || `简单说，这条新闻指向${capabilityText}；星辰 MaaS 需要补齐对应能力的模型、价格、案例或部署说明。`)
   };
+}
+
+function buildFallbackCommunicationSummary(input, headline, capabilityText) {
+  const cleanHeadline = cleanCommunicationSentence(headline);
+  if (!cleanHeadline || cleanHeadline.length < 16) return "";
+  const sourceLabel = input.type === "wechat" ? "公众号信息" : "媒体信息";
+  return `${sourceLabel}提到：${cleanHeadline}。这条信息主要指向${capabilityText}。`;
+}
+
+function buildFallbackCommunicationTakeaway(input, capabilityText) {
+  const vendor = normalizeCompetitorName(input);
+  if (/价格|优惠|套餐|Token|额度/.test(capabilityText)) {
+    return `简单说，${vendor}在争夺开发者试用和持续调用成本心智；星辰 MaaS 需要把价格、免费额度、套餐边界和迁移成本说清楚。`;
+  }
+  if (/智能体|工作流|工具/.test(capabilityText)) {
+    return `简单说，${vendor}在把模型能力变成可落地的应用流程；星辰 MaaS 需要补足模板、工具接入、权限和运行日志。`;
+  }
+  if (/图像视频语音/.test(capabilityText)) {
+    return `简单说，${vendor}在强化多模态任务入口；星辰 MaaS 需要把图片、视频、语音能力做成可试用、可比较、可计费的任务体验。`;
+  }
+  return "";
+}
+
+function cleanCommunicationSentence(value = "") {
+  return String(value)
+    .replace(/去网页搜[:：]?.*$/g, "")
+    .replace(/相关搜索.*$/g, "")
+    .replace(/下一页.*$/g, "")
+    .replace(/帮助 举报 企业推广.*$/g, "")
+    .replace(/\s+/g, " ")
+    .replace(/[?？!！。；;，,]+$/g, "")
+    .trim()
+    .slice(0, 120);
 }
 
 function summarizeConcreteCommunicationBody(input, text, capabilityText) {
   const vendor = normalizeCompetitorName(input);
   const compact = String(text || "").replace(/\s+/g, " ");
+  if (/中国经济新闻网|中国经济时报/.test(compact) && /火山引擎|火山方舟|豆包大模型/.test(compact) && /向量数据库|知识库|GPU算力|推荐/.test(compact)) {
+    return {
+      summary: "中国经济新闻网相关报道提到，火山引擎把豆包大模型、火山方舟、向量数据库、知识库、GPU 算力和推荐能力组合成企业级 AI 服务，用于大模型接入、内容生成和推荐系统等场景。",
+      takeaway: "简单说，火山不是只卖模型 API，而是在把模型、知识库、算力和推荐能力做成企业 AI 应用底座；星辰 MaaS 需要把“模型调用 + 知识库/向量库 + 应用落地”讲成一套方案。"
+    };
+  }
+  if (/招银国际/.test(compact) && /GLM\s*-?\s*5\.?2|GLM-5\.2/i.test(compact)) {
+    return {
+      summary: "招银国际复盘 2026 年二季度大模型行业时提到，Claude Fable 5 推高模型能力上限，智谱 GLM-5.2 的发布帮助中国模型厂商在开源模型领域维持优势。",
+      takeaway: "简单说，智谱的竞争点在基座模型和开源生态；星辰 MaaS 需要在模型卡里补足版本能力、评测结果、开源/闭源属性和迁移建议。"
+    };
+  }
+  if (/新浪财经/.test(compact) && /文心\s*5\.?0|文心5\.0/.test(compact)) {
+    return {
+      summary: "新闻检索片段显示，文心 5.0 已在文心 APP 及官网面向 C 端开放，企业端关联千帆品牌升级和百度系全域 AI 能力整合，能力覆盖文本、图像、音频、视频等输入输出。",
+      takeaway: "简单说，百度在把文心模型能力和千帆企业入口绑定；星辰 MaaS 需要把自有模型、外部模型、多模态能力和企业入口之间的关系讲清楚。"
+    };
+  }
+  if (/新浪财经/.test(compact) && /低代码|流程编排|Bot|钉钉/i.test(compact)) {
+    return {
+      summary: "新浪财经相关报道提到，通义百炼并不只强调对话式交互，而是通过低代码流程编排，把 Bot 嵌入钉钉里的报销、订单审核等企业日常流程。",
+      takeaway: "简单说，阿里在把模型能力包装成企业流程组件；星辰 MaaS 可补齐应用模板、工作流示例和企业流程场景，让业务方一眼看懂能怎么用。"
+    };
+  }
   if (/豆包大模型|火山方舟/i.test(compact) && /Token调用量|日均Token|万亿Tokens|企业和个人/i.test(compact)) {
     return {
       summary: "公开报道提到，豆包大模型日均 Token 调用量突破 180 万亿，火山方舟服务超过 110 万企业和个人，重点是在用调用规模和客户规模证明平台化进展。",
@@ -998,6 +1033,10 @@ function summarizeCommunicationTitle(input, headline, capabilities, models) {
 function summarizeConcreteCommunicationTitle(vendor, text) {
   const compact = String(text || "").replace(/\s+/g, " ");
   const rules = [
+    [/中国经济新闻网|中国经济时报/, /火山引擎|火山方舟|豆包大模型/i, `中国经济新闻网：火山引擎把豆包/方舟打包成企业 AI 服务`],
+    [/招银国际/, /GLM\s*-?\s*5\.?2|GLM-5\.2/i, `招银国际：GLM-5.2 维持国产开源模型优势`],
+    [/新浪财经/, /文心\s*5\.?0|文心5\.0/i, `新浪财经：文心 5.0 开放并带动千帆品牌升级`],
+    [/新浪财经/, /低代码|流程编排|Bot|钉钉/i, `新浪财经：通义百炼把 Bot 嵌入企业流程`],
     [/豆包|火山方舟/i, /Coding|Agent|VLM|视觉理解|三大方向/i, `${vendor}：豆包升级 Coding/Agent/VLM 能力`],
     [/豆包大模型家族|豆包主力模型/i, /发布|升级|上线/i, `${vendor}：豆包大模型家族发布并升级方舟`],
     [/豆包大模型|火山方舟/i, /Token调用量|日均Token|企业和个人|万亿Tokens/i, `${vendor}：豆包调用量和方舟客户规模增长`],
@@ -1308,6 +1347,34 @@ function removeNonCommunicationNews(payload) {
     const source = sources[item?.source] || {};
     return source.type === "media" || source.type === "wechat";
   });
+}
+
+function removeLowInformationNews(payload) {
+  payload.news = asArray(payload.news).filter((item) => !isLowInformationNewsItem(item));
+}
+
+function isLowInformationNewsItem(item) {
+  const text = [
+    item?.title,
+    item?.summary,
+    item?.takeaway,
+    item?.evidence,
+    item?.sourceName
+  ].filter(Boolean).join(" ");
+
+  if (/新增公众号检索入口|公众号追踪|公众号宣传|产品发布信号|应用案例信号|通义生态信号|成本优势信号|GLM\s*能力信号/.test(text)) {
+    return true;
+  }
+  if (/传播重点可能|后续重点看|新增.*检索入口|市场关注点在.*星辰补|关联模型供给/.test(text)) {
+    return true;
+  }
+  if (/相关微信公众号文章\s*[–-]\s*搜狗微信搜索/.test(text) && !item?.publishedDate) {
+    return true;
+  }
+  if (item?.dateSource === "collection_date" && !item?.publishedDate) {
+    return true;
+  }
+  return false;
 }
 
 function pad2(value) {
