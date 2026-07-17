@@ -1,43 +1,12 @@
 {
   "targetDate": "2026-07-17",
   "runDate": "2026-07-17",
-  "runDateTime": "2026-07-17 14:27:27",
+  "runDateTime": "2026-07-17 16:15:56",
   "timezone": "Asia/Shanghai",
   "dryRun": false,
   "noFetch": false,
   "sourcesChecked": 24,
-  "exactMatches": [
-    {
-      "sourceId": "volc-ark-platform-updates",
-      "dataSourceId": "volcArkPlatformUpdates",
-      "competitor": "volc",
-      "title": "火山方舟：平台更新记录源已纳入监控",
-      "url": "https://console.volcengine.com/ark/region:cn-beijing/docs/82379/1159177?lang=zh",
-      "keyword": "火山方舟",
-      "snippet": "火山方舟 --> --> -->",
-      "matchType": "source_monitor"
-    },
-    {
-      "sourceId": "baidu-qianfan-platform",
-      "dataSourceId": "baiduPlatform",
-      "competitor": "baidu",
-      "title": "百度千帆：平台更新记录源已纳入监控",
-      "url": "https://cloud.baidu.com/doc/qianfan/s/Gmh4stncc",
-      "keyword": "智能体",
-      "snippet": "...工作流Agent：“金牌销售”车险续保Agent 工作流Agent：如何使用全局跳转节点搭建飞行客服小助手 工作流Agent：机票订单处理助手 工作流大模型节点高级配置使用案例 多智能体协同Agent最佳实践 用“多智能体协同Agent”一分钟搭建专属研究Agent，帮企业做深度研究 自定义工具最佳实践 工作流组件： API的增删查 工作流组件：如何用知识库节点和API节点搭建个人减脂小助手 工作流组件：深度使用实践 组件工作流：使用记忆变量节点构建个人化导购小助手 知识库最佳实践 图谱增强RAG：医疗诊断助手 多模态R...",
-      "matchType": "source_monitor"
-    },
-    {
-      "sourceId": "aliyun-bailian-platform-updates",
-      "dataSourceId": "aliyunPlatformUpdates",
-      "competitor": "aliyun",
-      "title": "阿里百炼：平台更新记录源已纳入监控",
-      "url": "https://bailian.console.aliyun.com/cn-beijing?spm=5176.29619931.J__Z58Z6CX7MY__Ll8p1ZOR.1.5709521cDeDXG9&tab=doc#/doc/?type=model&url=2987782",
-      "keyword": "平台更新记录",
-      "snippet": "官方平台更新记录来源：https://bailian.console.aliyun.com/cn-beijing?spm=5176.29619931.J__Z58Z6CX7MY__Ll8p1ZOR.1.5709521cDeDXG9&tab=doc#/doc/?type=model&url=2987782",
-      "matchType": "source_monitor"
-    }
-  ],
+  "exactMatches": [],
   "candidates": [
     {
       "sourceId": "volc-ark-docs",
@@ -78,6 +47,26 @@
       "snippet": "火山方舟 --> --> -->"
     },
     {
+      "sourceId": "volc-ark-platform-updates",
+      "dataSourceId": "volcArkPlatformUpdates",
+      "competitor": "volc",
+      "name": "火山方舟平台更新记录",
+      "url": "https://console.volcengine.com/ark/region:cn-beijing/docs/82379/1159177?lang=zh",
+      "type": "official",
+      "recordType": "official_update_record",
+      "categories": [
+        "agent",
+        "tools",
+        "platform",
+        "business"
+      ],
+      "sourcePriority": "high",
+      "keyword": "火山方舟",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "火山方舟 --> --> -->"
+    },
+    {
       "sourceId": "baidu-qianfan-model",
       "dataSourceId": "baiduModel",
       "competitor": "baidu",
@@ -94,6 +83,25 @@
       "relevanceScore": 12,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
       "snippet": "模型更新记录 - 百度千帆·大模型服务及Agent开发平台 百度智能云 最新活动 产品 解决方案 企业服务 云市场 合作与生态 开发者 服务与支持 了解智能云 备案 文档 管理控制台 文档中心 搜索本产品文档关键词 立即试用 模型更新记录 百度千帆·大模型服务及Agent开发平台 平台介绍 平台简介 更新动态 产品公告 模型服务 模型更新记录 平台更新记录 模型版..."
+    },
+    {
+      "sourceId": "baidu-qianfan-platform",
+      "dataSourceId": "baiduPlatform",
+      "competitor": "baidu",
+      "name": "百度千帆更新动态",
+      "url": "https://cloud.baidu.com/doc/qianfan/s/Gmh4stncc",
+      "type": "official",
+      "recordType": "official_update_record",
+      "categories": [
+        "agent",
+        "tools",
+        "business"
+      ],
+      "sourcePriority": "high",
+      "keyword": "智能体",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "...工作流Agent：“金牌销售”车险续保Agent 工作流Agent：如何使用全局跳转节点搭建飞行客服小助手 工作流Agent：机票订单处理助手 工作流大模型节点高级配置使用案例 多智能体协同Agent最佳实践 用“多智能体协同Agent”一分钟搭建专属研究Agent，帮企业做深度研究 自定义工具最佳实践 工作流组件： API的增删查 工作流组件：如何用知识库节点和API节点搭建个人减脂小助手 工作流组件：深度使用实践 组件工作流：使用记忆变量节点构建个人化导购小助手 知识库最佳实践 图谱增强RAG：医疗诊断助手 多模态R..."
     },
     {
       "sourceId": "baidu-qianfan-coding",
@@ -386,7 +394,7 @@
       "keyword": "阿里百炼",
       "relevanceScore": 9,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "...它并不强调对话式交互，而是通过低代码流程编排，把Bot嵌入企业日常流程中，比如在钉钉中设立一个“员工报销Bot”或“订单审核Bot”。相比之下，通义百... 新浪财经 去网页搜： 阿里百炼 通义 大模型 相关搜索 阿里ai大模型通义千问 阿里通义大模型最新消息 阿里通义大模型概念股票 通义大模型的核心能力 通义大模型怎么样 阿里通义大模型发布新功能 通义千问哪个模型最好 阿里云通义开源多模态模型 阿里云大模型工具 阿里通义千问团队的其他... 1 2 3 4 5 6 下一页 > 帮助 举报 企业推广"
+      "snippet": "...承诺将核心模型开源开放。如今，通义千问已实现全尺寸、全模态的全面开源，真正打破了开源与闭源模型之间的技术壁垒。”7月27日， 阿里 云副总裁、大数据和... 北京商报 去网页搜： 阿里百炼 通义 大模型 相关搜索 阿里ai大模型通义千问 阿里通义大模型最新消息 阿里通义大模型概念股票 通义大模型的核心能力 通义大模型怎么样 阿里通义大模型发布新功能 通义千问哪个模型最好 阿里云通义开源多模态模型 阿里云大模型工具 阿里通义千问团队的其他... 1 2 3 4 5 6 下一页 > 帮助 举报 企业推广"
     },
     {
       "sourceId": "media-maas-news-volc",
@@ -597,5 +605,5 @@
     }
   ],
   "errors": [],
-  "publishedCandidates": 2
+  "publishedCandidates": 3
 }

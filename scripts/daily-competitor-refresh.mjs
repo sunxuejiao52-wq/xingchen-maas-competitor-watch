@@ -19,11 +19,6 @@ const MAX_MEDIA_CANDIDATES = 5;
 const MEDIA_RELEVANCE_THRESHOLD = 6;
 const MODEL_UPDATE_LOOKBACK_START = "2026-04-01";
 const MODEL_UPDATE_COMPETITORS = new Set(["volc", "baidu", "aliyun"]);
-const PLATFORM_UPDATE_SOURCE_IDS = new Set([
-  "volc-ark-platform-updates",
-  "baidu-qianfan-platform",
-  "aliyun-bailian-platform-updates"
-]);
 const REQUEST_TIMEOUT_MS = 15000;
 const REQUEST_HEADERS = {
   "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
@@ -192,6 +187,7 @@ async function main() {
   const payload = readPayload(PRIMARY_DATA_PATH);
   removeAutoCandidateNewsForDate(payload, targetDate);
   removeAutoUpdateRecordsForDate(payload, targetDate);
+  removeSourceMonitorUpdateRecords(payload);
   const config = JSON.parse(readFileSync(SOURCE_CONFIG_PATH, "utf8"));
   const sources = normalizeSources(config.sources || []);
   const report = {
@@ -248,24 +244,6 @@ async function main() {
       });
       addOrUpdateEvent(payload, updateRecord);
       removeNewsById(payload, buildCandidateNewsId(source.id, targetDate));
-      addOrUpdateSource(payload, source);
-      markCompetitorSeen(payload, source.competitor, targetDate);
-      continue;
-    }
-
-    if (isTrackedPlatformUpdateRecordSource(source)) {
-      const updateRecord = buildPlatformUpdateSourceEvent(source, sourceResult, targetDate);
-      report.exactMatches.push({
-        sourceId: source.id,
-        dataSourceId: getDataSourceId(source),
-        competitor: source.competitor,
-        title: updateRecord.title,
-        url: source.url,
-        keyword: sourceResult.keyword || "平台更新记录",
-        snippet: sourceResult.snippet || updateRecord.evidence,
-        matchType: "source_monitor"
-      });
-      addOrUpdateEvent(payload, updateRecord);
       addOrUpdateSource(payload, source);
       markCompetitorSeen(payload, source.competitor, targetDate);
       continue;
@@ -421,10 +399,6 @@ function normalizeSources(sources) {
 
 function isOfficialUpdateRecordSource(source) {
   return source?.type === "official" && source?.recordType === "official_update_record";
-}
-
-function isTrackedPlatformUpdateRecordSource(source) {
-  return isOfficialUpdateRecordSource(source) && PLATFORM_UPDATE_SOURCE_IDS.has(source.id);
 }
 
 async function inspectSource(source) {
@@ -677,38 +651,6 @@ function buildUpdateRecordEvent(source, sourceResult, dateString) {
     evidence: buildEvidenceSnippet(sourceResult.snippet, sourceResult.keyword),
     autoRecord: true,
     recordType: "official_update_record"
-  };
-}
-
-function buildPlatformUpdateSourceEvent(source, sourceResult, dateString) {
-  const sourceId = getDataSourceId(source);
-  const insight = SOURCE_INTELLIGENCE_HINTS[source.id] || buildIntelligenceSummary({
-    sourceId: source.id,
-    name: source.name,
-    type: source.type,
-    competitor: source.competitor,
-    keyword: sourceResult.keyword || "平台更新记录",
-    snippet: sourceResult.snippet,
-    categories: source.categories
-  });
-  const keywordText = sourceResult.keyword ? `本次抓取命中“${sourceResult.keyword}”。` : "本次抓取未返回可解析的逐条正文。";
-  const evidence = sourceResult.snippet
-    ? buildEvidenceSnippet(sourceResult.snippet, sourceResult.keyword || "平台更新记录")
-    : `官方平台更新记录来源：${source.url}`;
-  return {
-    id: `record-source-${source.id}-${dateString}`,
-    competitor: source.competitor,
-    date: dateString,
-    title: `${source.vendor || source.name}：平台更新记录源已纳入监控`,
-    summary: `${insight.summary} ${keywordText}`,
-    categories: source.categories,
-    priority: source.priority || "medium",
-    source: sourceId,
-    signal: `这是用户指定的竞品平台官方更新记录页，已进入“更新记录”列表和对比看板的官方来源口径；如果后续页面出现明确日期，系统会生成对应日期的精确更新记录。${insight.takeaway || ""}`,
-    evidence,
-    autoRecord: true,
-    recordType: "official_update_record",
-    matchType: "source_monitor"
   };
 }
 
@@ -1416,6 +1358,15 @@ function removeAutoUpdateRecordsForDate(payload, dateString) {
     if (item?.date !== dateString) return true;
     if (item?.autoRecord) return false;
     if (String(item?.id || "").startsWith("record-")) return false;
+    return true;
+  });
+}
+
+function removeSourceMonitorUpdateRecords(payload) {
+  payload.events = asArray(payload.events).filter((item) => {
+    if (item?.matchType === "source_monitor") return false;
+    if (String(item?.id || "").startsWith("record-source-")) return false;
+    if (/平台更新记录源已纳入监控/.test(String(item?.title || ""))) return false;
     return true;
   });
 }

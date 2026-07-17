@@ -1839,7 +1839,7 @@
                 <span class="pill low">官方更新记录</span>
               </div>
               <div class="section-body">
-                <div class="board-note">这里只展示监控平台自己的官方更新日志/公告；能抽到明确日期时展示精确更新记录，控制台文档无法静态读取明细时展示官方更新页已纳入监控。媒体、公众号、普通介绍文档和搜索结果请在“新闻追踪”里看。</div>
+                <div class="board-note">这里只展示监控平台自己的官方产品更新日志/公告，且必须能对应到明确日期和具体产品变化；监控源、普通介绍文档、媒体、公众号和搜索结果不会放在这里。</div>
                 <div class="board-note" id="timelineMeta" style="margin-top: 8px;"></div>
                 <div class="timeline" id="timeline" style="margin-top: 12px;"></div>
               </div>
@@ -2784,12 +2784,19 @@
       return (!state.dateFrom || item.date >= state.dateFrom) && (!state.dateTo || item.date <= state.dateTo);
     }
 
+    function isRealOfficialUpdateEvent(item) {
+      if (item?.matchType === "source_monitor") return false;
+      if (String(item?.id || "").startsWith("record-source-")) return false;
+      if (/平台更新记录源已纳入监控/.test(String(item?.title || ""))) return false;
+      return true;
+    }
+
     function getDateFilteredEvents() {
-      return getAllEvents().filter(isInDateRange);
+      return getAllEvents().filter(isRealOfficialUpdateEvent).filter(isInDateRange);
     }
 
     function getFilteredEvents() {
-      return getAllEvents().filter(eventPassesFilters);
+      return getAllEvents().filter(isRealOfficialUpdateEvent).filter(eventPassesFilters);
     }
 
     function getAllNews() {
@@ -2910,6 +2917,7 @@
     }
 
     function eventPassesFilters(item) {
+      if (!isRealOfficialUpdateEvent(item)) return false;
       const dateOk = isInDateRange(item);
       const categoryOk = state.category === "all" || item.categories.includes(state.category);
       const priorityOk = state.priority === "all" || item.priority === state.priority;
