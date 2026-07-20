@@ -1912,7 +1912,7 @@
     const DATA_COLLECTION_START = "2026-04-01";
     const STORAGE_KEY = "xingchen-maas-competitor-watch-v1";
     const EXTERNAL_DATA_FILE = "xingchen-maas-competitor-data.js";
-    const DATA_REFRESH_ENDPOINT = "/.netlify/functions/trigger-refresh";
+    const DATA_REFRESH_ENDPOINTS = ["/api/trigger-refresh", "/.netlify/functions/trigger-refresh"];
     const DATA_REFRESH_POLL_INTERVAL_MS = 15000;
     const DATA_REFRESH_POLL_ATTEMPTS = 40;
     const DAILY_NEWS_LIMIT = 7;
@@ -2720,7 +2720,7 @@
 
     async function triggerDataRefresh() {
       if (!EXTERNAL_DATA_FILE || !/^https?:$/.test(window.location.protocol)) {
-        refreshTaskStatus = "本地预览不能触发后台采集；请在 Netlify 线上页面点击数据刷新";
+        refreshTaskStatus = "本地预览不能触发后台采集；请在线上页面点击数据刷新";
         setRefreshButtonState("数据刷新");
         await refreshLatestData({ silent: true });
         renderDateControls();
@@ -2735,15 +2735,7 @@
       renderDateControls();
 
       try {
-        const response = await fetch(DATA_REFRESH_ENDPOINT, {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ target_date: refreshTargetDate })
-        });
-        const payload = await response.json().catch(() => ({}));
-        if (!response.ok || payload.ok === false) {
-          throw new Error(payload.message || `后台接口返回 ${response.status}`);
-        }
+        const payload = await requestDataRefresh(refreshTargetDate);
 
         refreshTaskStatus = `数据刷新已提交：正在采集 ${payload.targetDate || refreshTargetDate}；读到新数据文件后会同步更新时间`;
         setRefreshButtonState("刷新已提交", true);
@@ -2754,6 +2746,32 @@
         setRefreshButtonState("数据刷新");
         renderDateControls();
       }
+    }
+
+    async function requestDataRefresh(refreshTargetDate) {
+      let lastError = null;
+      for (const endpoint of DATA_REFRESH_ENDPOINTS) {
+        try {
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ target_date: refreshTargetDate })
+          });
+          const payload = await response.json().catch(() => ({}));
+          if (response.status === 404 && endpoint !== DATA_REFRESH_ENDPOINTS[DATA_REFRESH_ENDPOINTS.length - 1]) {
+            lastError = new Error(payload.message || `后台接口 ${endpoint} 不存在`);
+            continue;
+          }
+          if (!response.ok || payload.ok === false) {
+            throw new Error(payload.message || `后台接口返回 ${response.status}`);
+          }
+          return payload;
+        } catch (error) {
+          lastError = error;
+          if (endpoint === DATA_REFRESH_ENDPOINTS[DATA_REFRESH_ENDPOINTS.length - 1]) break;
+        }
+      }
+      throw lastError || new Error("后台接口不可用");
     }
 
     function pollLatestDataAfterRefresh(previousUpdatedAt, attempt) {

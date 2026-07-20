@@ -3,3 +3,4 @@ dist/
 .DS_Store
 site/
 github-upload-ready/
+outputs/cloudflare-pages/
