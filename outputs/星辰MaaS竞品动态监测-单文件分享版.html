@@ -1913,9 +1913,9 @@
     const STORAGE_KEY = "xingchen-maas-competitor-watch-v1";
     const EXTERNAL_DATA_FILE = "";
     const EMBEDDED_DATA = {
-  "updatedAt": "2026-07-20 09:47:02",
+  "updatedAt": "2026-07-21 04:55:57",
   "snapshotDate": "2026-07-20",
-  "note": "自动刷新已运行：2026-07-20 09:47:02（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-07-20 的竞品动态。官方更新记录 0 条，新闻/公众号线索 2 条，官方模型更新 16 条。",
+  "note": "自动刷新已运行：2026-07-21 04:55:57（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-07-20 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 16 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -2314,21 +2314,46 @@
       "vendor": "微信公众平台检索",
       "url": "https://weixin.sogou.com/weixin?type=2&query=Kimi%20K2%20%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%20%E5%A4%A7%E6%A8%A1%E5%9E%8B",
       "type": "wechat",
-      "note": "月之暗面/Kimi 公众号检索入口，用于追踪 Kimi 模型发布、开源、Agent、代码和长上下文相关市场信号。"
+      "note": "公众号检索：月之暗面 / Kimi 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "competitor": "moonshot",
+      "categories": [
+        "model",
+        "agent",
+        "coding"
+      ],
+      "priority": "high",
+      "recordType": ""
     },
     "mediaKimiMoonshotSearch": {
       "title": "新闻检索：月之暗面 Kimi",
       "vendor": "新闻检索",
       "url": "https://www.baidu.com/s?tn=news&rtt=4&bsst=1&cl=2&word=Kimi%20K2%20%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%20%E5%8F%91%E5%B8%83",
       "type": "media",
-      "note": "月之暗面/Kimi 新闻检索入口，用于追踪 Kimi 相关模型、开源、Agent、代码和价格/成本信号。"
+      "note": "新闻检索：月之暗面 Kimi 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "competitor": "moonshot",
+      "categories": [
+        "model",
+        "agent",
+        "coding"
+      ],
+      "priority": "high",
+      "recordType": ""
     },
     "mediaKimiChinaDaily": {
       "title": "China Daily：Moonshot Kimi K3",
       "vendor": "China Daily",
       "url": "https://global.chinadaily.com.cn/a/202607/18/WS6a5ad297a310986e2b465f8a.html",
       "type": "media",
-      "note": "China Daily 关于 Moonshot Kimi K3 的单条媒体报道，用于补充 Kimi 热门模型信号。"
+      "note": "China Daily：Moonshot Kimi K3 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
+      "competitor": "moonshot",
+      "categories": [
+        "model",
+        "agent",
+        "coding",
+        "multimodal"
+      ],
+      "priority": "high",
+      "recordType": ""
     }
   },
   "competitors": [
@@ -2389,6 +2414,34 @@
       "sourceType": "media",
       "keyword": "Kimi K3",
       "relevanceScore": 14
+    },
+    {
+      "id": "candidate-media-maas-news-volc-2026-07-15",
+      "competitor": "volc",
+      "date": "2026-07-15",
+      "publishedDate": "2026-07-15",
+      "publishedDateLabel": "2026-07-15",
+      "dateSource": "relative_publish_date",
+      "collectedDate": "2026-07-20",
+      "collectedAt": "2026-07-21 04:55:57",
+      "kind": "媒体/新闻线索",
+      "title": "中国经济新闻网：火山引擎把豆包/方舟打包成企业AI服务",
+      "summary": "中国经济新闻网相关报道提到，火山引擎把豆包大模型、火山方舟、向量数据库、知识库、GPU 算力和推荐能力组合成企业级 AI 服务，用于大模型接入、内容生成和推荐系统等场景。",
+      "takeaway": "简单说，火山不是只卖模型 API，而是在把模型、知识库、算力和推荐能力做成企业 AI 应用底座；星辰 MaaS 需要把“模型调用 + 知识库/向量库 + 应用落地”讲成一套方案。",
+      "insight": "简单说，火山不是只卖模型 API，而是在把模型、知识库、算力和推荐能力做成企业 AI 应用底座；星辰 MaaS 需要把“模型调用 + 知识库/向量库 + 应用落地”讲成一套方案。",
+      "evidence": "命中“火山方舟”：…模式 文落地的AI应用--产经动态--中国经济新闻网 5天前 5、火山引擎——字节系大模型平台与数据智能云** 火山引擎是字节跳动旗下的企业级云与AI服务平台,产品包括豆包大模型、火山方舟、向量数据库、知识库、GPU算力与智能推荐等。它把字节体系的算法、数据与内容技术能力开放给企业客户,在大模型接入、内容生成、推荐系统… 中国经济时报 模型 指南 , …",
+      "categories": [
+        "model",
+        "multimodal",
+        "business"
+      ],
+      "priority": "low",
+      "source": "mediaVolcArkSearch",
+      "sourceName": "新闻检索：火山方舟",
+      "sourceType": "media",
+      "keyword": "火山方舟",
+      "relevanceScore": 9,
+      "autoCandidate": true
     },
     {
       "id": "news-media-20260713-china-model-cost",
@@ -2488,11 +2541,11 @@
   "monitorRuns": [
     {
       "targetDate": "2026-07-20",
-      "runDateTime": "2026-07-20 09:47:02",
-      "sourcesChecked": 24,
+      "runDateTime": "2026-07-21 04:55:57",
+      "sourcesChecked": 27,
       "exactMatches": 0,
-      "publishedCandidates": 2,
-      "candidates": 22,
+      "publishedCandidates": 1,
+      "candidates": 24,
       "modelUpdates": 16,
       "errors": 0
     },
@@ -2646,7 +2699,7 @@
       ],
       "priority": "high",
       "source": "aliyunModelUpdates",
-      "evidence": "命中“vidu/vidu-image_reference2image”：Vidu 系列图片生成 API 服务上线，支持多图参考、精准还原和高质量生成。",
+      "evidence": "命中“vidu/vidu-image_reference2image”：Vidu 系列 生成 API 服务上线，支持多图参考、精准还原和高质量生成。",
       "autoModelUpdate": true
     },
     {

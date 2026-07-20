@@ -1,13 +1,33 @@
 {
   "targetDate": "2026-07-20",
-  "runDate": "2026-07-20",
-  "runDateTime": "2026-07-20 09:47:02",
+  "runDate": "2026-07-21",
+  "runDateTime": "2026-07-21 04:55:57",
   "timezone": "Asia/Shanghai",
   "dryRun": false,
   "noFetch": false,
-  "sourcesChecked": 24,
+  "sourcesChecked": 27,
   "exactMatches": [],
   "candidates": [
+    {
+      "sourceId": "volc-ark-docs",
+      "dataSourceId": "volcArkApi",
+      "competitor": "volc",
+      "name": "火山方舟接口文档",
+      "url": "https://www.volcengine.com/docs/82379/1494384?lang=zh",
+      "type": "official",
+      "recordType": "",
+      "categories": [
+        "model",
+        "agent",
+        "multimodal",
+        "platform"
+      ],
+      "sourcePriority": "high",
+      "keyword": "火山方舟",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "文档中心 简体 文档 控制台 注册 火山方舟 文档指南 订阅 Agent/Coding Plan API参考 资源 火山方舟 火山方舟 API参考 请输入 准备工作 获取 API Key 并配置 安装及升级 SDK Base URL及鉴权 对话(Chat) API 对话(Chat) API Responses API 创建 Response 查询 Response 详情 查询..."
+    },
     {
       "sourceId": "volc-ark-model-updates",
       "dataSourceId": "volcArkModelUpdates",
@@ -62,7 +82,7 @@
       "keyword": "千帆",
       "relevanceScore": 12,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "模型更新记录 - 百度千帆·大模型服务及Agent开发平台 百度智能云 最新活动 产品 解决方案 企业服务 云市场 合作与生态 开发者 服务与支持 了解智能云 备案 文档 管理控制台 文档中心 搜索本产品文档关键词 立即试用 模型更新记录 百度千帆·大模型服务及Agent开发平台 平台介绍 平台简介 更新动态 产品公告 模型服务 模型更新记录 平台更新记录 模型版..."
+      "snippet": "模型更新记录 - 百度千帆·大模型服务及Agent开发平台 百度智能云 最新活动 产品 解决方案 企业服务 云市场 合作与生态 开发者 服务与支持 了解智能云 备案 文档 管理控制台 文档中心 立即试用 模型更新记录 百度千帆·大模型服务及Agent开发平台 平台介绍 平台简介 更新动态 产品公告 模型服务 模型更新记录 平台更新记录 模型版..."
     },
     {
       "sourceId": "baidu-qianfan-platform",
@@ -81,7 +101,7 @@
       "keyword": "智能体",
       "relevanceScore": 12,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "...工作流Agent：“金牌销售”车险续保Agent 工作流Agent：如何使用全局跳转节点搭建飞行客服小助手 工作流Agent：机票订单处理助手 工作流大模型节点高级配置使用案例 多智能体协同Agent最佳实践 用“多智能体协同Agent”一分钟搭建专属研究Agent，帮企业做深度研究 自定义工具最佳实践 工作流组件： API的增删查 工作流组件：如何用知识库节点和API节点搭建个人减脂小助手 工作流组件：深度使用实践 组件工作流：使用记忆变量节点构建个人化导购小助手 知识库最佳实践 图谱增强RAG：医疗诊断助手 多模态R..."
+      "snippet": "...工作流Agent：“金牌销售”车险续保Agent 工作流Agent：如何使用全局跳转节点搭建飞行客服小助手 工作流Agent：机票订单处理助手 工作流大模型节点高级配置使用案例 多智能体协同Agent最佳实践 用“多智能体协同Agent”一分钟搭建专属研究Agent，帮企业做深度研究 自定义工具最佳实践 工作流组件： API的增删查 工作流组件：如何用知识库节点和API节点搭建个人减脂小助手 工作流组件：深度使用实践 组件工作流：使用记忆变量节点构建个人化导购小助手 知识库最佳实践 图谱增强RAG： 诊断助手 多模态R..."
     },
     {
       "sourceId": "baidu-qianfan-coding",
@@ -99,7 +119,7 @@
       "keyword": "Coding Plan",
       "relevanceScore": 12,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "Coding Plan 产品升级公告 - 百度千帆·大模型服务及Agent开发平台 百度智能云 最新活动 产品 解决方案 企业服务 云市场 合作与生态 开发者 服务与支持 了解智能云 备案 文档 管理控制台 文档中心 搜索本产品文档关键词 立即试用 Coding Plan 产品升级公告 百度千帆·大模型服务及Agent开发平台 平台介绍 平台简介 更新动态 产..."
+      "snippet": "Coding Plan 产品升级公告 - 百度千帆·大模型服务及Agent开发平台 百度智能云 最新活动 产品 解决方案 企业服务 云市场 合作与生态 开发者 服务与支持 了解智能云 备案 文档 管理控制台 文档中心 立即试用 Coding Plan 产品升级公告 百度千帆·大模型服务及Agent开发平台 平台介绍 平台简介 更新动态 产..."
     },
     {
       "sourceId": "aliyun-bailian-models",
@@ -117,7 +137,7 @@
       "keyword": "百炼",
       "relevanceScore": 12,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "模型大全功能规格与计费-大模型服务平台百炼-阿里云-大模型服务平台百炼(Model Studio)-阿里云帮助中心 大模型 产品 解决方案 权益 定价 云市场 伙伴 服务 了解阿里云 查看 \"\" 全部搜索结果 AI 助理 文档 备案 控制台 官方文档 用户指南（模型） 用户指南（应用） API参考（模型） API参考（应用） 首页 选择模型 更新时间： 复制 MD 格式 产品详情..."
+      "snippet": "模型大全功能规格与计费-大模型服务平台百炼-阿里云-大模型服务平台百炼(Model Studio)-阿里云帮助中心 大模型 产品 解决方案 权益 定价 云市场 伙伴 服务 了解阿里云 查看 全部搜索结果 AI 助理 文档 备案 控制台 官方文档 用户指南（模型） 用户指南（应用） API参考（模型） API参考（应用） 首页 选择模型 更新时间： 复制 MD 格式 产品详情..."
     },
     {
       "sourceId": "aliyun-bailian-model-updates",
@@ -153,7 +173,7 @@
       "keyword": "MCP",
       "relevanceScore": 12,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "模型上下文协议（MCP）-大模型服务平台百炼(Model Studio)-阿里云帮助中心 大模型 产品 解决方案 权益 定价 云市场 伙伴 服务 了解阿里云 查看 \"\" 全部搜索结果 AI 助理 文档 备案 控制台 官方文档 用户指南（模型） 用户指南（应用） API参考（模型） API参考（应用） 首页 模型上下文协议（MCP） 更新时间： 复制 MD 格式..."
+      "snippet": "模型上下文协议（MCP）-大模型服务平台百炼(Model Studio)-阿里云帮助中心 大模型 产品 解决方案 权益 定价 云市场 伙伴 服务 了解阿里云 查看 全部搜索结果 AI 助理 文档 备案 控制台 官方文档 用户指南（模型） 用户指南（应用） API参考（模型） API参考（应用） 首页 模型上下文协议（MCP） 更新时间： 复制 MD 格式..."
     },
     {
       "sourceId": "aliyun-bailian-coding",
@@ -171,7 +191,7 @@
       "keyword": "Coding Plan",
       "relevanceScore": 12,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "Coding Plan-大模型服务平台百炼(Model Studio)-阿里云帮助中心 大模型 产品 解决方案 权益 定价 云市场 伙伴 服务 了解阿里云 查看 \"\" 全部搜索结果 AI 助理 文档 备案 控制台 官方文档 用户指南（模型） 用户指南（应用） API参考（模型） API参考（应用） 首页 Coding Plan概述 更新时间： 复制 MD 格式..."
+      "snippet": "Coding Plan-大模型服务平台百炼(Model Studio)-阿里云帮助中心 大模型 产品 解决方案 权益 定价 云市场 伙伴 服务 了解阿里云 查看 全部搜索结果 AI 助理 文档 备案 控制台 官方文档 用户指南（模型） 用户指南（应用） API参考（模型） API参考（应用） 首页 Coding Plan概述 更新时间： 复制 MD 格式..."
     },
     {
       "sourceId": "siliconflow-release",
@@ -190,7 +210,7 @@
       "keyword": "SiliconFlow",
       "relevanceScore": 12,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "更新公告 - SiliconFlow Documentation Index Fetch the complete documentation index at: /llms.txt Use this file to discover all available pages before exploring further. Skip to main content Sil..."
+      "snippet": "更新公告 - SiliconFlow Documentation Index Fetch the complete documentation index a Use this file to discover all available pages before exploring further. Skip to main content Sil..."
     },
     {
       "sourceId": "tencent-tione-docs",
@@ -226,7 +246,7 @@
       "keyword": "ModelArts",
       "relevanceScore": 12,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "成长地图_魔坊（ModelArts）模型训推平台-华为云 检测到您已登录华为云国际站账号，为了您更好的体验，建议您访问国际站服务网站 https://www.huaweicloud.com/intl/zh-cn 不再显示此消息 中国站 中国站 简体中文 International English Bahasa Indonesia Español Português Tür..."
+      "snippet": "成长地图_魔坊（ModelArts）模型训推平台-华为云 检测到您已 华为云国际站账号，为了您更好的体验，建议您访问国际站服务网站 不再显示此消息 中国站 中国站 简体中文 International English Bahasa Indonesia Español Português Tür..."
     },
     {
       "sourceId": "zhipu-bigmodel-console",
@@ -263,7 +283,7 @@
       "keyword": "火山方舟",
       "relevanceScore": 10,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "火山方舟 火山引擎的相关微信公众号文章 – 搜狗微信搜索 无障碍 登录 资讯 网页 微信 知乎 图片 视频 医疗 汉语 翻译 问问 百科 更多>> 以下内容来自微信公众平台 豆包大模型家族发布、 火山方舟 升级, 火山引擎 如何打造全栈AI技术服务? 火山引擎 重磅发布了豆包大模型家族和 火山方舟 2.0 等一系列创新产品,并且宣布豆包主力模型在..."
+      "snippet": "豆包大模型家族发布、 火山方舟 升级, 火山引擎 如何打造全栈AI技术服务? 火山引擎 重磅发布了豆包大模型家族和 火山方舟 2.0 等一系列创新产品,并且宣布豆包主力模型在..."
     },
     {
       "sourceId": "wechat-baidu-qianfan",
@@ -282,7 +302,7 @@
       "keyword": "百度千帆",
       "relevanceScore": 10,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "百度千帆 文心千帆的相关微信公众号文章 – 搜狗微信搜索 无障碍 登录 资讯 网页 微信 知乎 图片 视频 医疗 汉语 翻译 问问 百科 更多>> 以下内容来自微信公众平台 百度 文心千帆 大模型平台的试用体验 百度 文心千帆 大模型里也能通过类 Stable-Diffusion 模型,完成简... 百度千帆 大模型已经提供了基于大型数据集预训练..."
+      "snippet": "百度 文心千帆 大模型平台的试用体验 百度 文心千帆 大模型里也能通过类 Stable-Diffusion 模型,完成简... 百度千帆 大模型已经提供了基于大型数据集预训练..."
     },
     {
       "sourceId": "wechat-aliyun-bailian",
@@ -301,7 +321,7 @@
       "keyword": "阿里百炼",
       "relevanceScore": 10,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "阿里百炼 通义千问的相关微信公众号文章 – 搜狗微信搜索 无障碍 登录 资讯 网页 微信 知乎 图片 视频 医疗 汉语 翻译 问问 百科 更多>> 以下内容来自微信公众平台 阿里 整合 通义 、 千问 、钉钉和淘天旗下的AI团队,全面学习Google MaaS业务线(含 阿里 云 百炼 ,负责模型服务与企业交付)下游: 千问 事业部(C端)、悟空..."
+      "snippet": "阿里 整合 通义 、 千问 、钉钉和淘天旗下的AI团队,全面学习Google MaaS业务线(含 阿里 云 百炼 ,负责模型服务与企业交付)下游: 千问 事业部(C端)、悟空..."
     },
     {
       "sourceId": "wechat-siliconflow",
@@ -319,7 +339,7 @@
       "keyword": "硅基流动",
       "relevanceScore": 10,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "硅基流动 SiliconFlow的相关微信公众号文章 – 搜狗微信搜索 无障碍 登录 资讯 网页 微信 知乎 图片 视频 医疗 汉语 翻译 问问 百科 更多>> 以下内容来自微信公众平台 硅基流动 完成5000万元天使轮融资 talent@ siliconflow .cn商务合作:contact@ siliconflow .cn 硅基流动 官网:..."
+      "snippet": "硅基流动 完成5000万元天使轮融资 talent@ siliconflow .cn商务合作:contact@ siliconflow .cn 硅基流动 官网:..."
     },
     {
       "sourceId": "wechat-zhipu-ai",
@@ -337,7 +357,26 @@
       "keyword": "智谱",
       "relevanceScore": 10,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "智谱AI GLM BigModel的相关微信公众号文章 – 搜狗微信搜索 无障碍 登录 资讯 网页 微信 知乎 图片 视频 医疗 汉语 翻译 问问 百科 更多>> 以下内容来自微信公众平台 全球顶尖水平! 智谱AI 全自研国产大 模型 GLM -4发布,落地黑马? 智谱AI 首届技术开放日活动在北京中关村如期举行.本次活动的焦点,自然是震撼首..."
+      "snippet": "全球顶尖水平! 智谱AI 全自研国产大 模型 GLM -4发布,落地黑马? 智谱AI 首届技术开放日活动在北京中关村如期举行.本次活动的焦点,自然是震撼首..."
+    },
+    {
+      "sourceId": "wechat-kimi-moonshot",
+      "dataSourceId": "wechatKimiMoonshotSearch",
+      "competitor": "moonshot",
+      "name": "公众号检索：月之暗面 / Kimi",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=Kimi%20K2%20%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%20%E5%A4%A7%E6%A8%A1%E5%9E%8B",
+      "type": "wechat",
+      "recordType": "",
+      "categories": [
+        "model",
+        "agent",
+        "coding"
+      ],
+      "sourcePriority": "high",
+      "keyword": "Kimi",
+      "relevanceScore": 10,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "Kimi 大模型 / 月之暗面 ,关联公司梳理(附名单) 浪潮信息元脑企智一体机率先支持 Kimi K2 大模型 .2025年营收... 公司为 月之暗面 提供..."
     },
     {
       "sourceId": "media-maas-news-baidu",
@@ -353,9 +392,9 @@
       ],
       "sourcePriority": "medium",
       "keyword": "百度千帆",
-      "relevanceScore": 8,
+      "relevanceScore": 7,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "...采用原生全模态统一建模技术，具备全模态理解与生成能力，支持文本、图像、音频、视频等多种信息的输入与输出。目前，文心5.0已在文心APP及官网面向C端开放，企业端则... 新浪财经 百度千帆 品牌升级 更开放整合百度系全域AI能力\",\"titleUrl\":\"https://field.10jqka.com.cn/20251016/c671784811.shtml\",\"dataClick\":\"{\\n 'f0':'77A717EA',\\n 'f1':'9F73F1E4',\\n 'f2':'4CA6DE6A',\\n 'f3':'5..."
+      "snippet": "...采用原生全模态统一建模技术，具备全模态理解与生成能力，支持文本、图像、音频、 等多种信息的输入与输出。目前，文心5.0已在文心APP及官网面向C端开放，企业端则... 新浪财经 百度千帆 品牌升级 更开放整合百度系全域AI能力 , titleUrl : f0 : 77A717EA , f1 : 9F73F1E4 , f2 : 4CA6DE6A ,"
     },
     {
       "sourceId": "media-maas-news-aliyun",
@@ -374,7 +413,7 @@
       "keyword": "阿里百炼",
       "relevanceScore": 9,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "...在福州召开,阿里云及 通义大模型 服务政企的一批领先成果被重点展示。其中,基于 阿里通义 千问大模型和阿里云 百炼 平台构建的数字重庆三级治理中心系统... 上游新闻 去网页搜： 阿里百炼 通义 大模型 相关搜索 阿里ai大模型通义千问 阿里通义大模型最新消息 阿里通义大模型概念股票 通义大模型的核心能力 通义大模型怎么样 阿里通义大模型发布新功能 阿里云通义开源多模态模型 阿里百炼通义千问 通义千问哪个模型最好 阿里云大模型工具 1 2 3 4 5 6 下一页 > 帮助 举报 企业推广"
+      "snippet": "...在福州召开,阿里云及 通义大模型 服务政企的一批领先成果被重点展示。其中,基于 阿里通义 千问大模型和阿里云 百炼 平台构建的数字重庆三级治理中心系统... 上游新闻 去 搜： 阿里百炼 通义 大模型 相关搜索 阿里ai大模型通义千问 阿里通义大模型最新消息 阿里通义大模型概念股票 通义大模型怎么样 通义大模型的核心能力 阿里通义大模型发布新功能 阿里云通义开源多模态模型 阿里云大模型工具 阿里百炼通义千问 阿里免费调用的模型有哪些 1 2 3 4 5 6 下一页 > 帮助 举报 企业推广"
     },
     {
       "sourceId": "media-maas-news-volc",
@@ -391,28 +430,29 @@
       ],
       "sourcePriority": "medium",
       "keyword": "火山方舟",
-      "relevanceScore": 11,
+      "relevanceScore": 9,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "...n }\",\"leftImgSrc\":\"\",\"hasImg\":false,\"summary\":\"火山引擎是字节跳动旗下企业级云与AI服务平台,核心集中在** 豆包大模型 **、** 火山方舟 **、数据智能与音视频技术,把字节体系的算法、数据与内容技术开放给企业。它生态相对完整,适合看重大模型平台与数据智能、具备云上工程团队的企业参考。 核心优势 **数据合规与本地...\",\"dispTime\":\"4天前\",\"sourceIcon\":\"\",\"rtses\":\"中国经济新闻网\",\"sourceName\":\"中国经济时报\",\"ac..."
+      "snippet": "...模式 文落地的AI应用--产经动态--中国经济新闻网 5天前 5、火山引擎——字节系大模型平台与数据智能云** 火山引擎是字节跳动旗下的企业级云与AI服务平台,产品包括豆包大模型、火山方舟、向量数据库、知识库、GPU算力与智能推荐等。它把字节体系的算法、数据与内容技术能力开放给企业客户,在大模型接入、内容生成、推荐系统... 中国经济时报 模型 指南 , titleUrl : f0 : ..."
     },
     {
-      "sourceId": "media-maas-news-zhipu",
-      "dataSourceId": "mediaZhipuSearch",
-      "competitor": "zhipu",
-      "name": "新闻检索：智谱 AI",
-      "url": "https://www.baidu.com/s?tn=news&rtt=4&bsst=1&cl=2&word=%E6%99%BA%E8%B0%B1AI%20GLM%20BigModel%20%E5%A4%A7%E6%A8%A1%E5%9E%8B",
+      "sourceId": "media-kimi-chinadaily",
+      "dataSourceId": "mediaKimiChinaDaily",
+      "competitor": "moonshot",
+      "name": "China Daily：Moonshot Kimi K3",
+      "url": "https://global.chinadaily.com.cn/a/202607/18/WS6a5ad297a310986e2b465f8a.html",
       "type": "media",
       "recordType": "",
       "categories": [
         "model",
         "agent",
-        "business"
+        "coding",
+        "multimodal"
       ],
-      "sourcePriority": "medium",
-      "keyword": "智谱",
+      "sourcePriority": "high",
+      "keyword": "Kimi K3",
       "relevanceScore": 8,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "...9E0300108E&sec=1784598432&t=be50ebb15f97c48f24a64ebfa30b4581\",\"hasImg\":true,\"summary\":\"今年 智谱 在港股成功上市，成为“全球 大模型 第一股”。该公司总裁王绍兰介绍，“让机器像人一样思考”是智谱从创立第一天起就选择的方向。2025年智谱先后发布GLM-4.5、GLM-4.6、GLM-4.7...\",\"dispTime\":\"前天09:12\",\"sourceIcon\":\"https://pic.rmb.bdstatic.com/10c0..."
+      "snippet": "...are Share - WeChat CLOSE --> Chinese artificial intelligence startup Moonshot AI unveiled Kimi K3 on Friday, a 2.8-trillion-parameter model that pairs native vision with a 1-million-token context window, in an indication of the resources being targeted at the area by..."
     }
   ],
   "modelUpdates": [
@@ -585,5 +625,5 @@
     }
   ],
   "errors": [],
-  "publishedCandidates": 2
+  "publishedCandidates": 1
 }
