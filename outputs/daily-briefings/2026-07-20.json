@@ -1,33 +1,13 @@
 {
-  "targetDate": "2026-07-17",
+  "targetDate": "2026-07-20",
   "runDate": "2026-07-20",
-  "runDateTime": "2026-07-20 09:40:29",
+  "runDateTime": "2026-07-20 09:47:02",
   "timezone": "Asia/Shanghai",
   "dryRun": false,
   "noFetch": false,
   "sourcesChecked": 24,
   "exactMatches": [],
   "candidates": [
-    {
-      "sourceId": "volc-ark-docs",
-      "dataSourceId": "volcArkApi",
-      "competitor": "volc",
-      "name": "火山方舟接口文档",
-      "url": "https://www.volcengine.com/docs/82379/1494384?lang=zh",
-      "type": "official",
-      "recordType": "",
-      "categories": [
-        "model",
-        "agent",
-        "multimodal",
-        "platform"
-      ],
-      "sourcePriority": "high",
-      "keyword": "火山方舟",
-      "relevanceScore": 12,
-      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "文档中心 简体 文档 控制台 登录 注册 火山方舟 文档指南 订阅 [Agent/Coding Plan] API参考 资源 火山方舟 火山方舟 API参考 请输入 准备工作 获取 API Key 并配置 安装及升级 SDK Base URL及鉴权 对话(Chat) API 对话(Chat) API Responses API 创建模型响应 查询模型响应 获取响应上下文 删除模型响应 流..."
-    },
     {
       "sourceId": "volc-ark-model-updates",
       "dataSourceId": "volcArkModelUpdates",
@@ -394,7 +374,7 @@
       "keyword": "阿里百炼",
       "relevanceScore": 9,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "...710、飞天云计算操作系统、智算集群网络架构HPN7.0架构、AIStack一体机等底层硬核技术， 通义 千问及通义万相大模型系列，以及阿里云 百炼 ... 证券时报 去网页搜： 阿里百炼 通义 大模型 相关搜索 阿里ai大模型通义千问 阿里通义大模型最新消息 阿里通义大模型概念股票 通义大模型的核心能力 通义大模型怎么样 阿里通义大模型发布新功能 阿里云通义开源多模态模型 阿里百炼通义千问 通义千问哪个模型最好 阿里云大模型工具 1 2 3 4 5 6 下一页 > 帮助 举报 企业推广"
+      "snippet": "...在福州召开,阿里云及 通义大模型 服务政企的一批领先成果被重点展示。其中,基于 阿里通义 千问大模型和阿里云 百炼 平台构建的数字重庆三级治理中心系统... 上游新闻 去网页搜： 阿里百炼 通义 大模型 相关搜索 阿里ai大模型通义千问 阿里通义大模型最新消息 阿里通义大模型概念股票 通义大模型的核心能力 通义大模型怎么样 阿里通义大模型发布新功能 阿里云通义开源多模态模型 阿里百炼通义千问 通义千问哪个模型最好 阿里云大模型工具 1 2 3 4 5 6 下一页 > 帮助 举报 企业推广"
     },
     {
       "sourceId": "media-maas-news-volc",
@@ -411,9 +391,9 @@
       ],
       "sourcePriority": "medium",
       "keyword": "火山方舟",
-      "relevanceScore": 9,
+      "relevanceScore": 11,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "...模式 文落地的AI应用--产经动态--中国经济新闻网 4天前 5、火山引擎——字节系大模型平台与数据智能云** 火山引擎是字节跳动旗下的企业级云与AI服务平台,产品包括豆包大模型、火山方舟、向量数据库、知识库、GPU算力与智能推荐等。它把字节体系的算法、数据与内容技术能力开放给企业客户,在大模型接入、内容生成、推荐系统... 中国经济时报 模型 指南\",\"titleUrl\":\"https://www.csdn.net/article/2026-07-16/162941682\",\"dataClick\":\"{\\n 'f0':'..."
+      "snippet": "...n }\",\"leftImgSrc\":\"\",\"hasImg\":false,\"summary\":\"火山引擎是字节跳动旗下企业级云与AI服务平台,核心集中在** 豆包大模型 **、** 火山方舟 **、数据智能与音视频技术,把字节体系的算法、数据与内容技术开放给企业。它生态相对完整,适合看重大模型平台与数据智能、具备云上工程团队的企业参考。 核心优势 **数据合规与本地...\",\"dispTime\":\"4天前\",\"sourceIcon\":\"\",\"rtses\":\"中国经济新闻网\",\"sourceName\":\"中国经济时报\",\"ac..."
     },
     {
       "sourceId": "media-maas-news-zhipu",
@@ -430,9 +410,9 @@
       ],
       "sourcePriority": "medium",
       "keyword": "智谱",
-      "relevanceScore": 5,
+      "relevanceScore": 8,
       "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
-      "snippet": "...发去车库抗洪失联男子已遇难 新 28 大罗小罗麦当娜同台表演 29 半个西瓜真的不能买吗 新 30 西班牙时隔16年再夺世界杯冠军 辅助模式 大模型 迈入10亿美元ARR新纪元! 智谱 跑出超越Anthropic的商业化...\",\"titleUrl\":\"https://stock.10jqka.com.cn/20260717/c678245890.shtml\",\"dataClick\":\"{\\n 'f0':'77A717EA',\\n 'f1':'9F73F1E4',\\n 'f2':'4CA6DE6A',\\n 'f3':'..."
+      "snippet": "...9E0300108E&sec=1784598432&t=be50ebb15f97c48f24a64ebfa30b4581\",\"hasImg\":true,\"summary\":\"今年 智谱 在港股成功上市，成为“全球 大模型 第一股”。该公司总裁王绍兰介绍，“让机器像人一样思考”是智谱从创立第一天起就选择的方向。2025年智谱先后发布GLM-4.5、GLM-4.6、GLM-4.7...\",\"dispTime\":\"前天09:12\",\"sourceIcon\":\"https://pic.rmb.bdstatic.com/10c0..."
     }
   ],
   "modelUpdates": [
@@ -605,5 +585,5 @@
     }
   ],
   "errors": [],
-  "publishedCandidates": 1
+  "publishedCandidates": 2
 }

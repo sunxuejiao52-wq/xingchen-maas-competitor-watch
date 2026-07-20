@@ -270,6 +270,10 @@ async function main() {
     }
   }
 
+  if (isTotalFetchFailure(report, sources)) {
+    throw new Error(`All ${sources.length} data sources failed to fetch for ${targetDate}. Data files were not updated. First error: ${report.errors[0]?.message || "unknown"}`);
+  }
+
   if (collectedModelUpdates.length) {
     replaceAutoModelUpdates(payload, collectedModelUpdates);
   }
@@ -279,6 +283,7 @@ async function main() {
   report.publishedCandidates = publishedCandidates.length;
   payload.updatedAt = runDateTime;
   payload.note = `自动刷新已运行：${runDateTime}（北京时间），本次按“平台自己的官方更新记录”口径总结 ${targetDate} 的竞品动态。官方更新记录 ${report.exactMatches.length} 条，新闻/公众号线索 ${publishedCandidates.length} 条，官方模型更新 ${collectedModelUpdates.length} 条。`;
+  payload.monitorRuns = removeFailedMonitorRuns(payload.monitorRuns);
   payload.monitorRuns = [
     buildRunSummary(report),
     ...asArray(payload.monitorRuns).filter((item) => item?.targetDate !== targetDate)
@@ -300,6 +305,28 @@ async function main() {
   console.log(`Collected candidates: ${report.candidates.length}`);
   console.log(`Model updates: ${collectedModelUpdates.length}`);
   console.log(`Errors: ${report.errors.length}`);
+}
+
+function isTotalFetchFailure(report, sources) {
+  if (noFetch) return false;
+  if (!sources.length) return false;
+  return report.errors.length === sources.length
+    && report.exactMatches.length === 0
+    && report.candidates.length === 0
+    && report.modelUpdates.length === 0;
+}
+
+function removeFailedMonitorRuns(items) {
+  return asArray(items).filter((item) => {
+    const sourcesChecked = Number(item?.sourcesChecked || 0);
+    const errors = Number(item?.errors || 0);
+    const exactMatches = Number(item?.exactMatches || 0);
+    const publishedCandidates = Number(item?.publishedCandidates || 0);
+    const candidates = Number(item?.candidates || 0);
+    const modelUpdates = Number(item?.modelUpdates || 0);
+    if (!sourcesChecked) return true;
+    return !(errors >= sourcesChecked && exactMatches === 0 && publishedCandidates === 0 && candidates === 0 && modelUpdates === 0);
+  });
 }
 
 function parseArgs(argv) {
@@ -432,10 +459,19 @@ async function inspectSource(source) {
         competitor: source.competitor,
         name: source.name,
         url: source.url,
-        message: error.message
+        message: formatErrorMessage(error)
       }
     };
   }
+}
+
+function formatErrorMessage(error) {
+  const parts = [error?.message];
+  const cause = error?.cause;
+  if (cause?.code || cause?.hostname || cause?.message) {
+    parts.push([cause.code, cause.hostname, cause.message].filter(Boolean).join(" "));
+  }
+  return parts.filter(Boolean).join(" | ") || "unknown error";
 }
 
 function buildSkippedSourceResult(source) {
