@@ -625,7 +625,9 @@ function buildSnippet(text, keyword, options = {}) {
   const end = Math.min(text.length, index + String(keyword).length + 170);
   const prefix = start > 0 ? "..." : "";
   const suffix = end < text.length ? "..." : "";
-  return `${prefix}${text.slice(start, end).replace(/\s+/g, " ").trim()}${suffix}`;
+  const snippet = `${prefix}${text.slice(start, end).replace(/\s+/g, " ").trim()}${suffix}`;
+  const readable = cleanCommunicationSnippet(snippet);
+  return readable.length >= 36 ? readable : snippet;
 }
 
 function buildNewsItem(source, sourceResult, dateString) {
@@ -847,7 +849,8 @@ function scoreCandidate(source, sourceResult) {
     silicon: ["硅基流动", "siliconflow"],
     tencent: ["腾讯云", "ti-one", "混元", "hunyuan", "tencent"],
     huawei: ["华为云", "modelarts", "昇腾", "huawei"],
-    zhipu: ["智谱", "glm", "bigmodel", "z.ai"]
+    zhipu: ["智谱", "glm", "bigmodel", "z.ai"],
+    moonshot: ["月之暗面", "kimi", "moonshot", "kimi k2", "kimi k3"]
   };
   const actionTerms = ["发布", "上线", "更新", "升级", "合作", "生态", "融资", "降价", "优惠", "套餐", "模型", "大模型", "智能体", "工具", "视频", "图像"];
   let score = source.priority === "high" ? 2 : source.priority === "medium" ? 1 : 0;
@@ -924,7 +927,7 @@ function buildFallbackCommunicationTakeaway(input, capabilityText) {
 }
 
 function cleanCommunicationSentence(value = "") {
-  return String(value)
+  return cleanCommunicationSnippet(value)
     .replace(/去网页搜[:：]?.*$/g, "")
     .replace(/相关搜索.*$/g, "")
     .replace(/下一页.*$/g, "")
@@ -980,6 +983,12 @@ function summarizeConcreteCommunicationBody(input, text, capabilityText) {
       takeaway: "星辰 MaaS 可关注 GLM 等国产模型的接入、版本说明、评测结果和迁移建议，避免用户只看到模型名、看不到选择依据。"
     };
   }
+  if (/Kimi\s*K3|Moonshot/i.test(compact) && /2\.8|trillion|1-million-token|open|vision|coding|agent/i.test(compact)) {
+    return {
+      summary: "China Daily 报道称，Moonshot 发布 Kimi K3，强调 2.8T 参数、1M token 上下文、多模态视觉理解、代码生成和 Agent 任务能力，并提供开放权重和 API 调用。",
+      takeaway: "简单说，Kimi 的热度来自“长上下文 + 开源/开放权重 + 代码/Agent + 多模态”的组合；星辰 MaaS 需要关注这类热门模型是否接入、价格是否清楚、长上下文和 Agent 能力如何展示。"
+    };
+  }
   if (/Coding|Agent|VLM|视觉理解/i.test(compact) && /豆包|火山方舟/i.test(compact)) {
     return {
       summary: "报道提到豆包围绕 Coding、Agent、VLM 三个方向升级，火山方舟继续把模型能力和平台服务打包成对外方案。",
@@ -1020,6 +1029,8 @@ function summarizeConcreteCommunicationTitle(vendor, text) {
     [/豆包大模型|火山方舟/i, /Token调用量|日均Token|企业和个人|万亿Tokens/i, `${vendor}：豆包调用量和方舟客户规模增长`],
     [/GLM\s*-?\s*5\.?2|GLM-5\.2/i, /发布|推出|开源|优势/i, `${vendor}：GLM-5.2 强化开源模型供给`],
     [/GLM\s*-?\s*4|GLM-4/i, /API|开放|上线/i, `${vendor}：GLM-4 API 开放上线`],
+    [/Kimi\s*K3|Moonshot/i, /2\.8|trillion|1-million-token|open|vision|coding|agent/i, `${vendor}：Kimi K3 强调长上下文和 Agent 能力`],
+    [/Kimi\s*K2|月之暗面|Moonshot/i, /发布|开源|上线|模型|Agent|代码/i, `${vendor}：Kimi 热门模型进入市场关注`],
     [/低代码|流程编排|Bot|钉钉/i, /企业|报销|订单|审核|工作流/i, `${vendor}：低代码 Bot 嵌入企业流程`],
     [/Coding\s*Plan|Token\s*Plan/i, /停止续费|升级|套餐|权益/i, `${vendor}：开发者套餐权益调整`],
     [/Token工厂|推理型算力|AI infra/i, /硅基流动|SiliconFlow/i, `${vendor}：Token 工厂强调推理成本优势`]
@@ -1038,7 +1049,8 @@ function normalizeCompetitorName(input) {
     silicon: "硅基流动",
     tencent: "腾讯云 TI",
     huawei: "华为 MaaS",
-    zhipu: "智谱 AI"
+    zhipu: "智谱 AI",
+    moonshot: "月之暗面 Kimi"
   };
   const fromName = String(input.name || "")
     .replace(/^公众号检索：|^新闻检索：/, "")
@@ -1069,27 +1081,97 @@ function compactTitle(value) {
     .slice(0, 42);
 }
 
+function extractStructuredSearchText(value = "") {
+  const fields = extractStructuredSearchFields(value);
+  const parts = [fields.title, fields.summary, fields.abstract, fields.content]
+    .filter((item) => item && item.length >= 12)
+    .filter((item, index, list) => list.indexOf(item) === index);
+  return parts.length ? parts.join("。") : "";
+}
+
+function extractStructuredSearchFields(value = "") {
+  const text = decodeJsonEscapes(String(value || ""));
+  const fields = {};
+  for (const field of ["title", "summary", "abstract", "content", "desc"]) {
+    const extracted = extractJsonishField(text, field);
+    if (extracted) fields[field === "desc" ? "summary" : field] = extracted;
+  }
+  return fields;
+}
+
+function extractJsonishField(text, field) {
+  const escapedField = escapeRegExp(field);
+  const patterns = [
+    new RegExp(`["']${escapedField}["']\\s*[:：]\\s*["']([\\s\\S]{8,800}?)(?<!\\\\)["']`, "i"),
+    new RegExp(`${escapedField}\\s*[:：]\\s*["']([\\s\\S]{8,800}?)(?<!\\\\)["']`, "i")
+  ];
+  for (const pattern of patterns) {
+    const match = String(text || "").match(pattern);
+    if (!match) continue;
+    const cleaned = cleanStructuredField(match[1]);
+    if (cleaned) return cleaned;
+  }
+  return "";
+}
+
+function cleanStructuredField(value = "") {
+  const text = decodeJsonEscapes(value)
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\*\*/g, "")
+    .replace(/https?:\/\/\S+/gi, " ")
+    .replace(/[{}[\]"'\\]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!/[\u4e00-\u9fa5A-Za-z]/.test(text)) return "";
+  if (/(leftImgSrc|hasImg|displayUrl|sec=|rsv_|百度一下|相关搜索)/i.test(text)) return "";
+  return text.slice(0, 360);
+}
+
+function decodeJsonEscapes(value = "") {
+  return String(value)
+    .replace(/\\u([\da-fA-F]{4})/g, (_, code) => String.fromCharCode(Number.parseInt(code, 16)))
+    .replace(/\\x([\da-fA-F]{2})/g, (_, code) => String.fromCharCode(Number.parseInt(code, 16)))
+    .replace(/\\n|\\r|\\t/g, " ")
+    .replace(/\\"/g, "\"")
+    .replace(/\\'/g, "'");
+}
+
 function cleanCommunicationSnippet(value = "") {
-  let text = String(value);
+  let text = decodeJsonEscapes(String(value));
+  const structured = extractStructuredSearchText(text);
+  if (structured) text = structured;
   const wechatIndex = text.indexOf("以下内容来自微信公众平台");
   if (wechatIndex >= 0) text = text.slice(wechatIndex + "以下内容来自微信公众平台".length);
   return text
+    .replace(/https?:\/\/\S+/gi, " ")
+    .replace(/[?&](?:sec|t|sa|rsv_[a-z_]+|wd|word|query)=[A-Za-z0-9%_.:-]+/gi, " ")
+    .replace(/["']?(?:leftImgSrc|rightImgSrc|imgSrc|hasImg|hasImage|hasVideo|isAdv|sourceType|f3|f13|t|sec)["']?\s*[:=]\s*["']?[^"',，。！？\s]+["']?/gi, " ")
+    .replace(/["']?(?:url|href|src|tpl|displayUrl|shortUrl|link)["']?\s*[:=]\s*["']?[^"',，。！？\s]+["']?/gi, " ")
+    .replace(/[A-Fa-f0-9]{24,}/g, " ")
+    .replace(/[A-Za-z0-9_-]{36,}/g, " ")
     .replace(/\s+/g, " ")
     .replace(/["{,]*summary["']?\s*[:：]\s*["']?/gi, " ")
     .replace(/["{,]*title["']?\s*[:：]\s*["']?/gi, " ")
     .replace(/["{,]*abstract["']?\s*[:：]\s*["']?/gi, " ")
+    .replace(/["{,]*content["']?\s*[:：]\s*["']?/gi, " ")
     .replace(/\\u[\da-f]{4}/gi, " ")
+    .replace(/[{}[\]"'\\]+/g, " ")
     .replace(/[^。！？?]{0,48}相关\s*公众号文章\s*[–-]\s*搜狗\s*搜索/gi, " ")
     .replace(/无障碍|登录|资讯|网页|微信|知乎|图片|视频|医疗|汉语|翻译|问问|百科|更多>>/g, " ")
     .replace(/以下内容来自微信公众平台/g, " ")
     .replace(/的相关微信公众号文章\s*[-–]\s*搜狗微信搜索/g, " ")
     .replace(/百度一下|搜索本产品文档关键词/g, " ")
+    .replace(/\s*[,:，]\s*(?=(has|left|right|img|src|url|summary|title)\b)/gi, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
 
 function extractCommunicationHeadline(input) {
   const clean = cleanCommunicationSnippet(input.snippet);
+  const structuredTitle = extractStructuredSearchFields(input.snippet).title;
+  if (structuredTitle && structuredTitle.length >= 8) {
+    return structuredTitle.length > 72 ? `${structuredTitle.slice(0, 70)}...` : structuredTitle;
+  }
   const withoutPrefix = clean
     .replace(new RegExp(escapeRegExp(input.keyword || ""), "gi"), input.keyword || "")
     .replace(/^\S{0,24}的相关微信公众号文章\s*/, "")
@@ -1106,8 +1188,9 @@ function isLowQualitySearchSnippet(snippet = "") {
   const text = String(snippet);
   const clean = cleanCommunicationSnippet(snippet);
   const noiseTerms = ["金球奖最新概率", "女子被骗", "阿根廷连续", "斯塔默", "威廉王子", "老娘有钱", "全球好感度", "下一页", "企业推广"];
+  if (/(hasImg|leftImgSrc|rightImgSrc|sec=|displayUrl|\"f3\"|'f3'|\\n\s*['"]t['"])/i.test(text) && clean.length < 80) return true;
   const noiseHits = noiseTerms.filter((term) => text.includes(term)).length;
-  const usefulTerms = ["发布", "上线", "升级", "下线", "退役", "合作", "融资", "套餐", "模型", "智能体", "火山方舟", "百度千帆", "阿里百炼", "智谱", "GLM", "Qwen", "豆包", "通义"];
+  const usefulTerms = ["发布", "上线", "升级", "下线", "退役", "合作", "融资", "套餐", "模型", "智能体", "火山方舟", "百度千帆", "阿里百炼", "智谱", "GLM", "Qwen", "豆包", "通义", "Kimi", "月之暗面", "Moonshot"];
   const usefulHits = usefulTerms.filter((term) => text.includes(term)).length;
   if (noiseHits >= 2 && usefulHits <= 3) return true;
   if (clean.length < 28) return true;
@@ -1147,7 +1230,11 @@ function detectCapabilityLabels(input) {
 
 function buildEvidenceSnippet(snippet, keyword) {
   if (!snippet) return "";
-  const compact = snippet.replace(/\s+/g, " ").replace(/\.\.\./g, "…").trim();
+  const readable = cleanCommunicationSnippet(snippet);
+  const compact = (readable.length >= 36 ? readable : snippet)
+    .replace(/\s+/g, " ")
+    .replace(/\.\.\./g, "…")
+    .trim();
   const prefix = keyword ? `命中“${keyword}”：` : "";
   return `${prefix}${compact.slice(0, 180)}${compact.length > 180 ? "…" : ""}`;
 }
@@ -1347,6 +1434,9 @@ function isLowInformationNewsItem(item) {
     return true;
   }
   if (/相关微信公众号文章\s*[–-]\s*搜狗微信搜索/.test(text) && !item?.publishedDate) {
+    return true;
+  }
+  if (/(hasImg|leftImgSrc|rightImgSrc|displayUrl|sec=|9E0300108E|\\n\s*['"]f3['"]|\\n\s*['"]t['"])/i.test(text)) {
     return true;
   }
   if (item?.dateSource === "collection_date" && !item?.publishedDate) {
