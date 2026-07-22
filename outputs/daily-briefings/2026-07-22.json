@@ -1,0 +1,629 @@
+{
+  "targetDate": "2026-07-22",
+  "runDate": "2026-07-23",
+  "runDateTime": "2026-07-23 04:45:57",
+  "timezone": "Asia/Shanghai",
+  "dryRun": false,
+  "noFetch": false,
+  "sourcesChecked": 27,
+  "exactMatches": [],
+  "candidates": [
+    {
+      "sourceId": "volc-ark-docs",
+      "dataSourceId": "volcArkApi",
+      "competitor": "volc",
+      "name": "火山方舟接口文档",
+      "url": "https://www.volcengine.com/docs/82379/1494384?lang=zh",
+      "type": "official",
+      "recordType": "",
+      "categories": [
+        "model",
+        "agent",
+        "multimodal",
+        "platform"
+      ],
+      "sourcePriority": "high",
+      "keyword": "火山方舟",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "文档中心 简体 文档 控制台 注册 火山方舟 文档指南 订阅 Agent/Coding Plan API参考 资源 火山方舟 火山方舟 API参考 请输入 准备工作 获取 API Key 并配置 安装及升级 SDK Base URL及鉴权 对话(Chat) API 对话(Chat) API Responses API 创建 Response 查询 Response 详情 查询..."
+    },
+    {
+      "sourceId": "volc-ark-model-updates",
+      "dataSourceId": "volcArkModelUpdates",
+      "competitor": "volc",
+      "name": "火山方舟模型更新日志",
+      "url": "https://console.volcengine.com/ark/region:cn-beijing/docs/82379/1159178?lang=zh",
+      "type": "official",
+      "recordType": "official_model_update_log",
+      "categories": [
+        "model",
+        "multimodal"
+      ],
+      "sourcePriority": "high",
+      "keyword": "火山方舟",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "火山方舟 --> --> -->"
+    },
+    {
+      "sourceId": "volc-ark-platform-updates",
+      "dataSourceId": "volcArkPlatformUpdates",
+      "competitor": "volc",
+      "name": "火山方舟平台更新记录",
+      "url": "https://console.volcengine.com/ark/region:cn-beijing/docs/82379/1159177?lang=zh",
+      "type": "official",
+      "recordType": "official_update_record",
+      "categories": [
+        "agent",
+        "tools",
+        "platform",
+        "business"
+      ],
+      "sourcePriority": "high",
+      "keyword": "火山方舟",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "火山方舟 --> --> -->"
+    },
+    {
+      "sourceId": "baidu-qianfan-model",
+      "dataSourceId": "baiduModel",
+      "competitor": "baidu",
+      "name": "百度千帆模型更新记录",
+      "url": "https://cloud.baidu.com/doc/qianfan/s/Kmh4stnjp",
+      "type": "official",
+      "recordType": "official_update_record",
+      "categories": [
+        "model",
+        "governance"
+      ],
+      "sourcePriority": "high",
+      "keyword": "千帆",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "模型更新记录 - 百度千帆·大模型服务及Agent开发平台 百度智能云 最新活动 产品 解决方案 企业服务 云市场 合作与生态 开发者 服务与支持 了解智能云 备案 文档 管理控制台 文档中心 立即试用 模型更新记录 百度千帆·大模型服务及Agent开发平台 平台介绍 平台简介 更新动态 产品公告 模型服务 模型更新记录 平台更新记录 模型版..."
+    },
+    {
+      "sourceId": "baidu-qianfan-platform",
+      "dataSourceId": "baiduPlatform",
+      "competitor": "baidu",
+      "name": "百度千帆更新动态",
+      "url": "https://cloud.baidu.com/doc/qianfan/s/Gmh4stncc",
+      "type": "official",
+      "recordType": "official_update_record",
+      "categories": [
+        "agent",
+        "tools",
+        "business"
+      ],
+      "sourcePriority": "high",
+      "keyword": "智能体",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "...工作流Agent：“金牌销售”车险续保Agent 工作流Agent：如何使用全局跳转节点搭建飞行客服小助手 工作流Agent：机票订单处理助手 工作流大模型节点高级配置使用案例 多智能体协同Agent最佳实践 用“多智能体协同Agent”一分钟搭建专属研究Agent，帮企业做深度研究 自定义工具最佳实践 工作流组件： API的增删查 工作流组件：如何用知识库节点和API节点搭建个人减脂小助手 工作流组件：深度使用实践 组件工作流：使用记忆变量节点构建个人化导购小助手 知识库最佳实践 图谱增强RAG： 诊断助手 多模态R..."
+    },
+    {
+      "sourceId": "baidu-qianfan-coding",
+      "dataSourceId": "baiduCodingPlan",
+      "competitor": "baidu",
+      "name": "百度千帆开发者套餐公告",
+      "url": "https://cloud.baidu.com/doc/qianfan/s/Emqsyd7yj",
+      "type": "official",
+      "recordType": "official_update_record",
+      "categories": [
+        "coding",
+        "business"
+      ],
+      "sourcePriority": "high",
+      "keyword": "Coding Plan",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "Coding Plan 产品升级公告 - 百度千帆·大模型服务及Agent开发平台 百度智能云 最新活动 产品 解决方案 企业服务 云市场 合作与生态 开发者 服务与支持 了解智能云 备案 文档 管理控制台 文档中心 立即试用 Coding Plan 产品升级公告 百度千帆·大模型服务及Agent开发平台 平台介绍 平台简介 更新动态 产..."
+    },
+    {
+      "sourceId": "aliyun-bailian-models",
+      "dataSourceId": "aliyunModels",
+      "competitor": "aliyun",
+      "name": "阿里云百炼模型大全",
+      "url": "https://help.aliyun.com/zh/model-studio/models",
+      "type": "official",
+      "recordType": "",
+      "categories": [
+        "model",
+        "multimodal"
+      ],
+      "sourcePriority": "high",
+      "keyword": "百炼",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "模型大全功能规格与计费-大模型服务平台百炼-阿里云-大模型服务平台百炼(Model Studio)-阿里云帮助中心 大模型 产品 解决方案 权益 定价 云市场 伙伴 服务 了解阿里云 查看 全部搜索结果 AI 助理 文档 备案 控制台 官方文档 用户指南（模型） 用户指南（应用） API参考（模型） API参考（应用） 首页 选择模型 更新时间： 复制 MD 格式 产品详情..."
+    },
+    {
+      "sourceId": "aliyun-bailian-model-updates",
+      "dataSourceId": "aliyunModelUpdates",
+      "competitor": "aliyun",
+      "name": "阿里百炼模型更新日志",
+      "url": "https://bailian.console.aliyun.com/cn-beijing?spm=5176.29619931.J__Z58Z6CX7MY__Ll8p1ZOR.1.5709521cDeDXG9&tab=doc#/doc/?type=model&url=2987781",
+      "type": "official",
+      "recordType": "official_model_update_log",
+      "categories": [
+        "model",
+        "multimodal"
+      ],
+      "sourcePriority": "high",
+      "keyword": "模型",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "大模型服务平台百炼控制台 Loading..."
+    },
+    {
+      "sourceId": "aliyun-bailian-mcp",
+      "dataSourceId": "aliyunMcp",
+      "competitor": "aliyun",
+      "name": "阿里云百炼工具接入文档",
+      "url": "https://help.aliyun.com/zh/model-studio/mcp-introduction",
+      "type": "official",
+      "recordType": "",
+      "categories": [
+        "agent",
+        "tools"
+      ],
+      "sourcePriority": "high",
+      "keyword": "MCP",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "模型上下文协议（MCP）-大模型服务平台百炼(Model Studio)-阿里云帮助中心 大模型 产品 解决方案 权益 定价 云市场 伙伴 服务 了解阿里云 查看 全部搜索结果 AI 助理 文档 备案 控制台 官方文档 用户指南（模型） 用户指南（应用） API参考（模型） API参考（应用） 首页 模型上下文协议（MCP） 更新时间： 复制 MD 格式..."
+    },
+    {
+      "sourceId": "aliyun-bailian-coding",
+      "dataSourceId": "aliyunCodingPlan",
+      "competitor": "aliyun",
+      "name": "阿里云百炼开发者套餐",
+      "url": "https://help.aliyun.com/zh/model-studio/coding-plan",
+      "type": "official",
+      "recordType": "",
+      "categories": [
+        "coding",
+        "business"
+      ],
+      "sourcePriority": "medium",
+      "keyword": "Coding Plan",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "Coding Plan-大模型服务平台百炼(Model Studio)-阿里云帮助中心 大模型 产品 解决方案 权益 定价 云市场 伙伴 服务 了解阿里云 查看 全部搜索结果 AI 助理 文档 备案 控制台 官方文档 用户指南（模型） 用户指南（应用） API参考（模型） API参考（应用） 首页 Coding Plan概述 更新时间： 复制 MD 格式..."
+    },
+    {
+      "sourceId": "siliconflow-release",
+      "dataSourceId": "siliconRelease",
+      "competitor": "silicon",
+      "name": "SiliconFlow 更新公告",
+      "url": "https://docs.siliconflow.cn/cn/release-notes/overview",
+      "type": "official",
+      "recordType": "official_update_record",
+      "categories": [
+        "model",
+        "business",
+        "governance"
+      ],
+      "sourcePriority": "high",
+      "keyword": "SiliconFlow",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "更新公告 - SiliconFlow Documentation Index Fetch the complete documentation index a Use this file to discover all available pages before exploring further. Skip to main content Sil..."
+    },
+    {
+      "sourceId": "tencent-tione-docs",
+      "dataSourceId": "tencentTione",
+      "competitor": "tencent",
+      "name": "腾讯云 TI-ONE 文档",
+      "url": "https://cloud.tencent.com/document/product/851",
+      "type": "official",
+      "recordType": "",
+      "categories": [
+        "platform",
+        "model"
+      ],
+      "sourcePriority": "medium",
+      "keyword": "TI-ONE",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "腾讯云大模型训推平台TI-ONE简介_腾讯云大模型训推平台TI-ONE购买指南_腾讯云大模型训推平台TI-ONE操作指南-腾讯云 腾讯云 最新活动 大模型 产品 解决方案 定价 企业中心 云市场 开发者 客户支持 合作与生态 了解腾讯云 搜索 腾讯云大模型训推平台TI-ONE 文档中心 入门中心 API 中心 SDK 中心 文档活动 我的反馈 帮你快速理解、总结文档 立..."
+    },
+    {
+      "sourceId": "huawei-modelarts-docs",
+      "dataSourceId": "huaweiModelArts",
+      "competitor": "huawei",
+      "name": "华为云 ModelArts 文档",
+      "url": "https://support.huaweicloud.com/modelarts/index.html",
+      "type": "official",
+      "recordType": "",
+      "categories": [
+        "platform",
+        "agent"
+      ],
+      "sourcePriority": "medium",
+      "keyword": "ModelArts",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "成长地图_魔坊（ModelArts）模型训推平台-华为云 检测到您已 华为云国际站账号，为了您更好的体验，建议您访问国际站服务网站 不再显示此消息 中国站 中国站 简体中文 International English Bahasa Indonesia Español Português Tür..."
+    },
+    {
+      "sourceId": "zhipu-bigmodel-console",
+      "dataSourceId": "zhipuExternal",
+      "competitor": "zhipu",
+      "name": "智谱 BigModel 模型广场",
+      "url": "https://bigmodel.cn/console/modelcenter/square",
+      "type": "official",
+      "recordType": "",
+      "categories": [
+        "model",
+        "agent"
+      ],
+      "sourcePriority": "medium",
+      "keyword": "智谱",
+      "relevanceScore": 12,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "智谱AI开放平台"
+    },
+    {
+      "sourceId": "wechat-volc-ark",
+      "dataSourceId": "wechatVolcArkSearch",
+      "competitor": "volc",
+      "name": "公众号检索：火山方舟 / 火山引擎",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E7%81%AB%E5%B1%B1%E6%96%B9%E8%88%9F%20%E7%81%AB%E5%B1%B1%E5%BC%95%E6%93%8E",
+      "type": "wechat",
+      "recordType": "",
+      "categories": [
+        "model",
+        "agent",
+        "business"
+      ],
+      "sourcePriority": "medium",
+      "keyword": "火山方舟",
+      "relevanceScore": 10,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "豆包大模型家族发布、 火山方舟 升级, 火山引擎 如何打造全栈AI技术服务? 火山引擎 重磅发布了豆包大模型家族和 火山方舟 2.0 等一系列创新产品,并且宣布豆包主力模型在..."
+    },
+    {
+      "sourceId": "wechat-baidu-qianfan",
+      "dataSourceId": "wechatQianfanSearch",
+      "competitor": "baidu",
+      "name": "公众号检索：百度千帆 / 文心千帆",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E7%99%BE%E5%BA%A6%E5%8D%83%E5%B8%86%20%E6%96%87%E5%BF%83%E5%8D%83%E5%B8%86",
+      "type": "wechat",
+      "recordType": "",
+      "categories": [
+        "model",
+        "agent",
+        "business"
+      ],
+      "sourcePriority": "medium",
+      "keyword": "百度千帆",
+      "relevanceScore": 10,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "百度 文心千帆 大模型平台的试用体验 百度 文心千帆 大模型里也能通过类 Stable-Diffusion 模型,完成简... 百度千帆 大模型已经提供了基于大型数据集预训练..."
+    },
+    {
+      "sourceId": "wechat-aliyun-bailian",
+      "dataSourceId": "wechatBailianSearch",
+      "competitor": "aliyun",
+      "name": "公众号检索：阿里百炼 / 通义千问",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%20%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE",
+      "type": "wechat",
+      "recordType": "",
+      "categories": [
+        "model",
+        "agent",
+        "multimodal"
+      ],
+      "sourcePriority": "medium",
+      "keyword": "阿里百炼",
+      "relevanceScore": 10,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "阿里 整合 通义 、 千问 、钉钉和淘天旗下的AI团队,全面学习Google MaaS业务线(含 阿里 云 百炼 ,负责模型服务与企业交付)下游: 千问 事业部(C端)、悟空..."
+    },
+    {
+      "sourceId": "wechat-siliconflow",
+      "dataSourceId": "wechatSiliconSearch",
+      "competitor": "silicon",
+      "name": "公众号检索：硅基流动 / SiliconFlow",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E7%A1%85%E5%9F%BA%E6%B5%81%E5%8A%A8%20SiliconFlow",
+      "type": "wechat",
+      "recordType": "",
+      "categories": [
+        "model",
+        "business"
+      ],
+      "sourcePriority": "medium",
+      "keyword": "硅基流动",
+      "relevanceScore": 10,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "Claude Code 接 硅基流动 ,一个中转搞定 1. Siliconflow 官方文档的坑想用 Claude Code 接 Siliconflow 硅基流..."
+    },
+    {
+      "sourceId": "wechat-zhipu-ai",
+      "dataSourceId": "wechatZhipuSearch",
+      "competitor": "zhipu",
+      "name": "公众号检索：智谱 AI / GLM",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=%E6%99%BA%E8%B0%B1AI%20GLM%20BigModel",
+      "type": "wechat",
+      "recordType": "",
+      "categories": [
+        "model",
+        "agent"
+      ],
+      "sourcePriority": "medium",
+      "keyword": "智谱",
+      "relevanceScore": 10,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "智谱AI GLM -4 模型 开放API 正式上线 //open. bigmodel .cn/dev/api# glm -4),目前新用户注册 还有50..."
+    },
+    {
+      "sourceId": "wechat-kimi-moonshot",
+      "dataSourceId": "wechatKimiMoonshotSearch",
+      "competitor": "moonshot",
+      "name": "公众号检索：月之暗面 / Kimi",
+      "url": "https://weixin.sogou.com/weixin?type=2&query=Kimi%20K2%20%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%20%E5%A4%A7%E6%A8%A1%E5%9E%8B",
+      "type": "wechat",
+      "recordType": "",
+      "categories": [
+        "model",
+        "agent",
+        "coding"
+      ],
+      "sourcePriority": "high",
+      "keyword": "Kimi",
+      "relevanceScore": 10,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "Kimi 大模型 / 月之暗面 ,关联公司梳理(附名单) 浪潮信息元脑企智一体机率先支持 Kimi K2 大模型 .2025年营收... 公司为 月之暗面 提供..."
+    },
+    {
+      "sourceId": "media-maas-news-baidu",
+      "dataSourceId": "mediaBaiduQianfanSearch",
+      "competitor": "baidu",
+      "name": "新闻检索：百度千帆",
+      "url": "https://www.baidu.com/s?tn=news&rtt=4&bsst=1&cl=2&word=%E7%99%BE%E5%BA%A6%E5%8D%83%E5%B8%86%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%20%E6%9B%B4%E6%96%B0",
+      "type": "media",
+      "recordType": "",
+      "categories": [
+        "model",
+        "business"
+      ],
+      "sourcePriority": "medium",
+      "keyword": "百度千帆",
+      "relevanceScore": 7,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "...采用原生全模态统一建模技术，具备全模态理解与生成能力，支持文本、图像、音频、 等多种信息的输入与输出。目前，文心5.0已在文心APP及官网面向C端开放，企业端则... 新浪财经 百度千帆 品牌升级 更开放整合百度系全域AI能力 , titleUrl : f0 : 77A717EA , f1 : 9F73F1E4 , f2 : 4CA6DE6A ,"
+    },
+    {
+      "sourceId": "media-maas-news-aliyun",
+      "dataSourceId": "mediaAliyunBailianSearch",
+      "competitor": "aliyun",
+      "name": "新闻检索：阿里百炼",
+      "url": "https://www.baidu.com/s?tn=news&rtt=4&bsst=1&cl=2&word=%E9%98%BF%E9%87%8C%E7%99%BE%E7%82%BC%20%E9%80%9A%E4%B9%89%20%E5%A4%A7%E6%A8%A1%E5%9E%8B",
+      "type": "media",
+      "recordType": "",
+      "categories": [
+        "model",
+        "multimodal",
+        "business"
+      ],
+      "sourcePriority": "medium",
+      "keyword": "阿里百炼",
+      "relevanceScore": 10,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "...阿里云Agent应用生态论坛”上，阿里云副总裁、大数据和智能实验室负责人叶杰平表示：“三年前，在世界人工智能大会上，我们正式发布了 通义大模型 ，并承... 亿邦动力 去 搜： 阿里百炼 通义 大模型 相关搜索 阿里万相大模型 阿里ai大模型通义千问 通义大模型官网 阿里通义大模型最新消息 阿里通义大模型概念股票 通义大模型怎么样 通义大模型的核心能力 阿里云通义开源多模态模型 阿里通义大模型发布新功能 阿里云大模型工具 1 2 3 4 5 6 下一页 > 帮助 举报 企业推广"
+    },
+    {
+      "sourceId": "media-maas-news-volc",
+      "dataSourceId": "mediaVolcArkSearch",
+      "competitor": "volc",
+      "name": "新闻检索：火山方舟",
+      "url": "https://www.baidu.com/s?tn=news&rtt=4&bsst=1&cl=2&word=%E7%81%AB%E5%B1%B1%E6%96%B9%E8%88%9F%20%E8%B1%86%E5%8C%85%20%E5%A4%A7%E6%A8%A1%E5%9E%8B",
+      "type": "media",
+      "recordType": "",
+      "categories": [
+        "model",
+        "multimodal",
+        "business"
+      ],
+      "sourcePriority": "medium",
+      "keyword": "火山方舟",
+      "relevanceScore": 11,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "...21:34 作为火山引擎旗下科创扶持载体,V-START加速器携成熟创业生态深度入局。依托覆盖2000余家初创企业、赋能70余个优质项目的实践经验,火山引擎行业解决方案专家现场分享火山方舟与豆包大模型的核心技术架构与能力,并结合真实企业场景,拆解大模型在初创企业中的实战应用路... 同花顺财经 火山 引擎:达成战略合作, 豆包大模型 进入美妆经营一线 , titleUrl : f0 ..."
+    },
+    {
+      "sourceId": "media-kimi-chinadaily",
+      "dataSourceId": "mediaKimiChinaDaily",
+      "competitor": "moonshot",
+      "name": "China Daily：Moonshot Kimi K3",
+      "url": "https://global.chinadaily.com.cn/a/202607/18/WS6a5ad297a310986e2b465f8a.html",
+      "type": "media",
+      "recordType": "",
+      "categories": [
+        "model",
+        "agent",
+        "coding",
+        "multimodal"
+      ],
+      "sourcePriority": "high",
+      "keyword": "Kimi K3",
+      "relevanceScore": 8,
+      "reason": "命中了关键词，但页面没有明确目标日期，系统按来源类型和内容相关性自动判断是否展示。",
+      "snippet": "...are Share - WeChat CLOSE --> Chinese artificial intelligence startup Moonshot AI unveiled Kimi K3 on Friday, a 2.8-trillion-parameter model that pairs native vision with a 1-million-token context window, in an indication of the resources being targeted at the area by..."
+    }
+  ],
+  "modelUpdates": [
+    {
+      "date": "2026-07",
+      "competitor": "volc",
+      "title": "火山方舟：豆包大模型家族 上新",
+      "models": [
+        "豆包大模型家族"
+      ],
+      "updateType": "上新",
+      "source": "volcArkModelUpdates"
+    },
+    {
+      "date": "2026-07",
+      "competitor": "volc",
+      "title": "火山方舟：豆包 Coding 方向模型 上新",
+      "models": [
+        "豆包 Coding 方向模型"
+      ],
+      "updateType": "上新",
+      "source": "volcArkModelUpdates"
+    },
+    {
+      "date": "2026-07",
+      "competitor": "volc",
+      "title": "火山方舟：豆包 Agent 方向模型 上新",
+      "models": [
+        "豆包 Agent 方向模型"
+      ],
+      "updateType": "上新",
+      "source": "volcArkModelUpdates"
+    },
+    {
+      "date": "2026-07",
+      "competitor": "volc",
+      "title": "火山方舟：豆包 VLM 方向模型 上新",
+      "models": [
+        "豆包 VLM 方向模型"
+      ],
+      "updateType": "上新",
+      "source": "volcArkModelUpdates"
+    },
+    {
+      "date": "2026-07-09",
+      "competitor": "baidu",
+      "title": "百度千帆：Kimi-K2.5 下线",
+      "models": [
+        "Kimi-K2.5"
+      ],
+      "updateType": "下线",
+      "source": "baiduModel"
+    },
+    {
+      "date": "2026-07-09",
+      "competitor": "baidu",
+      "title": "百度千帆：MiniMax-M2.5 下线",
+      "models": [
+        "MiniMax-M2.5"
+      ],
+      "updateType": "下线",
+      "source": "baiduModel"
+    },
+    {
+      "date": "2026-06-17",
+      "competitor": "baidu",
+      "title": "百度千帆：GLM-5.2 上新",
+      "models": [
+        "GLM-5.2"
+      ],
+      "updateType": "上新",
+      "source": "baiduModel"
+    },
+    {
+      "date": "2026-04-24",
+      "competitor": "baidu",
+      "title": "百度千帆：DeepSeek-V4-Pro、DeepSeek-V4 上新",
+      "models": [
+        "DeepSeek-V4-Pro",
+        "DeepSeek-V4"
+      ],
+      "updateType": "上新",
+      "source": "baiduModel"
+    },
+    {
+      "date": "2026-04-24",
+      "competitor": "baidu",
+      "title": "百度千帆：DeepSeek-V4-Flash、DeepSeek-V4-Pro 上新",
+      "models": [
+        "DeepSeek-V4-Flash",
+        "DeepSeek-V4-Pro"
+      ],
+      "updateType": "上新",
+      "source": "baiduModel"
+    },
+    {
+      "date": "2026-04-08",
+      "competitor": "baidu",
+      "title": "百度千帆：GLM-5.1、Claude 上新",
+      "models": [
+        "GLM-5.1",
+        "Claude"
+      ],
+      "updateType": "上新",
+      "source": "baiduModel"
+    },
+    {
+      "date": "2026-07-15",
+      "competitor": "aliyun",
+      "title": "阿里百炼：pixverse/pixverse-lipsync 上新",
+      "models": [
+        "pixverse/pixverse-lipsync"
+      ],
+      "updateType": "上新",
+      "source": "aliyunModelUpdates"
+    },
+    {
+      "date": "2026-07-15",
+      "competitor": "aliyun",
+      "title": "阿里百炼：pixverse/pixverse-motioncontrol 上新",
+      "models": [
+        "pixverse/pixverse-motioncontrol"
+      ],
+      "updateType": "上新",
+      "source": "aliyunModelUpdates"
+    },
+    {
+      "date": "2026-07-15",
+      "competitor": "aliyun",
+      "title": "阿里百炼：pixverse/pixverse-upscale 上新",
+      "models": [
+        "pixverse/pixverse-upscale"
+      ],
+      "updateType": "上新",
+      "source": "aliyunModelUpdates"
+    },
+    {
+      "date": "2026-07-14",
+      "competitor": "aliyun",
+      "title": "阿里百炼：qwen-audio-3.0-realtime-plus、qwen-audio-3.0-realtime-flash 上新",
+      "models": [
+        "qwen-audio-3.0-realtime-plus",
+        "qwen-audio-3.0-realtime-flash"
+      ],
+      "updateType": "上新",
+      "source": "aliyunModelUpdates"
+    },
+    {
+      "date": "2026-07-14",
+      "competitor": "aliyun",
+      "title": "阿里百炼：qwen-audio-3.0-tts-plus、qwen-audio-3.0-tts-flash 上新",
+      "models": [
+        "qwen-audio-3.0-tts-plus",
+        "qwen-audio-3.0-tts-flash"
+      ],
+      "updateType": "上新",
+      "source": "aliyunModelUpdates"
+    },
+    {
+      "date": "2026-07-13",
+      "competitor": "aliyun",
+      "title": "阿里百炼：vidu/vidu-image_reference2image、vidu/viduq3-fast_reference2image、vidu/viduq2-reference2image 上新",
+      "models": [
+        "vidu/vidu-image_reference2image",
+        "vidu/viduq3-fast_reference2image",
+        "vidu/viduq2-reference2image"
+      ],
+      "updateType": "上新",
+      "source": "aliyunModelUpdates"
+    }
+  ],
+  "errors": [],
+  "publishedCandidates": 0
+}
