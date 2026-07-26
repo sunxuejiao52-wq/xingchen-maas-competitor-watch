@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-07-26 04:16:19",
-  "snapshotDate": "2026-07-25",
-  "note": "自动刷新已运行：2026-07-26 04:16:19（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-07-25 的竞品动态。官方更新记录 0 条，新闻/公众号线索 0 条，官方模型更新 16 条。",
+  "updatedAt": "2026-07-27 04:32:52",
+  "snapshotDate": "2026-07-26",
+  "note": "自动刷新已运行：2026-07-27 04:32:52（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-07-26 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 16 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -536,8 +536,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-07-17",
       "publishedDateLabel": "2026-07-17",
       "dateSource": "published_date",
-      "collectedDate": "2026-07-24",
-      "collectedAt": "2026-07-25 04:50:46",
+      "collectedDate": "2026-07-26",
+      "collectedAt": "2026-07-27 04:32:52",
       "kind": "公众号监测",
       "title": "月之暗面：Kimi热门模型进入市场关注",
       "summary": "公众号信息提到：月之暗面 Kimi K3 大模型 发布概况与技术突破 月之暗面 正式发布新一代 大模型 Kimi K3,7月17日全量上线服务.... 整体...。这条信息主要指向模型供给、智能体/工作流、生态/客户案例。",
@@ -681,6 +681,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "strategies": [],
   "monitorRuns": [
+    {
+      "targetDate": "2026-07-26",
+      "runDateTime": "2026-07-27 04:32:52",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 1,
+      "candidates": 24,
+      "modelUpdates": 16,
+      "errors": 0
+    },
     {
       "targetDate": "2026-07-25",
       "runDateTime": "2026-07-26 04:16:19",
