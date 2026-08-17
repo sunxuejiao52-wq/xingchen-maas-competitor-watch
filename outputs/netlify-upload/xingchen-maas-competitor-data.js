@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-08-17 01:18:29",
-  "snapshotDate": "2026-08-16",
-  "note": "自动刷新已运行：2026-08-17 01:18:29（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-08-16 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 16 条。",
+  "updatedAt": "2026-08-18 01:25:39",
+  "snapshotDate": "2026-08-17",
+  "note": "自动刷新已运行：2026-08-18 01:25:39（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-08-17 的竞品动态。官方更新记录 1 条，新闻/公众号线索 1 条，官方模型更新 18 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -450,7 +450,7 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     },
     {
       "id": "baidu",
-      "lastSeen": "2026-07-17",
+      "lastSeen": "2026-08-17",
       "thesis": "动作最密集：新模型、模型退役、智能体、工具广场、AI 搜索和开发者套餐一起推进。",
       "watchNext": "自动监测发现新线索，建议人工复核原文后更新功能对比、宣传动作和星辰 MaaS 对应建议。"
     },
@@ -461,6 +461,23 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     }
   ],
   "events": [
+    {
+      "id": "record-baidu-qianfan-model-2026-08-17-2de10981",
+      "competitor": "baidu",
+      "date": "2026-08-17",
+      "title": "百度千帆：模型上新、升级和退役节奏信号",
+      "summary": "更新重点集中在模型生命周期管理：模型上新、版本升级、旧模型下线/退役，以及 GLM、Kimi、MiniMax、DeepSeek、Qwen 等第三方模型可用性。",
+      "categories": [
+        "model",
+        "governance"
+      ],
+      "priority": "high",
+      "source": "baiduModel",
+      "signal": "平台自己的官方更新记录在原文中明确出现 2026-08-17，可作为当天更新记录；百度千帆在强化“模型可选 + 版本治理”的平台心智；星辰 MaaS 可关注模型上下线提醒、替代模型建议和兼容迁移说明。",
+      "evidence": "命中“千帆”：…5年7月 2025年6月 2025年5月 2025年4月 2025年3月 2025年2月 2025年1月 2024年12月 2024年11月 2024年10月 2024年9月 2024年8月 2024年7月 2024年6月 2024年5月 2024年4月 2024年3月 2024年2月 2024年1月 2023年及以前发布的模型 模型更新记录 更新时间 ：…",
+      "autoRecord": true,
+      "recordType": "official_update_record"
+    },
     {
       "id": "baidu-20260709-model-retire",
       "competitor": "baidu",
@@ -709,8 +726,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-05-15",
       "publishedDateLabel": "2026-05-15",
       "dateSource": "published_date",
-      "collectedDate": "2026-08-16",
-      "collectedAt": "2026-08-17 01:18:29",
+      "collectedDate": "2026-08-17",
+      "collectedAt": "2026-08-18 01:25:39",
       "kind": "媒体/新闻线索",
       "title": "火山方舟：豆包大模型上线/发布",
       "summary": "媒体信息提到：5月15日,2024春季火山引擎 FORCE 原动力大会在北京正式举办。这条信息主要指向模型供给、图像视频语音、训练部署、生态/客户案例。",
@@ -765,6 +782,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "strategies": [],
   "monitorRuns": [
+    {
+      "targetDate": "2026-08-17",
+      "runDateTime": "2026-08-18 01:25:39",
+      "sourcesChecked": 27,
+      "exactMatches": 1,
+      "publishedCandidates": 1,
+      "candidates": 22,
+      "modelUpdates": 18,
+      "errors": 0
+    },
     {
       "targetDate": "2026-08-16",
       "runDateTime": "2026-08-17 01:18:29",
@@ -954,19 +981,49 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "candidates": 24,
       "modelUpdates": 16,
       "errors": 0
-    },
-    {
-      "targetDate": "2026-07-28",
-      "runDateTime": "2026-07-29 04:48:53",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 0,
-      "candidates": 24,
-      "modelUpdates": 16,
-      "errors": 0
     }
   ],
   "modelUpdates": [
+    {
+      "id": "model-update-baidu-qianfan-model-2026-08-14-97f5d018",
+      "competitor": "baidu",
+      "date": "2026-08-14",
+      "title": "百度千帆：DeepSeek-V4-Pro、DeepSeek-V4-Pro-0813、DeepSeek-V4 上新",
+      "summary": "DeepSeek-V4-Pro、DeepSeek-V4-Pro-0813、DeepSeek-V4 出现上新动作；杭州深度求索人工智能基础技术研究有限公司 DeepSeek-V4-Pro DeepSeek-V4-Pro-0813 推理服务API V2版本-文本生成 上新 DeepSeek-V4 拥有百万字超长上下文，在 Agent 能力、世界知识和推理性能上均实现国内...",
+      "models": [
+        "DeepSeek-V4-Pro",
+        "DeepSeek-V4-Pro-0813",
+        "DeepSeek-V4"
+      ],
+      "updateType": "上新",
+      "categories": [
+        "model"
+      ],
+      "priority": "high",
+      "source": "baiduModel",
+      "evidence": "命中“DeepSeek-V4-Pro”：杭州深度求索人工智能基础技术研究有限公司 DeepSeek-V4-Pro DeepSeek-V4-Pro-0813 推理服务API V2版本-文本生成 上新 DeepSeek-V4 拥有百万字超长上下文，在 Agent 能力、世界知识和推理性能上均实现国内与开源领域的领先。 调用说明请查看： API调用文档",
+      "autoModelUpdate": true
+    },
+    {
+      "id": "model-update-baidu-qianfan-model-2026-08-01-97e9bdf2",
+      "competitor": "baidu",
+      "date": "2026-08-01",
+      "title": "百度千帆：DeepSeek-V4-Flash、DeepSeek-V4-Flash-0731、DeepSeek-V4-Pro 上新",
+      "summary": "DeepSeek-V4-Flash、DeepSeek-V4-Flash-0731、DeepSeek-V4-Pro 出现上新动作；杭州深度求索人工智能基础技术研究有限公司 DeepSeek-V4-Flash DeepSeek-V4-Flash-0731 推理服务API V2版本-文本生成 上新 相比 DeepSeek-V4-Pro，V4-Flash 在世界知识储备方面稍逊一筹，但展现...",
+      "models": [
+        "DeepSeek-V4-Flash",
+        "DeepSeek-V4-Flash-0731",
+        "DeepSeek-V4-Pro"
+      ],
+      "updateType": "上新",
+      "categories": [
+        "model"
+      ],
+      "priority": "high",
+      "source": "baiduModel",
+      "evidence": "命中“DeepSeek-V4-Flash”：杭州深度求索人工智能基础技术研究有限公司 DeepSeek-V4-Flash DeepSeek-V4-Flash-0731 推理服务API V2版本-文本生成 上新 相比 DeepSeek-V4-Pro，V4-Flash 在世界知识储备方面稍逊一筹，但展现出了接近的推理能力。由于模型参数和激活更小，能够提供更加快捷、经济的 API 服务。 调用说明请查看： …",
+      "autoModelUpdate": true
+    },
     {
       "id": "model-update-aliyun-bailian-model-updates-2026-07-15-1f41bad8",
       "competitor": "aliyun",
