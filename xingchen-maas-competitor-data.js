@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-08-18 01:25:39",
-  "snapshotDate": "2026-08-17",
-  "note": "自动刷新已运行：2026-08-18 01:25:39（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-08-17 的竞品动态。官方更新记录 1 条，新闻/公众号线索 1 条，官方模型更新 18 条。",
+  "updatedAt": "2026-08-19 01:25:50",
+  "snapshotDate": "2026-08-19",
+  "note": "自动刷新已运行：2026-08-19 01:25:50（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-08-18 的竞品动态。官方更新记录 1 条，新闻/公众号线索 1 条，官方模型更新 19 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -450,7 +450,7 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     },
     {
       "id": "baidu",
-      "lastSeen": "2026-08-17",
+      "lastSeen": "2026-08-18",
       "thesis": "动作最密集：新模型、模型退役、智能体、工具广场、AI 搜索和开发者套餐一起推进。",
       "watchNext": "自动监测发现新线索，建议人工复核原文后更新功能对比、宣传动作和星辰 MaaS 对应建议。"
     },
@@ -461,6 +461,23 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     }
   ],
   "events": [
+    {
+      "id": "record-baidu-qianfan-model-2026-08-18-b8d54261",
+      "competitor": "baidu",
+      "date": "2026-08-18",
+      "title": "百度千帆：模型上新、升级和退役节奏信号",
+      "summary": "更新重点集中在模型生命周期管理：模型上新、版本升级、旧模型下线/退役，以及 GLM、Kimi、MiniMax、DeepSeek、Qwen 等第三方模型可用性。",
+      "categories": [
+        "model",
+        "governance"
+      ],
+      "priority": "high",
+      "source": "baiduModel",
+      "signal": "平台自己的官方更新记录在原文中明确出现 2026-08-18，可作为当天更新记录；百度千帆在强化“模型可选 + 版本治理”的平台心智；星辰 MaaS 可关注模型上下线提醒、替代模型建议和兼容迁移说明。",
+      "evidence": "命中“千帆”：…5年7月 2025年6月 2025年5月 2025年4月 2025年3月 2025年2月 2025年1月 2024年12月 2024年11月 2024年10月 2024年9月 2024年8月 2024年7月 2024年6月 2024年5月 2024年4月 2024年3月 2024年2月 2024年1月 2023年及以前发布的模型 模型更新记录 更新时间 ：…",
+      "autoRecord": true,
+      "recordType": "official_update_record"
+    },
     {
       "id": "record-baidu-qianfan-model-2026-08-17-2de10981",
       "competitor": "baidu",
@@ -494,6 +511,33 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     }
   ],
   "news": [
+    {
+      "id": "candidate-media-maas-news-baidu-2026-08-17",
+      "competitor": "baidu",
+      "date": "2026-08-17",
+      "publishedDate": "2026-08-17",
+      "publishedDateLabel": "2026-08-17",
+      "dateSource": "published_date",
+      "collectedDate": "2026-08-18",
+      "collectedAt": "2026-08-19 01:25:50",
+      "kind": "媒体/新闻线索",
+      "title": "百度千帆：开发者套餐权益调整",
+      "summary": "媒体信息提到：自8月14日起,面向有效订阅用户推出“夜享Tokens加赠计划”:每日21:00至次日08:00,指定前沿模型调用按2折计算。这条信息主要指向模型供给、开发者套餐。",
+      "takeaway": "简单说，百度千帆在争夺开发者试用和持续调用成本心智；星辰 MaaS 需要把价格、免费额度、套餐边界和迁移成本说清楚。",
+      "insight": "简单说，百度千帆在争夺开发者试用和持续调用成本心智；星辰 MaaS 需要把价格、免费额度、套餐边界和迁移成本说清楚。",
+      "evidence": "命中“百度千帆”：8月17日消息,百度智能云宣布 百度千帆 Token Plan个人版与企业版同步升级权益。自8月14日起,面向有效订阅用户推出“夜享Tokens加赠计划”:每日21:00至次日08:00,指定前沿模型调用按2折计算。同时,DeepSeek-V4-Flash-0731已上线百度千帆Token Plan,进一步降低开发者和企…",
+      "categories": [
+        "model",
+        "business"
+      ],
+      "priority": "low",
+      "source": "mediaBaiduQianfanSearch",
+      "sourceName": "新闻检索：百度千帆",
+      "sourceType": "media",
+      "keyword": "百度千帆",
+      "relevanceScore": 8,
+      "autoCandidate": true
+    },
     {
       "id": "candidate-media-maas-news-volc-2026-07-31",
       "competitor": "volc",
@@ -783,6 +827,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   "strategies": [],
   "monitorRuns": [
     {
+      "targetDate": "2026-08-18",
+      "runDateTime": "2026-08-19 01:25:50",
+      "sourcesChecked": 27,
+      "exactMatches": 1,
+      "publishedCandidates": 1,
+      "candidates": 22,
+      "modelUpdates": 19,
+      "errors": 0
+    },
+    {
       "targetDate": "2026-08-17",
       "runDateTime": "2026-08-18 01:25:39",
       "sourcesChecked": 27,
@@ -971,19 +1025,27 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "candidates": 24,
       "modelUpdates": 16,
       "errors": 0
-    },
-    {
-      "targetDate": "2026-07-29",
-      "runDateTime": "2026-07-30 04:32:11",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 2,
-      "candidates": 24,
-      "modelUpdates": 16,
-      "errors": 0
     }
   ],
   "modelUpdates": [
+    {
+      "id": "model-update-baidu-qianfan-model-2026-08-19-929ba5f0",
+      "competitor": "baidu",
+      "date": "2026-08-19",
+      "title": "百度千帆：GLM-5.3 上新",
+      "summary": "GLM-5.3 出现上新动作；北京智谱华章科技有限公司 GLM-5.3 GLM-5.3 推理服务API V2版本-文本生成 上新 GLM-5.3是智谱最新旗舰模型，以极致后训练 Scaling 实现能力跃迁：编程体验较前代提升 50%，网络安全能力持平 Mythos 5。  API调用文档",
+      "models": [
+        "GLM-5.3"
+      ],
+      "updateType": "上新",
+      "categories": [
+        "model"
+      ],
+      "priority": "high",
+      "source": "baiduModel",
+      "evidence": "命中“GLM-5.3”：北京智谱华章科技有限公司 GLM-5.3 GLM-5.3 推理服务API V2版本-文本生成 上新 GLM-5.3是智谱最新旗舰模型，以极致后训练 Scaling 实现能力跃迁：编程体验较前代提升 50%，网络安全能力持平 Mythos 5。 调用说明请查看： API调用文档",
+      "autoModelUpdate": true
+    },
     {
       "id": "model-update-baidu-qianfan-model-2026-08-14-97f5d018",
       "competitor": "baidu",
