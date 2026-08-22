@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-08-22 01:27:18",
-  "snapshotDate": "2026-08-21",
-  "note": "自动刷新已运行：2026-08-22 01:27:18（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-08-21 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 19 条。",
+  "updatedAt": "2026-08-23 01:19:00",
+  "snapshotDate": "2026-08-22",
+  "note": "自动刷新已运行：2026-08-23 01:19:00（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-08-22 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 19 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -787,8 +787,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-05-15",
       "publishedDateLabel": "2026-05-15",
       "dateSource": "published_date",
-      "collectedDate": "2026-08-21",
-      "collectedAt": "2026-08-22 01:27:18",
+      "collectedDate": "2026-08-22",
+      "collectedAt": "2026-08-23 01:19:00",
       "kind": "媒体/新闻线索",
       "title": "火山方舟：豆包大模型上线/发布",
       "summary": "媒体信息提到：5月15日,2024春季火山引擎 FORCE 原动力大会在北京正式举办。这条信息主要指向模型供给、图像视频语音、训练部署、生态/客户案例。",
@@ -843,6 +843,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "strategies": [],
   "monitorRuns": [
+    {
+      "targetDate": "2026-08-22",
+      "runDateTime": "2026-08-23 01:19:00",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 1,
+      "candidates": 24,
+      "modelUpdates": 19,
+      "errors": 0
+    },
     {
       "targetDate": "2026-08-21",
       "runDateTime": "2026-08-22 01:27:18",
@@ -1026,16 +1036,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     {
       "targetDate": "2026-08-03",
       "runDateTime": "2026-08-04 04:46:50",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 1,
-      "candidates": 24,
-      "modelUpdates": 16,
-      "errors": 0
-    },
-    {
-      "targetDate": "2026-08-02",
-      "runDateTime": "2026-08-03 04:30:03",
       "sourcesChecked": 27,
       "exactMatches": 0,
       "publishedCandidates": 1,
