@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-08-27 03:02:01",
-  "snapshotDate": "2026-08-26",
-  "note": "自动刷新已运行：2026-08-27 03:02:01（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-08-26 的竞品动态。官方更新记录 0 条，新闻/公众号线索 0 条，官方模型更新 19 条。",
+  "updatedAt": "2026-08-28 09:16:03",
+  "snapshotDate": "2026-08-28",
+  "note": "自动刷新已运行：2026-08-28 09:16:03（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-08-27 的竞品动态。官方更新记录 1 条，新闻/公众号线索 1 条，官方模型更新 20 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -450,7 +450,7 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     },
     {
       "id": "baidu",
-      "lastSeen": "2026-08-19",
+      "lastSeen": "2026-08-27",
       "thesis": "动作最密集：新模型、模型退役、智能体、工具广场、AI 搜索和开发者套餐一起推进。",
       "watchNext": "自动监测发现新线索，建议人工复核原文后更新功能对比、宣传动作和星辰 MaaS 对应建议。"
     },
@@ -461,6 +461,23 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     }
   ],
   "events": [
+    {
+      "id": "record-baidu-qianfan-model-2026-08-27-3e50188f",
+      "competitor": "baidu",
+      "date": "2026-08-27",
+      "title": "百度千帆：模型上新、升级和退役节奏信号",
+      "summary": "更新重点集中在模型生命周期管理：模型上新、版本升级、旧模型下线/退役，以及 GLM、Kimi、MiniMax、DeepSeek、Qwen 等第三方模型可用性。",
+      "categories": [
+        "model",
+        "governance"
+      ],
+      "priority": "high",
+      "source": "baiduModel",
+      "signal": "平台自己的官方更新记录在原文中明确出现 2026-08-27，可作为当天更新记录；百度千帆在强化“模型可选 + 版本治理”的平台心智；星辰 MaaS 可关注模型上下线提醒、替代模型建议和兼容迁移说明。",
+      "evidence": "命中“千帆”：…5年7月 2025年6月 2025年5月 2025年4月 2025年3月 2025年2月 2025年1月 2024年12月 2024年11月 2024年10月 2024年9月 2024年8月 2024年7月 2024年6月 2024年5月 2024年4月 2024年3月 2024年2月 2024年1月 2023年及以前发布的模型 模型更新记录 更新时间 ：…",
+      "autoRecord": true,
+      "recordType": "official_update_record"
+    },
     {
       "id": "record-baidu-qianfan-model-2026-08-19-e6dbd27e",
       "competitor": "baidu",
@@ -759,8 +776,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-06-28",
       "publishedDateLabel": "2026-06-28",
       "dateSource": "published_date",
-      "collectedDate": "2026-07-29",
-      "collectedAt": "2026-07-30 04:32:11",
+      "collectedDate": "2026-08-27",
+      "collectedAt": "2026-08-28 09:16:03",
       "kind": "公众号监测",
       "title": "火山方舟：模型供给上线/发布",
       "summary": "公众号信息提到：火山引擎 吴迪: 火山方舟 加速大模型和大算力应用落地 6月28日,2023 火山引擎 V-Tech体验创新科技峰会上, 火山引擎 正式发布...。这条信息主要指向模型供给、智能体/工作流、生态/客户案例。",
@@ -843,6 +860,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "strategies": [],
   "monitorRuns": [
+    {
+      "targetDate": "2026-08-27",
+      "runDateTime": "2026-08-28 09:16:03",
+      "sourcesChecked": 27,
+      "exactMatches": 1,
+      "publishedCandidates": 1,
+      "candidates": 23,
+      "modelUpdates": 20,
+      "errors": 0
+    },
     {
       "targetDate": "2026-08-26",
       "runDateTime": "2026-08-27 03:02:01",
@@ -1032,19 +1059,29 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "candidates": 23,
       "modelUpdates": 16,
       "errors": 0
-    },
-    {
-      "targetDate": "2026-08-07",
-      "runDateTime": "2026-08-08 03:55:53",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 0,
-      "candidates": 23,
-      "modelUpdates": 16,
-      "errors": 0
     }
   ],
   "modelUpdates": [
+    {
+      "id": "model-update-baidu-qianfan-model-2026-08-28-9921b2dc",
+      "competitor": "baidu",
+      "date": "2026-08-28",
+      "title": "百度千帆：GLM-5.3-Flash、GLM-5、GLM-5.2 上新",
+      "summary": "GLM-5.3-Flash、GLM-5、GLM-5.2 出现上新动作；北京智谱华章科技有限公司 GLM-5.3-Flash GLM-5.3-Flash 推理服务API V2版本-文本生成 上新 GLM-5.3-Flash 是 GLM-5 系列首个原生多模态模型，以极致低成本架构实现超越 GLM-5.2 的更强智能。GLM-5...",
+      "models": [
+        "GLM-5.3-Flash",
+        "GLM-5",
+        "GLM-5.2"
+      ],
+      "updateType": "上新",
+      "categories": [
+        "model"
+      ],
+      "priority": "high",
+      "source": "baiduModel",
+      "evidence": "命中“GLM-5.3-Flash”：北京智谱华章科技有限公司 GLM-5.3-Flash GLM-5.3-Flash 推理服务API V2版本-文本生成 上新 GLM-5.3-Flash 是 GLM-5 系列首个原生多模态模型，以极致低成本架构实现超越 GLM-5.2 的更强智能。GLM-5.3-Flash 能够原生理解 ，生成可交互代码等专业任务。 调用说明请查看： API调用文档",
+      "autoModelUpdate": true
+    },
     {
       "id": "model-update-baidu-qianfan-model-2026-08-19-929ba5f0",
       "competitor": "baidu",
