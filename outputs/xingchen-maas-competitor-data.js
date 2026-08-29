@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-08-28 09:16:03",
+  "updatedAt": "2026-08-29 08:51:53",
   "snapshotDate": "2026-08-28",
-  "note": "自动刷新已运行：2026-08-28 09:16:03（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-08-27 的竞品动态。官方更新记录 1 条，新闻/公众号线索 1 条，官方模型更新 20 条。",
+  "note": "自动刷新已运行：2026-08-29 08:51:53（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-08-28 的竞品动态。官方更新记录 1 条，新闻/公众号线索 0 条，官方模型更新 20 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -450,7 +450,7 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     },
     {
       "id": "baidu",
-      "lastSeen": "2026-08-27",
+      "lastSeen": "2026-08-28",
       "thesis": "动作最密集：新模型、模型退役、智能体、工具广场、AI 搜索和开发者套餐一起推进。",
       "watchNext": "自动监测发现新线索，建议人工复核原文后更新功能对比、宣传动作和星辰 MaaS 对应建议。"
     },
@@ -461,6 +461,23 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     }
   ],
   "events": [
+    {
+      "id": "record-baidu-qianfan-model-2026-08-28-02cc48e3",
+      "competitor": "baidu",
+      "date": "2026-08-28",
+      "title": "百度千帆：模型上新、升级和退役节奏信号",
+      "summary": "更新重点集中在模型生命周期管理：模型上新、版本升级、旧模型下线/退役，以及 GLM、Kimi、MiniMax、DeepSeek、Qwen 等第三方模型可用性。",
+      "categories": [
+        "model",
+        "governance"
+      ],
+      "priority": "high",
+      "source": "baiduModel",
+      "signal": "平台自己的官方更新记录在原文中明确出现 2026-08-28，可作为当天更新记录；百度千帆在强化“模型可选 + 版本治理”的平台心智；星辰 MaaS 可关注模型上下线提醒、替代模型建议和兼容迁移说明。",
+      "evidence": "命中“千帆”：…2024年2月 2024年1月 2023年及以前发布的模型 模型更新记录 更新时间 ： 2026-08-27 千帆AI应用开发者中心已上线，期待您的 点击 ！ 本文介绍了本平台的新模型发布记录与介绍，相关内容可于 模型广场 进行体验。 产品更新状态可查看： 产品更新动态 。 2026年8月 日期 模型厂商 模型名称 模型版本 模型类型 动态说明 介绍及调用…",
+      "autoRecord": true,
+      "recordType": "official_update_record"
+    },
     {
       "id": "record-baidu-qianfan-model-2026-08-27-3e50188f",
       "competitor": "baidu",
@@ -861,6 +878,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   "strategies": [],
   "monitorRuns": [
     {
+      "targetDate": "2026-08-28",
+      "runDateTime": "2026-08-29 08:51:53",
+      "sourcesChecked": 27,
+      "exactMatches": 1,
+      "publishedCandidates": 0,
+      "candidates": 23,
+      "modelUpdates": 20,
+      "errors": 0
+    },
+    {
       "targetDate": "2026-08-27",
       "runDateTime": "2026-08-28 09:16:03",
       "sourcesChecked": 27,
@@ -1043,16 +1070,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     {
       "targetDate": "2026-08-09",
       "runDateTime": "2026-08-10 02:04:19",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 0,
-      "candidates": 23,
-      "modelUpdates": 16,
-      "errors": 0
-    },
-    {
-      "targetDate": "2026-08-08",
-      "runDateTime": "2026-08-09 02:02:09",
       "sourcesChecked": 27,
       "exactMatches": 0,
       "publishedCandidates": 0,
