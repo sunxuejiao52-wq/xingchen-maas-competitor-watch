@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-08-30 03:36:31",
-  "snapshotDate": "2026-08-29",
-  "note": "自动刷新已运行：2026-08-30 03:36:31（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-08-29 的竞品动态。官方更新记录 0 条，新闻/公众号线索 2 条，官方模型更新 20 条。",
+  "updatedAt": "2026-08-31 03:38:41",
+  "snapshotDate": "2026-08-30",
+  "note": "自动刷新已运行：2026-08-31 03:38:41（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-08-30 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 20 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -569,14 +569,14 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-08-27",
       "publishedDateLabel": "2026-08-27",
       "dateSource": "relative_publish_date",
-      "collectedDate": "2026-08-29",
-      "collectedAt": "2026-08-30 03:36:31",
+      "collectedDate": "2026-08-30",
+      "collectedAt": "2026-08-31 03:38:41",
       "kind": "媒体/新闻线索",
       "title": "火山方舟：豆包强化案例/生态",
-      "summary": "媒体信息提到：...9 丽江通报不参加付费项目被导游威胁 30 博主街头清理地钉被劝阻 当地通报 辅助模式 豆包 系列 模型 体验一致:无论是通用对话还是...。这条信息主要指向模型供给、图像视频语音、生态/客户案例。",
+      "summary": "媒体信息提到：...猪肉 29 河南5人吃生鱼片确诊肝吸虫病 30 刘宇披了一床绣花被子上台唱歌 辅助模式 豆包 系列 模型 体验一致:无论是通用对话还是...。这条信息主要指向模型供给、图像视频语音、生态/客户案例。",
       "takeaway": "简单说，火山方舟在强化多模态任务入口；星辰 MaaS 需要把图片、视频、语音能力做成可试用、可比较、可计费的任务体验。",
       "insight": "简单说，火山方舟在强化多模态任务入口；星辰 MaaS 需要把图片、视频、语音能力做成可试用、可比较、可计费的任务体验。",
-      "evidence": "命中“火山方舟”：…9 丽江通报不参加付费项目被导游威胁 30 博主街头清理地钉被劝阻 当地通报 辅助模式 豆包 系列 模型 体验一致:无论是通用对话还是语音合成场景, 豆包 系列的输出风格和稳定性在火山方舟上能得到最完整释放。 实操建议: 业务和流量已经深度绑定字节云生态的,首选火山方舟能减少跨云调用的公网流量费用和网络抖动。 如果主要需求是“跨多家国产模型灵活切换”,… …",
+      "evidence": "命中“火山方舟”：…猪肉 29 河南5人吃生鱼片确诊肝吸虫病 30 刘宇披了一床绣花被子上台唱歌 辅助模式 豆包 系列 模型 体验一致:无论是通用对话还是语音合成场景, 豆包 系列的输出风格和稳定性在火山方舟上能得到最完整释放。 实操建议: 业务和流量已经深度绑定字节云生态的,首选火山方舟能减少跨云调用的公网流量费用和网络抖动。 如果主要需求是“跨多家国产模型灵活切换”,… …",
       "categories": [
         "model",
         "multimodal",
@@ -906,6 +906,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   "strategies": [],
   "monitorRuns": [
     {
+      "targetDate": "2026-08-30",
+      "runDateTime": "2026-08-31 03:38:41",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 1,
+      "candidates": 23,
+      "modelUpdates": 20,
+      "errors": 0
+    },
+    {
       "targetDate": "2026-08-29",
       "runDateTime": "2026-08-30 03:36:31",
       "sourcesChecked": 27,
@@ -1091,16 +1101,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "sourcesChecked": 27,
       "exactMatches": 0,
       "publishedCandidates": 1,
-      "candidates": 23,
-      "modelUpdates": 16,
-      "errors": 0
-    },
-    {
-      "targetDate": "2026-08-10",
-      "runDateTime": "2026-08-11 03:58:10",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 0,
       "candidates": 23,
       "modelUpdates": 16,
       "errors": 0
