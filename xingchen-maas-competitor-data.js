@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-09-12 03:27:51",
-  "snapshotDate": "2026-09-11",
-  "note": "自动刷新已运行：2026-09-12 03:27:51（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-09-11 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 20 条。",
+  "updatedAt": "2026-09-13 02:57:49",
+  "snapshotDate": "2026-09-12",
+  "note": "自动刷新已运行：2026-09-13 02:57:49（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-09-12 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 20 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -569,14 +569,14 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-09-10",
       "publishedDateLabel": "2026-09-10",
       "dateSource": "relative_publish_date",
-      "collectedDate": "2026-09-11",
-      "collectedAt": "2026-09-12 03:27:51",
+      "collectedDate": "2026-09-12",
+      "collectedAt": "2026-09-13 02:57:49",
       "kind": "媒体/新闻线索",
       "title": "火山方舟：doubao-pro-32k调整权益/价格",
       "summary": "媒体信息提到：...Token;doubao-pro-32k输入0.8元/百万Token、输出2.0元/百万Token。这条信息主要指向模型供给、图像视频语音、价格/优惠。",
       "takeaway": "简单说，火山方舟在争夺开发者试用和持续调用成本心智；星辰 MaaS 需要把价格、免费额度、套餐边界和迁移成本说清楚。",
       "insight": "简单说，火山方舟在争夺开发者试用和持续调用成本心智；星辰 MaaS 需要把价格、免费额度、套餐边界和迁移成本说清楚。",
-      "evidence": "命中“火山方舟”：…Token;doubao-pro-32k输入0.8元/百万Token、输出2.0元/百万Token。相比阿里云百炼文本模型的美元计价,豆包的价格体系对人民币用户更直观。更关键的是,火山方舟平台提供Codi… , dispTime : 昨天15:58 , sourceIcon :",
+      "evidence": "命中“火山方舟”：…Token;doubao-pro-32k输入0.8元/百万Token、输出2.0元/百万Token。相比阿里云百炼文本模型的美元计价,豆包的价格体系对人民币用户更直观。更关键的是,火山方舟平台提供Codi… , dispTime : 前天15:58 , sourceIcon :",
       "categories": [
         "model",
         "multimodal",
@@ -962,6 +962,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   "strategies": [],
   "monitorRuns": [
     {
+      "targetDate": "2026-09-12",
+      "runDateTime": "2026-09-13 02:57:49",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 1,
+      "candidates": 23,
+      "modelUpdates": 20,
+      "errors": 0
+    },
+    {
       "targetDate": "2026-09-11",
       "runDateTime": "2026-09-12 03:27:51",
       "sourcesChecked": 27,
@@ -1148,16 +1158,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "exactMatches": 0,
       "publishedCandidates": 1,
       "candidates": 24,
-      "modelUpdates": 19,
-      "errors": 0
-    },
-    {
-      "targetDate": "2026-08-23",
-      "runDateTime": "2026-08-24 01:19:05",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 1,
-      "candidates": 23,
       "modelUpdates": 19,
       "errors": 0
     }
