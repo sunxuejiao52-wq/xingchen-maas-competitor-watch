@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-10-06 07:03:29",
-  "snapshotDate": "2026-10-05",
-  "note": "自动刷新已运行：2026-10-06 07:03:29（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-10-05 的竞品动态。官方更新记录 0 条，新闻/公众号线索 0 条，官方模型更新 21 条。",
+  "updatedAt": "2026-10-07 05:26:36",
+  "snapshotDate": "2026-10-06",
+  "note": "自动刷新已运行：2026-10-07 05:26:36（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-10-06 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 21 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -642,14 +642,14 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-09-16",
       "publishedDateLabel": "2026-09-16",
       "dateSource": "published_date",
-      "collectedDate": "2026-09-26",
-      "collectedAt": "2026-09-27 03:32:10",
+      "collectedDate": "2026-10-06",
+      "collectedAt": "2026-10-07 05:26:36",
       "kind": "媒体/新闻线索",
-      "title": "火山方舟：豆包升级Coding/Agent/VLM能力",
-      "summary": "报道提到豆包围绕 Coding、Agent、VLM 三个方向升级，火山方舟继续把模型能力和平台服务打包成对外方案。",
-      "takeaway": "星辰 MaaS 可把代码、智能体和视觉理解能力分别做成清晰入口，并配套示例、价格和调用限制说明。",
-      "insight": "星辰 MaaS 可把代码、智能体和视觉理解能力分别做成清晰入口，并配套示例、价格和调用限制说明。",
-      "evidence": "命中“火山方舟”：北京商报讯（记者 魏蔚）9月16日，火山引擎宣布，Doubao-Seed-2.1-pro更新至0915版本，API已全量上线火山方舟。本次升级围绕企业生产级需求展开：Agent（智能体）专业任务交付更可靠、多模态Coding（编程）能力强化、多模态理解覆盖3D与专业图文，同时Token效率持续优…",
+      "title": "火山方舟：豆包上线/发布",
+      "summary": "媒体信息提到：...mmary : Seed 2.1 Pro升级版面向企业生产需求完成能力迭代,为国产 大模型 深度赋能实体经济、加速千行百业数字化转型提...。这条信息主要指向模型供给、工具/MCP、图像视频语音。",
+      "takeaway": "简单说，火山方舟在把模型能力变成可落地的应用流程；星辰 MaaS 需要补足模板、工具接入、权限和运行日志。",
+      "insight": "简单说，火山方舟在把模型能力变成可落地的应用流程；星辰 MaaS 需要补足模板、工具接入、权限和运行日志。",
+      "evidence": "命中“火山方舟”：…mmary : Seed 2.1 Pro升级版面向企业生产需求完成能力迭代,为国产 大模型 深度赋能实体经济、加速千行百业数字化转型提供新的技术参考。 据了解,模型API已同步在 火山方舟 上线,并接入 豆包 工作。用户在豆包工作内选用“豆包 2.1 Pro(0915 新版)”,即可体验到全面升级的工作任… , dispTime : 9月16日 , sou…",
       "categories": [
         "model",
         "multimodal",
@@ -1063,6 +1063,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   "strategies": [],
   "monitorRuns": [
     {
+      "targetDate": "2026-10-06",
+      "runDateTime": "2026-10-07 05:26:36",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 1,
+      "candidates": 23,
+      "modelUpdates": 21,
+      "errors": 0
+    },
+    {
       "targetDate": "2026-10-05",
       "runDateTime": "2026-10-06 07:03:29",
       "sourcesChecked": 27,
@@ -1249,16 +1259,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "exactMatches": 0,
       "publishedCandidates": 1,
       "candidates": 24,
-      "modelUpdates": 21,
-      "errors": 0
-    },
-    {
-      "targetDate": "2026-09-16",
-      "runDateTime": "2026-09-17 03:50:34",
-      "sourcesChecked": 27,
-      "exactMatches": 1,
-      "publishedCandidates": 0,
-      "candidates": 22,
       "modelUpdates": 21,
       "errors": 0
     }
