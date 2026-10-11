@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-10-11 04:28:03",
-  "snapshotDate": "2026-10-10",
-  "note": "自动刷新已运行：2026-10-11 04:28:03（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-10-10 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 21 条。",
+  "updatedAt": "2026-10-12 04:48:20",
+  "snapshotDate": "2026-10-11",
+  "note": "自动刷新已运行：2026-10-12 04:48:20（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-10-11 的竞品动态。官方更新记录 0 条，新闻/公众号线索 2 条，官方模型更新 21 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -586,14 +586,14 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-10-08",
       "publishedDateLabel": "2026-10-08",
       "dateSource": "relative_publish_date",
-      "collectedDate": "2026-10-09",
-      "collectedAt": "2026-10-10 05:28:42",
+      "collectedDate": "2026-10-11",
+      "collectedAt": "2026-10-12 04:48:20",
       "kind": "媒体/新闻线索",
       "title": "火山方舟：豆包升级Coding/Agent/VLM能力",
       "summary": "报道提到豆包围绕 Coding、Agent、VLM 三个方向升级，火山方舟继续把模型能力和平台服务打包成对外方案。",
       "takeaway": "星辰 MaaS 可把代码、智能体和视觉理解能力分别做成清晰入口，并配套示例、价格和调用限制说明。",
       "insight": "星辰 MaaS 可把代码、智能体和视觉理解能力分别做成清晰入口，并配套示例、价格和调用限制说明。",
-      "evidence": "命中“火山方舟”：…29 比格创始人：大学生活动亏了近千万 30 周启豪4-2张禹珍 打爆日韩王牌 热 辅助模式 豆包大模型 Doubao-Seed-2.1-pro更新至0915版本,API全量上线火山方舟,豆包工作同步完成升级,TRAE亦已接入。字节CEO梁汝波在2026飞书未来无限大会上作出判断:Agent进入可用阶段后,Agent、模型、协作环境三者必须紧密融合,才能真…",
+      "evidence": "命中“火山方舟”：…n后付费和资源包预付费两种模式,新用户有一定额度的免费调用。豆包系列… CSDN技术社区 豆包大模型 Doubao-Seed-2.1-pro更新至0915版本,API全量上线 火山方舟 ,豆包工作同步完成升级,TRAE亦已接入。字节CEO梁汝波在2026飞书未来无限大会上作出判断:Agent进入可用阶段后,Agent、模型、协作环境三者必须紧密融合,才能真…",
       "categories": [
         "model",
         "multimodal",
@@ -1006,8 +1006,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-06-28",
       "publishedDateLabel": "2026-06-28",
       "dateSource": "published_date",
-      "collectedDate": "2026-10-03",
-      "collectedAt": "2026-10-04 03:40:26",
+      "collectedDate": "2026-10-11",
+      "collectedAt": "2026-10-12 04:48:20",
       "kind": "公众号监测",
       "title": "火山方舟：模型供给上线/发布",
       "summary": "公众号信息提到：火山引擎 吴迪: 火山方舟 加速大模型和大算力应用落地 6月28日,2023 火山引擎 V-Tech体验创新科技峰会上, 火山引擎 正式发布...。这条信息主要指向模型供给、智能体/工作流、生态/客户案例。",
@@ -1090,6 +1090,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "strategies": [],
   "monitorRuns": [
+    {
+      "targetDate": "2026-10-11",
+      "runDateTime": "2026-10-12 04:48:20",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 2,
+      "candidates": 23,
+      "modelUpdates": 21,
+      "errors": 0
+    },
     {
       "targetDate": "2026-10-10",
       "runDateTime": "2026-10-11 04:28:03",
@@ -1277,16 +1287,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "exactMatches": 0,
       "publishedCandidates": 0,
       "candidates": 24,
-      "modelUpdates": 21,
-      "errors": 0
-    },
-    {
-      "targetDate": "2026-09-21",
-      "runDateTime": "2026-09-22 04:47:36",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 1,
-      "candidates": 23,
       "modelUpdates": 21,
       "errors": 0
     }
