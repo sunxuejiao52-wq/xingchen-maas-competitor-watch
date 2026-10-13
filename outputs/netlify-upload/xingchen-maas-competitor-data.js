@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-10-13 07:30:16",
-  "snapshotDate": "2026-10-12",
-  "note": "自动刷新已运行：2026-10-13 07:30:16（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-10-12 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 21 条。",
+  "updatedAt": "2026-10-14 05:44:18",
+  "snapshotDate": "2026-10-13",
+  "note": "自动刷新已运行：2026-10-14 05:44:18（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-10-13 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 21 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -670,8 +670,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-09-16",
       "publishedDateLabel": "2026-09-16",
       "dateSource": "published_date",
-      "collectedDate": "2026-10-10",
-      "collectedAt": "2026-10-11 04:28:03",
+      "collectedDate": "2026-10-13",
+      "collectedAt": "2026-10-14 05:44:18",
       "kind": "媒体/新闻线索",
       "title": "火山方舟：豆包升级Coding/Agent/VLM能力",
       "summary": "报道提到豆包围绕 Coding、Agent、VLM 三个方向升级，火山方舟继续把模型能力和平台服务打包成对外方案。",
@@ -1091,6 +1091,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   "strategies": [],
   "monitorRuns": [
     {
+      "targetDate": "2026-10-13",
+      "runDateTime": "2026-10-14 05:44:18",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 1,
+      "candidates": 23,
+      "modelUpdates": 21,
+      "errors": 0
+    },
+    {
       "targetDate": "2026-10-12",
       "runDateTime": "2026-10-13 07:30:16",
       "sourcesChecked": 27,
@@ -1279,16 +1289,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "candidates": 23,
       "modelUpdates": 21,
       "errors": 0
-    },
-    {
-      "targetDate": "2026-09-23",
-      "runDateTime": "2026-09-24 03:57:52",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 1,
-      "candidates": 23,
-      "modelUpdates": 21,
-      "errors": 1
     }
   ],
   "modelUpdates": [
