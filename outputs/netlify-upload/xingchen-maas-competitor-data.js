@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-10-19 03:13:57",
-  "snapshotDate": "2026-10-18",
-  "note": "自动刷新已运行：2026-10-19 03:13:57（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-10-18 的竞品动态。官方更新记录 1 条，新闻/公众号线索 2 条，官方模型更新 23 条。",
+  "updatedAt": "2026-10-20 05:20:14",
+  "snapshotDate": "2026-10-19",
+  "note": "自动刷新已运行：2026-10-20 05:20:14（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-10-19 的竞品动态。官方更新记录 0 条，新闻/公众号线索 2 条，官方模型更新 23 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -633,6 +633,34 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "news": [
     {
+      "id": "candidate-media-maas-news-volc-2026-10-15",
+      "competitor": "volc",
+      "date": "2026-10-15",
+      "publishedDate": "2026-10-15",
+      "publishedDateLabel": "2026-10-15",
+      "dateSource": "relative_publish_date",
+      "collectedDate": "2026-10-19",
+      "collectedAt": "2026-10-20 05:20:14",
+      "kind": "媒体/新闻线索",
+      "title": "火山方舟：豆包出现市场信号",
+      "summary": "媒体信息提到：...量转写,适合客服录音的批量处理。这条信息主要指向模型供给、图像视频语音。",
+      "takeaway": "简单说，火山方舟在强化多模态任务入口；星辰 MaaS 需要把图片、视频、语音能力做成可试用、可比较、可计费的任务体验。",
+      "insight": "简单说，火山方舟在强化多模态任务入口；星辰 MaaS 需要把图片、视频、语音能力做成可试用、可比较、可计费的任务体验。",
+      "evidence": "命中“火山方舟”：…量转写,适合客服录音的批量处理。豆包流式语音识别在实时性和准确率之间取得平衡,适合客服通话的实时转写。豆包实时语音模型支持低延迟流式识别,边说边转文字,适合需要实时质检的客服场景。火山方舟MaaS平台统一管… , dispTime : 4天前 , sourceIcon : , rtses : 太平洋电脑网 , sourceName : 太平洋科技 , ac…",
+      "categories": [
+        "model",
+        "multimodal",
+        "business"
+      ],
+      "priority": "low",
+      "source": "mediaVolcArkSearch",
+      "sourceName": "新闻检索：火山方舟",
+      "sourceType": "media",
+      "keyword": "火山方舟",
+      "relevanceScore": 8,
+      "autoCandidate": true
+    },
+    {
       "id": "candidate-media-maas-news-volc-2026-10-08",
       "competitor": "volc",
       "date": "2026-10-08",
@@ -1059,8 +1087,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-06-28",
       "publishedDateLabel": "2026-06-28",
       "dateSource": "published_date",
-      "collectedDate": "2026-10-18",
-      "collectedAt": "2026-10-19 03:13:57",
+      "collectedDate": "2026-10-19",
+      "collectedAt": "2026-10-20 05:20:14",
       "kind": "公众号监测",
       "title": "火山方舟：模型供给上线/发布",
       "summary": "公众号信息提到：火山引擎 吴迪: 火山方舟 加速大模型和大算力应用落地 6月28日,2023 火山引擎 V-Tech体验创新科技峰会上, 火山引擎 正式发布...。这条信息主要指向模型供给、智能体/工作流、生态/客户案例。",
@@ -1143,6 +1171,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "strategies": [],
   "monitorRuns": [
+    {
+      "targetDate": "2026-10-19",
+      "runDateTime": "2026-10-20 05:20:14",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 2,
+      "candidates": 24,
+      "modelUpdates": 23,
+      "errors": 0
+    },
     {
       "targetDate": "2026-10-18",
       "runDateTime": "2026-10-19 03:13:57",
@@ -1332,19 +1370,34 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "candidates": 23,
       "modelUpdates": 21,
       "errors": 0
-    },
-    {
-      "targetDate": "2026-09-29",
-      "runDateTime": "2026-09-30 05:16:20",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 1,
-      "candidates": 23,
-      "modelUpdates": 21,
-      "errors": 0
     }
   ],
   "modelUpdates": [
+    {
+      "id": "model-update-volc-ark-model-updates-2026-10-19-e177264f",
+      "competitor": "volc",
+      "date": "2026-10-19",
+      "title": "火山方舟：deepseek-v4-1-flash-261017、DeepSeek-V4.1-Flash、deepseek-v4-1-flash-economy-261017、doubao-seed-2-1-lite-260915、doubao-seed-2-1-pro-260915 下线",
+      "summary": "deepseek-v4-1-flash-261017、DeepSeek-V4.1-Flash、deepseek-v4-1-flash-economy-261017、doubao-seed-2-1-lite-260915 出现下线动作；复制全文 本文介绍了火山方舟大模型服务平台的新模型发布记录与特性，欢迎体验。 产品功能更新公告请见： 产品更新公告 历史模型发布公告 ： 模型发布公告 2025 模型发布公告 2024 202610 # 提供方 模型 ID 模型类型 版本说明 其它说明 深...",
+      "models": [
+        "deepseek-v4-1-flash-261017",
+        "DeepSeek-V4.1-Flash",
+        "deepseek-v4-1-flash-economy-261017",
+        "doubao-seed-2-1-lite-260915",
+        "doubao-seed-2-1-pro-260915",
+        "deepseek-v4-1-flash-260910",
+        "DeepSeek",
+        "glm-5-3-flash-260828"
+      ],
+      "updateType": "下线",
+      "categories": [
+        "model"
+      ],
+      "priority": "high",
+      "source": "volcArkModelUpdates",
+      "evidence": "命中“deepseek-v4-1-flash-261017”：复制全文 本文介绍了火山方舟大模型服务平台的新模型发布记录与特性，欢迎体验。 产品功能更新公告请见： 产品更新公告 历史模型发布公告 ： 模型发布公告 2025 模型发布公告 2024 202610 # 提供方 模型 ID 模型类型 版本说明 其它说明 深度求索 deepseek-v4-1-flash-261017 深度思考模型 新发布 DeepSeek-V…",
+      "autoModelUpdate": true
+    },
     {
       "id": "model-update-baidu-qianfan-model-2026-10-18-1e514ac3",
       "competitor": "baidu",
@@ -1363,31 +1416,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "priority": "high",
       "source": "baiduModel",
       "evidence": "命中“DeepSeek-V4.1-Flash”：杭州深度求索人工智能基础技术研究有限公司 DeepSeek-V4.1-Flash DeepSeek-V4.1-Flash-1017 推理服务API V2版本-文本生成 上新 DeepSeek V4.1 Flash 新版本：许愿式编程一键成真 调用说明请查看： API调用文档",
-      "autoModelUpdate": true
-    },
-    {
-      "id": "model-update-volc-ark-model-updates-2026-10-16-407e06d2",
-      "competitor": "volc",
-      "date": "2026-10-16",
-      "title": "火山方舟：doubao-seed-2-1-lite-260915、doubao-seed-2-1-pro-260915、deepseek-v4-1-flash-260910、DeepSeek-V4.1-Flash、DeepSeek 下线",
-      "summary": "doubao-seed-2-1-lite-260915、doubao-seed-2-1-pro-260915、deepseek-v4-1-flash-260910、DeepSeek-V4.1-Flash 出现下线动作；复制全文 本文介绍了火山方舟大模型服务平台的新模型发布记录与特性，欢迎体验。 产品功能更新公告请见： 产品更新公告 历史模型发布公告 ： 模型发布公告 2025 模型发布公告 2024 202609 # 提供方 模型 ID 模型类型 版本说明 其它说明 字...",
-      "models": [
-        "doubao-seed-2-1-lite-260915",
-        "doubao-seed-2-1-pro-260915",
-        "deepseek-v4-1-flash-260910",
-        "DeepSeek-V4.1-Flash",
-        "DeepSeek",
-        "glm-5-3-flash-260828",
-        "GLM-5.3-Flash",
-        "GLM-5"
-      ],
-      "updateType": "下线",
-      "categories": [
-        "model"
-      ],
-      "priority": "high",
-      "source": "volcArkModelUpdates",
-      "evidence": "命中“doubao-seed-2-1-lite-260915”：复制全文 本文介绍了火山方舟大模型服务平台的新模型发布记录与特性，欢迎体验。 产品功能更新公告请见： 产品更新公告 历史模型发布公告 ： 模型发布公告 2025 模型发布公告 2024 202609 # 提供方 模型 ID 模型类型 版本说明 其它说明 字节跳动 doubao-seed-2-1-lite-260915 深度思考模型 新发布 新一代全模态大模型…",
       "autoModelUpdate": true
     },
     {
