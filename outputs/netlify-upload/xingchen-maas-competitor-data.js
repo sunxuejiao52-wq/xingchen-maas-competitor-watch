@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-10-22 04:27:04",
-  "snapshotDate": "2026-10-21",
-  "note": "自动刷新已运行：2026-10-22 04:27:04（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-10-21 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 23 条。",
+  "updatedAt": "2026-10-23 04:25:15",
+  "snapshotDate": "2026-10-22",
+  "note": "自动刷新已运行：2026-10-23 04:25:15（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-10-22 的竞品动态。官方更新记录 1 条，新闻/公众号线索 1 条，官方模型更新 23 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -456,11 +456,30 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     },
     {
       "id": "volc",
-      "lastSeen": "2026-10-15",
+      "lastSeen": "2026-10-22",
       "watchNext": "自动监测发现新线索，建议人工复核原文后更新功能对比、宣传动作和星辰 MaaS 对应建议。"
     }
   ],
   "events": [
+    {
+      "id": "record-volc-ark-platform-updates-2026-10-22-1b59fbfe",
+      "competitor": "volc",
+      "date": "2026-10-22",
+      "title": "火山方舟：平台更新记录信号",
+      "summary": "更新重点来自火山方舟官方平台更新记录，用于观察平台能力、工具、智能体、批量任务、评测、用量和管理能力变化。",
+      "categories": [
+        "agent",
+        "tools",
+        "platform",
+        "business"
+      ],
+      "priority": "high",
+      "source": "volcArkPlatformUpdates",
+      "signal": "平台自己的官方更新记录在原文中明确出现 2026-10-22，可作为当天更新记录；火山方舟平台记录更适合判断其 MaaS 产品化方向；星辰 MaaS 可重点对比工具链闭环、用量治理和企业管理能力。",
+      "evidence": "命中“工具”：…AI 助手：本页的 Markdown 版本位于 资源 产品公告 产品更新公告 产品更新公告 更新时间 : 2026-10-22 复制全文 本文介绍了方舟平台的新版本产品功能特性，欢迎体验。 模型更新信息请见： 模型发布公告 历史产品更新公告： 产品更新公告 2025 产品更新公告 2024 202609 # 功能模块 功能说明 模型推理 新增 在线推理（低…",
+      "autoRecord": true,
+      "recordType": "official_update_record"
+    },
     {
       "id": "record-baidu-qianfan-model-2026-10-18-0f504525",
       "competitor": "baidu",
@@ -1087,8 +1106,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-06-28",
       "publishedDateLabel": "2026-06-28",
       "dateSource": "published_date",
-      "collectedDate": "2026-10-21",
-      "collectedAt": "2026-10-22 04:27:04",
+      "collectedDate": "2026-10-22",
+      "collectedAt": "2026-10-23 04:25:15",
       "kind": "公众号监测",
       "title": "火山方舟：模型供给上线/发布",
       "summary": "公众号信息提到：火山引擎 吴迪: 火山方舟 加速大模型和大算力应用落地 6月28日,2023 火山引擎 V-Tech体验创新科技峰会上, 火山引擎 正式发布...。这条信息主要指向模型供给、智能体/工作流、生态/客户案例。",
@@ -1171,6 +1190,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "strategies": [],
   "monitorRuns": [
+    {
+      "targetDate": "2026-10-22",
+      "runDateTime": "2026-10-23 04:25:15",
+      "sourcesChecked": 27,
+      "exactMatches": 1,
+      "publishedCandidates": 1,
+      "candidates": 23,
+      "modelUpdates": 23,
+      "errors": 0
+    },
     {
       "targetDate": "2026-10-21",
       "runDateTime": "2026-10-22 04:27:04",
@@ -1360,23 +1389,13 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "candidates": 23,
       "modelUpdates": 21,
       "errors": 0
-    },
-    {
-      "targetDate": "2026-10-02",
-      "runDateTime": "2026-10-03 05:10:14",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 1,
-      "candidates": 23,
-      "modelUpdates": 21,
-      "errors": 0
     }
   ],
   "modelUpdates": [
     {
-      "id": "model-update-volc-ark-model-updates-2026-10-19-e177264f",
+      "id": "model-update-volc-ark-model-updates-2026-10-22-6299e892",
       "competitor": "volc",
-      "date": "2026-10-19",
+      "date": "2026-10-22",
       "title": "火山方舟：deepseek-v4-1-flash-261017、DeepSeek-V4.1-Flash、deepseek-v4-1-flash-economy-261017、doubao-seed-2-1-lite-260915、doubao-seed-2-1-pro-260915 下线",
       "summary": "deepseek-v4-1-flash-261017、DeepSeek-V4.1-Flash、deepseek-v4-1-flash-economy-261017、doubao-seed-2-1-lite-260915 出现下线动作；复制全文 本文介绍了火山方舟大模型服务平台的新模型发布记录与特性，欢迎体验。 产品功能更新公告请见： 产品更新公告 历史模型发布公告 ： 模型发布公告 2025 模型发布公告 2024 202610 # 提供方 模型 ID 模型类型 版本说明 其它说明 深...",
       "models": [
