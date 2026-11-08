@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-11-08 04:40:10",
-  "snapshotDate": "2026-11-07",
-  "note": "自动刷新已运行：2026-11-08 04:40:10（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-07 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 23 条。",
+  "updatedAt": "2026-11-09 04:57:45",
+  "snapshotDate": "2026-11-08",
+  "note": "自动刷新已运行：2026-11-09 04:57:45（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-08 的竞品动态。官方更新记录 0 条，新闻/公众号线索 2 条，官方模型更新 23 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -1247,8 +1247,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-06-28",
       "publishedDateLabel": "2026-06-28",
       "dateSource": "published_date",
-      "collectedDate": "2026-11-07",
-      "collectedAt": "2026-11-08 04:40:10",
+      "collectedDate": "2026-11-08",
+      "collectedAt": "2026-11-09 04:57:45",
       "kind": "公众号监测",
       "title": "火山方舟：模型供给上线/发布",
       "summary": "公众号信息提到：火山引擎 吴迪: 火山方舟 加速大模型和大算力应用落地 6月28日,2023 火山引擎 V-Tech体验创新科技峰会上, 火山引擎 正式发布...。这条信息主要指向模型供给、智能体/工作流、生态/客户案例。",
@@ -1293,6 +1293,34 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "sourceName": "新闻检索：火山方舟",
       "sourceType": "media",
       "keyword": "火山方舟",
+      "relevanceScore": 10,
+      "autoCandidate": true
+    },
+    {
+      "id": "candidate-media-maas-news-aliyun-2026-04-09",
+      "competitor": "aliyun",
+      "date": "2026-04-09",
+      "publishedDate": "2026-04-09",
+      "publishedDateLabel": "2026-04-09",
+      "dateSource": "published_date",
+      "collectedDate": "2026-11-08",
+      "collectedAt": "2026-11-09 04:57:45",
+      "kind": "媒体/新闻线索",
+      "title": "阿里百炼：kimi上线/发布",
+      "summary": "媒体信息提到：...业市场创造社会价值，AI正在推动各行各业的生产力变革， 通义大模型 将深耕企业市场。这条信息主要指向模型供给、工具/MCP、图像视频语音、价格/优惠。",
+      "takeaway": "简单说，阿里百炼在争夺开发者试用和持续调用成本心智；星辰 MaaS 需要把价格、免费额度、套餐边界和迁移成本说清楚。",
+      "insight": "简单说，阿里百炼在争夺开发者试用和持续调用成本心智；星辰 MaaS 需要把价格、免费额度、套餐边界和迁移成本说清楚。",
+      "evidence": "命中“阿里百炼”：…业市场创造社会价值，AI正在推动各行各业的生产力变革， 通义大模型 将深耕企业市场。”4月9日，在阿里云AI势能大会上，阿里云智能集团资深副总裁、公共云… 君 去 搜： 阿里百炼 通义 大模型 相关搜索 阿里百炼学生优惠 通义千问和千问大模型区别 百炼大模型官网入口 阿里百炼云平台官网 阿里通义千问发布开源模型 阿里云百炼模型官宣降价 阿里百炼大模型平台k…",
+      "categories": [
+        "model",
+        "multimodal",
+        "business"
+      ],
+      "priority": "medium",
+      "source": "mediaAliyunBailianSearch",
+      "sourceName": "新闻检索：阿里百炼",
+      "sourceType": "media",
+      "keyword": "阿里百炼",
       "relevanceScore": 10,
       "autoCandidate": true
     },
@@ -1359,6 +1387,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "strategies": [],
   "monitorRuns": [
+    {
+      "targetDate": "2026-11-08",
+      "runDateTime": "2026-11-09 04:57:45",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 2,
+      "candidates": 24,
+      "modelUpdates": 23,
+      "errors": 0
+    },
     {
       "targetDate": "2026-11-07",
       "runDateTime": "2026-11-08 04:40:10",
@@ -1542,16 +1580,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     {
       "targetDate": "2026-10-20",
       "runDateTime": "2026-10-21 04:17:40",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 2,
-      "candidates": 24,
-      "modelUpdates": 23,
-      "errors": 0
-    },
-    {
-      "targetDate": "2026-10-19",
-      "runDateTime": "2026-10-20 05:20:14",
       "sourcesChecked": 27,
       "exactMatches": 0,
       "publishedCandidates": 2,
