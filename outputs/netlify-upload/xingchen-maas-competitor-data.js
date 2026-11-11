@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-11-11 06:08:36",
-  "snapshotDate": "2026-11-10",
-  "note": "自动刷新已运行：2026-11-11 06:08:36（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-10 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 23 条。",
+  "updatedAt": "2026-11-12 07:17:54",
+  "snapshotDate": "2026-11-11",
+  "note": "自动刷新已运行：2026-11-12 07:17:54（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-11 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 23 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -709,6 +709,34 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "news": [
     {
+      "id": "candidate-media-maas-news-volc-2026-11-08",
+      "competitor": "volc",
+      "date": "2026-11-08",
+      "publishedDate": "2026-11-08",
+      "publishedDateLabel": "2026-11-08",
+      "dateSource": "relative_publish_date",
+      "collectedDate": "2026-11-11",
+      "collectedAt": "2026-11-12 07:17:54",
+      "kind": "媒体/新闻线索",
+      "title": "火山方舟：豆包上线/发布",
+      "summary": "媒体信息提到：...生成速度提升,增强多轮编辑稳定性,原生支持透明素材生成,并针对图像真实感和小字渲染方面做了重点优化。这条信息主要指向模型供给、工具/MCP、图像视频语音、生态/客户案例。",
+      "takeaway": "简单说，火山方舟在把模型能力变成可落地的应用流程；星辰 MaaS 需要补足模板、工具接入、权限和运行日志。",
+      "insight": "简单说，火山方舟在把模型能力变成可落地的应用流程；星辰 MaaS 需要补足模板、工具接入、权限和运行日志。",
+      "evidence": "命中“火山方舟”：…生成速度提升,增强多轮编辑稳定性,原生支持透明素材生成,并针对图像真实感和小字渲染方面做了重点优化。目前,豆包、豆包工作、即梦已同步接入 Seedream 5.5,API 即将上线火山方舟。定价方面,Seedream 5.5 API 延续 输入图 + 输出… , dispTime : 3天前 , sourceIcon : , rtses : ZAKER ,…",
+      "categories": [
+        "model",
+        "multimodal",
+        "business"
+      ],
+      "priority": "low",
+      "source": "mediaVolcArkSearch",
+      "sourceName": "新闻检索：火山方舟",
+      "sourceType": "media",
+      "keyword": "火山方舟",
+      "relevanceScore": 9,
+      "autoCandidate": true
+    },
+    {
       "id": "candidate-media-maas-news-volc-2026-10-22",
       "competitor": "volc",
       "date": "2026-10-22",
@@ -1388,6 +1416,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   "strategies": [],
   "monitorRuns": [
     {
+      "targetDate": "2026-11-11",
+      "runDateTime": "2026-11-12 07:17:54",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 1,
+      "candidates": 22,
+      "modelUpdates": 23,
+      "errors": 3
+    },
+    {
       "targetDate": "2026-11-10",
       "runDateTime": "2026-11-11 06:08:36",
       "sourcesChecked": 27,
@@ -1576,23 +1614,13 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "candidates": 24,
       "modelUpdates": 23,
       "errors": 0
-    },
-    {
-      "targetDate": "2026-10-22",
-      "runDateTime": "2026-10-23 04:25:15",
-      "sourcesChecked": 27,
-      "exactMatches": 1,
-      "publishedCandidates": 1,
-      "candidates": 23,
-      "modelUpdates": 23,
-      "errors": 0
     }
   ],
   "modelUpdates": [
     {
-      "id": "model-update-volc-ark-model-updates-2026-11-05-4ce3689a",
+      "id": "model-update-volc-ark-model-updates-2026-11-11-7ce1c9a5",
       "competitor": "volc",
-      "date": "2026-11-05",
+      "date": "2026-11-11",
       "title": "火山方舟：doubao-seed-evolving、kimi-k3-1-pro-261024、Kimi、deepseek-v4-1-flash-261017、DeepSeek-V4.1-Flash 下线",
       "summary": "doubao-seed-evolving、kimi-k3-1-pro-261024、Kimi、deepseek-v4-1-flash-261017 出现下线动作；复制全文 本文介绍了火山方舟大模型服务平台的新模型发布记录与特性，欢迎体验。 产品功能更新公告请见： 产品更新公告 历史模型发布公告 ： 模型发布公告 2025 模型发布公告 2024 202611 # 提供方 模型 ID 模型类型 版本说明 其它说明 字...",
       "models": [
