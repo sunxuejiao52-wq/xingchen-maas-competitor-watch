@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-11-12 07:17:54",
-  "snapshotDate": "2026-11-11",
-  "note": "自动刷新已运行：2026-11-12 07:17:54（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-11 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 23 条。",
+  "updatedAt": "2026-11-13 06:35:09",
+  "snapshotDate": "2026-11-12",
+  "note": "自动刷新已运行：2026-11-13 06:35:09（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-12 的竞品动态。官方更新记录 2 条，新闻/公众号线索 3 条，官方模型更新 23 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -450,17 +450,53 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     },
     {
       "id": "baidu",
-      "lastSeen": "2026-10-18",
+      "lastSeen": "2026-11-12",
       "thesis": "动作最密集：新模型、模型退役、智能体、工具广场、AI 搜索和开发者套餐一起推进。",
       "watchNext": "自动监测发现新线索，建议人工复核原文后更新功能对比、宣传动作和星辰 MaaS 对应建议。"
     },
     {
       "id": "volc",
-      "lastSeen": "2026-11-04",
+      "lastSeen": "2026-11-12",
       "watchNext": "自动监测发现新线索，建议人工复核原文后更新功能对比、宣传动作和星辰 MaaS 对应建议。"
     }
   ],
   "events": [
+    {
+      "id": "record-volc-ark-platform-updates-2026-11-12-c9533ad5",
+      "competitor": "volc",
+      "date": "2026-11-12",
+      "title": "火山方舟：平台更新记录信号",
+      "summary": "更新重点来自火山方舟官方平台更新记录，用于观察平台能力、工具、智能体、批量任务、评测、用量和管理能力变化。",
+      "categories": [
+        "agent",
+        "tools",
+        "platform",
+        "business"
+      ],
+      "priority": "high",
+      "source": "volcArkPlatformUpdates",
+      "signal": "平台自己的官方更新记录在原文中明确出现 2026-11-12，可作为当天更新记录；火山方舟平台记录更适合判断其 MaaS 产品化方向；星辰 MaaS 可重点对比工具链闭环、用量治理和企业管理能力。",
+      "evidence": "命中“工具”：…AI 助手：本页的 Markdown 版本位于 资源 产品公告 产品更新公告 产品更新公告 更新时间 : 2026-11-12 复制全文 本文介绍了方舟平台的新版本产品功能特性，欢迎体验。 模型更新信息请见： 模型发布公告 历史产品更新公告： 产品更新公告 2025 产品更新公告 2024 202610 # 功能模块 功能说明 Agent Plan / C…",
+      "autoRecord": true,
+      "recordType": "official_update_record"
+    },
+    {
+      "id": "record-baidu-qianfan-coding-2026-11-12-28ea99eb",
+      "competitor": "baidu",
+      "date": "2026-11-12",
+      "title": "百度千帆：开发者套餐和 API 使用权益信号",
+      "summary": "更新重点集中在 Coding Plan、Token Plan、API Key、额度、续费、套餐迁移和开发者入口。",
+      "categories": [
+        "coding",
+        "business"
+      ],
+      "priority": "high",
+      "source": "baiduCodingPlan",
+      "signal": "平台自己的官方更新记录在原文中明确出现 2026-11-12，可作为当天更新记录；百度在用套餐和额度降低开发者试用门槛；星辰 MaaS 可关注免费额度、套餐迁移提示和 API 接入路径是否足够清晰。",
+      "evidence": "命中“Coding Plan”：…帆·大模型服务及Agent开发平台 平台概览 产品公告 模型服务 Coding Plan 产品升级公告 文档中心 百度千帆·大模型服务及Agent开发平台 平台概览 产品公告 模型服务 Coding Plan 产品升级公告 … 有问题 预约专家咨询 本页目录 概述 变更内容 影响 迁移指南 问题与支持 Coding Plan 产品升级公告 更新时间 ： 2…",
+      "autoRecord": true,
+      "recordType": "official_update_record"
+    },
     {
       "id": "record-volc-ark-platform-updates-2026-11-04-018e77cc",
       "competitor": "volc",
@@ -715,14 +751,14 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-11-08",
       "publishedDateLabel": "2026-11-08",
       "dateSource": "relative_publish_date",
-      "collectedDate": "2026-11-11",
-      "collectedAt": "2026-11-12 07:17:54",
+      "collectedDate": "2026-11-12",
+      "collectedAt": "2026-11-13 06:35:09",
       "kind": "媒体/新闻线索",
       "title": "火山方舟：豆包上线/发布",
-      "summary": "媒体信息提到：...生成速度提升,增强多轮编辑稳定性,原生支持透明素材生成,并针对图像真实感和小字渲染方面做了重点优化。这条信息主要指向模型供给、工具/MCP、图像视频语音、生态/客户案例。",
+      "summary": "媒体信息提到：...5.5,这款 豆包 图像创作 模型 与上一代Seedream 5.0 Pro相比,生成速度大幅提升。这条信息主要指向模型供给、工具/MCP、图像视频语音、生态/客户案例。",
       "takeaway": "简单说，火山方舟在把模型能力变成可落地的应用流程；星辰 MaaS 需要补足模板、工具接入、权限和运行日志。",
       "insight": "简单说，火山方舟在把模型能力变成可落地的应用流程；星辰 MaaS 需要补足模板、工具接入、权限和运行日志。",
-      "evidence": "命中“火山方舟”：…生成速度提升,增强多轮编辑稳定性,原生支持透明素材生成,并针对图像真实感和小字渲染方面做了重点优化。目前,豆包、豆包工作、即梦已同步接入 Seedream 5.5,API 即将上线火山方舟。定价方面,Seedream 5.5 API 延续 输入图 + 输出… , dispTime : 3天前 , sourceIcon : , rtses : ZAKER ,…",
+      "evidence": "命中“火山方舟”：…5.5,这款 豆包 图像创作 模型 与上一代Seedream 5.0 Pro相比,生成速度大幅提升。 目前,豆包、豆包工作、即梦均已同步接入Seedream 5.5,API即将在火山方舟平台上线。 , dispTime : 4天前 , sourceIcon : , rtses : 同花顺 , sourceName : 同花顺 , accessibility…",
       "categories": [
         "model",
         "multimodal",
@@ -1275,8 +1311,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-06-28",
       "publishedDateLabel": "2026-06-28",
       "dateSource": "published_date",
-      "collectedDate": "2026-11-10",
-      "collectedAt": "2026-11-11 06:08:36",
+      "collectedDate": "2026-11-12",
+      "collectedAt": "2026-11-13 06:35:09",
       "kind": "公众号监测",
       "title": "火山方舟：模型供给上线/发布",
       "summary": "公众号信息提到：火山引擎 吴迪: 火山方舟 加速大模型和大算力应用落地 6月28日,2023 火山引擎 V-Tech体验创新科技峰会上, 火山引擎 正式发布...。这条信息主要指向模型供给、智能体/工作流、生态/客户案例。",
@@ -1369,6 +1405,34 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "source": "ftVolcanoCloud"
     },
     {
+      "id": "candidate-media-maas-news-aliyun-2025-09-06",
+      "competitor": "aliyun",
+      "date": "2025-09-06",
+      "publishedDate": "2025-09-06",
+      "publishedDateLabel": "2025-09-06",
+      "dateSource": "published_date",
+      "collectedDate": "2026-11-12",
+      "collectedAt": "2026-11-13 06:35:09",
+      "kind": "媒体/新闻线索",
+      "title": "阿里百炼：Qwen3上线/发布",
+      "summary": "媒体信息提到：...mmary : 智东西9月6日报道，昨夜，阿里上线Qwen3系列最强 模型 Qwen3-Max的Preview版本，这也是阿里迄今为止...。这条信息主要指向模型供给、图像视频语音。",
+      "takeaway": "简单说，阿里百炼在强化多模态任务入口；星辰 MaaS 需要把图片、视频、语音能力做成可试用、可比较、可计费的任务体验。",
+      "insight": "简单说，阿里百炼在强化多模态任务入口；星辰 MaaS 需要把图片、视频、语音能力做成可试用、可比较、可计费的任务体验。",
+      "evidence": "命中“阿里百炼”：…mmary : 智东西9月6日报道，昨夜，阿里上线Qwen3系列最强 模型 Qwen3-Max的Preview版本，这也是阿里迄今为止最大的模型，参数量超1万亿。该模型目前已登陆 阿里百炼 平台，且在 通义 千问应用及Qwen C… , dispTime : 2025年9月6日 , sourceIcon :",
+      "categories": [
+        "model",
+        "multimodal",
+        "business"
+      ],
+      "priority": "low",
+      "source": "mediaAliyunBailianSearch",
+      "sourceName": "新闻检索：阿里百炼",
+      "sourceType": "media",
+      "keyword": "阿里百炼",
+      "relevanceScore": 9,
+      "autoCandidate": true
+    },
+    {
       "id": "news-media-202504-baidu-multimodal",
       "competitor": "baidu",
       "date": "2025-04-25",
@@ -1415,6 +1479,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "strategies": [],
   "monitorRuns": [
+    {
+      "targetDate": "2026-11-12",
+      "runDateTime": "2026-11-13 06:35:09",
+      "sourcesChecked": 27,
+      "exactMatches": 2,
+      "publishedCandidates": 3,
+      "candidates": 21,
+      "modelUpdates": 23,
+      "errors": 3
+    },
     {
       "targetDate": "2026-11-11",
       "runDateTime": "2026-11-12 07:17:54",
@@ -1604,34 +1678,24 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "candidates": 23,
       "modelUpdates": 23,
       "errors": 0
-    },
-    {
-      "targetDate": "2026-10-23",
-      "runDateTime": "2026-10-24 04:12:05",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 2,
-      "candidates": 24,
-      "modelUpdates": 23,
-      "errors": 0
     }
   ],
   "modelUpdates": [
     {
-      "id": "model-update-volc-ark-model-updates-2026-11-11-7ce1c9a5",
+      "id": "model-update-volc-ark-model-updates-2026-11-12-951e489c",
       "competitor": "volc",
-      "date": "2026-11-11",
-      "title": "火山方舟：doubao-seed-evolving、kimi-k3-1-pro-261024、Kimi、deepseek-v4-1-flash-261017、DeepSeek-V4.1-Flash 下线",
-      "summary": "doubao-seed-evolving、kimi-k3-1-pro-261024、Kimi、deepseek-v4-1-flash-261017 出现下线动作；复制全文 本文介绍了火山方舟大模型服务平台的新模型发布记录与特性，欢迎体验。 产品功能更新公告请见： 产品更新公告 历史模型发布公告 ： 模型发布公告 2025 模型发布公告 2024 202611 # 提供方 模型 ID 模型类型 版本说明 其它说明 字...",
+      "date": "2026-11-12",
+      "title": "火山方舟：doubao-seed-evolving、doubao-seedream-5-5-261028、Doubao、豆包、kimi-k3-1-pro-261024 下线",
+      "summary": "doubao-seed-evolving、doubao-seedream-5-5-261028、Doubao、豆包 出现下线动作；复制全文 本文介绍了火山方舟大模型服务平台的新模型发布记录与特性，欢迎体验。 产品功能更新公告请见： 产品更新公告 历史模型发布公告 ： 模型发布公告 2025 模型发布公告 2024 202611 # 提供方 模型 ID 模型类型 版本说明 其它说明 字...",
       "models": [
         "doubao-seed-evolving",
+        "doubao-seedream-5-5-261028",
+        "Doubao",
+        "豆包",
         "kimi-k3-1-pro-261024",
         "Kimi",
         "deepseek-v4-1-flash-261017",
-        "DeepSeek-V4.1-Flash",
-        "deepseek-v4-1-flash-economy-261017",
-        "doubao-seed-2-1-lite-260915",
-        "doubao-seed-2-1-pro-260915"
+        "DeepSeek-V4.1-Flash"
       ],
       "updateType": "下线",
       "categories": [
