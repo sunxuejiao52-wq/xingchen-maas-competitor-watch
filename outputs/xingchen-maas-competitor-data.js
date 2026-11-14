@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-11-14 06:23:31",
-  "snapshotDate": "2026-11-13",
-  "note": "自动刷新已运行：2026-11-14 06:23:31（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-13 的竞品动态。官方更新记录 1 条，新闻/公众号线索 2 条，官方模型更新 23 条。",
+  "updatedAt": "2026-11-15 05:06:50",
+  "snapshotDate": "2026-11-14",
+  "note": "自动刷新已运行：2026-11-15 05:06:50（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-14 的竞品动态。官方更新记录 0 条，新闻/公众号线索 2 条，官方模型更新 23 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -770,14 +770,14 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-11-08",
       "publishedDateLabel": "2026-11-08",
       "dateSource": "relative_publish_date",
-      "collectedDate": "2026-11-13",
-      "collectedAt": "2026-11-14 06:23:31",
+      "collectedDate": "2026-11-14",
+      "collectedAt": "2026-11-15 05:06:50",
       "kind": "媒体/新闻线索",
       "title": "火山方舟：豆包上线/发布",
       "summary": "媒体信息提到：...5.5,这款 豆包 图像创作 模型 与上一代Seedream 5.0 Pro相比,生成速度大幅提升。这条信息主要指向模型供给、工具/MCP、图像视频语音、生态/客户案例。",
       "takeaway": "简单说，火山方舟在把模型能力变成可落地的应用流程；星辰 MaaS 需要补足模板、工具接入、权限和运行日志。",
       "insight": "简单说，火山方舟在把模型能力变成可落地的应用流程；星辰 MaaS 需要补足模板、工具接入、权限和运行日志。",
-      "evidence": "命中“火山方舟”：…5.5,这款 豆包 图像创作 模型 与上一代Seedream 5.0 Pro相比,生成速度大幅提升。 目前,豆包、豆包工作、即梦均已同步接入Seedream 5.5,API即将在火山方舟平台上线。 , dispTime : 5天前 , sourceIcon : , rtses : 同花顺 , sourceName : 同花顺 , accessibility…",
+      "evidence": "命中“火山方舟”：…5.5,这款 豆包 图像创作 模型 与上一代Seedream 5.0 Pro相比,生成速度大幅提升。 目前,豆包、豆包工作、即梦均已同步接入Seedream 5.5,API即将在火山方舟平台上线。 , dispTime : 6天前 , sourceIcon : , rtses : 同花顺 , sourceName : 同花顺 , accessibility…",
       "categories": [
         "model",
         "multimodal",
@@ -1330,8 +1330,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-06-28",
       "publishedDateLabel": "2026-06-28",
       "dateSource": "published_date",
-      "collectedDate": "2026-11-13",
-      "collectedAt": "2026-11-14 06:23:31",
+      "collectedDate": "2026-11-14",
+      "collectedAt": "2026-11-15 05:06:50",
       "kind": "公众号监测",
       "title": "火山方舟：模型供给上线/发布",
       "summary": "公众号信息提到：火山引擎 吴迪: 火山方舟 加速大模型和大算力应用落地 6月28日,2023 火山引擎 V-Tech体验创新科技峰会上, 火山引擎 正式发布...。这条信息主要指向模型供给、智能体/工作流、生态/客户案例。",
@@ -1498,6 +1498,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "strategies": [],
   "monitorRuns": [
+    {
+      "targetDate": "2026-11-14",
+      "runDateTime": "2026-11-15 05:06:50",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 2,
+      "candidates": 24,
+      "modelUpdates": 23,
+      "errors": 2
+    },
     {
       "targetDate": "2026-11-13",
       "runDateTime": "2026-11-14 06:23:31",
@@ -1685,16 +1695,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "exactMatches": 0,
       "publishedCandidates": 1,
       "candidates": 22,
-      "modelUpdates": 23,
-      "errors": 0
-    },
-    {
-      "targetDate": "2026-10-25",
-      "runDateTime": "2026-10-26 03:27:05",
-      "sourcesChecked": 27,
-      "exactMatches": 1,
-      "publishedCandidates": 2,
-      "candidates": 20,
       "modelUpdates": 23,
       "errors": 0
     }
