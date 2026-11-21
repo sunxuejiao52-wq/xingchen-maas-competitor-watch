@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-11-21 06:57:38",
-  "snapshotDate": "2026-11-20",
-  "note": "自动刷新已运行：2026-11-21 06:57:38（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-20 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 23 条。",
+  "updatedAt": "2026-11-22 06:01:45",
+  "snapshotDate": "2026-11-21",
+  "note": "自动刷新已运行：2026-11-22 06:01:45（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-21 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 23 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -1368,8 +1368,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-06-28",
       "publishedDateLabel": "2026-06-28",
       "dateSource": "published_date",
-      "collectedDate": "2026-11-20",
-      "collectedAt": "2026-11-21 06:57:38",
+      "collectedDate": "2026-11-21",
+      "collectedAt": "2026-11-22 06:01:45",
       "kind": "公众号监测",
       "title": "火山方舟：模型供给上线/发布",
       "summary": "公众号信息提到：火山引擎 吴迪: 火山方舟 加速大模型和大算力应用落地 6月28日,2023 火山引擎 V-Tech体验创新科技峰会上, 火山引擎 正式发布...。这条信息主要指向模型供给、智能体/工作流、生态/客户案例。",
@@ -1536,6 +1536,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "strategies": [],
   "monitorRuns": [
+    {
+      "targetDate": "2026-11-21",
+      "runDateTime": "2026-11-22 06:01:45",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 1,
+      "candidates": 24,
+      "modelUpdates": 23,
+      "errors": 2
+    },
     {
       "targetDate": "2026-11-20",
       "runDateTime": "2026-11-21 06:57:38",
@@ -1723,16 +1733,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "exactMatches": 1,
       "publishedCandidates": 1,
       "candidates": 23,
-      "modelUpdates": 23,
-      "errors": 0
-    },
-    {
-      "targetDate": "2026-11-01",
-      "runDateTime": "2026-11-02 04:57:37",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 2,
-      "candidates": 24,
       "modelUpdates": 23,
       "errors": 0
     }
