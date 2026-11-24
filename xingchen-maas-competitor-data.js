@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-11-23 06:17:52",
-  "snapshotDate": "2026-11-22",
-  "note": "自动刷新已运行：2026-11-23 06:17:52（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-22 的竞品动态。官方更新记录 0 条，新闻/公众号线索 2 条，官方模型更新 23 条。",
+  "updatedAt": "2026-11-24 11:09:35",
+  "snapshotDate": "2026-11-23",
+  "note": "自动刷新已运行：2026-11-24 11:09:35（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-23 的竞品动态。官方更新记录 0 条，新闻/公众号线索 2 条，官方模型更新 23 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -802,6 +802,34 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "news": [
     {
+      "id": "candidate-media-maas-news-volc-2026-11-22",
+      "competitor": "volc",
+      "date": "2026-11-22",
+      "publishedDate": "2026-11-22",
+      "publishedDateLabel": "2026-11-22",
+      "dateSource": "relative_publish_date",
+      "collectedDate": "2026-11-23",
+      "collectedAt": "2026-11-24 11:09:35",
+      "kind": "媒体/新闻线索",
+      "title": "火山方舟：豆包上线/发布",
+      "summary": "媒体信息提到：...李嘉欣晒夫妻合照纪念结婚18周年 27 巴基斯坦航天员将随神二十三返回 28 特朗普手持在深圳照片向众人展示 29 A股这波行情能走多...。这条信息主要指向模型供给、图像视频语音、训练部署。",
+      "takeaway": "简单说，火山方舟在强化多模态任务入口；星辰 MaaS 需要把图片、视频、语音能力做成可试用、可比较、可计费的任务体验。",
+      "insight": "简单说，火山方舟在强化多模态任务入口；星辰 MaaS 需要把图片、视频、语音能力做成可试用、可比较、可计费的任务体验。",
+      "evidence": "命中“火山方舟”：…李嘉欣晒夫妻合照纪念结婚18周年 27 巴基斯坦航天员将随神二十三返回 28 特朗普手持在深圳照片向众人展示 29 A股这波行情能走多远 30 献血会让人老得快吗 新 辅助模式 火山方舟 依托字节的 模型 资源与工程能力,在 豆包 系列和 生成方向有积累,适合内容类业务。硅基流动在开源模型推理加速和标准化接口上有自己的技术积累,适合对推理性能敏感的技术团队…",
+      "categories": [
+        "model",
+        "multimodal",
+        "business"
+      ],
+      "priority": "low",
+      "source": "mediaVolcArkSearch",
+      "sourceName": "新闻检索：火山方舟",
+      "sourceType": "media",
+      "keyword": "火山方舟",
+      "relevanceScore": 6,
+      "autoCandidate": true
+    },
+    {
       "id": "candidate-media-maas-news-volc-2026-11-08",
       "competitor": "volc",
       "date": "2026-11-08",
@@ -1368,8 +1396,8 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "publishedDate": "2026-06-28",
       "publishedDateLabel": "2026-06-28",
       "dateSource": "published_date",
-      "collectedDate": "2026-11-22",
-      "collectedAt": "2026-11-23 06:17:52",
+      "collectedDate": "2026-11-23",
+      "collectedAt": "2026-11-24 11:09:35",
       "kind": "公众号监测",
       "title": "火山方舟：模型供给上线/发布",
       "summary": "公众号信息提到：火山引擎 吴迪: 火山方舟 加速大模型和大算力应用落地 6月28日,2023 火山引擎 V-Tech体验创新科技峰会上, 火山引擎 正式发布...。这条信息主要指向模型供给、智能体/工作流、生态/客户案例。",
@@ -1536,6 +1564,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "strategies": [],
   "monitorRuns": [
+    {
+      "targetDate": "2026-11-23",
+      "runDateTime": "2026-11-24 11:09:35",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 2,
+      "candidates": 26,
+      "modelUpdates": 23,
+      "errors": 0
+    },
     {
       "targetDate": "2026-11-22",
       "runDateTime": "2026-11-23 06:17:52",
@@ -1723,16 +1761,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
       "exactMatches": 1,
       "publishedCandidates": 1,
       "candidates": 23,
-      "modelUpdates": 23,
-      "errors": 0
-    },
-    {
-      "targetDate": "2026-11-03",
-      "runDateTime": "2026-11-04 06:11:56",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 1,
-      "candidates": 24,
       "modelUpdates": 23,
       "errors": 0
     }
