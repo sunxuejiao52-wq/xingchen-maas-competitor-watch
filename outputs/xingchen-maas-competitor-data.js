@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-11-25 09:14:59",
-  "snapshotDate": "2026-11-24",
-  "note": "自动刷新已运行：2026-11-25 09:14:59（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-24 的竞品动态。官方更新记录 0 条，新闻/公众号线索 0 条，官方模型更新 23 条。",
+  "updatedAt": "2026-11-26 08:50:11",
+  "snapshotDate": "2026-11-25",
+  "note": "自动刷新已运行：2026-11-26 08:50:11（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-25 的竞品动态。官方更新记录 0 条，新闻/公众号线索 0 条，官方模型更新 23 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -1565,6 +1565,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   "strategies": [],
   "monitorRuns": [
     {
+      "targetDate": "2026-11-25",
+      "runDateTime": "2026-11-26 08:50:11",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 0,
+      "candidates": 17,
+      "modelUpdates": 23,
+      "errors": 0
+    },
+    {
       "targetDate": "2026-11-24",
       "runDateTime": "2026-11-25 09:14:59",
       "sourcesChecked": 27,
@@ -1747,16 +1757,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     {
       "targetDate": "2026-11-06",
       "runDateTime": "2026-11-07 05:56:14",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 1,
-      "candidates": 24,
-      "modelUpdates": 23,
-      "errors": 0
-    },
-    {
-      "targetDate": "2026-11-05",
-      "runDateTime": "2026-11-06 06:33:12",
       "sourcesChecked": 27,
       "exactMatches": 0,
       "publishedCandidates": 1,
