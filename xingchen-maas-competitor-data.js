@@ -1,7 +1,7 @@
 window.__XINGCHEN_COMPETITOR_DATA__ = {
-  "updatedAt": "2026-11-26 08:50:11",
-  "snapshotDate": "2026-11-25",
-  "note": "自动刷新已运行：2026-11-26 08:50:11（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-25 的竞品动态。官方更新记录 0 条，新闻/公众号线索 0 条，官方模型更新 23 条。",
+  "updatedAt": "2026-11-27 08:56:26",
+  "snapshotDate": "2026-11-26",
+  "note": "自动刷新已运行：2026-11-27 08:56:26（北京时间），本次按“平台自己的官方更新记录”口径总结 2026-11-26 的竞品动态。官方更新记录 0 条，新闻/公众号线索 1 条，官方模型更新 23 条。",
   "sources": {
     "baiduModel": {
       "note": "百度千帆模型更新记录 的自动监测来源，用于追踪竞品功能、模型、宣传和新闻动态。",
@@ -802,6 +802,34 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   ],
   "news": [
     {
+      "id": "candidate-media-maas-news-volc-2026-11-25",
+      "competitor": "volc",
+      "date": "2026-11-25",
+      "publishedDate": "2026-11-25",
+      "publishedDateLabel": "2026-11-25",
+      "dateSource": "relative_publish_date",
+      "collectedDate": "2026-11-26",
+      "collectedAt": "2026-11-27 08:56:26",
+      "kind": "媒体/新闻线索",
+      "title": "火山方舟：Kimi热门模型进入市场关注",
+      "summary": "媒体信息提到：...eek、智谱、MiniMax、月之暗面 Kimi、阶跃星辰、字节 豆包 、阿里通义千问),面向模型能力与开发者生态;企业级 AI 原生...。这条信息主要指向模型供给、图像视频语音、开发者套餐、生态/客户案例。",
+      "takeaway": "简单说，火山方舟在争夺开发者试用和持续调用成本心智；星辰 MaaS 需要把价格、免费额度、套餐边界和迁移成本说清楚。",
+      "insight": "简单说，火山方舟在争夺开发者试用和持续调用成本心智；星辰 MaaS 需要把价格、免费额度、套餐边界和迁移成本说清楚。",
+      "evidence": "命中“火山方舟”：…eek、智谱、MiniMax、月之暗面 Kimi、阶跃星辰、字节 豆包 、阿里通义千问),面向模型能力与开发者生态;企业级 AI 原生平台(如远光九天灵境、百度千帆、阿里云百炼、 火山方舟 、华为云盘… , dispTime : 昨天18:37 , sourceIcon : , rtses : IT之家 , sourceName : IT之家 , acce…",
+      "categories": [
+        "model",
+        "multimodal",
+        "business"
+      ],
+      "priority": "low",
+      "source": "mediaVolcArkSearch",
+      "sourceName": "新闻检索：火山方舟",
+      "sourceType": "media",
+      "keyword": "火山方舟",
+      "relevanceScore": 8,
+      "autoCandidate": true
+    },
+    {
       "id": "candidate-media-maas-news-volc-2026-11-22",
       "competitor": "volc",
       "date": "2026-11-22",
@@ -1565,6 +1593,16 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
   "strategies": [],
   "monitorRuns": [
     {
+      "targetDate": "2026-11-26",
+      "runDateTime": "2026-11-27 08:56:26",
+      "sourcesChecked": 27,
+      "exactMatches": 0,
+      "publishedCandidates": 1,
+      "candidates": 17,
+      "modelUpdates": 23,
+      "errors": 0
+    },
+    {
       "targetDate": "2026-11-25",
       "runDateTime": "2026-11-26 08:50:11",
       "sourcesChecked": 27,
@@ -1747,16 +1785,6 @@ window.__XINGCHEN_COMPETITOR_DATA__ = {
     {
       "targetDate": "2026-11-07",
       "runDateTime": "2026-11-08 04:40:10",
-      "sourcesChecked": 27,
-      "exactMatches": 0,
-      "publishedCandidates": 1,
-      "candidates": 24,
-      "modelUpdates": 23,
-      "errors": 0
-    },
-    {
-      "targetDate": "2026-11-06",
-      "runDateTime": "2026-11-07 05:56:14",
       "sourcesChecked": 27,
       "exactMatches": 0,
       "publishedCandidates": 1,
